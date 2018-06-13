@@ -1,0 +1,15 @@
+This is 8-bit Big BibTeX version 0.99c
+Implementation:  WIN32 Console, BaKoMa TNS bound.
+Release version: 3.71 (18 Aug 1996)
+
+The top-level auxiliary file: BANANAS.aux
+The style file: plainnat.bst
+Database file #1: bibliography.bib
+
+Here's how much of BibTeX's memory you used:
+ Cites:                 1 out of 7500
+ Fields:               16 out of 125000
+ Hash table:        34809 out of 35000
+ Strings:             597 out of 30000
+ String pool:        4917 out of 750000
+ Wizard functions:   2773 out of 10000

@@ -1,0 +1,395 @@
+
+
+Next, it is going to take a number of iterations for the daisies to grow/die ... changing their fractional areas and hence albedo as their fractional areas change ... and hence ultimately, reaching a new equilibrium with global climate. Each time around the outer loop -- because the value of \(S_{0}\) will change each time, climate will change and the daisy population will no longer be in equilibrium (because their fractional areas are carried over from the previous loop iteration). Hence in the outer loop you will need an inner loop  to determine the new equilibrium and global temperature for that particular value of \(S_{0}\). For now the loop can be quite simple -- we'll assume 100 iterations (i.e. the loop counter \texttt{n}, will go from \texttt{1} to \texttt{100}).
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+\newthought{As an example}, load the oxygen isotope data from the previous tutorial and convert it into sealevel. Using the \uline{command line} only ... plot it, label the axes, add a title, and set the age scale from 0 to 800 kyr, and the sealevel scale from -120 to +20 m (relative to present-day).
+ At this point it should look something like figure \ref{fig:plot-sealevel}. (I cheated a little here and changed the font sizes by passing an additional pair of parameters to the axis label and title commands, of the form: \texttt{'FontSize',SIZE}, where \texttt{SIZE} is the font size (in units of points (pts)), e.g. 18 for the title and 15 for the axis labels in this example.)
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{plot-sealevel.eps}
+\caption{Past sealevel variability as reconstructed from oxygen isotopes.}
+\label{fig:plot-sealevel}
+\end{marginfigure}
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch9-schematic-fun1.eps}
+\caption{Schematic of the dynamic EBM as a function and with the CO2 concentration passed in.}
+\label{fig:ch9-schematic-fun1}
+\end{marginfigure}
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+We can now actually do something with this data. Perhaps, as a common way of displaying paleo atmospheric CO\(_{2}\) and O\(_{2}\) concentrations is as a concentration unit relative to present-day\sidenote{known as 'PAL' -- Present Atmospheric Level}. All we need to do, is divide the paleo CO\(_{2}\) concentration data by the modern value. However to make it more 'fun', lets divide the data by the value in the CO\(_{2}\) concentration dataset closest to modern (i.e. 0 Ma). So your task is to firstly find\sidenote{CLUE: you are going to use the \texttt{find} function ...} the data entry with an age closest to zero, determine the CO\(_{2}\) concentration corresponding to this age, and divide everything (the CO\(_{2}\) concentrations) by it.
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+\marginnote[-0.00in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\docenvdef{line}
+... quite simply, draws a line. The basic syntax of the command is:
+\begin{docspecmargin}
+line(X,Y)
+\end{docspecmargin}
+which plots a line between a paid of (x,y) coordinates. In the MATLAB usage, for a single straight line segment: the vector \texttt{X} contains both the \textit{x} coordinate values, and \texttt{Y} both the \textit{y} coordinate values.
+\\In the specific Example in the text, the vertical line is drawn by:
+\begin{docspecmargin}
+line([0 0],[-10 50]);
+\end{docspecmargin}
+NOT forgetting to put \texttt{hold on} first ...
+\end{mdframed}}
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+\section{Functions}
+    
+\marginnote[0.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
+\textbf{\textit{functions}}
+\\The script file for a function in \textbf{MATLAB} has a special header line at the very top of the \texttt{m-file}. As the \textbf{MATLAB} on-line documentation says:
+\begin{docspecmargin}
+function [y1,...,yN] = ...
+\\myfun(x1,...,xM)
+\end{docspecmargin}
+"declares a function named \texttt{myfun} that accepts inputs \texttt{x1,...,xM} and returns outputs \texttt{y1,...,yN}. This declaration statement must be the first executable line of the function" (which I already said!).
+\\This general form of description is not entirely un-contorted. So for instance, trivially, a the \texttt{m-file} of a \textit{function} to calculate the square of a number and return the value, would look like:
+\begin{docspecmargin}
+function [y] = ... 
+\\mystupidfunction(x)
+\\y=x$ ^\wedge $2;
+\end{docspecmargin}
+and called by e.g.:
+\begin{docspecmargin}
+>> mystupidfunction(2)
+\\ans = 
+\\4
+\end{docspecmargin}
+\textit{Functions} are named and saved with the \texttt{.m} extension just as per normal \textit{script} files.
+\end{mdframed}}
+
+\newthought{As an example},
+\marginnote{\textit{*** nested loops, functions, \texttt{meshgrid} ***}}
+-- go re-load the bathymetry data one last time (unless you already have it in your variable workspace). You have already plotted just land on its own in a previous Example. How many land cells are there? You'll need to use the \texttt{find} function, and also then obtain the number of locations meeting this criteria\sidenote{HINT: The length of the returned vector.}.
+
+But what about: what fraction of the Earth's surface is land? What (area) fraction of land is within 70 m of the current sealevel? For these questions, simply counting cell above and below sealevel, or within a certain band of height, is not enough. Why? Because the area of each cell shrinks towards the poles as the distance around the Earth along a line of longitude becomes progressively less. For any particular cell in your dataset, with Westerly and Easterly longitudinal limits of \(lon_{W}\) and \(lon_{E}\), respectively, and Southerly and Northerly latitude limits of \(lat_{S}\) and \(lat_{N}\), respectively, its area is:
+\begin{docspec}
+\(2\cdot\pi\cdot R^{2}\cdot[sin(lat_{N}) - sin(lat_{S})]\cdot(lon_{E} - lon_{W})/360\)
+\end{docspec}
+where R is the radius of the Earth -- assume 6,371 km, or 6.371\(\times\)10\(^{6}\) m.
+
+The first thing to note here is that MATLAB does it calculations of trig functions such as \texttt{sin} and \texttt{cos}, with the input in units of radians, not degrees. So if you are working in degrees, convert to radians by dividing by 180 and multiplying by \texttt{pi}\sidenote{Remembering that \texttt{pi} is a built-in constant with a value of 3.141592653589793 ...}.
+
+If you now, using \texttt{meshgrid}, create the longitude and latitude matrices to go with the bathymetry data matrix, you can write out the formula and pass in any pair of bounding longitudes and latitudes for a cell. Remember that the cell centers go:
+\begin{docspec}
+0.5, 1.5, 2.5 ... 359.5
+\end{docspec}
+for longitude, and
+\begin{docspec}
+-89.5, -88.5, -87.5 ... 89.5
+\end{docspec}
+for latitude, while you want the edges, which will be \(\pm\)0.5\degree from the centers in both longitude and latitude.
+
+Taking the example of total land surface area -- how much is there, in m\(^{2}\)? You could actually write this in just 2 lines of code in \texttt{MATLAB} if you are clever ... but her we are going to do this via a nested loop. To start with, you are going to  create a nested loop (i.e. one loop inside the other):
+\begin{docspec}
+for n=1:360
+\\ \ \ \ for m=1:180
+\\ \ \ \ end
+\\end
+\end{docspec}
+What this is doing is looping through all 360 columns (i.e. longitude), and for each column, looping through all 180 rows (i.e. latitude), with the effect that every grid point is passed through. You could check on what this is going by adding something like:
+\begin{docspec}
+\\ \ \ \ disp(['(n,m) = ' num2str(n) ',' num2str(m)])
+\end{docspec}
+in the inner loop (which simply creates and then displays a string, telling you the n and m value pair).\sidenote{Remember that you could test this nested loop with a smaller range for \texttt{n} and \texttt{m} first, e.g. \texttt{1:36} and \texttt{1:18} (or even smaller).}
+
+From this, you can derive the grid point centers (in degrees) by:
+\begin{docspec}
+lon = n - 0.5
+\\lat = m - 0.5 - 90.0
+\end{docspec}
+This should be obvious ... ? Note that latitude starts at -90\degree N, hence the need for the \texttt{-90.0} subtraction. Your cell boundaries are then:
+\begin{docspec}
+lon\_E = lon + 0.5
+\\lon\_W = lon - 0.5
+\\lat\_N = lat + 0.5
+\\lat\_S = lat - 0.5
+\end{docspec}
+and hence the area:
+\begin{docspec}
+2.0 * pi * (6.371E6)\(^{\wedge}\)2 * ...
+\\(sin(pi*lat\_N/180.0) - sin(pi*lat\_S/180.0)) * ...
+\\(lon\_E - lon\_W)/360.0
+\end{docspec}
+
+This is a sort of useful calculation and there may be a variety of instances where you require knowledge of the area of a cell on the Earth's surface. So we are going to put this fragment of code into a \textit{function}, passing the  Westerly and Easterly longitudinal limit, and Southerly and Northerly latitude limits and returning the calculated area. For header for the function will look like:
+\begin{docspec}
+function [area] = calc\_area(lon\_E, lon\_W, lat\_N, lat\_S)
+\end{docspec}
+The line calculating the area is the only essential content of this m-file (\texttt{calc\_area.m}). Note that the result of the calculation must be assigned to a variable \texttt{area}, matching the function header (or you will get nothing returned for your trouble), i.e.
+\begin{docspec}
+area = 2.0 * pi * (6.371E6)\(^{\wedge}\)2 * ...
+\\(sin(pi*lat\_N/180.0) - sin(pi*lat\_S/180.0)) * ...
+\\(lon\_E - lon\_W)/360.0
+\end{docspec}
+Also note that although this is the minimum content, it is good practice to adequately comment the code. Also, as a further refinement, you might define a variable to hold the value of the Earth's radius so that the equation becomes easier to interpret, i.e.
+\begin{docspec}
+earth\_radius = 6.371E6;
+\\area = 2.0 * pi * earth\_radius\(^{\wedge}\)2 * ...
+\\(sin(pi*lat\_N/180.0) - sin(pi*lat\_S/180.0)) * ...
+\\(lon\_E - lon\_W)/360.0
+\end{docspec}
+Other possible alternatives include passing just the (cell centre) lon and lat values, and deriving the cell boundaries from these. This would necessitate assuming that the grid is 1\degree\ in both directions (and hence make the function less generic and applicable to other problems). Or one could pass in the lon, lat pair, plus a 3rd parameter for the resolution (here, 1.0\degree ). There are lots of alternative possibilities, all 'correct' for this specific example, more or less complicated and with more or fewer input parameters, and more or less applicable for other situations.
+
+So now we are close to determining the total land surface area. The \textit{conditional} expression, within the loop, should be obvious ... \sidenote{HINT: You are testing for the topographic height being \texttt{> 0.0}, or perhaps \texttt{>= 0.0}.}? All that then remains is to sum up the area of each cell that meets the criteria (of being above sealevel). Again, there are various ways to accomplish this:
+
+\begin{enumerate}[noitemsep]
+\setlength{\itemindent}{.2in}
+
+\item You could populate a 2D array, the same size as the bathymetry data (360\(\times\)180), and set each cell to its respective area, if the cell is above sealevel, and to zero if below. If this array was called: \texttt{land\_area}, then the total global area of land would be:
+\begin{docspec}
+sum(sum(land\_area))\sidenote{If it is not obvious that this is the case, check on the details of \texttt{sum} in \texttt{help} (and what it returns if passed a matrix).}
+\end{docspec}
+
+\item Unless you will need the individual areas again, it is not necessary to save them all explicitly. Instead, we could generate a running total by adding the cell area to a variable each time a land cell is found. If the running total variable was called \texttt{area\_sum}, then at each identification of a land cell, in the \texttt{if ... end} structure, we would write:
+\begin{docspec}
+area\_sum = area\_sum + calc\_area(lon\_E, lon\_W, lat\_N, lat\_S);
+\end{docspec}
+What this is saying is: take the existing value of \texttt{area\_sum}, and add the value calculated by \texttt{calc\_area} to it.
+
+It is not necessary here (in \textbf{MATLAB}), but it is good practice to initialize this variable -- somewhere before the nested loop, you would do this by writing:
+\begin{docspec}
+area\_sum = 0.0;
+\end{docspec}
+Some programming languages (e.g. \textbf{FORTRAN}) are fussy about variables being explicitly initialized with something to start with.
+
+\end{enumerate}
+
+Also try modifying your script to the *fraction* of the total land area potentially threatened by future sea-level rise (assume: 70 m). You could do this by creating and updating 2 partial sums -- one for land are below 70 m, and one for total land area (as before). Simply divide one by the other (and maybe multiply by 100 to get a \% area fraction).
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+\section{Sub-programs (scripts)}
+
+\newthought{An example}
+\marginnote{\textit{*** sub-programs ***}}
+involving the continental outline and now combining with the global temperature dataset/plot.
+
+Go back to the script you wrote for creating the global temperature map animation. Copy it and rename it, and remove the loop and also the creation of the movie, so that it simply loads in a single month of data (any one), creates the lon-lat info (\texttt{meshgrid}), plots the temperature field and makes the plot 'nice' (labels, and maybe an optimized number of contours and color scale), i.e. ending up when you run your script, with something looking like Figure \ref{fig:ch2-contour2}. (Make sure you save this before moving on.)
+
+Now lets say that you want to add the continental outline as an overlay. In fact, you do want to do this! You could certainly add to your temperature field plotting script:
+\begin{enumerate}[noitemsep]
+\setlength{\itemindent}{.2in}
+\item Loading in of the lon-lat, and also start-end, vector data.
+\item A \texttt{hold on} after the temperature data has been plotted.
+\item A \texttt{do ... end} loop, to plot all the coastline fragments.
+\end{enumerate}
+In fact, this, itself, is worth trying. Save it with a different filename and run it. You should end up with a nice outline of the continents/islands on top of the contoured map. (You could also try plotting the outline first before the contour function, particularly if using the filled function (\texttt{contourf}) -- what happens?)
+
+But lets imagine that you might be in the habit of plotting lots of different global datasets, and for each, you want the continental outline. You would have to put \uline{exactly the same code} in each and every script you write. There is a better way of dealing with this situation (i.e. a block of code that you might want to use again and again as part of different programs and projects).
+
+You can place a block of code that you want to re-use, in its own \texttt{m-file}. Go back to the script that you wrote to just plot the temeprature field (no continental outline overlay). Create a new (blank) m-file and place into it:
+\begin{enumerate}[noitemsep]
+\setlength{\itemindent}{.2in}
+\item Loading in of the lon-lat, and also start-end, vector data.
+\item A \texttt{do ... end} loop, to plot all the coastline fragments.
+\end{enumerate}
+Save it.
+
+At this point it is a good idea to test it rather than immediately trying to combine it with another complex script. Lets say that the code to load and plot the continental outline is called \texttt{plot\_continents} (filename: \texttt{plot\_continents.m}). Test it by opening a figure window, setting hold on, and then calling (running) the script, e.g.:
+\begin{docspec}
+figure;
+\\hold on;
+\\plot\_continents
+\end{docspec}
+and hopefully getting a version of Figure \ref{fig:ch3-continentaloutline3} but without the fancy labels etc.
+The next, trivial but oddly profound step, is to place the above 3 lines of code in a new \texttt{m-file}, and then run it. Now you have created a program that calls a sub-program (\texttt{plot\_continents})! (One might classify the 3-line program a test harness for the sub-program -- i.e. just enough commands to make the sub-program work and thereby have verified that all seems fine with it.)
+
+Now the last and genuinely trivial step is to call \texttt{plot\_continents} from your temperature field plotting program, either just after the contouring function and a hold on has been called, or if you prefer, after the plot has been labelled and the axes limits set.
+
+A little refinement here is to increase the line weighting to e.g. a 1.5 pt width to make them a little more pronounced compared to the color contoured background, by adjusting the plotting line thickness (and also ensuring it is black):
+\begin{docspec}
+plot(lon(lstart(n):lend(n)),lat(lstart(n):lend(n)), ...\sidenote[][-1.0in]{Note the \texttt{...} notation (see Box).}
+\'k-','LineWidth',1.5);
+\end{docspec}
+
+\marginnote[-1.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
+\docenvdef{...}
+\\Three points in a row in MATLAB -- \texttt{...} --- at the end of a line, indicates that the next line should be treated as a continuation of the current line. i.e. it is a way of breaking an overly long line into two fragments without \textbf{MATLAB} thinking they are two completely sperate and independent lines. e.g. trivially one could write:
+\begin{docspecmargin}
+hold ...
+\\on
+\end{docspecmargin}
+Pointless. But valid.
+\end{mdframed}}
+
+The only continental-scale fly in the plotting ointment now, is illustrated in Figure \ref{fig:ch3-continentaloutline4}. It may be a little hard to se, but the continental outline has only been plotted from 0 to 180E, despite the plotting subroutine having been checked (and dutifully plotted a global distribution) earlier. How is this possible?
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch3-continentaloutline4.eps}
+\caption{Now continents on top of temperature fields.}
+\label{fig:ch3-continentaloutline4}
+\end{marginfigure}
+
+If you compare the separate plots -- Figure \ref{fig:ch2-contour2} vs. Figure \ref{fig:ch3-continentaloutline3}, it is apparent that the first goes from 0 to 360E, and the latter from -180 to 180E. Hence when combined on a 0 to 360E scale plot, the -180 to 0E portion of the continental outline has been lost. A crude fix for this is to plot the continental outline *twice*, with one version offset by 360 in longitude, i.e. you end up with two, side-by-side copies of the outline, spanning from -180E to 540E (= 360 + 180), which when restricted to 0 to 360 leaves you with a complete outline (the excess parts having been clipped by the \texttt{axes} command and not displayed anywhere). To do this, the key line in \texttt{plot\_continents} is duplicated and 360 added to the longitude values in the 2nd version:
+\begin{docspec}
+plot(lon(lstart(n):lend(n)),lat(lstart(n):lend(n)), ...
+\'k-','LineWidth',1.5);
+\\plot(lon(lstart(n):lend(n))+360,lat(lstart(n):lend(n)), ...
+\'k-','LineWidth',1.5);
+\end{docspec}
+And now it is fixed. Time for beer.
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+It would be nice to be able to plot this temperature data for ourselves and have more control over  its presentation and hence the message you are trying to convey with it. Pick one (any one) of the the monthly global surface temperature data-files on the  course webpage and download it.
+
+Pick one of the \textbf{MATLAB} 3D plotting functions (see Box). Your choice. Read the relevant \texttt{help} for your chosen \textit{function}.
+Plot the dataset using the simplest usage of the \textit{function}.
+
+You should have got 'something' (see Figure \ref{fig:ch2-contour1}). But you'll note (hopefully) that you haven't got any grid information yet; i.e., you don't know what the longitude and latitude axes should be and the default graduation clearly cannot be for a planet. You could guess that latitude (\textit{y}-axis) goes from 90\degree S (-90\degree N) to 90\degree N, but be careful -- sometimes you will see global maps only plotted between say 60\degree N or 75\degree N if the highest latitudes are not very interesting or e.g. it is a satellite product and the satellite cannot observe high latitudes. You would be safer guessing that there is likely to be the full 360\degree  of longitude; but starting where? Common longitudes to start plotting from in the literature are 0\degree E and -180\degree E (180\degree W). 
+The second thing to note, apart from missing \textit{x}- and \textit{y}-axis labels (and title) that you could easily add in, is; what do the colours mean? i.e., If you were asked what the temperature was over the Equatorial Pacific, or what the coldest temperatures in the northern Arctic were; well, what do the red and dark blue colours actually mean? 0\degree C, 50\degree C, 100\degree C??? Your contour or colour contour (depending on which 3D plot you prefer) is clearly missing critical information and incomplete.
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch2-contour1.eps}
+\caption{\textbf{Example contour plot.} Result of \texttt{contour(data,20)}, where the data file was \texttt{temp7.tsv}.}
+\label{fig:ch2-contour1}
+\end{marginfigure}
+
+OK -- we'll fix the (lon,lat) information to start with. If the (lon,lat) grid information was available from the same website where the temperature distribution data came from, then you already know how to use this (e.g. from \texttt{help}) when calling the contour (or \texttt{confourf}) function; i.e.
+\begin{docspec}
+>> contour(lon,lat,data)
+\end{docspec}
+instead of just supplying the array of data values on its own, i.e.;
+\begin{docspec}
+>> contour(data)
+\end{docspec}
+(and similar to Figure \ref{fig:ch2-contour1}).
+
+But suppose the actual data-files (arrays) of (lon,lat) information are not available at all. Anywhere. Then what? (In fact, this is the case with this particular on-line data repository.) The information that the website did provide (click on the 'data in view' button on the webpage you were looking at) is that:
+
+You could create a vector (similar to as per you have done previously) to try and solve this, by entering something like:
+\begin{docspec}
+>> lon = [0:1.875:358.125];
+\end{docspec}
+\noindent In fact, type this in at the command line and view what it gives - is this sufficient longitude information for the 94\(\times\)192 temperature distribution data-set (94\(\times\)192 is the array size of the temp global temperature distribution data which is displayed in the \textbf{Workspace window})? Can you create the appropriate 94\(\times\)192 array out of this single 1\(\times\)192 vector? Maybe. But not easily.\sidenote{It turns out you could have easily ... but only if you had skipped ahead and gone through the next Tutorial ...}
+
+Helpfully, \textbf{MATLAB} provides a special function called \docenvdef{meshgrid}. Spend a few minutes reading about it in \texttt{help}. In particular, look at the examples given to help you translate the \textbf{MATLAB}-speak gobbledegook of the function \textbf{Description}. You should be able to clean from all this that this function allows us to create two \(a\times b\) arrays; one with the columns all having the same values, and one with the rows all having the same values. This is exactly what we need for defining the (lon,lat) of all the global surface temperature distribution data points.
+
+As an example of this, suppose you wanted to create the (lon,lat) grid information for a data-set covering the LA and the Inland Empire, that went from; -120\degree  to -116\degree  (East), and 32\degree   to 36\degree 
+ (North). The arrays we will use to store the longitude and latitude information in we will call; lon and lat. Having looked at \texttt{help}, the command you will issue hopefully is apparent:
+\begin{docspec}
+>> [lon lat] = meshgrid(-120:1:-116, 32:1:36);
+\end{docspec}
+A translation of this is: create a pair of matrixes, one for lon values going from -120 to -116 with a step size of one, and one for latitude values going from 32 to 36 with a step size of one, and assign them to a pair of variables, \texttt{[lon lat]}. Type this in at the command line and view the contents of the \texttt{lon} and \texttt{lat} arrays to convince yourself that it actually works out.\sidenote{ Note that the latitude numbers in the lat array count in the opposite direction (numbers getting larger going down the rows) to how you would expect if you were looking down at a map. Remember that arrays in \textbf{MATLAB} count from the top left (columns across from the left, and rows down from the top) rather than in a map, which is orientated from the bottom left. If at the end of the day when you plot your data you find that you get an up-side-down map, then you know that you need to simply just flip the lat array around. Refer to the earlier Tutorial and/or Look up \texttt{help flipdim} for one way of re-orientating the data in an array.}
+
+Now go create a suitable pair of (lon,lat) arrays for the global temperature data. You will need to remember to use the \texttt{colon operator} to increment longitude in 1.875\degree  steps and latitude in 1.904\degree  steps. You may as well call the arrays that you create \texttt{lon} and \texttt{lat}.
+Have a look at the arrays that you have created (in the \textbf{Variables windows}), and satisfy yourself that for each and every temperature point in the temperature data array (i.e., (row,column) location), the corresponding locations in the lon and lat arrays gives the full (longtitude, latitude) location of the temperature value on the Earths surface.
+
+Plot the global temperature distribution on its proper (lon,lat) grid. Go label the axes if you haven't already done this.
+
+Now you need to fix the problem of not know what any of the colours (contours) in your beautiful plot mean ... Note that the temperature of the raw data-sets is in Kelvin (or did you really think that January temperatures in Socal were around 290\degree F?). Go change the dataset to some more sensible units -- either a simple conversion to degrees Celsius, or Google how to convert to Fahrenheit. See if you can produce something like (or better than!) Figure \ref{fig:ch2-contour2}.
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch2-contour2.eps}
+\caption{\textbf{Example contour plot.} Result of \texttt{contourf(lon,lat,temp7,30)}, where the data file was \texttt{temp7.tsv}, with some embellishments.}
+\label{fig:ch2-contour2}
+\end{marginfigure}
+
+\newthought{Loops, camera, action!} 
+\marginnote[0.0in]{\textit{*** the \texttt{for ... end} loop, string concatenation, comments, the \texttt{num2str} function, defining (color, contour) plotting scales, \textbf{MATLAB} \texttt{movie}s ***}}
+A humongous and ungainly example follows, in which we'll see the use of \textit{loops}, recap some on loading in data files, plotting (and interpolating) 2D data, and see a few new tricks (aka \textbf{MATLAB} functionality). What we are going to do is (load and) plot a sequence of monthly data-sets and put them together to create a movie (animated graphic) to illustrate the seasonality of temperature in global climate. You will hopefully start to appreciate the value of constructs such as \textit{loops} in computer programming in saving you a whole bunch of effort and needless duplication of code.
+
+So, first download all the monthly global surface temperature data-files on the  course webpage (there are 12 files to download). Then you are going to want to plot them all\sidenote{Strictly speaking, you are going to be doing this, regardless of whether or not you actually 'want' to ;)}. This would get tedious if you had to do this at the command line 12 times. Think how much more of your life you would be wasting if we had weekly data. Or monthly data for 1972 through 2003, some 372 separate data-files ... You would never have time to drink beer ever again?
+
+
+Create a new \texttt{m-file}. Call it ... anything you like\sidenote{\texttt{bob\_the\_builder.m} counts as 'anything you like', but that looks pretty lame and it certainly won't help you remember what the script does if you came back to it sometime in the future.}. However, as well as appropriately naming your script file, add a \textit{comment} on the first line of the file as a reminder to yourself of what it is going to do. Also, for now, it is good practice\sidenote{Note that there may be situations in which you want to run a script file to process some data that you have already loaded in -- by issuing the command \texttt{clear all}, you will erase the \textbf{MATLAB} workspace and any data already loaded in.} to use the commands: \texttt{clear all} and \texttt{close all}.
+
+To make an animation, we need to make a series of frames, with each one being a different monthly temperature plot (in sequence; Jan ? Dec). The files are rather conveniently named: \texttt{temp1.tsv}, \texttt{temp2.tsv}, ... \texttt{temp12.tsv}. We should start by loading this little lot in. For the first file we could write:
+\begin{docspec}
+temp = load('temp1.tsv');
+\end{docspec}
+or
+\begin{docspec}
+temp(:,:) = load('temp1.tsv');
+\end{docspec}
+and hence with a slight-of-hand, we could also write:
+\begin{docspec}
+temp(:,:,1) = load('temp1.tsv');
+\end{docspec}
+Can you see that these statements are identical? Run the script with one, then with the other, just to be sure. The latter form is useful, because we can now go on and write:
+\begin{docspec}
+temp(:,:,2) = load('temp2.tsv');
+\end{docspec}
+What you have done here is to load the January 2D (lon-lat) temperature distribution into the 1st 2D layer of the temp array, and then we have gone and created a second 2D layer on top of the first with the February data in it.
+
+Look at the \textbf{Workspace window}  (or type \texttt{size(temp)}) -- you now have a 3D (94\(\times\)192\(\times\)2) array. Fancy!
+
+Go on and load in the March and April data in a similar fashion (check that your array now has dimensions of: 94x192x4). Are you getting bored yet? No? Then load in the May and June data.\sidenote{Zzzzzzzzzzzzzzzzzzzz}
+
+You should be able to see a pattern forming here. This is something that a loop could be used for while you go off down the bar. We first need to construct the loop framework. We'll call the month number counter variable, \texttt{month}. Create a loop (with nothing in it yet) with \texttt{month} going from \texttt{1} to \texttt{12}.\sidenote{Don't forget to suitably comment what it is that the loop does with a line (or even 2, but don't write a whole essay) beginning with a \%.} Refer to the course text (this document!), and/or the 'Getting Started in MATLAB' booklet, and/or the MATLAB  documentation, and/or the entirety of the internet, if necessary. The syntax (and examples) is described in full under \texttt{>> help for}. Save the script (\texttt{m-file}) and run it\sidenote{Typing: the \texttt{m-file} filename without the extension.}. What happens? Can you tell?
+
+One way of following what is going on as \textbf{MATLAB} executes the commands within a script is to explicitly request that it tells you how it is getting on. Use the function \docenv{disp} to help you follow what the program is doing. Within the loop, add the following line:
+\begin{docspec}
+disp(month)
+\end{docspec}
+then save and re-run the script.
+
+Now you can see how the loop progresses. This sort of thing can be useful in helping to \textit{debug} a program -- it allows you to follow a program's progress, and if the program (or \textbf{MATLAB} script) crashes, then at least you will know at what loop count this happened at, even if you are not given any more useful information by \textbf{MATLAB}. ONLY when you are happy that you have constructed a loop that goes around and around 12 times with the variable month counting up from 1 to 12; comment out (\texttt{\%}) the printing (\texttt{disp}) line\sidenote{Note that by commenting out a line rather than completely deleting it, if you want to print out the loop count in the future, all you have to do is to un-comment the line, rather than type in the command all over again. This can be really useful if your debug command is long, or particularly if you have a whole series of lines that are required to report the information you want to know.} (unless you have grown rather attached to it) and move on.
+
+We can construct filenames to load in by:
+\begin{enumerate}[noitemsep]
+\setlength{\itemindent}{.2in}
+\item Converting the number value of a (count) variable to a string (\docenvdef{num2str}), and
+\item forming a complete filename by concatenating other strings before and/or after this.
+\end{enumerate}
+
+\noindent The \docenv{num2str} function is new to you -- look it up in \texttt{help} for exactly what it does and the correct syntax. For the second part of this -- recall that you can concatenate arrays (you have done this before with numbers in the arrays). The same can be done if your variables contain strings (i.e., a sequence of characters). For example, you can probably guess the outcome of (but type it in at the command line anyway):
+\begin{docspec}
+>> A = ['be' 'er']
+\end{docspec}
+
+\noindent Note that string information must go within inverted commas; ''. We can do a similar trick to construct a long filename string. Type in the following example at the command line:
+\begin{docspec}
+>> filename = ['temp' '1' '.tsv']
+\end{docspec}
+\noindent Now load (at the command line) the data file given by the filename string contained in the variable \texttt{filename}\sidenote{HINT:\\\texttt{>> load(filename);}}. 
+
+You should see that you can construct filename strings from individual parts of strings (by concatenating), and you can pass the load command the array containing the filename -- note that this is different to how you have been loading in data before when you have passed the actual string (which you have had to place between inverted commas to tell \textbf{MATLAB} it is a string). If you pass \textbf{MATLAB} a variable containing a string, then \textbf{MATLAB} will automatically look to see if the contents of the variable are a string or number, and if it wants a string input and your variable contains a string, \textbf{MATLAB} will be very happy indeed.
+
+If you have to write out 12 times a line like \texttt{filename = ['temp' '1' '.tsv'];} then you still have not managed to save any drinking time. This is where you can use the loop count number (stored in the variable \texttt{month}) and convert this number to a \textit{string} in order to automatically generate the correct month's filename each time you go around the loop.
+
+Now add the following within the \textit{loop} in your script;
+\begin{docspec}
+filename = ['temp' num2str(month) '.tsv'];
+disp(filename)
+\end{docspec}
+\noindent Save and run the script. Satisfy yourself that you know what it is doing. Can you see that you are now automatically generating all the 12 filenames in sequence? And this only takes 3 lines of code (compared with 12 lines if you had to write it all out long-hand).
+ 
+Now \textit{comment} out the \texttt{disp(filename)} line, and add a new line to load in each dataset from the new filename that is constructed each time the loop goes around and assign it to the \texttt{temp} array. Remember that the load line goes inside the loop. (Why? Try writing it outside the loop (at the end) and see what happens if you like.)        Look at the \textbf{Workspace window} -- note that you have an array (\texttt{temp}) that has size 94\(\times\)192\(\times\)12. If temp is 94\(\times\)192\(\times\)1 then go back a page or so and go through the bit about loading data into a 3D array. You want to avoid over-writing the information that is already there, so the line;
+\texttt{temp = load(filename)};
+will not work (and you will only get a 94\(\times\)92 array after going 12 times around the loop). Why? (Again, look back a page-ish.)\sidenote{If you are still stuck, then stick up a paw.}
+
+Now ... before the loop, create the (lon,lat) information arrays using the \texttt{meshgrid} function. Add the necessary line(s) to the script (after the workspace initialization but before the loop starts) to create the (lon,lat) information arrays. Note that you only need 2D arrays here because the same (lon,lat) can be used to plot the temperature data for each month.
+
+At the end of (but still within) the loop (i.e., before the loop has completely finished), create a new figure window on one line, then plot (\texttt{contour}/\texttt{contourf}) the monthly temperature data on the next line, and add the essential labelling stuff (lines after that). All within the loop still. This line should look something like:
+\begin{docspec}
+contourf(lon(:,:),lat(:,:),temp(:,:,month));
+\end{docspec}
+\noindent \uline{Don't} just type this line in blindly (maybe it doesn't 'work' anyway). Make sure that you understand what you are doing (otherwise why do GEO111 at all?).
+
+Save and run the script. Do you have 12 different temperature plots on the computer screen?\sidenote{If not, stick you paw up in the air for help ...} Note that this is where the close all command at the start of your script comes in useful. Because if you re-run the script, you wont then end up with 24 figure windows. And then 36 the time after that, and ... (There is actually no need to create a new figure window each time -- comment out the command that creates a new figure window (figure). Save and re-run and note the difference.) 
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+\marginnote[-1.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\docenvdef{exit}
+\\If you wish your program to end early, maybe because a parameter value check has revealed an inconsistency or an illegal value, or a calculation (typically an analytical solution) has failed or is impossible), simply add the command:
+\begin{docspecmargin}
+exit
+\end{docspecmargin}
+\noindent(Note that in contrast, \docenvdef{quit} also exits the entire \textbf{MATLAB} program ...)
+\end{mdframed}}
+
+-----------------------------------------------------------------------------------------------------------------------------
+

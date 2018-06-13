@@ -1,0 +1,89 @@
+
+
+=== GENERAL ===
+
+MORE ON THE MATLAB GUI
+how to use the RUN button
+how not to use this for functions (=> wrape the function up in a nother m-file (script file) and then RUN)
+
+*** more generic, less sciency example ***
+*** more statistics and curve-fitting etc stuff early on ***
+*** more step-by-step instructions ***
+*** clearer/more code outline figures/schematics ***
+*** more comprehensive, clearer, and coherent, graphics and graphics editing section ***
+
+reationalize number of grid examples
+
+add some 3D visualization?
+viewing angles, slices of data, etc
+surfaces
+
+=== CHAPTER 0 ===
+
+
+=== CHAPTER 1 [intro to MATLAB] ===
+
+Process bathy data and create histograms
+create hyp[sometric curve
+combine with sea-level(!) to create shelf area(?) (here, or a different chapter?)
+
+REVISE the earthquake stuff ... is this really a good example? 
+What is it for or illustrating.
+
+=== CHAPTER 3 [intro to programming: loops and conditions] ===
+
+=> need CO2 data in better 'format' so that different proxies cannbe plotted in different colors
+object? or create seperate file of data type?
+-> show how to convert strings to numbers, but supply number coded data to lean in (now 5, rather than 4, columns)
+
+=== CHAPTER 4 [algorithms] ===
+
+CREATE:
+
+\section{Subroutines and structured programming}
+
+=== CHAPTER 5 [GUIs] ===
+
+CREATE:
+
+\section{Further helpings of GUI}
+
+=== CHAPTER x [more MATLAB and plotting] ===
+
+textscan ... example not great and needs revision
+ADD read/write ('r'/'w') specifiers
+
+In basic plotting -- add blocky plot
+* add blocky example of '3D' / gridded data plotting
+(use bathymetry example)
+
+* add new histogram examples and processing of bathymetry data
+* add details for plotting 2 different y-axes
+* add details of color bars and labelling   
+
+EXAMPLES: ice-core data ... introduce re-sampling (interpolation) (use calculating a mean value as an example)
+(and as an example of calculating a mean and sample spacing, create a square wave with unequal sampling)
+
+=== CHAPTER x ===
+
+* example of processing bathy data -- find gradients (i.e. steapness)
+--> simpe for the global grid (divie into 2 diections and difference the whole arrays)
+--> more complex if ocean is to me omitted
+(NaN the ocean and do 2 arrays, or loop and rtest for ocean)
+
+* illustrate differnt search algorithms
+
+=== CHAPTER x ===
+
+move 1-D EBm to after the CH4 model example
+hence add optimization to the EBM but keep the CH4 model sinmpler!
+
+=== CHAPTER x ===
+
+add lake system as an example of using inverse matrix methods to solve equations
+[NEEDS A BIG RE-WRITE]
+
+EBM: add schematic of area capturing energy vs. total area? 
+add in units check/balance to illustrate equation for calculating delta-T
+(mention years -> seconds)
+

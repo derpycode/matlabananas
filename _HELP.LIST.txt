@@ -1,0 +1,84 @@
+
+\begin{enumerate}
+\item The first item
+\begin{enumerate}
+\item Nested item 1
+\item Nested item 2
+\end{enumerate}
+\item The second item
+\item The third etc \ldots
+\end{enumerate}
+
+\documentclass[twocolumn]{article}
+\usepackage{blindtext}
+\usepackage{scrextend}
+\addtokomafont{labelinglabel}{\sffamily}
+\begin{document}
+\blindtext
+\begin{labeling}{alligator}
+\item [ant] really busy all the time
+\item [chimp] likes bananas
+\item [alligator] very dangerous animal, sharp teeth, long
+muscular tail and a bit of text that is longer than one
+line and shows the alignment of text quite nicely
+\end{labeling}
+\end{document}
+
+\documentclass[twocolumn]{article}
+\usepackage{blindtext}
+\usepackage[inline]{enumitem}
+\usepackage{xcolor}
+\begin{document}
+\blindtext Coco likes fruit. Her favorites are:
+\begin{enumerate*}[label={\alph*)},font={\color{red!50!black}\bfseries}]
+\item bananas
+\item apples
+\item oranges and
+\item lemons.
+\end{enumerate*}
+\blindtext
+\end{document}
+
+\documentclass[twocolumn]{article}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\begin{document}
+\blindtext
+\begin{itemize}
+\item more work
+\item more responsibility
+\item more satisfaction
+\end{itemize}
+\blindtext
+\newpage
+\blindtext
+\begin{itemize}[noitemsep]
+\item more work
+\item more responsibility
+\item more satisfaction
+\end{itemize}
+\blindtext
+\end{document}
+
+\documentclass[twocolumn]{article}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\begin{document}
+\blindtext Coco likes fruit. Her favourites are:
+\begin{description}[align=left]
+\item [Kate] some detail
+\item [Christina]some detail
+\item [Laura]some detail
+\end{description}
+\begin{description}[align=right]
+\item [Kate] some detail
+\item [Christina]some detail
+\item [Laura]some detail
+\end{description}
+\begin{description}[align=right,labelwidth=3cm]
+\item [Kate] some detail
+\item [Christina]some detail
+\item [Laura]some detail
+\end{description}
+\blindtext
+\end{document}
