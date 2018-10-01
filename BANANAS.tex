@@ -157,7 +157,7 @@
 
 \author{Andy Ridgwell} % Author
 
-\publisher{University of California, Riverside / Dept. of Earth Sciences 2017/8} % Publisher
+\publisher{University of California, Riverside / Dept. of Earth Sciences 2018/9} % Publisher
 
 %----------------------------------------------------------------------------------------
 \usepackage{hyperref}
@@ -191,12 +191,14 @@ Copyright \copyright\ \the\year\ \thanklessauthor
 \\Creative Commons Attribution-NonCommercial-ShareAlike 3.0 license (CC BY-NC-SA 3.0) 
 \\(http://creativecommons.org/licenses/by-nc-sa/3.0/)\index{license}
 
-\par\textit{First printing, \monthyear}
+\par\textit{Current printing, \monthyear}
 \end{fullwidth}
 
 %----------------------------------------------------------------------------------------
 
 \tableofcontents % Print the table of contents
+
+\setcounter{chapter}{0}% the introduction will be chapter 0
 
 %----------------------------------------------------------------------------------------
 
@@ -211,32 +213,47 @@ Copyright \copyright\ \the\year\ \thanklessauthor
 %----------------------------------------------------------------------------------------
 
 \cleardoublepage
-\chapter*{How to use this Textbook} % The asterisk leaves out this chapter from the table of contents
+
+\chapter{How to use this Textbook} % The asterisk leaves out this chapter from the table of contents
 
 A brief guide as to how to interpret and make best use of this book, follows.
 
 %------------------------------------------------
 
-\section*{Fonts and highlighting}
+\section{Fonts and highlighting}
 
-Throughout ... but be aware: probably not particularly consistently, the following formatting in the text is used to distinguish the specific context of the word:
+Throughout ... but be aware, because it is probably not implemented particularly consistently: the following formatting in the text is used to distinguish the specific context of the word:
 
 \begin{itemize}[noitemsep]
 \setlength{\itemindent}{.2in}
+
 \item \textbf{Bold} -- indicates program/software names (e.g. \textbf{MATLAB}).
-\item \textit{Italics} -- indicates technical/jargon words, particularly specific to \textbf{MATLAB} (but not command words or functions themselves) or programming (concepts), e.g. \textit{loop}.
+
+\item \textit{Italics} -- indicates technical/jargon words, particularly specific to \textbf{MATLAB} (but not command words or functions themselves) or programming concepts, e.g. \textit{loop}.
+
 \item \textsf{Sans-serif font family typeface} -- indicates keyboard keys (e.g. \textsf{F5}), program menu items (e.g. \textsf{Save as ...}), program window names, and filenames (except where used in \textbf{MATLAB}).
+
 \item \texttt{Typewriter font family typeface} -- indicates \textbf{MATLAB} commands and \textit{functions}, and lines of code (see examples below).
+
 \item Color highlights in the text are used to reflect the colors employed by \textbf{MATLAB} at the command line, or in the code editor.
+
+\item Math is hi-lighted in a slightly different font (and in \textcolor{blue}{blue}), e.g:
+
+\(a = 10\times b + c^{2}\)
+
+and hence differs from the \textbf{MATLAB} code version:
+
+\texttt{a = 10*b + c\(^{\wedge}\)2}
+
 \end{itemize}
 
 %------------------------------------------------
 
-\section*{Help(!) and keyword definitions}
+\section{Help(!) and keyword definitions}
 
-\textbf{MATLAB} \texttt{help} is not always especially helpful. In the course text, for each \textit{function} that MATLAB provides a comprehensive help on, such as \docenv{help}, a simple summary version will be displayed in the right hand margin in a grey box. For example -- the box headed \texttt{\textcolor[rgb]{0.501961,0,0.25098}{FUNCTION}}.
+\textbf{MATLAB} \texttt{help} is not always especially helpful! In the course text, for each \textit{function} that \textbf{MATLAB} provides a comprehensive help text on, such as \docenv{help}, a simple summary version will be displayed in the right hand margin in a grey box. For example -- the box headed \texttt{\textcolor[rgb]{0.501961,0,0.25098}{FUNCTION}}.
 
-\marginnote[-1.5in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-2.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{FUNCTION}
 \\A simple and/or summary usage of particular \textbf{MATLAB} commands and \textit{functions} is provided in a grey-background box in the margin.
 \\ ...
@@ -254,7 +271,13 @@ Also appearing in grey boxes in the margin are overviews and summaries of \textb
 
 %------------------------------------------------
 
-\section*{What and when to type}
+\section{Sidenotes and other distractions from the main text}
+
+\sidenote{I am a Sidenote!} sort of things will appear in the text -- sidenotes\sidenote{I am also a Sidenote!}. There will be some corresponding text or comment in the margin. Most are helpful and offer additional guidance or suggestions and you should read.\sidenote{Some are trivial and worthless, but you wont know which is which until you have read them ...} In fact, the format of the book gives over substantial space for Sidenotes, explanation boxes, and figures, so be prepared that important information may appear in the margins.
+
+%------------------------------------------------
+
+\section{What and when to type}
 
 Examples of \textbf{MATLAB} code/commands are indicated by text in a '\texttt{Typwriter}' font, e.g.
 
@@ -297,11 +320,11 @@ would indicate that you should substitute your actual variable name (holding the
  
 %------------------------------------------------
 
-\section*{Code structure}
+\section{Code structure}
 
-A visual guide to the structure of your programs is given by schematic figures in the page margin. For example, a generic \textit{script} (yellow box) is shown by Figure \ref{fig:ch0-script}, and a generic \textit{function} (green box) by Figure \ref{fig:ch0-function}.
+A visual guide to the structure of your programs is given by schematic figures in the page margin. For example, a generic \textit{script} (yellow box) is shown by \textbf{Figure \ref{fig:ch0-script}}, and a generic \textit{function} (green box) by \textbf{Figure \ref{fig:ch0-function}}.
 
-\begin{marginfigure}[-2.0in]
+\begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch0-script.eps}
 \caption{Schematic for a generic \textit{script}.}
 \label{fig:ch0-script}
@@ -315,13 +338,13 @@ A visual guide to the structure of your programs is given by schematic figures i
 
 In these schematics, the flow (sequence) of the code is indicated by the red arrow. 
 
-For the \textit{function}, that information is passed into the \textit{function}, and then returned back to where the function was called from, is indicated by the red arrows entering the top of the box and leaving the bottom of the box, respectively. (But note that there is no line of code at the end that tells the model to return values ... this is simply to illustrate the flow of the program, particularly when things get more complicated and there are multiple \textit{scripts} and \textit{functions} involved.)\sidenote{Don't worry for now ... it should hopefully all become apparent later.}
+For the \textit{function}, that information is passed into the \textit{function}, and then returned back to where the function was called from, is indicated by the red arrows entering the top of the box and leaving the bottom of the box, respectively. (But note that there is no line of code at the end that tells the model to return values ... this is simply to illustrate the flow of the program, particularly when things get more complicated and there are multiple \textit{scripts} and \textit{functions} involved.)\sidenote[][1.0in]{Don't worry for now ... it should hopefully all become apparent later.}
 
 For the \textit{script}, the code file starts with a comment (\textcolor[rgb]{0,0.501961,0}{\texttt{\%program description}}) summarizing what the \textit{script} does, although after the \textit{function} definition header line, so to should the \textit{function} (somewhere have comment lines describing what it does).
 
 The black left-pointing filled triangles and associated text to the right, indicate categories of code content, and occurring in what order, that the programs might contain.
 
-The purpose of these cartoons is to help you when faced with a blank page and the question: 'Where do I start' or 'What do I write' appears prominently in your mind\sidenote{Also surrounded by flashing neon lights.}. It is to give you some sort of idea what bits might go where, and what general content is required in the file. The cartoons \uline{do not} (and are not intended) to show the exact details of the code content. Nor do they necessarily indicate all the different sections needed. Conversely, not all the sections illustrated may be strictly necessary and in come examples there may be nothing to 'initalize' and there may be no constants of local parameters to define the values of at the program start.
+The purpose of these cartoons is to help you when faced with a blank page and the question: 'Where do I start' or 'What do I write' appears prominently in your mind\sidenote[][0.0in]{Also surrounded by flashing neon lights.}. It is to give you some sort of idea what bits might go where, and what general content is required in the file. The cartoons \uline{do not} (and are not intended) to show the exact details of the code content. Nor do they necessarily indicate all the different sections needed. Conversely, not all the sections illustrated may be strictly necessary and in come examples there may be nothing to 'initalize' and there may be no constants of local parameters to define the values of at the program start.
 
 So please -- use the cartoons as a simple visual guide to the approximate structure of your program and \uline{do not over-interpret them}.
 
@@ -340,7 +363,7 @@ So please -- use the cartoons as a simple visual guide to the approximate struct
 
 \begin{fullwidth}
 
-\newthought{Hello Newbies!} This first lab's porpoise is to start to get you familiar with what \textbf{MATLAB} 'is' and what the heck you'd actually do with it. Specifically, you are going to learn about variables and arrays and  doing some math in \textbf{MATLAB}, and how to import and manipulate (array) data in this software environment and then do some basic plotting (aka 'data visualization'). If your are clever, you might find menu items or buttons to click that will do the same thing as typing in boring commands at the command line. In fact, you would have to be pretty dumb not to notice all that brightly colored eye-candy in the GUI (Graphical User Interface -- i.e., menus, buttons, and stuff) at the top of  the screen. However, you will get to grips with programming much quicker if you stick with the instructions and do almost everything that is asked of you using the command line  (rather than doing stuff via the GUI ), at least to start with. You'll just have to trust me for now ... We'll start with the very basics and things that you could easily do in \textbf{Excel} instead, and build up.
+\newthought{Hello Newbies!} This first lab's porpoise is to start to get you familiar with what \textbf{MATLAB} 'is' and what the heck you'd actually do with it. Specifically, you are going to learn about variables and arrays and  doing some very basic/simple math in \textbf{MATLAB}, and how to import and manipulate (array) data in this software environment and then do some basic plotting (aka 'data visualization'). If your are clever, you might find menu items or buttons to click that will do the same thing as typing in boring commands at the command line. In fact, you would have to be pretty dumb not to notice all that brightly colored eye-candy in the GUI (Graphical User Interface -- i.e., menus, buttons, and stuff) at the top of  the screen. However, you will get to grips with programming much quicker if you stick with the instructions and do almost everything that is asked of you using the command line  (rather than doing stuff via the GUI ), at least to start with. You'll just have to trust me for now ... We'll start with the very basics and things that you could easily do in \textbf{Excel} instead, and build up.
 
 \newthought{Graphics} is one of the important strengths of \textbf{MATLAB}. Although other software packages and scripting languages exist that perhaps have the edge on \textbf{MATLAB} in terms of visually appealing plots and graphs, \textbf{MATLAB} is worlds apart from e.g. \textbf{Excel}. And way way better than potato printing. (Excepting the continually broken \textbf{MATLAB} postscript rendering.)
 
@@ -358,11 +381,11 @@ So please -- use the cartoons as a simple visual guide to the approximate struct
 
 \subsection{Starting MATLAB}
 
-To start with: find the \textbf{MATLAB} icon on the desktop; run the program. You should see a number of sub-windows arranged within the main \textbf{MATLAB} window, hopefully including at the very least, the \textit{Command Window}\sidenote{Conveniently labelled \texttt{Command Window} -- you cannot possibly fail to identify it ...}. Depending on whether you have used \textbf{MATLAB} before and it has remembered your settings, windows may also include: \textit{Command History}, \textit{Workspace}, \textit{Current Folder}. If instead you see; 'Tetris', 'Grand Theft Auto: San Andreas', and 'World Championship Pool', then you have the wrong software running and are going to find learning \textbf{MATLAB} rather hard. However, there is big \$\$\$ to be made in on-line gaming tournaments these days. Would you really rather be a geologist and spend the rest of your days hitting rocks with a hammer?
+To start with: find the \textbf{MATLAB} icon on the desktop; run the program. You should see a number of sub-windows arranged within the main \textbf{MATLAB} window, hopefully including at the very least, the \textit{Command Window}\sidenote{Conveniently labelled \texttt{Command Window} -- you cannot possibly fail to identify it ...}. Depending on whether you have used \textbf{MATLAB} before and it has remembered your settings, windows may also include: \textit{Command History}, \textit{Workspace}, \textit{Current Folder}. If instead you see; 'Tetris', 'Grand Theft Auto: San Andreas', and 'World Championship Pool', then you have the wrong software running and are going to find learning \textbf{MATLAB} rather hard. However, there is big \$\$\$ to be made in on-line gaming tournaments these days. Would you really rather be a graduate and spend the rest of your days doing a proper job?
 If so, read on ...
 \subsection{The command line\index{The command line}}
 
-When MATLAB initially starts up, the \textit{Command Window}\index{Command Window} should display the following text: 
+When \textbf{MATLAB} initially starts up, the \textit{Command Window}\index{Command Window} should display the following text: 
 
 \begin{docspec}
         Academic License
@@ -379,9 +402,9 @@ To get started, select MATLAB Help or Demos from the Help menu.
 \end{docspec}
 
 \noindent but in either case, with a vertical blinking line (cursor) following the double 'greater than' symbols\sidenote{Note that in nerd-speak the \texttt{>>} is called the command 'prompt' and is prompting you to type some input (Commands, swear words, etc.). See -- the computer is just sat there waiting
-for you to command it to go do something (stupid?). If one does not appear at the bottom of whatever is in the \textit{Command Window} is means that MATLAB is busy doing something extremely important. Or perhaps, MATLAB may have completely died. Either way, it will not accept any new/further commands until it is done calculating/dying.}.
+for you to command it to go do something (stupid?). If one does not appear at the bottom of whatever is in the \textit{Command Window} is means that \textbf{MATLAB} is busy doing something extremely important. Or perhaps, \textbf{MATLAB} may have completely died. Either way, it will not accept any new/further commands until it is done calculating/dying.}.
 
-If you are unfamiliar with using command-line driven software ... Don't Panic!\cite{Adams1979} Nothing bad can happen, regardless of what you do. Well, almost. It is possible to accidently clear \textbf{MATLAB}'s memory of the results of calculations and data processing and close plots and graphs before you have saved them, but \textbf{MATLAB} remembers all the commands you type, so in theory it is perfectly possible to quickly reproduce anything lost. (Later on we will be placing the sequence of commands into a file (that is saved) and so ultimately, MATLAB should turn out to be mostly fool-proof.)
+If you are unfamiliar with using command-line driven software ... Don't Panic!\cite{Adams1979} Nothing bad can happen, regardless of what you do. Well, almost. It is possible to accidently clear \textbf{MATLAB}'s memory of the results of calculations and data processing and close plots and graphs before you have saved them, but \textbf{MATLAB} remembers all the commands you type, so in theory it is perfectly possible to quickly reproduce anything lost. (Later on we will be placing the sequence of commands into a file (that is saved) and so ultimately, \textbf{MATLAB} should turn out to be mostly fool-proof.)
 
 To convince yourself that nothing dreadfull will happen ... type ... anything. Actually 'anything' will do.
 
@@ -391,19 +414,19 @@ To convince yourself that nothing dreadfull will happen ... type ... anything. A
 \textcolor{red}{Undefined function or variable 'anything'.}
 \end{docspec}
 
-Well ... not so exciting. But not so disastrous. \textbf{MATLAB} simply has no clue what you are talking about, or rather, \texttt{anything} is not a 'key word'\sidenote{i.e. a word, or sequence of characters that has a special meaning to \textbf{MATLAB} and it will act upon, as opposed to a sequence of characters that has not special meaning and \textbf{MATLAB} completely ignores.} that \textbf{MATLAB} recognises. In the specific error message, MATLAB could not find that \texttt{anything} was a built-in (or user-defined) \textit{function}, nor a listed \textit{variable}, both of which you'll learn about in due course.
+Well ... not so exciting. But not so disastrous. \textbf{MATLAB} simply has no clue what you are talking about, or rather, \texttt{anything} is not a 'key word'\sidenote{i.e. a word, or sequence of characters that has a special meaning to \textbf{MATLAB} and it will act upon, as opposed to a sequence of characters that has not special meaning and \textbf{MATLAB} completely ignores.} that \textbf{MATLAB} recognises. In the specific error message, \textbf{MATLAB} could not find that \texttt{anything} was a built-in (or user-defined) \textit{function}, nor a listed \textit{variable}, both of which you'll learn about in due course.
 
 %------------------------------------------------
 
 \subsection{MATLAB GUI}
 
-There are lots of fancy looking icons and pretty colors and you could spend all day staring at them and not getting any work done. Or learn good programming practice. Which is why we mostly will ignore the eye-candy and little (if any) guidance will be given as to the functionality of the Graphical User Interface (GUI). Look at this as a lesson for the user (to read the Help, textbook, on-line documentation, or simple go Google for an answer\sidenote{i.e. Internet fishing}).
+There are lots of fancy looking icons and pretty colors and you could spend all day staring at them and not getting any work done. Or you could learn some good programming practice. Which is why we mostly will ignore the eye-candy and little (if any) guidance will be given as to the functionality of the Graphical User Interface (\textit{GUI}). Look at this as a lesson for the user (to read the Help, textbook, on-line documentation, or simple go Google for an answer\sidenote{i.e. Internet fishing}).
 
 %------------------------------------------------
 
 \subsection{Help(!)}
 
-If stuck at any point -- press \texttt{F1} or click on the question mark icon on the tool-bar, to bring up the indexed and searchable \textbf{MATLAB} documentation.\sidenote{It is also possible to obtain context-specific help, e.g. on a specific (built-in) \textit{function}, which we'll see in due course.}
+If stuck at any point -- you can press the \texttt{F1} key or click on the question mark icon on the tool-bar, to bring up the indexed and searchable \textbf{MATLAB} documentation.\sidenote{It is also possible to obtain context-specific help, e.g. on a specific (built-in) \textit{function}, which we'll see in due course.}
 
 You can also type \texttt{help} at the command line (and press the \textrm{\textsf{Return}} key).
 \begin{docspec}
@@ -436,7 +459,7 @@ In the course text, for each \textit{function} that MATLAB provides a comprehens
 
 \subsection{Variables}
 
-A \textit{variable}\index{variable} is, in a sense, a pointer to a location in computer memory where a piece of information is stored\sidenote{In the bad old days, this pointer was the actual address in memory and might have looked something like \texttt{f04da105}.}. For instance -- open up a blank worksheet in \textbf{Excel}, and in the very top left hand cell, enter the number \textsf{10}. You can see visually, that Excel is referencing this location as column A, and row '1'. In fact, this location ('\textsf{A1}') is indicated in the \textsf{Name Box} to the left of the \textsf{Formula Bar}.
+A \textit{variable}\index{variable} is, in a sense, a pointer to a location in computer memory where a piece of information is stored\sidenote{In the bad old days, this pointer was the actual address in memory and might have looked something like \texttt{f04da105}.}. For instance -- open up a blank worksheet in \textbf{Excel}, and in the very top left hand cell, enter the number \textsf{10}. You can see visually, that \textbf{Excel} is referencing this location as column A, and row '1'. In fact, this location ('\textsf{A1}') is indicated in the \textsf{Name Box} to the left of the \textsf{Formula Bar}.
 
 In \textbf{MATLAB}, a variable is associated a name to make things rather more easy and convenient. The name can be any sequence of characters you like in \textbf{MATLAB}, regardless of whether it is a real or fake word, as long as it does not contain numbers or special characters or spaces. So actually, you are only left with continuous sequences of letters (otherwise knows as 'words'). But you can also create a variable name based on 2 (or more) words, separated by an underscore (\texttt{\_}). Valid variable names  include:
 
@@ -447,26 +470,26 @@ cat\\
 derpyhooves\\
 this\_is\_boring\_stuff\\
 BIG\\
-big\sidenote{Note that MATLAB distinguishes between lower and UPPER case letters in a variable (i.e. \texttt{BIG} and \texttt{big} would represent two different and distinct variables). I would \uline{strongly} advise to stick to all lower case, or all upper case, to avoid possible future confusion. (or come up with a naming convention, of whatever sort (e.g. capital first letter), and stick to it.)}
+big\sidenote{Note that \textbf{MATLAB} distinguishes between lower and UPPER case letters in a variable (i.e. \texttt{BIG} and \texttt{big} would represent two different and distinct variables). I would \uline{strongly} advise to stick to all lower case, or all upper case, to avoid possible future confusion. (or come up with a naming convention, of whatever sort (e.g. capital first letter), and stick to it.)}
 \end{docspec}  
 
-Variables are entirely useless unless they have some information assigned to them. In fact, you can type in any of the variable names above (at the command line) and MATLAB will deny it knows what you are talking about\sidenote[][0.25in]{Technically, MATLAB reports: \texttt{Undefined function or variable} which tells you it is neither a function name (more on this later), nor is defined as having any information associated with it.}.
+Variables are entirely useless unless they have some information assigned to them. In fact, you can type in any of the variable names above (at the command line) and \textbf{MATLAB} will deny it knows what you are talking about\sidenote[][0.25in]{Technically, \textbf{MATLAB} reports: \texttt{Undefined function or variable} which tells you it is neither a function name (more on this later), nor is defined as having any information associated with it.}.
 
 So far so useless -- you need to \textit{assign} something to it. (When you first open an \textbf{Excel} spreadsheet and it is completely blank -- you can still reference cell A1, but there is nothing in it.) Which brings us to quite 'what' and 'how'. First of, you need to know that variables can have the following \textit{types} of things assigned to them:
 
 \begin{itemize}
 \setlength{\itemindent}{.2in}
 \item \textbf{Integer} -- An integer number is a counting number, i.e. \texttt{1, 2, 3, ...} and including zero and negative integers.
- \textbf{MATLAB} has different representations for integer numbers, depending on how large a number you need to represent (and how much memory it will need to allocated to storing it). This is something of a throw-back to the days when computers only had 1/10000000\(^{th}\) of the memory of your iPhone and were slower than half a lemon.\item \textbf{Real (floating point)}\sidenote{The distinction (sort of) is that \textit{floating point} is a specific representation of a \textbf{real} number.} -- A real number can have a non-integer component, e.g. 1.5 or 6.022140857 \(\times\) 10\(^{23}\). Real numbers also come in different precisions in \textbf{MATLAB} (also to do with memory allocation and speed), determining not just the number of decimal places that can be represented, but also the maximum size.
+ \textbf{MATLAB} has different representations for integer numbers, depending on how large a number you need to represent (and how much memory it will need to allocated to storing it). This is something of a throw-back to the days when computers only had 1/10000000\(^{th}\) of the memory of your iPhone and were slower than half a lemon nailed to the floor.\item \textbf{Real (floating point)}\sidenote{The distinction (sort of) is that \textit{floating point} is a specific representation of a \textbf{real} number.} -- A real number can have a non-integer component, e.g. 1.5 or 6.022140857 \(\times\) 10\(^{23}\). Real numbers also come in different precisions in \textbf{MATLAB} (also to do with memory allocation and speed), determining not just the number of decimal places that can be represented, but also the maximum size.
 \item \textbf{String (character)} -- One or more characters, but now allowing spaces (unlike in the case of naming variables).
-\item \textbf{Logical} -- the variable can be \texttt{true} or \texttt{false}\sidenote{As opposed to a Trump variable, that can have many different completely alternative states of 'true'.} -- we'll come to quite what this means later.
+\item \textbf{Logical} -- the variable can be \texttt{true} or \texttt{false}\sidenote{As opposed to a Trump variable, that can have many different  alternative states of 'true', although generally, a Trump 'true' is in fact 'false'. An entire new branch of mathematics and logical deduction has been created just to process al this. } -- we'll come to quite what this means later.
 \item \textbf{etc} -- No, not a real type, but to note that \textbf{MATLAB} defines and recognises a whole bunch of other types, including \textbf{Complex} (\textbf{MATLAB} can handle \textit{complex numbers}) and \textbf{Object} (we will also not worry about \textit{objects}, which can incorporate a combination of types. At least, not yet ...). The \textbf{MATLAB} documentation contains a full list (and/or go Internet Fishing).
 \end{itemize}
 
-To come back to Excel -- if you select \textsf{Format Cells} (right-mouse-button-click over cell A1), you get to chose from a long list of 'formats', including \textsf{Number} and \textsf{Text}, and which have a loose correspondence with \textit{types} in \textbf{MATLAB}.
+To come back to \textbf{Excel} -- if you select \textsf{Format Cells} (right-mouse-button-click over cell A1), you get to chose from a long list of 'formats', including \textsf{Number} and \textsf{Text}, and which have a loose correspondence with \textit{types} in \textbf{MATLAB}.
 
-The next thing to learn is to ideally, do not attempt to mix up (combine) variables of different types. \textbf{MATLAB} is very forgiving when it comes to combining an \textit{integer} and a \textit{real} number in the same calculation, but in other programming languages, this should be avoided.
-However, even in \textbf{MATLAB}, \textit{strings} and \textit{reals} (or \textit{integers}) are very different things.\sidenote[][-1.25in]{Again -- in the Excel example, \textbf{Excel} will not let you add a \textbf{Number} and a \textbf{Text} value together, for instance. (Try it! You should see \textsf{\#VALUE!} reported.)} When necessary, different variable types can be converted between (see \textbf{Variable Type Conversion} Box).
+The next thing to learn is ... to ideally, not attempt to mix up (combine) variables of different types. \textbf{MATLAB} is very forgiving when it comes to combining an \textit{integer} and a \textit{real} number in the same calculation, but in some other programming languages, this should be avoided.
+However, even in \textbf{MATLAB}, \textit{strings} and \textit{reals} (or \textit{integers}) are very different things.\sidenote[][-1.25in]{Again -- in the \textbf{Excel} example, \textbf{Excel} will not let you add a \textbf{Number} and a \textbf{Text} value together, for instance. (Try it! You should see \textsf{\#VALUE!} reported.)} When necessary, different variable types can be converted between (see \textbf{Variable Type Conversion} Box).
 
 \marginnote[-1.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
 \textbf{Variable Type Conversion}
@@ -485,7 +508,7 @@ However, even in \textbf{MATLAB}, \textit{strings} and \textit{reals} (or \texti
 Case \#1 (\texttt{num2str}) is generally the most useful, e.g. in adding specific captions to plots (with caption text based on the value of a numerical variable) -- examples are given later.
 \end{mdframed}}
 
-The second and perhaps rather more important thing, is how to assign a value to a variable (and in fact, create the variable in the first place). Programming languages such as \textbf{FORTRAN} require you to define the variable beforehand and assign it a type.\sidenote{Partially true. An Alternative Fact of sorts.} \textbf{MATLAB} allows you to define and assign a value to a variable all at the same time, and it will kindly work out the correct type based on the value you assign to it. You assign a value using the assignment operator \docenvdef{=}\sidenote{This is NOT 'equals' in \textbf{MATLAB}. Or any sane programming language. We will see the \textit{equality operator} shortly. \docenv{=} assigns the value or variable on its right, to the variable on the left.}. For example:
+The second and perhaps rather more important thing, is how to assign a value to a \textit{variable} (and in fact, create the variable in the first place). Programming languages such as \textbf{FORTRAN} require you to define the variable beforehand and assign it a type.\sidenote{Partially true. An Alternative Fact of sorts.} \textbf{MATLAB} allows you to define and assign a value to a \textit{variable} all at the same time, and it will kindly work out the correct type based on the value you assign to it. You assign a value using the assignment operator \docenvdef{=}\sidenote{This is NOT 'equals' in \textbf{MATLAB}. Or any sane programming language. We will see the \textit{equality operator} shortly. \docenv{=} assigns the value or variable on its right, to the variable on the left.}. For example:
 \begin{docspec}
 A = 10
 \end{docspec}
@@ -499,9 +522,9 @@ A =
 
 Pause ... this is sort of fundamental (to using \textbf{MATLAB}), what you have just done here. It is the equivalent of typing '10' into the cell A1 in Excel (assuming we can equate the \textbf{Excel} location \textsf{A1} with the \textbf{MATLAB} variable \texttt{A}). In doing this, you have both: (a) created a variable \texttt{A}, and (b) assigned it a value of \texttt{10}.
 
-\textbf{MATLAB} will also report in the \textit{Workspace} window, the name and value, \textit{type} (unhelpfully called \textit{Class}), etc of all your current variables (just one currently?). Actually, it is not all quite so simple. If you take a look at the \textit{Class} of the variable \texttt{A} in the display window -- it is  listed as \textit{double} (a \textit{real} number) rather than an \textit{integer}. So by default, if \textbf{MATLAB} does not know what you really want, it defines \texttt{A} as a double precision real number\sidenote{If you genuinely wanted an integer, there are ways to do this, such as using a type conversion function form \textit{real} to \textit{integer} (see above).}.
+\textbf{MATLAB} will also report in the \textsf{Workspace} window, the name and value, \textit{type} (unhelpfully called \textit{Class}), etc of all your current \textit{variables} (just one currently?). Actually, it is not all quite so simple. If you take a look at the \textit{Class} of the \textit{variable} \texttt{A} in the display window -- it is  listed as \textit{double} (a \textit{real} number) rather than an \textit{integer}. So by default, if \textbf{MATLAB} does not know what you really want, it defines \texttt{A} as a double precision real number\sidenote{If you genuinely wanted an integer, there are ways to do this, such as using a type conversion function form \textit{real} to \textit{integer} (see above).}.
 
-Pausing again -- if you want to remind yourself of the variables that you (or a program) have created -- you can refer to the \textit{Workspace} window.\sidenote{There is a command line command for listing current variables (\texttt{whos}), but lets not bother with it.} Also lister here is its value (and \textit{type} etc). Another way to access the value of a variable, is to simply type in its name at the command line:
+Pausing again -- if you want to remind yourself of the \textit{variables} that you (or a program) have created -- you can refer to the \textsf{Workspace} window.\sidenote{There is a command line command for listing current variables (\texttt{whos}), but lets not bother with it.} Also lister here is its value (and \textit{type} etc). Another way to access the value of a \textit{variable}, is to simply type in its name at the command line:
 \begin{docspec}
 >> A
 
@@ -510,7 +533,7 @@ A =
     10
 \end{docspec}
 
-The next complication comes when assigning a string (a sequence of characters) to a variable. For example, try:
+The next complication comes when assigning a \textit{string} (a sequence of characters) to a \textit{variable}. For example, try:
 \begin{docspec}
 B = apple
 \end{docspec}
@@ -519,33 +542,35 @@ B = apple
 B = 'apple'
 \end{docspec}
 
-Just as \textbf{MATLAB} creates new variables on the fly, you can re-assigned values to an existing variable, even if this means changing the \textit{type}, e.g.
+Just as \textbf{MATLAB} creates new \textit{variables} on the fly, you can re-assigned values to an existing \textit{variable}, even if this means changing the \textit{type}, e.g.
 \begin{docspec}
 A = 'banana'
 \end{docspec}
-\noindent has now replaced the real number \texttt{10} with the character string \textbf{banana} in variable \texttt{A}. This is reflected in the updated variable list details given in the \textit{Workspace} window (and a \textit{Class} now listed as \texttt{char}).\sidenote{Equally in \textbf{Excel}, you can simply type over a pre-existing value to replace it. e.g. you could type \textsf{banana} over the contents of cell \textsf{A1} (that previous held the number\textsf{ 10).}}
+\noindent has now replaced the real number \texttt{10} with the character string \textbf{banana} in variable \texttt{A}. This is reflected in the updated variable list details given in the \textsf{Workspace} window (and a \textit{Class} now listed as \texttt{char}).\sidenote{Equally in \textbf{Excel}, you can simply type over a pre-existing value to replace it. e.g. you could type \textsf{banana} over the contents of cell \textsf{A1} (that previous held the number\textsf{ 10).}}
 
-Finally, it is possible to suppress output to the \textit{Command Window} when making variable \textit{assignments} -- simply add a semi-colon (\docenvdef{;}) to the end of the \textit{assignment} statement\sidenote{Again -- your personal choice as to whether to include spaces or not between the \texttt{C}, \texttt{=}, \texttt{'banana'}, and \texttt{;} (Maybe try it both ways to convince yourself at least in this context, spaces do not matter.)}, i.e.
+Finally, it is possible to suppress output to the \textsf{Command Window} when making variable \textit{assignments} -- simply add a semi-colon (\docenvdef{;}) to the end of the \textit{assignment} statement\sidenote{Again -- your personal choice as to whether to include spaces or not between the \texttt{C}, \texttt{=}, \texttt{'banana'}, and \texttt{;} (Maybe try it both ways to convince yourself at least in this context, spaces do not matter.)}, i.e.
 \begin{docspec}
 C = 'banana';
 \end{docspec}
-\noindent now does not results in anything being echoed to the command line (but the \textit{Workspace} is still updated to reflect this variable assignment). 
+\noindent now does not results in anything being echoed to the command line (but the \textsf{Workspace} is still updated to reflect this \textit{variable} assignment). 
 %------------------------------------------------
 
-\subsection{Numerical expressions}
+\subsection{Numerical expressions and Arithmetic operators}
 
 You can do normal maths in \textbf{MATLAB}. Or at least, something that looks at least a little intuitive. (In fact, I often use \textbf{MATLAB} as a calculator.)
 The primary/common numerical expressions are:
 \begin{itemize}[noitemsep]
 \setlength{\itemindent}{.2in}
-\item \docenvdef{exponentiation} --- \(^{\wedge}\) --- raises one number of variable to the power of a second, e.g. a\(^{b}\), a to the power b, which is written in MATLAB as \texttt{a\(^{\wedge}\)b}.
-\item \docenvdef{multiplication} --- \(\times\) --- e.g. a\(\times\)b, written in MATLAB as \texttt{a\(\ast\)b}.
+\item \docenvdef{exponentiation} --- \(^{\wedge}\) --- raises one number of variable to the power of a second, e.g. a\(^{b}\), a to the power b, which is written in \textbf{MATLAB} as \texttt{a\(^{\wedge}\)b}.
+\item \docenvdef{multiplication} --- \(\times\) --- e.g. a\(\times\)b, written in \textbf{MATLAB} as \texttt{a\(\ast\)b}.
 \item \docenvdef{division} --- \texttt{/} --- (written as you would expect).\sidenote{Entertainingly, it turns out that if you write the reverse, backslash character (\texttt{\textbackslash}) in the equation, you divide the over way (i.e. denominator divided by numerator).}
 \item \docenvdef{addition} --- \texttt{+} --- (guess).
 \item \docenvdef{subtraction} --- \texttt{-} --- again, obvious/intuitive.
 \end{itemize}
 
-The order in which the numerical operators are written down is important and will execute them in a specific order (operators higher up the list, executed first), i.e. first \texttt{\textasciicircum}, then \texttt{\(\ast\),/}, and last \texttt{+,-}. There is also \textit{negation}, when you change the sign of a variable, and which is executed  immediately after exponentiation. The assignment operator (\docenv{=})\sidenote{This is \textbf{NOT} 'equals to'.} comes last. \uline{If you are unclear about the order numerical operators are carried out, then place parentheses \texttt{()} around the component of the calculation you wish to be carried out first to enforce a particular order} (this can also help in making an equation easier to read and ultimately, easier to debug code). For example, consider:
+These symbols are called (arithmetic) \textit{operators}.
+
+The order in which the arithmetic \textit{operators} are written down is important and will execute them in a specific order (operators higher up the list, executed first), i.e. first \texttt{\textasciicircum}, then \texttt{\(\ast\),/}, and last \texttt{+,-}. There is also \textit{negation}, when you change the sign of a \textit{variable}, and which is executed  immediately after exponentiation. The assignment operator (\docenv{=})\sidenote{This is \textbf{NOT} 'equals to'.} comes last. \uline{If you are unclear about the order numerical operators are carried out, then place parentheses \texttt{()} around the component of the calculation you wish to be carried out first to enforce a particular order} (this can also help in making an equation easier to read and ultimately, easier to debug code). For example, consider:
 
 \begin{docspec}
 A = 3;\\
@@ -575,7 +600,7 @@ We will see more of \textit{relational and logical operators} later when we star
 \item \docenvdef{inequality} --- MATLAB symbol \(\sim\)=
 \end{itemize}
 
-\noindent and  test the relationship between 2 variables. Note in particular, that the \docenv{equality} symbol (that tests the equivalence between two variables) is represented by TWO \texttt{=} characters\texttt{ (==), }and remember that a single \texttt{=} character is the \docenv{assignment operator}.
+\noindent and  test the relationship between 2 variables. \uline{Note in particular, that the \docenv{equality} symbol (that tests the equivalence between two variables) is represented by TWO \texttt{=} characters\texttt{ (==), }and remember that a single \texttt{=} character is the \docenv{assignment operator}.}
 
 In everyday language, the answer to any one of these relational tests would be a 'yes' or a 'no'. But in \textbf{MATLAB} (and  other computer languages), the answer is given as the binary (logical) equivalent where 'yes' is represented by \texttt{1} and 'no' by \texttt{0}. You can also use \texttt{true} (\texttt{1}) and \texttt{false} (\texttt{0}), e.g. \texttt{A = true} returns:
 
@@ -593,16 +618,15 @@ Finally, the \textit{logical operators} (again, more on this later) are:
 \item \docenvdef{not} --- symbol \texttt{\(\sim\)}
 \end{itemize}
 
-For now -- simply keep mind the existence of \textit{relational and logical operators} and what they look like.
+For now -- simply keep mind the existence of \textit{relational and logical operators} and what they look like and we'll look into them some more later.
 
 %---------------------------------------------
 %
 \subsection{Functions (built-in)}
 
-\textbf{MATLAB} provides numerous built-in \docenvdef{functions}\sidenote{We will be constructing our own later, at which point it should become apparent that there is nothing particular special about them.}. These \docenv{functions} have specific names assigned to them, so care needs to be take not to give a variable the same name as a function to avoid getting confused further down the road.
-Giving an exhaustive list (and brief description) is outside the scope of this document\sidenote{A full list of functions can be found in the MATLAB Help Documentation under \textit{functions}.}. Common \docenv{functions} will be progressively introduced as this text  progress. Note that in addition to the on-line Help documentation, information on how to use a function and example uses is provided by typing \texttt{help }and then the function name (separated by a space) at the command line.
+\textbf{MATLAB} provides numerous built-in \textit{functions}\sidenote{We will be constructing our own later, at which point it should become apparent that there is nothing particular special about them.}. These \textit{functions} have specific names assigned to them, so care needs to be take not to give a \textit{variable} the same name as a \textit{function} to avoid getting confused further down the road. Giving an exhaustive list (and brief description) is outside the scope of this document\sidenote{A full list of functions can be found in the \textbf{MATLAB} Help Documentation under \textit{functions}.}. Common \textit{functions} will be progressively introduced as this text  progress. Note that in addition to the on-line Help documentation, information on how to use a \textit{function} and example uses is provided by typing \texttt{help }and then the \textit{function} name (separated by a space) at the command line.
 
-MATLAB also provides several built-in mathematical constants (saving having to define a variable with the appropriate number). This are simply variables that have been already defined and assigned values, but which  you cannot change (hence the term 'constant'). For instance,  the value of \(\pi\), is assigned to a built-in variable with the name \docenvdef{pi}. You can access (display) its value  by typing its name at the command line:
+\textbf{MATLAB} also provides several built-in mathematical constants (saving having to define a variable with the appropriate number). This are simply variables that have been already defined and assigned values, but which  you cannot change (hence the term 'constant'). For instance,  the value of \(\pi\), is assigned to a built-in \textit{variable} with the name \docenvdef{pi}. You can access (display) its value  by typing its name at the command line:
 
 \begin{docspec}
 >> pi
@@ -622,12 +646,14 @@ Related to what you have seen so far and will see soon, useful miscellaneous com
 \item \docenvdef{clear} --- Removes all variables from the workspace.
 \item \docenvdef{clear all} --- (Removes all information from the workspace.) \item \docenvdef{close} --- Closes the current figure window.
 \item \docenvdef{clear all} --- (Closes all figure windows.)
-\item \docenvdef{exit} --- Exits \textbf{MATLAB} and hence enables additional drinking time in the bar.
+\item \docenvdef{exit} --- Exits \textbf{MATLAB} and hence enables an additional trip to Starbucks to be made.
 \end{itemize}
 
 Note that a useful trick -- if you want to re-use a previously used command but don't want to type it in all over again, or want to issue a command very similar to a previously-used one -- is to hit the UP arrow key until the command you want appears. This can also be edited (navigate with LEFT and RIGHT arrow keys, and use \textsf{Delete} and \textsf{Backspace} keys to get rid of characters) if needs be. Hit \textsf{Enter} to make it all happen.
 
-For example -- try assigning a value of \texttt{2.14159} to the variable \texttt{my\_pie}. Having noted your mistake\sidenote{An 'alternative' pi?}, correct it. Do this by bring back the previous command, and editing the \texttt{2} to a \texttt{3} (and hit return). If you refer to the Workspace window, you can see that you have indeed successfully changed the value of \texttt{my\_pie}.\sidenote{The point is that this is much quicker than typing the entire line in again. Although later, when we start to put lines of code into files rather than typing everything at the command line, fixing mistakes becomes easier.}
+For example -- try assigning a value of \texttt{2.14159} to the variable \texttt{my\_pie}. Having noted your mistake\sidenote{An 'alternative' pi?}, correct it. Do this by bring back the previous command, and editing the \texttt{2} to a \texttt{3} (and hit return). If you refer to the \textsf{Workspace} window, you can see that you have indeed successfully changed the value of \texttt{my\_pie}.\sidenote{The point is that this is much quicker than typing the entire line in again. Although later, when we start to put lines of code into files rather than typing everything at the command line, fixing mistakes becomes easier.}
+
+Note that there is also a \textsf{Command History} window that list all the previously issued commands and allows commands to be re-run by double-clicking on them. Copy-paste and re-running of single or multiple commands is also possible.
 
 %------------------------------------------------
 
@@ -637,15 +663,15 @@ For example -- try assigning a value of \texttt{2.14159} to the variable \texttt
 
 \section{Vectors and arrays \#1}
 
-So far, your variables have all be what are known as \textit{scalars} -- i.e. single numbers (or strings).
-One of the most powerful things about MATLAB is its ability to represent vectors (1D columns or rows of numbers or strings) and arrays -- 2D and higher dimensional regular grids of numbers or strings. (\textit{matrix}\sidenote{Not to be confused with the film starting Keanu Reeves.} is the name commonly given to a 2-D array.)
+So far, most of your \textit{variables} have all be what are known as \textit{scalars} -- i.e. single numbers (\textit{real} or \textit{integer})\sidenote{An exception are when you assigned a string, which technically is a vector (assuming multiple characters in the string)}.
+One of the most powerful things about \textbf{MATLAB} is its ability to represent vectors (1D columns or rows of numbers or strings) and arrays -- 2D and higher dimensional regular grids of numbers or strings. (\textit{matrix}\sidenote{Not to be confused with the film containing bad acting by Keanu Reeves.} is the name commonly given to a 2-D array.)
  
 %------------------------------------------------
 
 \subsection{Creating vectors}
 
 \marginnote[-0.5in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-The \docenvdef{colon operator} can be used to much more rapidy create vectors (as long as the elements form a simple sequence in value) as compared to typing in the list of values explicitly. There are two variants to the syntax:
+The \docenvdef{colon operator} can be used to much more rapidy create \textit{vectors} (as long as the elements form a simple sequence in value) as compared to typing in the list of values explicitly. There are two variants to the syntax:
 \begin{docspecmargin}
 A = j:k
 \end{docspecmargin}
@@ -660,16 +686,16 @@ In the first example, \texttt{j} and \texttt{k} and the minimum and maximum valu
 \\ \ \ \ \     0     1     2     3
 \end{docspecmargin}
 Note that \textbf{MATLAB} is not inclined to let you directly create a vector of elements that decrease in value (you'll need to flip this puppy about to re-order it if that is what you want -- see later).
-\\In the second example, \texttt{i} is the increment \textbf{MATLAB} will use to complete the sequence from \texttt{j} to \texttt{k}. In the example in the text, you could have created the array \texttt{B} by typing: 
+\\In the second example, \texttt{i} is the increment \textbf{MATLAB} will use to complete the sequence from \texttt{j} to \texttt{k}. In the example in the text, you could have created the \textit{array} \texttt{B} by typing: 
 \begin{docspecmargin}
 >> B = 0.5:0.5:2.5
 \\B =
 \\ \ \ \ \     0.5000    1.0000    1.5000    2.0000    2.5000
 \end{docspecmargin}
-(More commonly, you might place the colon operator and its min/(/increment)/max values inside a pair of brackets, i.e. \texttt{A = [0:3].} so that it is unambiguous that you are creating an array
+(More commonly, you might place the \textit{colon operator} and its min/(/increment)/max values inside a pair of brackets, i.e. \texttt{A = [0:3].} so that it is unambiguous that you are creating an \textit{array}
 \end{mdframed}}
 
-Vectors are 1-D arrangements of numbers (or strings).  You can enter them into MATLAB as a list of space-separated value, encased in (square) brackets, \texttt{[ ]}, e.g. 
+\textit{Vectors} are 1-D arrangements of numbers (or characters or \textit{strings}).  You can enter them into \textbf{MATLAB} as a list of space-separated value, encased in (square) brackets, \texttt{[ ]}, e.g. 
 
 \begin{docspec}
 B = [0.5 1.0 1.5 2.0 2.5]
@@ -681,7 +707,7 @@ B = [0.5 1.0 1.5 2.0 2.5]
 B = [0.5, 1.0, 1.5, 2.0, 2.5]
 \end{docspec}
 
-Either way, you end up with a vector on its side as a single row of numbers which in math-speak would look like:
+Either way, you end up with a \textit{vector} on its side as a single row of numbers which in math-speak would look like:
 
 \begin{docspec}
 \(B=\)
@@ -689,7 +715,7 @@ Either way, you end up with a vector on its side as a single row of numbers whic
 \end{pmatrix}\)
 \end{docspec}
 
-You can also create the equivalent, upright orientated vector (as a single column of numbers) by separating the elements by a semi-colon:
+You can also create the equivalent, upright orientated \textit{vector} (as a single column of numbers) by separating the elements by a semi-colon:
 
 \begin{docspec}
 C = [0.5; 1.0; 1.5; 2.0; 2.5]
@@ -713,28 +739,28 @@ You might ponder on (or even try out) how you would create equivalent arrangemen
 
 \subsection{Basic vector manipulation}
 
-There are several basic and very useful ways of manipulating vectors (and as we'll see later -- matrices). To start with, you might want to determine the  orientation and length of a vector. There are several different ways to go about this, which in order of grown-up-ness are:
+There are several basic and very useful ways of manipulating \textit{vectors} (and as we'll see later -- \textit{matrices}). To start with, you might want to determine the  orientation and length of a \textit{vector}. There are several different ways to go about this, which in order of grown-up-ness are:
 
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
-\item Display the contents of the vector in the command window by typing its name at the command line. Obviously, this will quickly become useless for very large vectors\sidenote[][-0.0in]{Try creating a vector from 1 to 100,000 and then displaying it ...}.
-\item Refer to the Workspace window, although this also ends up a total Fail for long vectors.
+\item Display the contents of the \textit{vector} in the command window by typing its name at the \textsf{command line}. Obviously, this will quickly become useless for very large \textit{vectors}\sidenote[][-0.0in]{Try creating a \textit{vector} from 1 to 100,000 and then displaying it ...}.
+\item Refer to the \textsf{Workspace window}, -- initially, the contents of the vector are displayed (under column \textsf{Value}) and you have to count, but after a certain point, the size (and not contents) of the \textit{vector} is displayed.
 \item Use the \docenv{length} or \docenv{size} function (see Box). 
-\item Refer to the \textit{Workspace window} ... but ... by default, the \textsf{Size} of variables is not one of the displayed columns (instead, it has to be added from \textsf{Choose Columns} right-mouse-button-click menu item). 
+\item Refer to the \textsf{Workspace window} ... but ... by default, the \textsf{Size} of variables is not one of the displayed columns (instead, it has to be added from \textsf{Choose Columns} right-mouse-button-click menu item)\sidenote[][-1.25in]{Although as per above -- the size is displayed under \textsf{Value} for a sufficiently large \textit{vector}.}. 
 \end{enumerate}
 
 \marginnote[-1.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{length}
-\\You can determine the length of a vector A with ...
+\\You can determine the length of a \textit{vector} A with ...
 \begin{docspecmargin}
 length(A)
 \end{docspecmargin}
-returning its integer length, and which could in turn be assigned to a variable, e.g. \texttt{B = length(A)}. (Technically, \docenv{length} returns the largest dimension of an array.)
+returning its \textit{integer} length, and which could in turn be assigned to a \textit{variable}, e.g. \texttt{B = length(A)}. (Technically, \docenv{length} returns the largest dimension of an \textit{array}.)
 \end{mdframed}}
 
 \marginnote[-0.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{size} (use \#1)
-\\Returns both dimensions, even though for a vector, one of them always has a value of \texttt{1}. This does allow you to determine its orientation though, as for the example of \texttt{A = [1:10]}: 
+\\Returns both dimensions, even though for a \textit{vector}, one of them always has a value of \texttt{1}. This does allow you to determine its orientation though, as for the example of \texttt{A = [1:10]}: 
 \begin{docspecmargin}
 >> size(A)
 \\ans =
@@ -749,15 +775,15 @@ returning its integer length, and which could in turn be assigned to a variable,
 (10 rows and 1 column).
 \end{mdframed}}
 
-If you find that you want a different orientation (row vs. column) of the a vector, the vector can be flipped around (converting row-to-column and column-to-row) using the \textit{transpose operator} (\texttt{.'}), e.g.:
+If you find that you want a different orientation (row vs. column) of the a \textit{vector}, the \textit{vector} can be flipped around (converting row-to-column and column-to-row) using the \textit{transpose operator} (\texttt{.'}), e.g.:
 
 \begin{docspec}
-D = B'
+D = B.'
 \end{docspec}
 
-\noindent will turn the vector \texttt{B} into one (assigned to the variable \texttt{D}) with he same orientation as \texttt{C}. \sidenote{Note ... MATLAB gives the syntax as \texttt{.'}, whereas I always only ever added the \texttt{'} bit ... which works ...} You can also use the \docenvdef{transpose} function.
+\noindent will turn the vector \texttt{B} into one (assigned to the \textit{variable} \texttt{D}) with he same orientation as \texttt{C}. \sidenote{Note ... \textbf{MATLAB} gives the syntax as \texttt{.'}, whereas I always only ever added the \texttt{'} bit ... which works ...} You can also use the \docenvdef{transpose} \textit{function}.
 
-You can also re-order the values in a vector (hence addressing the restriction in using the colon operator to create a vector that the values must be monotonically increasing rather than decreasing). Depending on the orientation of the vector, you can use either the \docenvdef{flipud} (for column vectors), or \docenvdef{fliplr} (for row vectors), functions to re-order the elements.
+You can also re-order the values in a \textit{vector} (hence addressing the restriction in using the \textit{colon operator} to create a \textit{vector} that the values must be monotonically increasing rather than decreasing). Depending on the orientation of the \textit{vector}, you can use either the \docenvdef{flipud} (for column \textit{vectors}), or \docenvdef{fliplr} (for row \textit{vectors}) \textit{functions} to re-order the elements.
 
 \marginnote[-0.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{flipud}, \docenvdef{fliplr}
@@ -776,9 +802,9 @@ will invert the order of elements of a raw vector. Simples! Lesson over.
 
 \subsection{Addressing elements in vectors}
 
-This next bit is maybe the single most important (and weird) part of MATLAB. As you go through this section (and also the later one on \textit{matrices}) -- have Excel open as a aid to visualize how \textbf{MALTAB} represents \textit{arrays}. Start by entering the 5 numbers, from 0.5 to 2.5, in sequential cells, working down from \textsf{A1} (this is the MATLAB vector \texttt{B} in the example that follows).
+This next bit is maybe the single most important (and weird) part of \textbf{MATLAB}. As you go through this section (and also the later one on \textit{matrices}) -- have \textbf{Excel} open as a aid to visualize how \textbf{MALTAB} represents \textit{arrays}. Start by entering the 5 numbers, from 0.5 to 2.5, in sequential cells, working down from \textsf{A1} (this is the \textbf{MATLAB} vector \texttt{B} in the example that follows).
 
-Values can be extracted (or read) from a vector by specifying the index (technically, this should be an integer, but MATLAB is pretty forgiving and you can get away with using a real number when specifying an index) of the element required (counting along, left-to-right, or top-to-bottom, depending on the vector orientation), e.g. 
+Values can be extracted (or read) from a vector by specifying the index (technically, this should be an \textit{integer}, but \textbf{MATLAB} is pretty forgiving and you can get away with using a \textit{real} (number) when specifying an index) of the element required (counting along, left-to-right, or top-to-bottom, depending on the \textit{vector} orientation), e.g. 
 
 \begin{docspec}
 >> B(5)
@@ -810,19 +836,19 @@ In practice, you can get away with being lazy (and in fact this is how it was in
 (but get into the habit of using the formally correct, \textbf{Mathworks} official and UN-approved, syntax of \texttt{.'}).
 \end{mdframed}}
 
-\noindent(In this text, I will refer to accessing a particular element (or elements) of a vector (or array) via its index as addressing. Unless I forget, then I might say something else. You'll have to keep on your toes -- don't expect consistency here!)\sidenote{Recognise the parallel with \textbf{Excel} here -- the value in position \texttt{5} in the \textbf{MATLAB} vector \texttt{B}, is the same as specifying the contents of cell \textsf{A5} in \textbf{Excel}.}
+\noindent(In this text, I will refer to accessing a particular element (or elements) of a \textit{vector} (or \textit{array}) via its \textit{index} as addressing. Unless I forget, then I might say something else. You'll have to keep on your toes -- don't expect consistency here!)\sidenote{Recognise the parallel with \textbf{Excel} here -- the value in position \texttt{5} in the \textbf{MATLAB} vector \texttt{B}, is the same as specifying the contents of cell \textsf{A5} in \textbf{Excel}.}
 
-There is a MATLAB function \docenv{end} (see Box) that enables you to easily address (accessing via its index) the very last value in a vector (in MATLAB, the index of the first position is always \texttt{1}).
+There is a \textbf{MATLAB} \textit{function} \docenv{end} (see Box) that enables you to easily address (accessing via its index) the very last value in a \textit{vector} (in \textbf{MATLAB}, the \textit{index} of the first position is always \texttt{1}).
 
 For addressing more than one element of a vector at a time, you can use the \docenv{colon operator} (see Box). \sidenote{Again -- e.g. in \textbf{Excel}, the sum of the \textsf{5} elements in column \textsf{A} (the equivalent 'vector'), would be \textsf{=SUM(A1:A5)}.}
 
-As well as reading out an existing value of a vector, you can also replace an existing value by assigning the new value to the appropriate index position. e.g. to replace the first element
+As well as reading out an existing value of a \textit{vector}, you can also replace an existing value by assigning the new value to the appropriate \textit{index} position. e.g. to replace the first element
 with a value of \texttt{0.0}:
 \begin{docspec}
 B(1) = 0.0
 \end{docspec}
 
-\noindent (Here, you are saying that you would like to assign the value of \texttt{0.5} to the element in the vector given by the index \texttt{1}. The previous content of the array at index position \texttt{1} is simply over-written.)
+\noindent (Here, you are saying that you would like to assign the value of \texttt{0.5} to the element in the \textit{vector} given by the index \texttt{1}. The previous content of the array at \textit{index} position \texttt{1} is simply over-written.)
 
 \marginnote[-0.50in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 You can access more than a single element of a vector at a time, by means of the \docenvdef{colon operator}, \texttt{:} to define a min, max range of indices. For example:  
@@ -847,7 +873,7 @@ To select all elements:
 
 \marginnote[-0.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{end}
-\\Represents the largest index in a vector when addressing it, or in MATLAB-speak: "end can ... serve as the last index in an indexing expression".
+\\Represents the largest index in a \textit{vector} when addressing it, or in MATLAB-speak: "end can ... serve as the last index in an indexing expression".
 \end{mdframed}}
 
 %------------------------------------------------
@@ -858,18 +884,18 @@ To select all elements:
 
 \section{Basic graphing (aka. 'data visualization')}
 
-So far ... I suspect this is heavy-going and there is a lot to try and remember, such as command names, although knowing just that certain commands exist, is enough to start with and \textbf{MATLAB} Help can be used later tot find out the exact name (and usage syntax). All this, and we have not  even  gotten on to matrices (2-D arrays) yet ... So, we'll take a diversion to look at some basic plotting techniques that will  make sense now that you can create vectors of numbers to plot (and later, important some 'real' data). Unless you have forgotten how to create vectors already ... :(
+So far ... I suspect this is heavy-going and there is a lot to try and remember, such as command names, although knowing just that certain commands exist, is enough to start with and \textbf{MATLAB} Help can be used later to find out the exact name (and usage syntax). All this, and we have not  even  gotten on to \textit{matrices} (2-D arrays) yet ... So, we'll take a diversion to look at some basic plotting techniques that will  make sense now that you can create \textit{vectors} of numbers to plot (and later, important some 'real' data). Unless you have forgotten how to create \textit{vectors} already ... :(
 
 %------------------------------------------------
 
 \subsection{Plotting}
 
-First -- create yourself a dummy dataset to plot. You are going to need to create yourself a pair of vectors -- these can have any values (all numbers though) in them that you like, but perhaps aim for 1 vector with values counting up from 1 to 10 (or similar) -- this will form your \textit{x}-axis, and the 2nd column ... whatever you like. \sidenote[][-3.00in]{Looking ahead -- you could create a y-axis vector formed of the squares of the numbers in the x-axis vector: 
+First -- create yourself a dummy dataset to plot. You are going to need to create yourself a pair of \textit{vectors} -- these can have any values (all numbers though) in them that you like, but perhaps aim for 1 vector with values counting up from 1 to 10 (or similar) -- this will form your \textit{x}-axis, and the 2nd column ... whatever you like. \sidenote[][-3.00in]{Looking ahead -- you could create a y-axis \textit{vector} formed of the squares of the numbers in the x-axis \textit{vector}: 
 \begin{docspecmargin}
 >> Y = X.\(^{\wedge}\)2  
 \end{docspecmargin}
-(The \texttt{.\(^{\wedge}\)} bit says to square the value of each and every  element in the vector.)}
-The command \docenvdef{figure} creates a figure window, which is where MATLAB displays its graphical output ... but on its own, without anything in it ... useless. So, lets put something in it, with the simplest possible graphical way of displaying data called \docenvdef{plot}. 
+(The \texttt{.\(^{\wedge}\)} bit says to square the value of each and every  element in the \textit{vector}.)}
+The command \docenvdef{figure} creates a \textsf{figure window}, which is where \textbf{MATLAB} displays its graphical output ... but on its own, without anything in it ... useless. So, lets put something in it, with the simplest possible graphical way of displaying data called \docenvdef{plot}. 
 
 \marginnote[-2.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{plot}
@@ -882,13 +908,13 @@ where \texttt{X} and \texttt{Y} are vectors -- of the same length (\uline{import
 \\There are many options that go with this function, some of which we'll see and use later. You can also input matrixes as \texttt{X} and \texttt{Y} apparently. But I have absolutely no clue as to what might happen. I suspect that the plot will end up looking like a bad acid trip. 
 \end{mdframed}}
 
-With any new \textbf{MATLAB} command (\textit{function}), get int the habit of looking up the \texttt{help} text first (also refer to alternative/simplified help provided in this text). The key information that will get you started appears at the very top of the text that \texttt{help} returns on \texttt{plot}:
+With any new \textbf{MATLAB} command (\textit{function}), get into the habit of looking up the \texttt{help} text  (also refer to alternative/simplified help provided in this text). The key information that will get you started appears at the very top of the text that \texttt{help} returns on \texttt{plot}:
 
 \begin{docspec}
 PLOT(X,Y) plots vector Y versus vector X.
 \end{docspec}
 
-\noindent This tells you that you need to pass to \texttt{plot}, your \textit{x}-axis data vector (by its variable name), followed by your y-axis data vector (by its variable name) -- comma separated. Do this, and depending on just what or how random your \textit{y}-axis data was, you should end up with something like Figure \ref{fig:plot-basic} in a window captioned "\texttt{Figure 1}".\sidenote{If you cannot see the figure window ... check that the window is not hidden behind the main \textbf{MATLAB} program window!} 
+\noindent This tells you that you need to pass to \texttt{plot}, your \textit{x}-axis data \textit{vector} (by its variable name), followed by your y-axis data \textit{vector} (by its variable name) -- comma separated. Do this, and depending on just what or how random your \textit{y}-axis data was, you should end up with something like Figure \ref{fig:plot-basic} in a window captioned "\texttt{Figure 1}".\sidenote{If you cannot see the figure window ... check that the window is not hidden behind the main \textbf{MATLAB} program window!} 
 
 This ... is easily the least professional plot ever (aside from anything at all created in \textbf{Excel}). And one that breaks all the most basic rules of scientific presentation, such as an absence of any labelling of axes. There is also no title, although here in the course text I have added a figure caption in the document so I can sort of get away with it. This is the default output of the basic \texttt{plot} function and you'll just have to deal with it (i.e. add a series of commands to add missing elements of the \texttt{plot}).
 
@@ -898,7 +924,7 @@ This ... is easily the least professional plot ever (aside from anything at all 
 \label{fig:plot-basic}
 \end{marginfigure}
 
-Note that by default, \textbf{MATLAB} also scales both axes to reasonably closely match the range of values. In the example here, the default min and max
+Note that by default, \textbf{MATLAB} also scales both axes to reasonably closely match the range of values in the two data vectors. In the example here, the default min and max
 axes limits in fact turn out to be the min and max values in the \textit{x} and y-axis data because the data is composed of relatively simply/whole numbers. If however the maximum \textit{y} value was very  slightly larger, you'd see that \textbf{MATLAB} would adjust the maximum \textit{y}-axis limit to the next convenient value so as to preserve a relatively simple series of labelled tick marks in the axis scale. In fact, why not try that -- replace your maximum data value, with a value that is very slightly larger (an example is given in Figure \ref{fig:ch1-plot-basic3}).
 \sidenote[][-0.75in]{If you have created a dummy dataset in which the value in the last row is the largest, replacing it is simple -- remember the use of \texttt{end} in addressing an element in an array. If your dataset does not monotonically increase and the largest value falls somewhere in the middle ... you could cheat' and open the array in the variable editor and discover which row it occurs on.} Then re-plot and note how it has changed (if at all -- it will depend somewhat on what data you invented in the first place).
 
@@ -912,7 +938,7 @@ axes limits in fact turn out to be the min and max values in the \textit{x} and 
 
 \subsection{Graph labelling}
 
-You have two options for editing the figure and e.g. adding axis labels. Firstly, you can use the GUI and the series of menu items and icons at the top of the Figure window to manipulate the figure. I suspect you'll prefer this ... but it is not very flexible, or rather, it requires your input each and every time you want to make changes or additions to a figure. The second possibility is to issue a series of commands at the command line. (The advantage with the latter we'll see later when we introduce \docenvdef{m-files}.) For now, I'll illustrate a few basic commands:
+You have two options for editing the figure and e.g. adding axis labels. Firstly, you can use the \textit{GUI} and the series of menu items and icons at the top of the \textsf{Figure window} to manipulate the figure. I suspect you'll prefer this ... but it is not very flexible, or rather, it requires your input each and every time you want to make changes or additions to a figure. The second possibility is to issue a series of \textbf{MATLAB} commands at the \textsf{command line}. (The advantage with the latter we'll see later when we introduce \docenvdef{m-files}.) For now, I'll illustrate a few basic commands:
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch1-plot-basic2.eps}
@@ -928,7 +954,7 @@ If you change your mind, simply re-issue the command with the text you would lik
 \item You might want to specify the axis limits. The command is \docenvdef{axis} and it takes a vector of 4 values as its input -- in order: minimum x, maximum x, minimum y, and maximum y value. e.g. \texttt{axis([0 10 -100 100])} would specify an \textit{x}-axis running from 0 to 10, and a \textit{y}-axis from -100 to 100.
 \end{enumerate}
 
-Information as to how to use all of these commands can be found via MATLAB \texttt{help}. But a typical sequence, that gives rise to the improved plot shown in Figure \ref{fig:ch1-plot-basic2}, is given in the margin.
+Information as to how to use all of these commands can be found via \textbf{MATLAB} \texttt{help}. But a typical sequence, that gives rise to the improved plot shown in Figure \ref{fig:ch1-plot-basic2}, is given in the margin.
 
 \marginnote[-1.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 Example of adding axis labels and a plot title ...
@@ -944,19 +970,21 @@ Example of adding axis labels and a plot title ...
 \end{docspecmargin}
 \end{mdframed}}
 
+Note that in the usage of all the above listed commands, they all require something to be passed within a set of parentheses -- \texttt{( )}. In fact, they are all \textbf{MATLAB} functions and require an input (hence the use of the parentheses). Some of the functions require a \textit{string} input, such as the name of the title in \docenv{title}, and this must be encased in quotation marks -- \texttt{' '} to designate it a string rather than a \textit{variable} name.\sidenote{You could instead assign a \textit{string} to a \textit{variable}, and then pass the \textit{variable} name (no quotation marks).}
+
 %------------------------------------------------
 
 \subsection{Sub-plots}
 
-You can also have more than one plot in a single Figure window. As an example, create some sine waves using the \docenvdef{sin} function (see \texttt{help}) over the range 0 < \textit{x} < 2\(\pi\), e.g.:
+You can also have more than one plot in a single \textsf{Figure window}. As an example, create some sine waves using the \docenvdef{sin} function (see \texttt{help}) over the range 0 < \textit{x} < 2\(\pi\), e.g.:
 \begin{docspec}
 >> x = 0:0.1:2*pi;
 \\>> y = sin(x);
 \\>> y2 = sin(2*x);
 \end{docspec}
-(Note how in the first line, the colon operator is used to create an \textit{x} vector from 0 to 2\(\pi\), in steps of 0.1. The second and third lines calculate the sine of all the x values, and sine of 2 times the \textit{x} values, respectively, and assign the results to a pair of new vectors, \texttt{y} and \texttt{y2}.)
+(Note how in the first line, the \textit{colon operator} is used to create an \textit{x} vector from 0 to 2\(\pi\), in steps of 0.1. The second and third lines calculate the sine of all the x values, and sine of 2 times the \textit{x} values, respectively, and assign the results to a pair of new vectors, \texttt{y} and \texttt{y2}.)
 
-\marginnote[-1.75in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-2.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{axis}
 \\For once, helpfully, MATLAB says:
 \\"\textit{\texttt{axis([xmin xmax ymin ymax])} sets the limits for the x- and y-axis of the current axes.}"
@@ -990,20 +1018,20 @@ The basic code then goes something like:
 
 \subsection{Saving graphics and figures}
 
-You might just want to save the figure. (Why create it in the first place in fact if you are just going to throw it away ... ?) Again, you can do this via the GUI or at the command line
+You might just want to save the figure. (Why create it in the first place in fact if you are just going to throw it away ... ?) Again, you can do this via the \textit{GUI} or at the \textit{command line}
 \sidenote[][-0.25in]{
 To export a graphic at the command line, use the \docenvdef{print} function. To cut a long story short (see: \texttt{help print}), to print to a postscript file:
 \\\texttt{print('-dpsc2', FILENAME)}
-\\\noindent where \texttt{FILENAME} is the filename as a string or a variable containing a string.
+\\\noindent where \texttt{FILENAME} is the filename as a \textit{string} or a \textit{variable} containing a \textit{string}.
 }.
-From the GUI, you have the option to save the figure in a way that can be loaded later and re-edited -- this is the \texttt{.fig} format option. Or you can save (export) in a variety of common graphics formats (although once saved in this format, the graphics can only be edited later using a graphics package).
+From the \textit{GUI}, you have the option to save the figure in a way that can be loaded later and re-edited -- this is the \texttt{.fig} format option. Or you can save (export) in a variety of common graphics formats (although once saved in this format, the graphics can only be edited later using a graphics package).
 
-You can also close figure windows (see Box). No seriously. They are not forever. ;)
+You can also close \textsf{figure windows} (see Box). No seriously. They are not forever. ;)
 
 \marginnote[-0.50in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-To close the current (active) Figure window, the command is:
+To close the current (active) \textsf{Figure window}, the command is:
 \\ \texttt{>> close}
-\\ \noindent To close all currently open Figure windows:
+\\ \noindent To close all currently open \textsf{Figure windows}:
 \\ \texttt{>> close all}
 \end{mdframed}}
 
@@ -1015,16 +1043,16 @@ To close the current (active) Figure window, the command is:
 
 \section{Vectors and arrays \#2}
 
-A matrix is another special case of an array -- this time 2-D (rather than 1-D in the case of a vector). MATLAB totally hearts them.
+A \textit{matrix} is another special case of an \textit{array} -- this time 2-D (rather than 1-D in the case of a vector). \textbf{MATLAB} totally hearts them.
  
 \subsection{Creating matrices and arrays}
 
-You can enter matrices (2-D arrays) into MATLAB in several different ways:
+You can enter \textit{matrices} (2-D arrays) into \textbf{MATLAB} in several different ways:
 
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item Enter an explicit list of elements.
-To enter the elements of a matrix, there are only a few basic conventions:
+To enter the elements of a \textit{matrix}, there are only a few basic conventions:
 \begin{itemize}[noitemsep]
 \setlength{\itemindent}{.4in}
 \item Separate the elements of a row with blanks or commas.
@@ -1039,27 +1067,38 @@ To enter the elements of a matrix, there are only a few basic conventions:
 \begin{docspec}
 A = [15 7 11 6; 13 1 6 10; 21 17 5 3; 5 15 20 9]
 \end{docspec}
-\noindent MATLAB then displays the matrix you just entered\sidenote{Remember that you can add an \texttt{;} to the end would prevent the results of the variable assignment being displayed in the \textit{Command Window}.}:
+\noindent \textbf{MATLAB} then displays the matrix you just entered\sidenote{Remember that you can add an \texttt{;} to the end of the line to prevent the results of the \textit{variable} assignment being displayed in the \textsf{Command Window}.}:
 \begin{docspec}
 A =\\
-    15   7  11   6\\
-    13   1   6  10\\
-    21  17   5   3\\
-    5   15  20   9
+\ \ \ \ 15   7  11   6\\
+\ \ \ \ 13   1   6  10\\
+\ \ \ \ 21  17   5   3\\
+\ \ \ \ 5   15  20   9
 \end{docspec}
-\noindent Once you have entered the matrix, it is automatically remembered in the MATLAB workspace. You can refer to it simply as \texttt{A}.
 
-Now go find the array you have just created in the \textit{Workspace window}. Double-click on its name icon and see what goodies appear on the screen. This is a fancy array editor which looks a bit like one of those dreadful \textsf{Excel} spreadsheet things. You can see that this might be handy to edit, view, and keep track of at least moderate quantities of data. This is a useful facility to have. However, we are going to concentrate on the command-line operation of \textbf{MATLAB} in this class because that will give you far more power and flexibility in applying numerical techniques to problem solving, and will form the basis of scripting (computer programming by another name) that we will see in a few lectures time. Close down this nice toy to leave just the original windows.
+In math-speak, this would be equivalent to:
 
-Elements in the matrix can be addressed using the syntax:
+\vspace{2mm}
+\(A=\begin{pmatrix}15 & 7 & 11 & 6 \\
+13 & 1 & 6 & 10 \\
+21 & 17 & 5 & 3 \\
+5 & 15 & 20 & 9 \\
+\end{pmatrix}\)
+\vspace{2mm}
+
+\noindent Once you have entered the \textit{matrix}, it is automatically remembered in the \textbf{MATLAB} workspace. You can refer to it simply as \texttt{A}.
+
+Now go find the \textit{array} you have just created in the \textsf{Workspace window}. Double-click on its name icon and see what goodies appear on the screen. This is a fancy \textit{array} editor which looks a bit like one of those dreadful \textbf{Excel} spreadsheet things. You can see that this might be handy to edit, view, and keep track of at least moderate quantities of data. This is a useful facility to have. However, we are going to concentrate on the command-line operation of \textbf{MATLAB} in this class because that will give you far more power and flexibility in applying numerical techniques to problem solving, and will form the basis of \textit{scripting} (computer programming by another name) that we will see in a few lectures time. Close down this nice toy to leave just the original windows.
+
+Elements in the \textit{matrix} can be addressed using the syntax:
 \begin{docspec}
 A(i,j)
 \end{docspec}
 where \texttt{i} is the row number, and \texttt{j} is the column number. It is very very easy to keep forgetting in which order the rows and columns are indexed., but I'll tell you here and now before I forget:
 \hfill \break
-\\{\Large rows, columns}
+\\{\LARGE rows, columns}
 \hfill \break
-\\\noindent(You can always create a test matrix and access a specific element to check if in doubt!)
+\\\noindent(You can always create a test \textit{matrix} and access a specific element to check if in doubt!)
 In the example above:
 \begin{docspec}
 >> A(1,3)
@@ -1068,7 +1107,7 @@ In the example above:
 \end{docspec}
 \noindent (i.e. the value of the element in the 1st row, 3rd column, is \texttt{11}).
 
-In general, the same functions and operators that applied to vectors and you saw earlier, also apply to matrixes (or specific dimensions of matrices).
+In general, the same \textit{functions} and \textit{operators} that applied to \textit{vectors} and you saw earlier, also apply to \textit{matrixes} (or specific dimensions of matrices).
 
 \marginnote[-0.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 Similarly as for vectors, you can access more than a single element of a matrix by means of the \docenv{colon operator}, \texttt{:}. For example: \\\texttt{A(:,1)} -- selects the 1st column
@@ -1076,19 +1115,19 @@ Similarly as for vectors, you can access more than a single element of a matrix 
 \\\texttt{A(2:3,2:3)} -- selects the 2\(\times\)2 matrix of values lying in the centre of \texttt{A}, while \texttt{A(1:2,:)} selects the top half (first 2 rows) of the matrix.
 \end{mdframed}}
 
-Finally -- a fundamental way of accessing data that you need to learn and be familiar with, is to employ the colon operator to select specific columns (or rows) of data. You'll find that this skill  ends up inherent to many of your attempts to process and graph data. For instance, if your (\textit{x},\textit{y}) data to plot ended up in MATLAB workspace in matrix form (it very commonly does) rather than as 2 sperate vectors (as you had when you first plotted anything), you will need to select separately the \textit{x} (e.g. 1st column) data, and the \textit{y} (2nd column) data, and pass these to the \texttt{plot} function.
+Finally -- a fundamental way of accessing data that you need to learn and be familiar with, is to employ the \textit{colon operator} to select specific columns (or rows) of data. You'll find that this skill  ends up inherent to many of your attempts to process and graph data. For instance, if your (\textit{x},\textit{y}) data to plot ended up in \textbf{MATLAB} workspace in matrix form (it very commonly does) rather than as 2 sperate vectors (as you had when you first plotted anything), you will need to select separately the \textit{x} (e.g. 1st column) data, and the \textit{y} (2nd column) data, and pass these to the \texttt{plot} function.
 For the example of matrix A above, all the first column data can be selected by typing \texttt{A(:,1)}\sidenote{Remembering the HUGE hint above in 100 pt font as to the order of rows and columns ...}, which says all the rows (\texttt{:}) in the first column. Similarly, all the 2nd column data alone can be selected by \texttt{A(:,2)}. (You'll practice this endlessly later on and hopefully get it!)
 
 
 \marginnote[-0.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-You can also determine the shape of your array using the \docenvdef{size} function. For a 2D array (matrix), when you pass it the name of your array, it returns the number of rows followed by the number of columns (in that order). 
+You can also determine the shape of your \textit{array} using the \docenvdef{size} function. For a 2D \textit{array} (\textit{matrix}), when you pass it the name of your array, it returns the number of rows followed by the number of columns (in that order). 
 \end{mdframed}}
 
 %------------------------------------------------
 
 \subsection{Basic matrix manipulation}
 
-You can treat vectors and matrices (or parts of vectors and matrices), mathematically, as you would treat single values (i.e. \textit{scalars}) but unlike a scalar, the transformation is applied to all specified elements of the array. This applies for all the basic numerical operators\sidenote{Technically ... or at least to be consistent with other operations, you might write multiplication as \texttt{.*} rather than just plain old \texttt{*}. The preceding dot tells MATLAB not to treat this as matrix multiplication but to carry out the operation on each element in turn. In this case, it is the same thing (and both notations work the same), but later, is not. (This will make more sense when you get to see it in action, later.)}. For example, for vector \texttt{B} in the earlier example,
+You can treat \textit{vectors} and \textit{matrices} (or parts of \textit{vectors} and \textit{matrices}), mathematically, as you would treat single values (i.e. \textit{scalars}) but unlike a \textit{scalar}, the transformation is applied to all specified elements of the \textit{array}. This applies for all the basic \textit{arithmetic operators}\sidenote{Technically ... or at least to be consistent with other operations, you might write multiplication as \texttt{.*} rather than just plain old \texttt{*}. The preceding dot tells \textbf{MATLAB} not to treat this as matrix multiplication but to carry out the operation on each element in turn. In this case, it is the same thing (and both notations work the same), but later, is not. (This will make more sense when you get to see it in action, later.)}. For example, for \textit{vector} \texttt{B} in the earlier example,
 \begin{docspec}
 >> 2*B
 \\ans =
@@ -1105,29 +1144,30 @@ and
 
 \newthought{Question:} What is the sum of the 4th column of \texttt{C}
 \marginnote[-0.75in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-The \textit{function} \docenvdef{sum} ... sums things. The MATLAB Help documentation (\texttt{help sum}) says:
+The \textit{function} \docenvdef{sum} ... sums things. The \textbf{MATLAB} Help documentation (\texttt{help sum}) says:
 \\'\texttt{If A is a vector, sum(A) returns the sum of the elements.}'
 \\'\texttt{If A is a matrix, sum(A) treats the columns of A as vectors, returning a row vector of the sums of each column.}'
 \end{mdframed}}
 ? (Sure -- you also do it by using a calculator, but you will not always have such a small data-set as here. Perhaps you'll get a much larger data-set in the assessed exercise ;) So, practice doing it properly.) The \textbf{MATLAB} function for this is \docenvdef{sum}.
 
 \newthought{Question:} What is the sum of the 2nd row of \texttt{C}?
- For a matrix (rather than a vector) as input, \docenvdef{sum}  returns the individual sums of each column, and so on its own;
+ For a \textit{matrix} (rather than a \textit{vector}) as input, \docenvdef{sum}  returns the individual sums of each column, and so on its own;
 \begin{docspec}
 >> C\\
 C =\\
-      255   119   187   102\\
-      221    17   102   170\\
-      357   289    85    51\\
-       85   255   340   153\\
+\ \ \ \ 255   119   187   102\\
+\ \ \ \ 221    17   102   170\\
+\ \ \ \ 357   289    85    51\\
+\ \ \ \ 85   255   340   153\\
+\vspace{2mm}
 
 >> sum(C)\\
 ans =\\
-      918   680   714   476\\
+\ \ \ \ 918   680   714   476\\
 \end{docspec}
-\noindent gives you a row vector consisting of the sums of the individual columns of the matrix \texttt{C} above.
+\noindent gives you a row \textit{vector} consisting of the sums of the individual columns of the \textit{matrix} \texttt{C} above.
 
-This is where the \docenvdef{transpose} function (\texttt{'}) comes in handy (see earlier). In this case, it flips a (2D) matrix around its leading diagonal (columns become rows, and rows, columns)\sidenote[][-1.0in]{This is almost true. Technically the function you want is \texttt{.'}, as \texttt{'} will change the sign of any imaginary components. For real numbers, they are the same.}
+This is where the \docenvdef{transpose} function (\texttt{'}) comes in handy (see earlier). In this case, it flips a (2D) \textit{matrix} around its leading diagonal (columns become rows, and rows, columns)\sidenote[][-1.0in]{This is almost true. Technically the function you want is \texttt{.'}, as \texttt{'} will change the sign of any imaginary components. For real numbers, they are the same.}
 \marginnote{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 In addition to \docenv{transpose}, other useful array manipulation functions include:
 \\\noindent \docenvdef{flipup} -- flips the matrix in the up/down direction
@@ -1138,31 +1178,32 @@ In addition to \docenv{transpose}, other useful array manipulation functions inc
 \begin{docspec}
 >> C'\\
 ans =\\
-      255   221   357    85\\
-      119    17   289   255\\
-      187   102    85   340\\
-      102   170    51   153
+\ \ \ \ 255   221   357    85\\
+\ \ \ \ 119    17   289   255\\
+\ \ \ \ 187   102    85   340\\
+\ \ \ \ 102   170    51   153
 \end{docspec}
-\noindent (transposing the matrix turns the rows into columns)
+\noindent (transposing the \textit{matrix} turns the rows into columns)
 \begin{docspec}
 >> sum(C')\\
 ans =\\
-      663   510   782   833
+\ \ \ \ 663   510   782   833
 \end{docspec}
-\noindent Now you get a row vector consisting of the sums of the individual columns of the matrix C, but since you have transposed the matrix \texttt{C} first, these four values are actually equal to the row sums.
+\noindent Now you get a row \textit{vector} consisting of the sums of the individual columns of the \textit{matrix} C, but since you have transposed the \textit{matrix} \texttt{C} first, these four values are actually equal to the row sums.
 
 Finally, you could transpose the answer:
 \begin{docspec}
 >> sum(C')'\\
-ans = 663\\
-      510\\
-      782\\
-      833
+ans = \\
+\ \ \ \ 663\\
+\ \ \ \ 510\\
+\ \ \ \ 782\\
+\ \ \ \ 833
 \end{docspec}
-\noindent to give you  a row vector format that corresponds to the rows  of the original matrix \texttt{C}.
-\sidenote[][-0.25in]{Note how you can combine multiple functions in the same statement to create \texttt{sum(C')'}. However, to start with, it is much safer to do each step separately and hence be sure what you are doing.}
+\noindent to give you  a row \textit{vector} format that corresponds to the rows  of the original \textit{matrix} \texttt{C}.
+\sidenote[][-0.25in]{Note how you can combine multiple \textit{functions} in the same statement to create \texttt{sum(C')'}. However, to start with, it is much safer to do each step separately and hence be sure what you are doing.}
 
-Finally, if you wanted the sum of *all* the elements in the matrix \texttt{C} in the example above, you could sum all the columns to give you a row vector of partial sums, and then sum the elements in the row vector to give you the grant total sum of all the elements. You can do this, either in seperate steps:
+Finally, if you wanted the sum of *all* the elements in the \textit{matrix} \texttt{C} in the example above, you could sum all the columns to give you a row \textit{vector} of partial sums, and then sum the elements in the row \textit{vector} to give you the grant total sum of all the elements. You can do this, either in completely separate steps\sidenote{In general in programming -- use as many smaller, separate steps as you like and are most comfortable. The more you break down the calculation, the clearer it will be to you and the easier to debug if things go wrong. However, this does come at the expense of longer and longer code and sometimes more compact code is easier to deal with.}:
 \begin{docspec}
 >> D = sum(C);\\
 >> E = sum(D);
@@ -1178,40 +1219,40 @@ It does not matter if you sum the column of \texttt{C} first, or the row first -
 
 \subsection{Some matrix math :(}
 
-We will not concern ourselves overly with multiplying vectors and matrices together ... but you should be aware that \textbf{MATLAB} can do matrix math. For now, it is worth nothing the difference between \texttt{*} and \texttt{.*} operators in the context of arrays. For example, consider 2 vectors, A and B:
+We will not concern ourselves overly with multiplying \textit{vectors} and \textit{matrices} together ... but you should be aware that \textbf{MATLAB} can do matrix math. For now, it is worth nothing the difference between \texttt{*} and \texttt{.*} operators in the context of arrays. For example, consider 2 vectors, \texttt{A} and \texttt{B}:
 
 \begin{docspec}
 >> A = [1 1 2 2];\\
 >> B = [1 2 3 4];
 \end{docspec}
 
-To multiple the elements of A and B together \uline{pair-wise}, use .*:
+To multiple the elements of \texttt{A} and \texttt{B} together \uline{pair-wise}, use .*:
 
 \begin{docspec}
 >> C = A.*B
 \\
-C =
-\\
-     1     2     6     8
+C =\\
+\ \ \ \ 1     2     6     8
 \end{docspec}
 
-Without the dot, you get the vector product ... well, you would if the vectors were in an appropriate orientation, i.e.:
+Without the dot, you get the vector product ... well, you would if the \textit{vectors} were in an appropriate orientation, i.e.:
 
+\vspace{1mm}
 \(\begin{pmatrix}1 & 1 & 2 & 2 \\
 \end{pmatrix}\times\begin{pmatrix}1 \\
 2 \\
 3 \\
 4 \\
 \end{pmatrix}\)
+\vspace{1mm}
 
 \noindent which you get by typing:
 
 \begin{docspec}
 >> C = A*B'
 \\
-C =
-\\
-     17
+C =\\
+\ \ \ \ 17
 \end{docspec}
 (which is  calculated from: \(1\times1 + 1\times2 + 2\times3 + 2\times4\)).
 
@@ -1226,27 +1267,29 @@ The pair-wise multiplication of each element of the 1st matrix with the correspo
 \begin{docspec}
 >> F = E.*E
 \\
-F =
-\\
-     1     4\\
-     9    16
+F =\\
+\ \ \ \ 1     4\\
+\ \ \ \ 9    16
 \end{docspec}
 
-while for matrix multiplication, \(\begin{pmatrix}1 & 1 \\
+In contrast, for matrix multiplication, written in math-speak as:
+
+\vspace{2mm}
+\(\begin{pmatrix}1 & 1 \\
 2 & 2 \\
 \end{pmatrix}\times\begin{pmatrix}1 & 2 \\
 3 & 4 \\
 \end{pmatrix}\)
-\begin{docspec}
+\vspace{2mm}
 
 we would write:
 
+\begin{docspec}
 >> F = E*E
 \\
-F =
-\\
-     4     6\\
-     8    12
+F =\\
+\ \ \ \ 4     6\\
+\ \ \ \ 8    12
 \end{docspec}
 
 If your matrix math is rusty and you are not following this, maybe refresh it (your memory of basic matrix math).
@@ -1259,7 +1302,7 @@ If your matrix math is rusty and you are not following this, maybe refresh it (y
 
 \section{Loading and saving data}
 
-There are a number of different ways to load/import data into the \textbf{MATLAB} \textit{Workspace}. Rather than try and tediously list and describe the commands and syntax and blah blah, we'll be going through a couple of (hopefully) slightly less tedious data-based examples as we progress through the course text. In this way, if nothing else, you might accidently learn some science even if nothing much about \textbf{MATLAB} ...
+There are a number of different ways to load/import data into the \textbf{MATLAB} \textsf{Workspace}. Rather than try and tediously list and describe the commands and syntax and blah blah, we'll be going through a couple of (hopefully) slightly less tedious data-based examples as we progress through the course text. In this way, if nothing else, you might accidently learn some science even if nothing much about \textbf{MATLAB} ...
 
 %------------------------------------------------
 
@@ -1267,13 +1310,13 @@ There are a number of different ways to load/import data into the \textbf{MATLAB
 
 Before anything -- you need to know 'where you are'. If the file you want to load in is not in the directory \textbf{MATLAB} us using, it will not find it. And if you save something and have no idea where it is being saved ... that can hardly go well.
 
-\textbf{MATLAB} has a default directory that it starts up in and looks at first. For basic Windoz installations\sidenote[][-1.0in]{At installation, this directory can be specified and hence may not be this one. Also -- different operating systems will have different default locations.}, this directory is:
+\textbf{MATLAB} has a default directory that it starts up in and looks at first. For basic Windoz installations\sidenote[][-1.0in]{At installation, this directory can be specified and hence may not be this one. Also -- different operating systems will have different default locations.} of the software, this directory is:
 
 \begin{docspec}
 C:\textbackslash Users\textbackslash mushroom\textbackslash Documents\textbackslash MATLAB
 \end{docspec}
 
-\noindent So, where the \docenv{load} command requires a filename to be passed, you will need to enter either the full location of the file; i.e., starting with the drive letter (e.g. as per displayed in the \textsf{Windows} Filemanger address bar, or the relative path to where the file is located.
+\noindent So, where the \docenv{load} command requires a filename to be passed, you will need to enter either the full location of the file; i.e., starting with the drive letter (e.g. as per displayed in the \textsf{Windows Filemanger} address bar, or the relative path to where the file is located.
 
 \marginnote[-1.75in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{load}
@@ -1289,7 +1332,7 @@ where filename is the name of the file (remember: as a string, it needs to be en
 \end{docspecmargin}
 \end{mdframed}}
 
-It is not necessarily to have all your files end up here, so there is a way to change the \textbf{MATLAB} directory that you are working in which work in a similar way to UNIX/LINUX for those of you who are familiar with navigating your way around these operating systems. You can change the directory that \textbf{MATLAB} is  working from by typing:
+It is not necessarily to have all your files end up here, so there is a way to change the \textbf{MATLAB} directory that you are working in which work in a similar way to \textbf{UNIX}/\textbf{LINUX} for those of you who are familiar with navigating your way around these operating systems. You can change the directory that \textbf{MATLAB} is  working from by typing:
 \begin{docspec}
 >> cd DIRECTORY\_PATH
 \end{docspec}
@@ -1297,59 +1340,67 @@ where \texttt{DIRECTORY\_PATH} is the path to the directory in which you want to
 
 Another alternative is to add a 'search path' (\texttt{addpath}) so that \textbf{MATLAB} knows of an additional place to look for files.  
 
-\marginnote[-0.0in]{The command \docenvdef{addpath} will add a search path to the MATLAB workspace. e.g. \\\texttt{addpath DIRECTORY\_PATH} where \texttt{DIRECTORY\_PATH} is a \textit{string} (characters in between inverted commas) or name of a variable containing a string.}
+\marginnote[-0.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+{The command \docenvdef{addpath} will add a search path to the MATLAB workspace. e.g. \\\texttt{addpath DIRECTORY\_PATH} where \texttt{DIRECTORY\_PATH} is a \textit{string} (characters in between inverted commas) or name of a variable containing a string.}
+\end{mdframed}}
 
-There is also, of course, the GUI -- from the \texttt{File} menu the option \texttt{Import Data..}. will run the data import Wizard -- note that you might have to select \texttt{All Files (*.*)} from the file type option box in order to find the file. I'll leave you to work the rest out for yourselves ... Maybe try importing the data into \textbf{MATLAB} this way once you have done it successfully using the load function at the command line. The GUI can also be used to change the directory you are working from (duplicating the functionality of the \texttt{cd} command) and add paths to search (duplicating the functionality of the \texttt{addpath} command).
+There is also, of course, the GUI -- from the \texttt{File} menu the option \texttt{Import Data..}. will run the data import Wizard -- note that you might have to select \texttt{All Files (*.*)} from the file type option box in order to find the file. I'll leave you to work the rest out for yourselves ... Maybe try importing the data into \textbf{MATLAB} this way once you have done it successfully using the \docenv{load} function at the command line. The \textit{GUI} can also be used to change the directory you are working from (duplicating the functionality of the \texttt{cd} command) and add paths to search (duplicating the functionality of the \texttt{addpath} command).
+
+In summary: go with whatever works best for you in terms of working directory. Easiest might be simply to work directly from a directory on your USB pen-drive (and e.g. have a named different directory for each week of class).  
 
 %------------------------------------------------
 
 \subsection{Loading and importing data}
 
-The simplest way (other than via the \textbf{MATLAB} GUI and the beautiful green \textsf{Import Data} icon) is to use the \docenv{load} function (see Box)\sidenote{There is also a much more flexible way of loading text-based data using the function \texttt{textscan}, but that also requires files to be explicitly opened and closed using \docenvdef{fprintf}. We'll see a little of this later.}.
+The simplest way (other than via the \textbf{MATLAB} \textit{GUI} and the beautiful green \textsf{Import Data} icon) is to use the \docenv{load} function (see Box)\sidenote{There is also a much more flexible way of loading text-based data using the function \texttt{textscan}, but that also requires files to be explicitly opened and closed using \docenvdef{fprintf}. We'll see a little of this later.}.
 
-As a brief exercise and practice using \texttt{load} -- first download the data file \texttt{etheridge\_etal\_1996.txt} from the course webpage\sidenote{\texttt{http://www.seao2.info/teaching.html}}. You might start by viewing the contents of the file by opening it in any text viewer (or \textbf{Excel}). This is always a good place to start as it enables you to see what you are getting yourself in to (i.e. format of the file, any potential formatting issues, approximate size and complexity of the dataset, etc). Then import the data into the \textbf{MATLAB} workspace using the  \texttt{load} command. Becasue the data is a plan text (ASCII) format and not a special MATLAB .mat file, you need to specify the format:
+As a brief exercise and practice using \texttt{load} -- first download the data file \texttt{etheridge\_etal\_1996.txt} from the course webpage\sidenote{\texttt{http://www.seao2.info/teaching.html}}. You might start by viewing the contents of the file by opening it in any text viewer (or \textbf{Excel}\sidenote{In fact, you could even try first plotting it in \textbf{Excel}.}). This is always a good place to start as it enables you to see what you are getting yourself in to (i.e. format of the file, any potential formatting issues, approximate size and complexity of the dataset, etc).
+
+Now, import the data into the \textbf{MATLAB} workspace using the  \texttt{load} command. Because the data is a plan text (ASCII) format and not a special \textbf{MATLAB} \textsf{.mat} file, you need to specify the format as '\texttt{ascii}':
 
 \begin{docspec}
 >> load('etheridge\_etal\_1996.txt','-ascii');
 \end{docspec}
 
-Try simply typing the name of the variable that was automatically created (\texttt{etheridge\_etal\_1996}) or the one you chose, if you assigned the imported data to a specific variable name  (see Box) to provide a crude view of the data. To view the contents of the variable in the \textsf{Variables} window -- double  click on the name of the variable in the \textbf{MATLAB} \textsf{Workspace window.} This should open up a spreadsheet-like window in which the data can be viewed, sorted, and even edited.
+Try simply typing the name of the \textit{variable} that was automatically created (\texttt{etheridge\_etal\_1996}) (or the one you chose if you assigned the imported data to a specific variable name  as per detailed in the Box) to provide a crude view of the data. To view the contents of the \textit{variable} in the \textsf{Variables window} -- double  click on the name of the \textit{variable} in the \textbf{MATLAB} \textsf{Workspace window.} This should open up a spreadsheet-like window in which the data can be viewed, sorted, and even edited.
 
-For practice -- plot the data\sidenote[][-2.5in]{using \texttt{plot}}, remembering to label the figure appropriately\sidenote[][-2.5in]{ FYI: the first column of the data and x-axis is year, and the 2nd column of the data and y-axis is the mixing ratio of CO\(_{2}\) in air in units of ppm.}. If you just type \texttt{plot} and pass the (here: default) name of the data array:
+For practice, you can try plotting the data\sidenote[][-2.5in]{using \texttt{plot}}, remembering to label the figure appropriately\sidenote[][-2.5in]{ FYI: the first column of the data and x-axis is year, and the 2nd column of the data and y-axis is the mixing ratio of CO\(_{2}\) in air in units of ppm.}. However, if you just type \texttt{plot} and pass the (here: default) name of the data array:
 
 \begin{docspec}
 >> plot(etheridge\_etal\_1996);
 \end{docspec}
 
-... strange things happen (as per Figure \ref{fig:ch1-plot-icecore_default}). In fact, \textbf{MATLAB} is doing what \textbf{Excel} would  in a \textsf{Line Chart} with 2 columns of data selected -- rather than plot y (2nd column) vs. x (1st column), the values of both columns are plotted against row number.\sidenote[][-1.5in]{And this is why you should remember to use the \textsf{Scatter} (or \textsf{(X,Y)}) \textsf{Chart} in \textbf{Excel} for plotting (x,y) data.} Instead, if you remember, the format of the \textbf{MATLAB} \texttt{plot} function is:
-
-\begin{docspec}
-plot(X,Y) plots vector Y versus vector X
-\end{docspec}
-
-\begin{marginfigure}[-1.0in]
+\begin{marginfigure}[-0.25in]
 \includegraphics[width=\linewidth]{ch1-plot-icecore_default.eps}
 \caption{Result of simply throwing the entire data matrix at \texttt{plot} ....}
 \label{fig:ch1-plot-icecore_default}
 \end{marginfigure}
 
-\noindent So you need to specify each column of the data (i.e. each vector) separately. If you recal how to specify an entire row or column of an array, you should see that you need to type:
+... strange ... things are happening (as per Figure \ref{fig:ch1-plot-icecore_default}). In fact, \textbf{MATLAB} is doing what \textbf{Excel} would  in a \textsf{Line Chart} with 2 columns of data selected -- rather than plot y (2nd column) vs. x (1st column), the values of both columns are plotted against row number.\sidenote[][0.25in]{And this is why you should remember to use the \textsf{Scatter} (or \textsf{(X,Y)}) \textsf{Chart} in \textbf{Excel} for plotting (x,y) data.}
+
+Instead, if you remember, the format of the \textbf{MATLAB} \texttt{plot} function is:
+
+\begin{docspec}
+plot(X,Y) plots vector Y versus vector X
+\end{docspec}
+
+\noindent So you need to specify each column of the data (i.e. each \textit{vector}) separately and explicitly. If you recall how to specify an entire row or column of an array, you should see that you need to type:
 
 \begin{docspec}
 >> plot(etheridge\_etal\_1996(:,1),etheridge\_etal\_1996(:,2));
 \end{docspec}
 
-If this is not obvious ... break it down and create explicit x and y data vector variables, e.g.
+If this is not obvious ... break it down and create sperate explicit x and y data vector variables, e.g.
 
 \begin{docspec}
->> X = etheridge\_etal\_1996(:,1);
->> Y = etheridge\_etal\_1996(:,2);
+>> X = etheridge\_etal\_1996(:,1);\\
+>> Y = etheridge\_etal\_1996(:,2);\\
 >> plot(X,Y);
 \end{docspec}
 
-This is an equally valid way of doing things. It is longer ... taking 3 lines rather than 1, but the most important thing is to be happy that you understand what is going on. If breaking things down into multiple lines and creating new variables helps -- DO IT! Ultimately, you should end up with something like Figure \ref{fig:ch1-plot-icecore}.
+Breaking things down like this is an equally valid way of doing things. It is longer ... taking 3 lines rather than 1, but the most important thing is to be happy that you understand what is going on. If breaking things down into multiple lines and creating new \textit{variables} helps -- \uline{DO IT}! Ultimately, you should end up with something like Figure \ref{fig:ch1-plot-icecore}.
 
-\begin{marginfigure}[0.0in]
+\begin{marginfigure}[-2.5in]
 \includegraphics[width=\linewidth]{ch1-plot-icecore.eps}
 \caption{Spline fit to measured changes in CO2 concentration in Law Done ice core, following \textit{Etheridge et al.} [1996].}
 \label{fig:ch1-plot-icecore}
@@ -1362,13 +1413,13 @@ This is an equally valid way of doing things. It is longer ... taking 3 lines ra
 Arrays of numbers can be saved in a plain text (ASCII format) by means of the \docenv{save} function in a simple reverse of the use of \docenv{load} (see Box). Try re-saving the ice-core data as an ASCII format
 text file (with a new filename) ... and then load it in again.
 
-\marginnote[-0.00in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-0.75in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{save}
 \\Saves variables from the workspace to a file. There are two main forms (syntaxes) of the command:
 \begin{docspecmargin}
 >> save(filename)
 \end{docspecmargin}
-which saves the entire workspace to a \texttt{.mat} file (with the filename given by the string \texttt{filename} (in quotation marks), and:
+which saves the entire workspace to a \textsf{.mat} file (with the filename given by the string \texttt{filename} (in quotation marks), and:
 \begin{docspecmargin}
 >> ...
 \\ \ save(filename,A,'-ascii')
@@ -1384,7 +1435,7 @@ saves the data in the variable \texttt{A} (which must be given as a string, i.e.
 
 \subsection{Loading and saving the workspace}
 
-The entire workspace (including all variables and their values, or just the values in a single variable if you wish) can be saved to a file and then later re-opened. The file format is specific to the \textbf{MATLAB} program and the file-name extension by default is \docenvdef{.mat}. You might find this very helpful to use in long lab exercise or large modelling projects, particularly if you do not come back to work at the exact same computer each time or wish to use continue the same piece of work on a laptop elsewhere. Try saving the current \textsf{Workspace}, closing down the \textbf{MATLAB} program. Re-running it, and then loading in your saved \texttt{.mat} file.
+The entire workspace (including all variables and their values, or just the values in a single variable if you wish) can be saved to a file and then later re-opened. The file format is specific to the \textbf{MATLAB} program and the file-name extension by default is \docenvdef{.mat}. You might find this very helpful to use in long lab exercise or large modelling projects, particularly if you do not come back to work at the exact same computer each time or wish to use continue the same piece of work on a laptop elsewhere. Try saving the current \textsf{Workspace}, then close down the \textbf{MATLAB} program. Re-running it, and then loading in your saved \texttt{.mat} file.
 \sidenote{This sequence is going to look something like:
 \begin{docspecmargin}
 >> save mystuff
@@ -1396,6 +1447,8 @@ load mystuff
 \end{docspecmargin}
 Remember that when you re-start \textbf{MATLAB} you may have to change directories, add a path (\textsf{addpath}), or provide a full path to the \texttt{.mat} file, depending on where you saved it. 
 }
+
+Hopefully ... all your loaded/created variables etc. have been recovered ... ?
 
 %------------------------------------------------
 
