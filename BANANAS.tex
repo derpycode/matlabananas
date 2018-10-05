@@ -873,7 +873,7 @@ To select all elements:
 
 \marginnote[-0.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{end}
-\\Represents the largest index in a \textit{vector} when addressing it, or in MATLAB-speak: "end can ... serve as the last index in an indexing expression".
+\\Represents the largest index in a \textit{vector} when addressing it, or in \textbf{MATLAB}-speak: "end can ... serve as the last index in an indexing expression".
 \end{mdframed}}
 
 %------------------------------------------------
@@ -986,7 +986,7 @@ You can also have more than one plot in a single \textsf{Figure window}. As an e
 
 \marginnote[-2.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{axis}
-\\For once, helpfully, MATLAB says:
+\\For once, helpfully, \textbf{MATLAB} says:
 \\"\textit{\texttt{axis([xmin xmax ymin ymax])} sets the limits for the x- and y-axis of the current axes.}"
 \\\noindent which is about all you need to know (other than the minimum and maximum limits along the \textit{x-axis} are represented by \texttt{xmin}, \texttt{xmax}, and the minimum and maximum limits along the \textit{y-axis} are \texttt{ymin}, \texttt{ymax}).
 \end{mdframed}}
@@ -1456,9 +1456,9 @@ Hopefully ... all your loaded/created variables etc. have been recovered ... ?
 
 %------------------------------------------------
 
-\section{Basic data processing}
+\section{Basic data processing (and yet more plotting)}
 
-As an example to kick-off some data-processing tricks, load in the Phanerozoic CO\(_{2}\) dataset: \texttt{paleo\_CO2\_data.txt}. You can just import it into \textbf{MATLAB} using the \docenv{load} function. However, there is a complication here -- unlike the ice core CO2 dataset, you now have 4 columns in the array\sidenote{Remember that you can diagnose its size with ... \texttt{size} (or refer to the Workspace window)}. The first column is age (Ma), the second the mean CO\(_{2}\) value, and the 3d and 4th are the low and high, respectively, uncertainty limits. Not forgetting in the space of 5 minutes (I hope!) how to reference specific columns of data in a matrix\sidenote{HINT: the \texttt{colon operator} (see earlier).} -- plot the mean paleo CO\(_{2}\) value as a function of age (in Ma). If you  closed the previous \textsf{Figure} window (see earlier), it is not essential to explicitly open one (using the \texttt{Figure} command) -- when you use the \texttt{plot} command, if there is no open \textsf{Figure} window, \textbf{MATLAB} will kindly open one for you. How thoughtful. The result should be something like \ref{fig:plot-CO2basic}. O dear ...
+As an example to kick-off some data-processing tricks, load in the dataset of ('proxy') reconstructed atmospheric CO\(_{2}\) concentrations spanning the Phanerozoic: \texttt{paleo\_CO2\_data.txt}. You can just import it into \textbf{MATLAB} using the \docenv{load} function. However, there is a complication here -- unlike the ice core CO2 dataset, you now have 4 columns in the array\sidenote{Remember that you can diagnose its size with ... \texttt{size} (or refer to the Workspace window)}. The first column is age (Ma), the second the mean CO\(_{2}\) value, and the 3d and 4th columns are the low and high, respectively, uncertainty limits. Not forgetting in the space of 5 minutes (I hope!) how to reference specific columns of data in a matrix\sidenote{HINT: the \texttt{colon operator} (see earlier).} -- plot the mean paleo CO\(_{2}\) value as a function of age (in Ma). If you  closed the previous \textsf{Figure} window (see earlier), it is not essential to explicitly open one (using the \texttt{Figure} command) -- when you use the \texttt{plot} command, if there is no open \textsf{Figure} window, \textbf{MATLAB} will kindly open one for you. How thoughtful. The result should be something like \ref{fig:plot-CO2basic}. O dear ...
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{plot-CO2basic.eps}
@@ -1470,15 +1470,15 @@ So ... that was not so successful. What is happening in the default behaviour of
 
 Your options are then:
 
-\begin{enumerate}
+\begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item You could import the data into \textbf{Excel}, then re-order (sort) it, then export it, then re-load it ...
-\item You could sort it in \textbf{MATLAB} using the GUI variable view window. But lets not cheat for now.
+\item You could sort it in \textbf{MATLAB} using the \textit{GUI} variable view window. But lets not cheat for now.
 \item You could sort it in \textbf{MATLAB} at the command line. How? Well, a reasonable gamble, which actually turns out to be a total win, is to try:
 \begin{docspec}
 >> help sort
 \end{docspec}
-Actually ... not quite. Reading the help text carefully (and you can always try it out and see what exactly it does if you are not sure), \docenv{sort} will sort all columns independently of each other, whereas we want the first column sorted and the remaining columns linked to this order. Under \texttt{see also}, MATLAB\ lists \docenvdef{sortrows} as a possibilty. The help text on this looks a little more promising. It is still slightly opaque, so the best thing to do is to try it (and view the results)! This looks rather better. The resulting of \texttt{plot}-ting this is \ref{fig:plot-CO2basic2}. (This is a good illustration of a guess of a function that was not quite what was needed, but following up on the \texttt{help} suggestions leads to a more appropriate function.) At least now the curve is reminiscent of past changes in global temperature and the geological Wilson cycle, with high values in the Cretaceous and Jurassic and then lower again in the Carboniferous (roughly matching the progression of ice and hot house (and then back to recent ice ages) climates).
+Actually ... not quite. Reading the help text carefully (and you can always try it out and see what exactly it does if you are not sure), \docenv{sort} will sort all columns independently of each other, whereas we want the first column sorted and the remaining columns linked to this order. Under \texttt{see also}, \textbf{MATLAB}\ lists \docenvdef{sortrows} as a possibility. The help text on this looks a little more promising. It is still slightly opaque, so the best thing to do is to try it (and view the results)! This looks rather better. The resulting of \texttt{plot}-ting this is Figure \ref{fig:plot-CO2basic2}. (This is a good illustration of a guess of a function that was not quite what was needed, but following up on the \texttt{help} suggestions leads to a more appropriate function.) At least now the curve is reminiscent of past changes in global temperature and the geological Wilson cycle, with high values in the Cretaceous and Jurassic and then lower again in the Carboniferous (roughly matching the progression of ice and hot house (and then back to recent ice ages) climates).
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{plot-CO2basic2.eps}
@@ -1492,9 +1492,24 @@ Actually ... not quite. Reading the help text carefully (and you can always try 
 \noindent\rule{4cm}{0.5pt}
 \vspace{2mm}
 
-For another example: download the historical global temperature anomaly dataset: \texttt{647\_Global\_Temperature\_Data\_File.txt}\sidenote{\href{https://climate.nasa.gov/vital-signs/global-temperature/\#https://climate.nasa.gov/vital-signs/global-temperature/}{https://climate.nasa.gov/vital-signs/global-temperature/}}. The columns are: (1) year, (2) annual mean, and (3) 5 year (running?) mean. Plot (separately) both the annual mean, and the 5-year mean. \sidenote{plus labels, title, etc etc}
+\noindent For another example: download the historical global temperature anomaly dataset: \texttt{temperature\_globalanom.txt}\sidenote{\href{https://www.ncdc.noaa.gov/cag/global/time-series/globe/land\_ocean/ytd/12/1880-2017/\#https://climate.nasa.gov/vital-signs/global-temperature/}{NOAA}}. The columns are: (1) year , (2) annual mean ocean+land surface temperature. Plot the annual mean for the full range of years, as per Figure \ref{fig:ch1-plot-temperature1}. \sidenote{plus labels, title, etc etc}
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch1-plot-temperature1.eps}
+\caption{Observed annual global mean surface temperature anomaly (compared to year 1910 to 2000 average).}
+\label{fig:ch1-plot-temperature1}
+\end{marginfigure}
 
 The 20th century average global temperature across land and ocean surface areas is apparently 13.9\degree C. So firstly, try changing the temperature anomaly data into absolute temperatures (by adding the 20th century global average value to all the data values), and then re-plot.
+\sidenote{Remember -- you can increase the value of every element in an array, by simply adding that number, e.g. if \texttt{A} is you array of data, and \texttt{B} is a \textit{scalar} (the value you want to increase all array values by);
+\begin{docspecmargin}
+>> C = A + B;
+\end{docspecmargin}
+will have the effect of adding \texttt{B} to ever element in \texttt{A}, and assigning to a new array, \texttt{C}. Or alternatively, you can replace the contents of array \texttt{A} with the new values:
+\begin{docspecmargin}
+>> A = A + B;
+\end{docspecmargin}
+}
 
 Next, convert the temperature units (of both annual mean and 5-year mean) -- from \degree C to \degree F. An approximate conversion is:
 
@@ -1504,48 +1519,118 @@ Next, convert the temperature units (of both annual mean and 5-year mean) -- fro
 
 \noindent where \(T_{(\degree F)}\) is the (new) temperature in \degree F, and \(T_{(\degree C)}\) the (old) temperature in  \degree C.
  
-Create a new data array in \textbf{MATLAB}, with year as the first column (as per the original data) and the 2nd and 3rd columns as annual mean and 5-year mean temperatures in units of \degree F.\sidenote{Remember -- MATLAB will happily do the same to all values in a vector in an equation, as for a single scalar value in the same equation. Start by creating a new array with a single column, copied form the 1st column of the original array.} If it help -- play  the data conversion game in \textbf{Excel} first (e.g. creating new columns in a spreadsheet to firstly hold  absolute temperatures rather than anomalies, and then temperatures in \degree F rather than \degree C).
+Create a new data array in \textbf{MATLAB}, with year as the first column (year, as per the original data) and the 2nd  column as annual mean  temperature in units of \degree F.\sidenote{Remember -- \textbf{MATLAB} will happily do the same to all values in an array  in an equation, as for a single scalar value in the same equation. Start by creating a new array with a single column, copied form the 1st column of the original array.} If it helps -- play  the data conversion game in \textbf{Excel} first (e.g. creating new columns in a spreadsheet to firstly hold  absolute temperatures rather than anomalies, and then temperatures in \degree F rather than \degree C). Also if it helps -- create a new array with the modified temperature units data in (rather than replacing the 2nd column of data in the original array). You can also do the conversion in 2 stages -- multiplying the (absolute) temperature (\degree C) by \(1.8\) first (perhaps creating a new array to hold this in), then adding \(32\).
  
-Re-plot (in \textbf{MATLAB}) the final temperature trends in \degree F.
+Re-plot (in \textbf{MATLAB}) once again the final temperature trends in \degree F. This should look like Figure \ref{fig:ch1-plot-temperature3}.
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
 \vspace{2mm}
 
-Analogous to the data processing you have just carried out, in which you applied a scaling and then an offset in order to convert from  \degree C to  \degree F, as a last example  to get you familiar with some  very basic  data processing and array data manipulation, we are going to transform a sediment core \(\delta\)\(^{18}\)O time-series into an estimated history of glacial-interglacial changes in sea-level.
-The scientific backstory is ...
+\noindent For some practice in a little further data manipulation and graphing: download the historical temperature dataset for Riverside: \texttt{temperature\_riverside.txt}\sidenote{\href{https://www.ncdc.noaa.gov/cag/global/time-series/globe/land\_ocean/ytd/12/1880-2017/\#https://climate.nasa.gov/vital-signs/global-temperature/}{NOAA}}. If you view the data file in a text editor or import into \textbf{Excel}, you can read the column headers and find out what the different columns of data are (I am not telling you!). Note that the (1st) line of the file containing the column header labels starts with a \% symbol (telling \textbf{MATLAB} to ignore this line and not attempt to read in the 'data' on it).
 
-Throughout the late Neogene\sidenote{23.03 millions years ago (end of the Oligocene) to present is the Neogene Period in Earth history.}, sea level has risen and fallen as continental ice sheets have waned and waxed. The main cause of sea-level change has been variation in the total volume of continental ice and resulting change in the fraction of the Earth surface H\(_{2}\)O contained in the ocean. Today more than 97\% of the Earth surface H\(_{2}\)O  is in the ocean and less than 2\% is stored as ice in continental glaciers, with groundwater making up the bulk of the remainder. Of the total continental ice (ice above sea level), 80\% is contained in the east Antarctic ice sheet, 10\% in the west Antarctic ice sheet, and the final 10\% in the Greenland ice sheet. (If all present-day continental ice were to melt, sea level would rise by 70 m.) During the last glacial maximum (LGM), sea level was about 125 m lower than present, equivalent to 3\% more surface H\(_{2}\)O  stored as continental ice. Because of its relationship to continental ice volume, an accurate late Neogene sea-level curve has been a long-term goal of scientists interested in ice-age cycles and their causes.
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch1-plot-temperature3.eps}
+\caption{Observed annual global mean surface temperature.}
+\label{fig:ch1-plot-temperature3}
+\end{marginfigure}
 
-Glacial ice has a lower \(^{18}\)O/\(^{16}\)O isotopic ratio
-than mean seawater\sidenote{Basically -- as moisture derived from the tropical ocean (and land) surface moves to high latitudes, condensation occurs and some of the moisture is lost as rain. In condensing water vapor, \(^{18}\)O is preferentially incorporated into the liquid phase, meaning that the remaining water vapour has lower \(^{18}\)O/\(^{16}\)O. Eventually, the residual water vapour might fall as snow on an ice sheet. Hence why ice sheets at the LGM will have a lower \(^{18}\)O/\(^{16}\)O than mean seawater.}.  When ice volume is high, seawater has relatively high \(^{18}\)O/\(^{16}\)O ratio. When ice volume is low, seawater has relatively low \(^{18}\)O/\(^{16}\)O ratio. If the average \(^{18}\)O/\(^{16}\)O ratio of glacial ice is constant with time, then changes in the average \(^{18}\)O/\(^{16}\)O ratio of seawater will linearly approximate changes in the total volume of ice and by inference, sea-level.
-We (at least, I am) are interested in all this because knowing how ice volume and sea-level changed over the glacial-interglacial cycles has all sorts of important implications for understanding how climate change (e.g. via ice sheet albedo) and global carbon cycling and atmospheric CO2 (e.g. via changes in the area of exposed continental shelves and carbon stored in soils and above-ground vegetation).
+\marginnote[-0.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+ \% 
+\\This is a special symbol that when \textbf{MATLAB} sees it, it ignore the entire line. This is known as a comment symbol (of identifier) and allows you to have lines of comments in amongst the lines of code.
+\\Equivalently, when \textbf{MATLAB} loads in a ASCII data file, any line in which the \% symbol appears, \textbf{MATLAB} ignores and does not load in. Hence, column header descriptions *or any other file description information) can be included in the file as long as the line starts with a \%.
+\end{mdframed}}
 
-To start with we need to reconstruct past changes in the oxygen isotopic composition of the ocean. Handily, the \(^{18}\)O/\(^{16}\)O ratio of foraminiferal calcite isolated from marine sediments is primarily a function of the \(^{18}\)O/\(^{16}\)O ratio of the water together with the temperature of the water\sidenote[][-0.0in]{We we will not concern ourselves with temperature corrections here (in any case, it turns out that the temperature effect has the same sign as and is closely related to the ice volume effect) but instead assume that foraminiferal calcite \(\delta\)\(^{18}\)O only reflect changes in (global) ice volume and sea-level.}. By measuring the \(^{18}\)O/\(^{16}\)O value of calcite down-core we are sampling \(^{18}\)O/\(^{16}\)O with a progressively older age. In this way we can reconstruct how ocean \(^{18}\)O/\(^{16}\)O has changed over time. These measurements are reported in units of parts per thousand (\textperthousand) and written as \(\delta\)\(^{18}\)O.
+First create a plot (with appropriate labels) of this data.
 
-How to turn (scale) changes in \(\delta\)\(^{18}\)O into sea-level change? Evidence from dated coral reef terraces suggest that sea-level was around 117 m lower at the peak of the last glacial (ca. 19 ka). We could then assume that the change in \(\delta\)\(^{18}\)O from modern (preindustrial) to LGM equates to 117 m sea-level change, and hence create a continuous past sea-level curve from all the \(\delta\)\(^{18}\)O data by applying a simple scaling factor\sidenote[][-0.0in]{Conceptually, this is no different from saying that the difference between the freezing and boiling point of pure water (at 1 atm pressure) on the Celsius scale -- 100\degree C, maps onto the equivalent interval on the Fahrenheit scale -- 180\degree F (212-32 \degree F), and hence providing a means of converting a record of past changes in Fahrenheit, inot degrees Celsius (and \textit{vice versa}).}. So:
+It would be 'nice' ... to make some direct comparison between the observed global temperature increase and that occurring in Riverside, e.g. to help answer questions such as 'Are temperatures increasing faster in Riverside than the global mean?', and hence 'Will global warming impacts likely be worse or less severe in the Riverside area as compared globally?'. To do this, we need both data sets -- global and for the Riverside area -- to be on a comparable scale.
 
-\begin{itemize}
-\setlength{\itemindent}{.2in}
+You could certainly simply plot both global mean and Riverside annual mean temperatures alongside each other, using the same units, e.g. \degree F as you have previously converted the global mean temperatures to \degree F, which is the same units as the Riverside temperature data. You could have 2 sperate plots and visually compare them, but this is not very cleaver nor necessarily useful in making any sort of quantitative comparison. For instance -- contrast the global data (re-scaled to absolute degrees F) in Figure \ref{fig:ch1-plot-temperature3}, with the Riverside data, in Figure \ref{fig:ch1-plot-temperature4}.\sidenote{There are also sone odd-looking artifacts ('spikes') in the raw data that we will want to deal with in some way.}
 
-\item You first need the foraminiferal calcite \(\delta\)\(^{18}\)O data. (Unless you want to go drill a long cylinder of mud from 3000 m down in the Atlantic Ocean, pick out all the microscopic foraminifera of a single species from samples of mud that you have carefully washed, blah blah blah ...) So, from the course web page; download the file \texttt{sediment\_core\_d18O.txt} and save it locally.
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch1-plot-temperature4.eps}
+\caption{Observed annual mean surface temperature in Riverside.}
+\label{fig:ch1-plot-temperature4}
+\end{marginfigure}
 
-\item Load this file into \textbf{MATLAB}.
+There are two main problems \sidenote{Plus artifacts in the raw data.} in making a useful comparison -- firstly, the two data sets are on different y-axis scales (but luckily on the same x-axis, year scale), with the global data temperature scale going from 56 to 59\degree F, and the local, Riverside temperature data scale going from 50 to 85\degree F.
 
-\item If you have successfully loaded in the data-file, you should see a named icon for the array appear in the \texttt{Workspace} window. Double-click on the array's icon in the Workspace window. Marvel at the fancy spreadsheet-like things that appear. Note that you can edit the data, add and delete rows and columns, and all sorts of stuff in this window, just like you can in Excel. Amuse yourself by scrolling down to the end of the data-set in the Array Editor and adding a new piece of data on line 784; age (column 1); 783 (ka); sea-level (column 2); 0.0 (m).
+The limits can be specified and made common between the 2 plots using the \docenv{axis} command that you saw earlier. You could,  for instance, not worry about truncating the spurious spikes in the Riverside temperature data and set the y-axis limits for both plots to e.g. 55 to 70\degree F. (You are still left with comparing across 2 different plots, which we will fix in a subsequent section by means of the command \docenv{hold on}.) However, there is still an inconvenient offset between the global mean temperature and that at Riverside.
 
-\marginnote[-0.5in]{
-\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-Reminder: for a \textit{n\(\times\)m} array \texttt{data}, the first row is: \\\texttt{data(1,:)}.\\\noindent The last row is: \\\texttt{data(end,:)}.\\\noindent To find out the number of rows is: \\\texttt{>> length(data)}.\\\noindent The total size, in rows\(\times\)columns, can be found by: \\\texttt{>> size(data)} \\\noindent(and also by referring to the \textbf{Value} column in the \textbf{Workspace} window)\end{mdframed}}
+Recall that the original global temperature data was given as an anomaly compared to the average over some baseline (or reference) period -- in this case, year 1910 to 2000. If we treated both data sets the same, and transformed the Riverside temperature data into a comparable anomaly, direct comparison could be made. To create an anomaly of the Riverside temperature data, relative to the mean of the data for years 1910 to 2000, requires the mean of the years 1910 to 2000 ... this is not difficult to do, but it better left for another time ... For now, take it as having a value of 64.2\degree F. So to create an anomaly for the Riverside temperature data, simply subtract 64.2 from the values in the annual mean data column. Finally, go back to the original global mean anomaly values (re-load the data set if necessary) and convert from the anomaly in \degree C to \degree F (i.e. simply multiply by \(1.8\) -- no offset (32\degree F) is required in this particular case). If you additionally, chose and set a sensible common y-axis scale for both plots, you might end up with a pair of graphs looking like Figures \ref{fig:ch1-plot-temperature5} and \ref{fig:ch1-plot-temperature6}.
+\sidenote[][-1.0in]{There are all sorts of likely reasons for the differences. Firstly, the global mean surface temperature rise includes both ocean surface and land surface. Because of the higher heat capacity of the ocean, the ocean surface warms slower than the land, and the ocean accounts for ca. 70\% of the total global surface area. So it is somewhat inevitable that the warming trend will be stronger in Riverside. It may also be that the Riverside data is influenced by the 'urban heat island' effect, in which long0-term measured trends can be affected by increasing urbanization of the area surrounding the weather station. It may also be that the latitude and specific location of Riverside, sees much more warming that the global mean.}
 
-\item So far everything has been in \(\delta\)\(^{18}\)O units and time as kyr. As a warm-up -- try converting the units of time to years by multiplying the first column of the data array by 1000.0 and assigning it back into itself (this is not as weird and nonsensical as it sounds).
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch1-plot-temperature5.eps}
+\caption{Observed global annual mean surface temperature anomaly, relative to the mean of 1910 through 2000.}
+\label{fig:ch1-plot-temperature5}
+\end{marginfigure}
 
-\item To reconstruct past changes in sea-level we need to scale the \(\delta\)\(^{18}\)O values to reflect the equivalent changes in sea-level rather than changes in isotopic composition. We know that sea-level is 0 m (relative to modern) at 0 years ago, and -117 m at 19,000 years ago. Try the following (you are going to have to *think*, but maybe also use the HINT in the margin):
-\\Scale the \(\delta\)\(^{18}\)O so that it represents changes in sealevel, relative to modern (0 m)\sidenote{HINT -- first determine the difference in \(\delta\)\(^{18}\)O between time zero and 19 ka. This gives you the range of \(\delta\)\(^{18}\)O that maps onto a sea-level change of 117 m. This is pretty much the same as knowing the scaling between \degree C and \degree F in the previous example. There is then an offset to apply so as to make the sealevel change at time \(0\) years, \(0\) m, but in essence, this is no different from applying the offset previous to turn 0\degree C to 32\degree F (admittedly, the analogy is backwards). You also might transform the \(\delta\)\(^{18}\)O data such that it has a value of zero at 0 ka (but retains the original amplitude of variability.}.
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch1-plot-temperature6.eps}
+\caption{Observed annual mean surface temperature anomaly, relative to the mean of 1910 through 2000, at Riverside.}
+\label{fig:ch1-plot-temperature6}
+\end{marginfigure}
 
-\item Plot it (changes in sea-level compared to modern, vs. time). And \textbf{nicely}.
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
 
-\end{itemize}
+\noindent Finally and briefly -- it was mentioned earlier that there were potential 'artifacts' in the Riverside mean annual temperature data. If you view the loaded in data array in the \textsf{Variable viewing window} (double-click on the \texttt{temperature\_riverside} variable name in the \textsf{Workspace window}), you can see for a number of years and months, rather than numbers, '\texttt{NaN}'s in the cells. \texttt{NaN} stands for 'Not a Number' and indicates that there is no (valid) numerical value for that array position (cell). The impact of there being a number of months of data missing, is that the annual mean is no longer a true annual mean but rather simply the mean of whatever monthly data exists for any particular year. For example, year 2008 has no data other than during the summer and the annual mean is hence simply equal to the July temperatures!
+
+One could address this by removing the years with (substantially) incomplete monthly data from the data file\sidenote{i.e. simply deleting the line in the file.} and prior to loading into \textbf{MATLAB}. Or would could process the data once in MATLAB. This can be done by assigning to particular row (vector) of data, an empty vector (\texttt{[]}). 
+
+Taking first a simple example of a column vector:
+
+\vspace{2mm}
+\(A=\begin{pmatrix}1 \\
+2 \\
+3 \\
+\end{pmatrix}\)
+\vspace{2mm}
+
+\noindent from which we wish to remove the 2nd row. In MATLAB we would create the vector by:
+
+\begin{docspec}
+>> A = [1; 2; 3];
+\end{docspec}
+
+\noindent and then remove the 2nd row by setting it to an empty element:
+
+\begin{docspec}
+>> A(2) = [];
+\end{docspec}
+
+Similarly, to remove the 2nd row of:
+
+\vspace{2mm}
+\(B=\begin{pmatrix}1 & 4 \\
+2 & 5 \\
+3 & 6 \\
+\end{pmatrix}\)
+\vspace{2mm}
+
+\begin{docspec}
+>> B = [1, 4; 2, 5; 3, 6];\\
+>> B(2,:) = [];
+\end{docspec}
+
+\noindent (instead removing e.g. the 1st column would be \texttt{B(:,1) = []})
+
+So back to the temperature data -- to for example remove the row containing the year 2008 data, which is row 11, we write:
+
+\begin{docspec}
+>> temperature\_riverside(11,:)=[];
+\end{docspec}
+
+Play this 'game' -- deleting as many row as you think result in biased means (because of missing monthly data)\sidenote[][-0.5in]{(being aware that as you delete rows, the numbering of the subsequent rows changes as the array size shrinks ...)}, with the Riverside temperature data, and re-plot the results.
+For example, the result of removing ALL the rows with missing monthly data\sidenote{(There are simple and quick ways of doing this in \textbf{MATLAB} that we will see later.)}, results in Figure \ref{fig:ch1-plot-temperature7}.
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch1-plot-temperature7.eps}
+\caption{Observed annual mean surface temperature anomaly, relative to the mean of 1910 through 2000, at Riverside, filtered to remove years with missing monthly data.}
+\label{fig:ch1-plot-temperature7}
+\end{marginfigure}
 
 %------------------------------------------------
 
@@ -1563,7 +1648,7 @@ This section covers how to create slightly fancier plots in \textbf{MATLAB} and 
 
 The first deviant activity you can engage in with \texttt{plot}, it to graph the data without the line joining the points. Scrolling a little the way down \texttt{>> help plot}, it turns out that there are a number of options for color, line style, and marker symbol that you list together as a single parameter, straight after the parameters for \textit{x} and \textit{y} vectors. By default, \textbf{MATLAB} plots a solid line in blue with no marker points. Obviously, we could forego the sorting and plot a sane graphic (hopefully) by plotting just points and having no line between them. Hell, you could even be radical and use a different color ... Or, you could specify a symbol and no line.  The choice of colors is your oyster, as they (almost don't) say. e.g. Figure \ref{fig:plot-CO2basic3}.
 
-\marginnote[-3.5in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-2.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 The main (i.e. not an exhaustive list) data display options for the \texttt{plot} function are:
 \\(1) point style
 \\\noindent \texttt{.} -- point, \texttt{o} -- circle, \texttt{x} -- x-mark, \texttt{+} -- plus, \texttt{*} -- star, \texttt{s} -- square, \texttt{d} -- diamond, \texttt{v} -- triangle (down).
@@ -1573,7 +1658,7 @@ The main (i.e. not an exhaustive list) data display options for the \texttt{plot
 \\\noindent  \texttt{b} -- blue, \texttt{g} -- green, \texttt{r} -- red,  \texttt{y} -- yellow, \texttt{k} -- black, \texttt{w} -- white.
 \end{mdframed}}
 
-\begin{marginfigure}[-1.0in]
+\begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{plot-CO2basic3.eps}
 \caption{Proxy reconstructed past variability in atmospheric CO2 (sorted data).}
 \label{fig:plot-CO2basic3}
@@ -1592,17 +1677,55 @@ Personally, I might have been tempted to draw vertical bars alongside the data (
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
 
-\newthought{As an example} -- set \texttt{>> hold on}, and then plot the minimum and maximum CO\(_{2}\) values (columns \#3 and \#4) in different symbols and different colors, on top of your existing plot. If you want to then label what different lines or sets of points are, you can add a legend with the \docenvdef{legend} command. For instance you have managed to successfully plot the mean CO\(_{2}\) values as discrete black circles, and the minimum and maximum uncertainty limits as blue and red lines, respectively, you could call:
+\newthought{As an example} -- set:
+
+\begin{docspec}
+>> hold on
+\end{docspec}
+
+\noindent and then plot the minimum and maximum CO\(_{2}\) values (columns \#3 and \#4) in different symbols and different colors, on top of your existing plot. If you want to then label what different lines or sets of points are, you can add a legend with the \docenvdef{legend} command. For instance you have managed to successfully plot the mean CO\(_{2}\) values as discrete black circles, and the minimum and maximum uncertainty limits as blue and red lines, respectively, you could call:
 \begin{docspec}
 >> legend('Mean CO\_2','Lower uncertainty limit','Upper uncertainty limit');
 \end{docspec}
 and it should end up looking like Figure \ref{fig:plot-CO2basic4}.
 
-\begin{marginfigure}[0.0in]
+\begin{marginfigure}[-2.0in]
 \includegraphics[width=\linewidth]{plot-CO2basic4.eps}
 \caption{Proxy reconstructed past variability in atmospheric CO2 (sorted data).}
 \label{fig:plot-CO2basic4}
 \end{marginfigure}
+
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
+
+\noindent Returning to the previous plotting Example of the observed historical trend in global mean temperature vs. the temperature recorded in Riverside -- you now know how to plot BOTH temperature anomaly trends in the same \textsf{figure window} (and the same panel), so try it!
+
+%------------------------------------------------
+
+\subsection{Changing label font size (and type)}
+
+The axis and title labels, by default, can be difficult to read when the graphics are saved and then imported into a document/paper. You can change the size of text as you create axis captions and figure titles etc., by specifying the value of an additional (text size) parameter in the function. For example, to increase the size of the xaxis label to a 14pt font:
+
+\begin{docspec}
+>> xlabel('Year','FontSize',14);
+\end{docspec}
+
+Here -- after the you have passed the string you wish ot appear to the \textbf{MATLAB} \texttt{xlabel} \textit{function} (\texttt{'Year'}), there is a pair of additional parameters:
+
+\begin{docspec}
+'FontSize',14
+\end{docspec}
+
+The first additional parameter specifies the aspect of the axis label that you wish to change (here: \texttt{'FontSize'}), and the 2nd parameter of the pair, is the (new) value (here: \texttt{14}).\sidenote{See help on \texttt{xlabel}.} Similarly, the y-axis label and title text size can be adjusted in exactly the same way.
+
+Other property parameters\sidenote{Again -- refer to \textbf{MATLAB} help.} that might be useful (to change), are (with example changes):
+
+\begin{docspec}
+'FontName','Courier'\\
+'FontWeight','bold'\\
+'FontAngle','italic'
+\end{docspec}
 
 %------------------------------------------------
 
@@ -1610,16 +1733,22 @@ and it should end up looking like Figure \ref{fig:plot-CO2basic4}.
 
 We'll stay with the Phanerozoic proxy (CO\(_{2}\)) data, but put a different (graphical) spin on it.
 
+\begin{marginfigure}[0.25in]
+\includegraphics[width=\linewidth]{plot-CO2scatter.eps}
+\caption{Proxy reconstructed past variability in atmospheric CO2 (scatter plot).}
+\label{fig:plot-CO2scatter}
+\end{marginfigure} 
+
 Consider ... \docenvdef{scatter}. In fact, don't just considered it, \texttt{help} on it. The simplest possible usage is, apparently:
 \begin{docspec}
 SCATTER(X,Y) draws the markers in the default size and color.
 \end{docspec}
-(where \texttt{X} and \texttt{Y} are vectors). This almost could not be more straight-forward.  Make yourself an \texttt{X} and \texttt{Y} vector out of the loaded-in dataset (or if you are feeling brave, you can pass in directly the appropriate parts of the dataset array), close the existing Figure window\sidenote{See earlier.}, and \texttt{scatter}-plot the (mean) CO\(_{2}\) data.
+(where \texttt{X} and \texttt{Y} are vectors). This almost could not be more straight-forward.  Make yourself an \texttt{X} and \texttt{Y} vector out of the loaded-in dataset (or if you are feeling brave, you can pass in directly the appropriate parts of the dataset array), close the existing Figure window\sidenote[][-0.0in]{See earlier.}, and \texttt{scatter}-plot the (mean) CO\(_{2}\) data.
 
 \begin{marginfigure}[-0.0in]
-\includegraphics[width=\linewidth]{plot-CO2scatter.eps}
+\includegraphics[width=\linewidth]{plot-CO2scatter2.eps}
 \caption{Proxy reconstructed past variability in atmospheric CO2 (scatter plot).}
-\label{fig:plot-CO2scatter}
+\label{fig:plot-CO2scatter2}
 \end{marginfigure} 
 
 Perhaps a little disappointingly, the default (Figure  \ref{fig:plot-CO2scatter}) (plus added labels) looks a little like one of the plots before. However, \texttt{scatter} can plot color-filled symbols, but more powerfully, can scale the fill color to a 3rd data value (vector), in a sort of pseudo 3D \textit{x}-\textit{y}-\textit{z} plot.  For instance, it will be duplicating information that is already presented (\textit{y}-axis), but you could color-code the points, by the y-value, i.e. the atmospheric CO\(_{2}\) value. e.g.
@@ -1632,69 +1761,8 @@ SCATTER(data(:,1),data(:,2),40,data(:,2),'filled')
 \end{docspec}
 resulting in Figure \ref{fig:plot-CO2scatter2}.
 
-\begin{marginfigure}[0.0in]
-\includegraphics[width=\linewidth]{plot-CO2scatter2.eps}
-\caption{Proxy reconstructed past variability in atmospheric CO2 (scatter plot).}
-\label{fig:plot-CO2scatter2}
-\end{marginfigure} 
-
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
-
-\newthought{One final example} in this section to introduce some new plotting functions, but also to quickly go back over some basic array manipulation and processing. The data we will be analysing is s series of seismic readings  from the USGS. The quake data are  extracted between -5 and 20 lat, and between 90 and 105 lon, starting Dec 26, 2004 and ending June 30, 2005. The data file can be found on the course webpage (\texttt{data\_USGS.txt}). The columns are: (1) day, (2) latitude, (3) longitude, (4) depth, and (5) magnitude. Carry out the following:
-
-\begin{enumerate}
-\setlength{\itemindent}{.2in}
-
-\item The first earthquake in the list is the Sumatra earthquake of December 26, 2004. The magnitude of this earthquake has been revised upward since the data was downloaded. Actually, most energy released in large earthquakes is in very low frequency shaking that most seismometers do not record. The real magnitude had to come from a special analysis of "normal modes", or standing waves on the Earth's surface with periods of up to 54 minutes! When the media said that the Sumatra earthquake made the Earth ring like a gong, these are the waves they were talking about. So since we know that the magnitude was really 9.3, first off, replace the value of the magnitude of the first earthquake in the array.
-
-\item Identify the smallest magnitude of recorded earthquake. You should find that the minimum earthquake size on this list is 3.5. For an earthquake in California, the minimum magnitude would be more like 1. This is because this particular seismograph network did not have many instruments around Sumatra. Another problem is that the earthquakes are offshore. If the nearest seismograph is far from a small earthquake, that earthquakes may not be detected. This means that the data are artificially truncated. Since everything below 3.5 is missing, some of the M=3.5 to 4 earthquakes may have been missed, too.
-
-\item Identify the minimum and maximum earthquake depths. The really deep ones (>40 km) are probably in the subducted slab that goes beneath Sumatra. The zero depth means that it could not be resolved - most hypocentres are 4 km or deeper. (hypocentre = like epicentre, but at depth: the point on the fault where the earthquake rupture starts)
-
-\item How many earth quakes in total were recorded?\sidenote{Recall how to find the size of an array. The number of earthquakes is then simply the number of rows (assuming that you have not flipped the array around ...).}
-
-\marginnote{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-The number of quakes bigger than each magnitude should go up by about a factor of 10 for unit decrease in magnitude (Gutenberg-Richter relationship, a power law). This fails for the hugest quakes (>7 in this case) and where the catalogue is incomplete (not many between 3 and 4 due to detection threshold in this part of the world).
-\end{mdframed}}
-
-\end{enumerate}
-
-There is only just so much looking at and processing raw data you can do before your eyes start ... to ... ... droop ... ... ... and ... ... ... ... Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. OK -- so now to visualize what is going on. Plot using the scatter function the locations of all the quakes from day 0 to day 91 (inclusive), and in a second plot the locations from day 92 onwards. The first area covers the area that ruptured in the M 9.3 quake (1200 km long and 100 km wide) and the second, to the South, is smaller. This is important because the aftershock distribution made people very wary of the (low) early magnitude estimates - the area of dense aftershocks often delineates the part of the fault that ruptured, and scaling laws relate rupture length to magnitude.
-
-Create a figure with multiple panels, showing:
-
-\begin{itemize}[noitemsep]
-\setlength{\itemindent}{.2in}
-\item In the top LH corner plot the day 0-91 quakes, and color-code (or size-code) the markers for their magnitude.
-\item  In the top RH plot the day 92 onwards quakes, and color-code (or size-code) the markers for their magnitude.
-\item  In the bottom LH corner plot day 0-91 quakes, and color-code (or size-code) the markers for their depth. 
-\item  In the top RH plot the day 92 onwards quakes, and color-code (or size-code) the markers for their depth.
-\end{itemize}
-
-\subsection{Histograms}
-
-We could also visually analyse the data as a histogram. Type \texttt{help hist} in the Command Window for a description of the 
-\docenvdef{hist} function. The histogram must be supplied with a vector defining the 'bins' in which to sum the data. Here is your chance to use the colon operator again. O happy day.
-
-\begin{enumerate}
-\setlength{\itemindent}{.2in}
-
-\item To plot the frequency distribution of quakes as a function of their magnitude we need to create a series of bins to define the different magnitude ranges. How about bins with boundaries at magnitude; 1.0, 2.0, 3.0, ... 10.0. One complication is that the values in the vector M define the middle of the bins in the hist function and not the boundaries. The mid-points of this will be; 1.5, 2.5, 3.5, ... 9.5, and this is the vector you need to create and assign to a vector \texttt{M} (i.e., a vector array starting at 1.5, ending at 9.5, and with increments of 1.0).
-
-\item Having created \texttt{M}, plot the histogram of quake frequency vs. quake magnitude by issuing:
-\begin{docspec}
->> hist(data\_USGS(:,5),M);
-\end{docspec}
-Question: what is the most frequent magnitude range of 'quake?
-
-\item Now plot the histogram of quake frequency against time (i.e., day number) up to day number 186.  You will  have to assign a new vector of values to \texttt{M}, one that starts at 0.5 and ends at 185.5. Omori's Law says that the number of aftershocks per day should decrease following a power law -- does this look to be the case (approximately)? (One problem is that the small earthquakes are missing which makes it appear not to work so well!)
-
-\item Try this again (i.e., frequency of quakes vs. time), but investigate the effect of changing the bin size -- try making the bins about 1 month (30 days) in duration. Note that now M must start at 15.0 (the mid-point of the first monthly bin). Sometimes changing the bin size can help if the data is noisy, but sometimes you lose important information. Which was better do you think -- can you still see a power-law decay in quake frequency following each major event with the data in monthly bins? If you want, experiment with other bin sizes to see how the data comes out. There is not always a 'right' answer in plotting data and sometimes you just have to experiment a little to see what looks good.
-
-\end{enumerate}
-
-Don't forget that all the plots you make should be appropriately labelled ... Save them as a \texttt{fig} file if you think you might want to edit them again, and/or export as an image.
 
 %------------------------------------------------
 
@@ -1702,7 +1770,7 @@ Don't forget that all the plots you make should be appropriately labelled ... Sa
 
 There are 2 different simple \textbf{MATLAB} commands for visualizing a 2D dataset (i.e. a matrix) as a bitmap image (and via a 3rd command, viewing various bitmap photo and image format files too). As something (2D data) to play with -- load in the matrix \texttt{model\_grid.txt}.
 
-\begin{marginfigure}[-5.0in]
+\begin{marginfigure}[0.25in]
 \includegraphics[width=\linewidth]{ch1-plot-pcolor1.eps}
 \caption{A 2D plot of some random gridded model data.}
 \label{fig:ch1-plot-pcolor1}
@@ -1710,21 +1778,21 @@ There are 2 different simple \textbf{MATLAB} commands for visualizing a 2D datas
 
 First off -- as before, view the data in the array viewer, just to get a feel for what you are dealing with here (although you are unlikely to be much wiser after doing so). So go ahead and employ the \docenv{pcolor} function in its simplest possible usage (see Box). You can see (Figure \ref{fig:ch1-plot-pcolor1} ) that it is ... something. Maybe a little like the continents, but up-side-down at the very least. What to do?
 
-Well, it is a good job that you remember how to re-orientate arrays, right?\sidenote[][-0.5in]{You don't? See earlier in the Chapter ...} If you guess right first time (three different basic transformations of a matrix were described), you get Figure \ref{fig:ch1-plot-pcolor2}.
+Well, it is a good job that you remember how to re-orientate arrays, right?\sidenote[][0.0in]{You don't? See earlier in the Chapter ...} If you guess right first time (three different basic transformations of a matrix were described), you get Figure \ref{fig:ch1-plot-pcolor2}.
 
-\begin{marginfigure}[-4.0in]
+\begin{marginfigure}[-0.25in]
 \includegraphics[width=\linewidth]{ch1-plot-pcolor2.eps}
 \caption{A 2D plot of some random gridded model data ... but with the underlying data matrix re-orientated before plotting.}
 \label{fig:ch1-plot-pcolor2}
 \end{marginfigure}
 
-\marginnote[-0.5in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+Next try something very similar. but using the \docenv{image} function. Now the model grid is the correct way around! I have absolutely no idea why and why it is reading the matrix dimensions differently from \docenv{pcolor}. I am sure you could Google and find out. But you would have to actually care first.
+
+\marginnote[1.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{pcolor}
 \\MATLAB claims that pcolor(C) plots; "a rectangular array of cells with colors determined by C. Actually, I believe MATLAB on this.
 So if you have a matrix, MATLAB will plot a regular arrays of cells, with each cell representing one of the elements in the matrix, and will color that cell according to the value. (\texttt{pcolor} will by default, autoscale how the color scale maps onto the data in the matrix such that both extreme ends of the color scale are used.)
 \end{mdframed}}
-
-Next try something very similar. but using the \docenv{image} function. Now the model grid is the correct way around! I have absolutely no idea why and why it is reading the matrix dimensions differently from \docenv{pcolor}. I am sure you could Google and find out. But you would have to actually care first.
 
 \marginnote[-0.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{image}
@@ -1738,17 +1806,17 @@ As your very last exercise -- find an image on the internet that amuses you, dow
 
 %------------------------------------------------
 
-\subsection{Matrix math (systems of equations)}
+\newpage
 
+%------------------------------------------------
+
+\section{Further matrix math (systems of equations)}
+
+%------------------------------------------------
+%
 You can also use \textbf{MATLAB}'s powerful matrix functionality to solve real-world problems for you.
 
 \newthought{As an example} -- consider the Great Lakes -- the largest lake system in the world. They have on their shores some of the greatest cities ... as well as some of North Americas worst hockey teams. More importantly, much of the region is heavily industrialised and there is hence an exciting potential for pollution input into the lakes and hence a contrived numerical modelling exercise.
-
-\begin{marginfigure}[0.0in]
-\includegraphics[width=\linewidth]{ch4-lakes_schematic.tif}
-\caption{Lake volumes and river flow rates in the Great Lakes system.}
-\label{fig:ch4-lakes_schematic}
-\end{marginfigure}
 
 The layout of the lake system is shown schematically in Figure \ref{fig:ch4-lakes_schematic}, together with the mean volumes of the lakes and the annual flow rate of water out of them.
 
@@ -1774,6 +1842,12 @@ A cocktail of heavy metals pours into each lake, the amount dependent largely up
 \end{table}
 
 The steady state concentration of heavy metals in the Great Lake system (the steady state solution being the state in which none of the concentrations in any of the lakes is changing) is something that you can find an analytical solution for. You have 5 unknowns (the concentration in each of the 5 lakes) and you can write down a series of 5 equations involving these unknowns. (There is slightly more to it than this, as there must also exist an inverse for the matrix, which is not always the case ...)
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch4-lakes_schematic.tif}
+\caption{Lake volumes and river flow rates in the Great Lakes system.}
+\label{fig:ch4-lakes_schematic}
+\end{marginfigure}
 
 Lets call the concentrations (kg km\(^{-3}\)) of heavy metals in the lakes; \texttt{cS}, \texttt{cM}, \texttt{cH}, \texttt{cE}, and \texttt{cO} (for; Superior, Michigan, Huron, Erie, and Ontarion, respectively). At steady-state, the inputs of heavy metals must exactly balance the outputs from each lake (otherwise, the concentration in the lake would change and the system would not be at steady-state). We can write a series of mass-balance equations for the 5 lakes. For instance, in Lake Superior, the metal input flux is 1.0\(\times\)10\(^{3}\) kg yr\(^{-1}\) (1000 kg yr\(^{-1}\)). This must balance the loss of metals in the river outflow if the concentration of metals in the lake is to remain constant. The water outflow rate that is given to you is 63 km\(^{3}\) yr\(^{-1}\). The metal outflow flux is then just the concentration of metals in the water (\texttt{cS}), times by the water flow; \texttt{63*cS}. Thus, for Lake Superior, we can write \texttt{1000 = 63*cS}. The other lakes can be similarly analysed, to give a set of 5 equations:
 

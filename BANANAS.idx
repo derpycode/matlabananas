@@ -52,12 +52,6 @@
 \indexentry{environments!and@\texttt  {and}|hyperpage}{28}
 \indexentry{not environment@\texttt  {not} environment|hyperpage}{28}
 \indexentry{environments!not@\texttt  {not}|hyperpage}{28}
-\indexentry{functions environment@\texttt  {functions} environment|hyperpage}{28}
-\indexentry{environments!functions@\texttt  {functions}|hyperpage}{28}
-\indexentry{functions environment@\texttt  {functions} environment|hyperpage}{28}
-\indexentry{environments!functions@\texttt  {functions}|hyperpage}{28}
-\indexentry{functions environment@\texttt  {functions} environment|hyperpage}{28}
-\indexentry{environments!functions@\texttt  {functions}|hyperpage}{28}
 \indexentry{pi environment@\texttt  {pi} environment|hyperpage}{29}
 \indexentry{environments!pi@\texttt  {pi}|hyperpage}{29}
 \indexentry{pi environment@\texttt  {pi} environment|hyperpage}{29}
@@ -124,8 +118,10 @@
 \indexentry{environments!title@\texttt  {title}|hyperpage}{34}
 \indexentry{axis environment@\texttt  {axis} environment|hyperpage}{34}
 \indexentry{environments!axis@\texttt  {axis}|hyperpage}{34}
-\indexentry{sin environment@\texttt  {sin} environment|hyperpage}{34}
-\indexentry{environments!sin@\texttt  {sin}|hyperpage}{34}
+\indexentry{title environment@\texttt  {title} environment|hyperpage}{35}
+\indexentry{environments!title@\texttt  {title}|hyperpage}{35}
+\indexentry{sin environment@\texttt  {sin} environment|hyperpage}{35}
+\indexentry{environments!sin@\texttt  {sin}|hyperpage}{35}
 \indexentry{axis environment@\texttt  {axis} environment|hyperpage}{35}
 \indexentry{environments!axis@\texttt  {axis}|hyperpage}{35}
 \indexentry{subplot environment@\texttt  {subplot} environment|hyperpage}{35}
@@ -134,75 +130,79 @@
 \indexentry{environments!subplot@\texttt  {subplot}|hyperpage}{35}
 \indexentry{print environment@\texttt  {print} environment|hyperpage}{35}
 \indexentry{environments!print@\texttt  {print}|hyperpage}{35}
-\indexentry{colon operator environment@\texttt  {colon operator} environment|hyperpage}{37}
-\indexentry{environments!colon operator@\texttt  {colon operator}|hyperpage}{37}
-\indexentry{size environment@\texttt  {size} environment|hyperpage}{37}
-\indexentry{environments!size@\texttt  {size}|hyperpage}{37}
-\indexentry{sum environment@\texttt  {sum} environment|hyperpage}{38}
-\indexentry{environments!sum@\texttt  {sum}|hyperpage}{38}
-\indexentry{sum environment@\texttt  {sum} environment|hyperpage}{38}
-\indexentry{environments!sum@\texttt  {sum}|hyperpage}{38}
-\indexentry{sum environment@\texttt  {sum} environment|hyperpage}{38}
-\indexentry{environments!sum@\texttt  {sum}|hyperpage}{38}
-\indexentry{transpose environment@\texttt  {transpose} environment|hyperpage}{38}
-\indexentry{environments!transpose@\texttt  {transpose}|hyperpage}{38}
-\indexentry{transpose environment@\texttt  {transpose} environment|hyperpage}{38}
-\indexentry{environments!transpose@\texttt  {transpose}|hyperpage}{38}
-\indexentry{flipup environment@\texttt  {flipup} environment|hyperpage}{38}
-\indexentry{environments!flipup@\texttt  {flipup}|hyperpage}{38}
-\indexentry{fliplr environment@\texttt  {fliplr} environment|hyperpage}{38}
-\indexentry{environments!fliplr@\texttt  {fliplr}|hyperpage}{38}
-\indexentry{rotate environment@\texttt  {rotate} environment|hyperpage}{38}
-\indexentry{environments!rotate@\texttt  {rotate}|hyperpage}{38}
-\indexentry{load environment@\texttt  {load} environment|hyperpage}{41}
-\indexentry{environments!load@\texttt  {load}|hyperpage}{41}
-\indexentry{load environment@\texttt  {load} environment|hyperpage}{41}
-\indexentry{environments!load@\texttt  {load}|hyperpage}{41}
-\indexentry{addpath environment@\texttt  {addpath} environment|hyperpage}{41}
-\indexentry{environments!addpath@\texttt  {addpath}|hyperpage}{41}
+\indexentry{colon operator environment@\texttt  {colon operator} environment|hyperpage}{38}
+\indexentry{environments!colon operator@\texttt  {colon operator}|hyperpage}{38}
+\indexentry{size environment@\texttt  {size} environment|hyperpage}{38}
+\indexentry{environments!size@\texttt  {size}|hyperpage}{38}
+\indexentry{sum environment@\texttt  {sum} environment|hyperpage}{39}
+\indexentry{environments!sum@\texttt  {sum}|hyperpage}{39}
+\indexentry{sum environment@\texttt  {sum} environment|hyperpage}{39}
+\indexentry{environments!sum@\texttt  {sum}|hyperpage}{39}
+\indexentry{sum environment@\texttt  {sum} environment|hyperpage}{39}
+\indexentry{environments!sum@\texttt  {sum}|hyperpage}{39}
+\indexentry{transpose environment@\texttt  {transpose} environment|hyperpage}{39}
+\indexentry{environments!transpose@\texttt  {transpose}|hyperpage}{39}
+\indexentry{transpose environment@\texttt  {transpose} environment|hyperpage}{39}
+\indexentry{environments!transpose@\texttt  {transpose}|hyperpage}{39}
+\indexentry{flipup environment@\texttt  {flipup} environment|hyperpage}{39}
+\indexentry{environments!flipup@\texttt  {flipup}|hyperpage}{39}
+\indexentry{fliplr environment@\texttt  {fliplr} environment|hyperpage}{39}
+\indexentry{environments!fliplr@\texttt  {fliplr}|hyperpage}{39}
+\indexentry{rotate environment@\texttt  {rotate} environment|hyperpage}{39}
+\indexentry{environments!rotate@\texttt  {rotate}|hyperpage}{39}
 \indexentry{load environment@\texttt  {load} environment|hyperpage}{42}
 \indexentry{environments!load@\texttt  {load}|hyperpage}{42}
-\indexentry{fprintf environment@\texttt  {fprintf} environment|hyperpage}{42}
-\indexentry{environments!fprintf@\texttt  {fprintf}|hyperpage}{42}
-\indexentry{save environment@\texttt  {save} environment|hyperpage}{43}
-\indexentry{environments!save@\texttt  {save}|hyperpage}{43}
+\indexentry{load environment@\texttt  {load} environment|hyperpage}{42}
+\indexentry{environments!load@\texttt  {load}|hyperpage}{42}
+\indexentry{addpath environment@\texttt  {addpath} environment|hyperpage}{42}
+\indexentry{environments!addpath@\texttt  {addpath}|hyperpage}{42}
+\indexentry{load environment@\texttt  {load} environment|hyperpage}{42}
+\indexentry{environments!load@\texttt  {load}|hyperpage}{42}
 \indexentry{load environment@\texttt  {load} environment|hyperpage}{43}
 \indexentry{environments!load@\texttt  {load}|hyperpage}{43}
-\indexentry{save environment@\texttt  {save} environment|hyperpage}{43}
-\indexentry{environments!save@\texttt  {save}|hyperpage}{43}
-\indexentry{.mat environment@\texttt  {.mat} environment|hyperpage}{43}
-\indexentry{environments!.mat@\texttt  {.mat}|hyperpage}{43}
-\indexentry{.mat environment@\texttt  {.mat} environment|hyperpage}{43}
-\indexentry{environments!.mat@\texttt  {.mat}|hyperpage}{43}
+\indexentry{fprintf environment@\texttt  {fprintf} environment|hyperpage}{43}
+\indexentry{environments!fprintf@\texttt  {fprintf}|hyperpage}{43}
+\indexentry{save environment@\texttt  {save} environment|hyperpage}{44}
+\indexentry{environments!save@\texttt  {save}|hyperpage}{44}
 \indexentry{load environment@\texttt  {load} environment|hyperpage}{44}
 \indexentry{environments!load@\texttt  {load}|hyperpage}{44}
-\indexentry{sort environment@\texttt  {sort} environment|hyperpage}{44}
-\indexentry{environments!sort@\texttt  {sort}|hyperpage}{44}
-\indexentry{sortrows environment@\texttt  {sortrows} environment|hyperpage}{44}
-\indexentry{environments!sortrows@\texttt  {sortrows}|hyperpage}{44}
-\indexentry{hold environment@\texttt  {hold} environment|hyperpage}{48}
-\indexentry{environments!hold@\texttt  {hold}|hyperpage}{48}
-\indexentry{legend environment@\texttt  {legend} environment|hyperpage}{49}
-\indexentry{environments!legend@\texttt  {legend}|hyperpage}{49}
-\indexentry{scatter environment@\texttt  {scatter} environment|hyperpage}{49}
-\indexentry{environments!scatter@\texttt  {scatter}|hyperpage}{49}
-\indexentry{hist environment@\texttt  {hist} environment|hyperpage}{51}
-\indexentry{environments!hist@\texttt  {hist}|hyperpage}{51}
+\indexentry{save environment@\texttt  {save} environment|hyperpage}{44}
+\indexentry{environments!save@\texttt  {save}|hyperpage}{44}
+\indexentry{.mat environment@\texttt  {.mat} environment|hyperpage}{44}
+\indexentry{environments!.mat@\texttt  {.mat}|hyperpage}{44}
+\indexentry{.mat environment@\texttt  {.mat} environment|hyperpage}{44}
+\indexentry{environments!.mat@\texttt  {.mat}|hyperpage}{44}
+\indexentry{load environment@\texttt  {load} environment|hyperpage}{45}
+\indexentry{environments!load@\texttt  {load}|hyperpage}{45}
+\indexentry{sort environment@\texttt  {sort} environment|hyperpage}{45}
+\indexentry{environments!sort@\texttt  {sort}|hyperpage}{45}
+\indexentry{sortrows environment@\texttt  {sortrows} environment|hyperpage}{45}
+\indexentry{environments!sortrows@\texttt  {sortrows}|hyperpage}{45}
+\indexentry{axis environment@\texttt  {axis} environment|hyperpage}{47}
+\indexentry{environments!axis@\texttt  {axis}|hyperpage}{47}
+\indexentry{hold on environment@\texttt  {hold on} environment|hyperpage}{47}
+\indexentry{environments!hold on@\texttt  {hold on}|hyperpage}{47}
+\indexentry{hold environment@\texttt  {hold} environment|hyperpage}{50}
+\indexentry{environments!hold@\texttt  {hold}|hyperpage}{50}
+\indexentry{legend environment@\texttt  {legend} environment|hyperpage}{51}
+\indexentry{environments!legend@\texttt  {legend}|hyperpage}{51}
+\indexentry{scatter environment@\texttt  {scatter} environment|hyperpage}{52}
+\indexentry{environments!scatter@\texttt  {scatter}|hyperpage}{52}
 \indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{52}
 \indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{52}
-\indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{52}
-\indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{52}
-\indexentry{image environment@\texttt  {image} environment|hyperpage}{52}
-\indexentry{environments!image@\texttt  {image}|hyperpage}{52}
-\indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{52}
-\indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{52}
-\indexentry{image environment@\texttt  {image} environment|hyperpage}{52}
-\indexentry{environments!image@\texttt  {image}|hyperpage}{52}
-\indexentry{imread environment@\texttt  {imread} environment|hyperpage}{52}
-\indexentry{environments!imread@\texttt  {imread}|hyperpage}{52}
-\indexentry{imread environment@\texttt  {imread} environment|hyperpage}{52}
-\indexentry{environments!imread@\texttt  {imread}|hyperpage}{52}
-\indexentry{typefaces!sizes|hyperpage}{53}
+\indexentry{image environment@\texttt  {image} environment|hyperpage}{53}
+\indexentry{environments!image@\texttt  {image}|hyperpage}{53}
+\indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{53}
+\indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{53}
+\indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{53}
+\indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{53}
+\indexentry{image environment@\texttt  {image} environment|hyperpage}{53}
+\indexentry{environments!image@\texttt  {image}|hyperpage}{53}
+\indexentry{imread environment@\texttt  {imread} environment|hyperpage}{53}
+\indexentry{environments!imread@\texttt  {imread}|hyperpage}{53}
+\indexentry{imread environment@\texttt  {imread} environment|hyperpage}{53}
+\indexentry{environments!imread@\texttt  {imread}|hyperpage}{53}
+\indexentry{typefaces!sizes|hyperpage}{54}
 \indexentry{disp environment@\texttt  {disp} environment|hyperpage}{58}
 \indexentry{environments!disp@\texttt  {disp}|hyperpage}{58}
 \indexentry{disp environment@\texttt  {disp} environment|hyperpage}{58}

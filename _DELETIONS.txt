@@ -1,4 +1,99 @@
 
+-----------------------------------------------------------------------------------------------------------------------------
+
+Analogous to the data processing you have just carried out, in which you applied a scaling and then an offset in order to convert from  \degree C to  \degree F, as a last example  to get you familiar with some  very basic  data processing and array data manipulation, we are going to transform a sediment core \(\delta\)\(^{18}\)O time-series into an estimated history of glacial-interglacial changes in sea-level.
+The scientific backstory is ...
+
+Throughout the late Neogene\sidenote{23.03 millions years ago (end of the Oligocene) to present is the Neogene Period in Earth history.}, sea level has risen and fallen as continental ice sheets have waned and waxed. The main cause of sea-level change has been variation in the total volume of continental ice and resulting change in the fraction of the Earth surface H\(_{2}\)O contained in the ocean. Today more than 97\% of the Earth surface H\(_{2}\)O  is in the ocean and less than 2\% is stored as ice in continental glaciers, with groundwater making up the bulk of the remainder. Of the total continental ice (ice above sea level), 80\% is contained in the east Antarctic ice sheet, 10\% in the west Antarctic ice sheet, and the final 10\% in the Greenland ice sheet. (If all present-day continental ice were to melt, sea level would rise by 70 m.) During the last glacial maximum (LGM), sea level was about 125 m lower than present, equivalent to 3\% more surface H\(_{2}\)O  stored as continental ice. Because of its relationship to continental ice volume, an accurate late Neogene sea-level curve has been a long-term goal of scientists interested in ice-age cycles and their causes.
+
+Glacial ice has a lower \(^{18}\)O/\(^{16}\)O isotopic ratio
+than mean seawater\sidenote{Basically -- as moisture derived from the tropical ocean (and land) surface moves to high latitudes, condensation occurs and some of the moisture is lost as rain. In condensing water vapor, \(^{18}\)O is preferentially incorporated into the liquid phase, meaning that the remaining water vapour has lower \(^{18}\)O/\(^{16}\)O. Eventually, the residual water vapour might fall as snow on an ice sheet. Hence why ice sheets at the LGM will have a lower \(^{18}\)O/\(^{16}\)O than mean seawater.}.  When ice volume is high, seawater has relatively high \(^{18}\)O/\(^{16}\)O ratio. When ice volume is low, seawater has relatively low \(^{18}\)O/\(^{16}\)O ratio. If the average \(^{18}\)O/\(^{16}\)O ratio of glacial ice is constant with time, then changes in the average \(^{18}\)O/\(^{16}\)O ratio of seawater will linearly approximate changes in the total volume of ice and by inference, sea-level.
+We (at least, I am) are interested in all this because knowing how ice volume and sea-level changed over the glacial-interglacial cycles has all sorts of important implications for understanding how climate change (e.g. via ice sheet albedo) and global carbon cycling and atmospheric CO2 (e.g. via changes in the area of exposed continental shelves and carbon stored in soils and above-ground vegetation).
+
+To start with we need to reconstruct past changes in the oxygen isotopic composition of the ocean. Handily, the \(^{18}\)O/\(^{16}\)O ratio of foraminiferal calcite isolated from marine sediments is primarily a function of the \(^{18}\)O/\(^{16}\)O ratio of the water together with the temperature of the water\sidenote[][-0.0in]{We we will not concern ourselves with temperature corrections here (in any case, it turns out that the temperature effect has the same sign as and is closely related to the ice volume effect) but instead assume that foraminiferal calcite \(\delta\)\(^{18}\)O only reflect changes in (global) ice volume and sea-level.}. By measuring the \(^{18}\)O/\(^{16}\)O value of calcite down-core we are sampling \(^{18}\)O/\(^{16}\)O with a progressively older age. In this way we can reconstruct how ocean \(^{18}\)O/\(^{16}\)O has changed over time. These measurements are reported in units of parts per thousand (\textperthousand) and written as \(\delta\)\(^{18}\)O.
+
+How to turn (scale) changes in \(\delta\)\(^{18}\)O into sea-level change? Evidence from dated coral reef terraces suggest that sea-level was around 117 m lower at the peak of the last glacial (ca. 19 ka). We could then assume that the change in \(\delta\)\(^{18}\)O from modern (preindustrial) to LGM equates to 117 m sea-level change, and hence create a continuous past sea-level curve from all the \(\delta\)\(^{18}\)O data by applying a simple scaling factor\sidenote[][-0.0in]{Conceptually, this is no different from saying that the difference between the freezing and boiling point of pure water (at 1 atm pressure) on the Celsius scale -- 100\degree C, maps onto the equivalent interval on the Fahrenheit scale -- 180\degree F (212-32 \degree F), and hence providing a means of converting a record of past changes in Fahrenheit, inot degrees Celsius (and \textit{vice versa}).}. So:
+
+\begin{itemize}
+\setlength{\itemindent}{.2in}
+
+\item You first need the foraminiferal calcite \(\delta\)\(^{18}\)O data. (Unless you want to go drill a long cylinder of mud from 3000 m down in the Atlantic Ocean, pick out all the microscopic foraminifera of a single species from samples of mud that you have carefully washed, blah blah blah ...) So, from the course web page; download the file \texttt{sediment\_core\_d18O.txt} and save it locally.
+
+\item Load this file into \textbf{MATLAB}.
+
+\item If you have successfully loaded in the data-file, you should see a named icon for the array appear in the \texttt{Workspace} window. Double-click on the array's icon in the Workspace window. Marvel at the fancy spreadsheet-like things that appear. Note that you can edit the data, add and delete rows and columns, and all sorts of stuff in this window, just like you can in Excel. Amuse yourself by scrolling down to the end of the data-set in the Array Editor and adding a new piece of data on line 784; age (column 1); 783 (ka); sea-level (column 2); 0.0 (m).
+
+\marginnote[-0.5in]{
+\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+Reminder: for a \textit{n\(\times\)m} array \texttt{data}, the first row is: \\\texttt{data(1,:)}.\\\noindent The last row is: \\\texttt{data(end,:)}.\\\noindent To find out the number of rows is: \\\texttt{>> length(data)}.\\\noindent The total size, in rows\(\times\)columns, can be found by: \\\texttt{>> size(data)} \\\noindent(and also by referring to the \textbf{Value} column in the \textbf{Workspace} window)\end{mdframed}}
+
+\item So far everything has been in \(\delta\)\(^{18}\)O units and time as kyr. As a warm-up -- try converting the units of time to years by multiplying the first column of the data array by 1000.0 and assigning it back into itself (this is not as weird and nonsensical as it sounds).
+
+\item To reconstruct past changes in sea-level we need to scale the \(\delta\)\(^{18}\)O values to reflect the equivalent changes in sea-level rather than changes in isotopic composition. We know that sea-level is 0 m (relative to modern) at 0 years ago, and -117 m at 19,000 years ago. Try the following (you are going to have to *think*, but maybe also use the HINT in the margin):
+\\Scale the \(\delta\)\(^{18}\)O so that it represents changes in sealevel, relative to modern (0 m)\sidenote{HINT -- first determine the difference in \(\delta\)\(^{18}\)O between time zero and 19 ka. This gives you the range of \(\delta\)\(^{18}\)O that maps onto a sea-level change of 117 m. This is pretty much the same as knowing the scaling between \degree C and \degree F in the previous example. There is then an offset to apply so as to make the sealevel change at time \(0\) years, \(0\) m, but in essence, this is no different from applying the offset previous to turn 0\degree C to 32\degree F (admittedly, the analogy is backwards). You also might transform the \(\delta\)\(^{18}\)O data such that it has a value of zero at 0 ka (but retains the original amplitude of variability.}.
+
+\item Plot it (changes in sea-level compared to modern, vs. time). And \textbf{nicely}.
+
+\end{itemize}
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+\newthought{One final example} in this section to introduce some new plotting functions, but also to quickly go back over some basic array manipulation and processing. The data we will be analysing is s series of seismic readings  from the USGS. The quake data are  extracted between -5 and 20 lat, and between 90 and 105 lon, starting Dec 26, 2004 and ending June 30, 2005. The data file can be found on the course webpage (\texttt{data\_USGS.txt}). The columns are: (1) day, (2) latitude, (3) longitude, (4) depth, and (5) magnitude. Carry out the following:
+
+\begin{enumerate}
+\setlength{\itemindent}{.2in}
+
+\item The first earthquake in the list is the Sumatra earthquake of December 26, 2004. The magnitude of this earthquake has been revised upward since the data was downloaded. Actually, most energy released in large earthquakes is in very low frequency shaking that most seismometers do not record. The real magnitude had to come from a special analysis of "normal modes", or standing waves on the Earth's surface with periods of up to 54 minutes! When the media said that the Sumatra earthquake made the Earth ring like a gong, these are the waves they were talking about. So since we know that the magnitude was really 9.3, first off, replace the value of the magnitude of the first earthquake in the array.
+
+\item Identify the smallest magnitude of recorded earthquake. You should find that the minimum earthquake size on this list is 3.5. For an earthquake in California, the minimum magnitude would be more like 1. This is because this particular seismograph network did not have many instruments around Sumatra. Another problem is that the earthquakes are offshore. If the nearest seismograph is far from a small earthquake, that earthquakes may not be detected. This means that the data are artificially truncated. Since everything below 3.5 is missing, some of the M=3.5 to 4 earthquakes may have been missed, too.
+
+\item Identify the minimum and maximum earthquake depths. The really deep ones (>40 km) are probably in the subducted slab that goes beneath Sumatra. The zero depth means that it could not be resolved - most hypocentres are 4 km or deeper. (hypocentre = like epicentre, but at depth: the point on the fault where the earthquake rupture starts)
+
+\item How many earth quakes in total were recorded?\sidenote{Recall how to find the size of an array. The number of earthquakes is then simply the number of rows (assuming that you have not flipped the array around ...).}
+
+\marginnote{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+The number of quakes bigger than each magnitude should go up by about a factor of 10 for unit decrease in magnitude (Gutenberg-Richter relationship, a power law). This fails for the hugest quakes (>7 in this case) and where the catalogue is incomplete (not many between 3 and 4 due to detection threshold in this part of the world).
+\end{mdframed}}
+
+\end{enumerate}
+
+There is only just so much looking at and processing raw data you can do before your eyes start ... to ... ... droop ... ... ... and ... ... ... ... Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. OK -- so now to visualize what is going on. Plot using the scatter function the locations of all the quakes from day 0 to day 91 (inclusive), and in a second plot the locations from day 92 onwards. The first area covers the area that ruptured in the M 9.3 quake (1200 km long and 100 km wide) and the second, to the South, is smaller. This is important because the aftershock distribution made people very wary of the (low) early magnitude estimates - the area of dense aftershocks often delineates the part of the fault that ruptured, and scaling laws relate rupture length to magnitude.
+
+Create a figure with multiple panels, showing:
+
+\begin{itemize}[noitemsep]
+\setlength{\itemindent}{.2in}
+\item In the top LH corner plot the day 0-91 quakes, and color-code (or size-code) the markers for their magnitude.
+\item  In the top RH plot the day 92 onwards quakes, and color-code (or size-code) the markers for their magnitude.
+\item  In the bottom LH corner plot day 0-91 quakes, and color-code (or size-code) the markers for their depth. 
+\item  In the top RH plot the day 92 onwards quakes, and color-code (or size-code) the markers for their depth.
+\end{itemize}
+
+\subsection{Histograms}
+
+We could also visually analyse the data as a histogram. Type \texttt{help hist} in the Command Window for a description of the 
+\docenvdef{hist} function. The histogram must be supplied with a vector defining the 'bins' in which to sum the data. Here is your chance to use the colon operator again. O happy day.
+
+\begin{enumerate}
+\setlength{\itemindent}{.2in}
+
+\item To plot the frequency distribution of quakes as a function of their magnitude we need to create a series of bins to define the different magnitude ranges. How about bins with boundaries at magnitude; 1.0, 2.0, 3.0, ... 10.0. One complication is that the values in the vector M define the middle of the bins in the hist function and not the boundaries. The mid-points of this will be; 1.5, 2.5, 3.5, ... 9.5, and this is the vector you need to create and assign to a vector \texttt{M} (i.e., a vector array starting at 1.5, ending at 9.5, and with increments of 1.0).
+
+\item Having created \texttt{M}, plot the histogram of quake frequency vs. quake magnitude by issuing:
+\begin{docspec}
+>> hist(data\_USGS(:,5),M);
+\end{docspec}
+Question: what is the most frequent magnitude range of 'quake?
+
+\item Now plot the histogram of quake frequency against time (i.e., day number) up to day number 186.  You will  have to assign a new vector of values to \texttt{M}, one that starts at 0.5 and ends at 185.5. Omori's Law says that the number of aftershocks per day should decrease following a power law -- does this look to be the case (approximately)? (One problem is that the small earthquakes are missing which makes it appear not to work so well!)
+
+\item Try this again (i.e., frequency of quakes vs. time), but investigate the effect of changing the bin size -- try making the bins about 1 month (30 days) in duration. Note that now M must start at 15.0 (the mid-point of the first monthly bin). Sometimes changing the bin size can help if the data is noisy, but sometimes you lose important information. Which was better do you think -- can you still see a power-law decay in quake frequency following each major event with the data in monthly bins? If you want, experiment with other bin sizes to see how the data comes out. There is not always a 'right' answer in plotting data and sometimes you just have to experiment a little to see what looks good.
+
+\end{enumerate}
+
+Don't forget that all the plots you make should be appropriately labelled ... Save them as a \texttt{fig} file if you think you might want to edit them again, and/or export as an image.
+
+-----------------------------------------------------------------------------------------------------------------------------
 
 Next, it is going to take a number of iterations for the daisies to grow/die ... changing their fractional areas and hence albedo as their fractional areas change ... and hence ultimately, reaching a new equilibrium with global climate. Each time around the outer loop -- because the value of \(S_{0}\) will change each time, climate will change and the daisy population will no longer be in equilibrium (because their fractional areas are carried over from the previous loop iteration). Hence in the outer loop you will need an inner loop  to determine the new equilibrium and global temperature for that particular value of \(S_{0}\). For now the loop can be quite simple -- we'll assume 100 iterations (i.e. the loop counter \texttt{n}, will go from \texttt{1} to \texttt{100}).
 
