@@ -1458,6 +1458,12 @@ Hopefully ... all your loaded/created variables etc. have been recovered ... ?
 
 \section{Basic data processing (and yet more plotting)}
 
+A couple of common basic data manipulation/processes techniques follow, with some further plotting/visualization work tagged on.
+
+%------------------------------------------------
+
+\subsection{Sorting data (in arrays)}
+
 As an example to kick-off some data-processing tricks, load in the dataset of ('proxy') reconstructed atmospheric CO\(_{2}\) concentrations spanning the Phanerozoic: \texttt{paleo\_CO2\_data.txt}. You can just import it into \textbf{MATLAB} using the \docenv{load} function. However, there is a complication here -- unlike the ice core CO2 dataset, you now have 4 columns in the array\sidenote{Remember that you can diagnose its size with ... \texttt{size} (or refer to the Workspace window)}. The first column is age (Ma), the second the mean CO\(_{2}\) value, and the 3d and 4th columns are the low and high, respectively, uncertainty limits. Not forgetting in the space of 5 minutes (I hope!) how to reference specific columns of data in a matrix\sidenote{HINT: the \texttt{colon operator} (see earlier).} -- plot the mean paleo CO\(_{2}\) value as a function of age (in Ma). If you  closed the previous \textsf{Figure} window (see earlier), it is not essential to explicitly open one (using the \texttt{Figure} command) -- when you use the \texttt{plot} command, if there is no open \textsf{Figure} window, \textbf{MATLAB} will kindly open one for you. How thoughtful. The result should be something like \ref{fig:plot-CO2basic}. O dear ...
 
 \begin{marginfigure}[0.0in]
@@ -1488,13 +1494,24 @@ Actually ... not quite. Reading the help text carefully (and you can always try 
 
 \end{enumerate}
 
-\vspace{1mm}
-\noindent\rule{4cm}{0.5pt}
-\vspace{2mm}
+Shortly, you will see an alternative plotting function that does not require the data to be sorted into any sort fo order. You can also use \docenv{plot}, and omit the line segments by specifying only a symbol, e.g.
 
-\noindent For another example: download the historical global temperature anomaly dataset: \texttt{temperature\_globalanom.txt}\sidenote{\href{https://www.ncdc.noaa.gov/cag/global/time-series/globe/land\_ocean/ytd/12/1880-2017/\#https://climate.nasa.gov/vital-signs/global-temperature/}{NOAA}}. The columns are: (1) year , (2) annual mean ocean+land surface temperature. Plot the annual mean for the full range of years, as per Figure \ref{fig:ch1-plot-temperature1}. \sidenote{plus labels, title, etc etc}
+\begin{docspec}
+plot(x,y,'ro');
+\end{docspec}
 
-\begin{marginfigure}[0.0in]
+\noindent (here, plotting circles for the data points in red)
+
+%------------------------------------------------
+
+\subsection{Data scaling}
+
+\noindent For an example practicing some basic data scaling: download the historical global temperature anomaly dataset:
+
+\noindent \texttt{temperature\_globalanom.txt}\sidenote[][-0.75in]{\href{https://www.ncdc.noaa.gov/cag/global/time-series/globe/land\_ocean/ytd/12/1880-2017/\#https://climate.nasa.gov/vital-signs/global-temperature/}{NOAA}}. 
+\\The columns are: (1) year , (2) annual mean ocean+land surface temperature. Plot the annual mean for the full range of years, as per Figure \ref{fig:ch1-plot-temperature1}. (plus labels, title, etc etc).
+
+\begin{marginfigure}[-0.5in]
 \includegraphics[width=\linewidth]{ch1-plot-temperature1.eps}
 \caption{Observed annual global mean surface temperature anomaly (compared to year 1910 to 2000 average).}
 \label{fig:ch1-plot-temperature1}
@@ -1523,13 +1540,16 @@ Create a new data array in \textbf{MATLAB}, with year as the first column (year,
  
 Re-plot (in \textbf{MATLAB}) once again the final temperature trends in \degree F. This should look like Figure \ref{fig:ch1-plot-temperature3}.
 
-\vspace{1mm}
-\noindent\rule{4cm}{0.5pt}
-\vspace{2mm}
+%------------------------------------------------
 
-\noindent For some practice in a little further data manipulation and graphing: download the historical temperature dataset for Riverside: \texttt{temperature\_riverside.txt}\sidenote{\href{https://www.ncdc.noaa.gov/cag/global/time-series/globe/land\_ocean/ytd/12/1880-2017/\#https://climate.nasa.gov/vital-signs/global-temperature/}{NOAA}}. If you view the data file in a text editor or import into \textbf{Excel}, you can read the column headers and find out what the different columns of data are (I am not telling you!). Note that the (1st) line of the file containing the column header labels starts with a \% symbol (telling \textbf{MATLAB} to ignore this line and not attempt to read in the 'data' on it).
+\subsection{Data (row) deletion}
 
-\begin{marginfigure}[0.0in]
+\noindent For some practice in data filtering (row deletion) and a little further data manipulation and graphing: download the historical temperature dataset for Riverside:
+
+\noindent \texttt{temperature\_riverside.txt}\sidenote[][-0.75in]{\href{https://www.ncdc.noaa.gov/cag/global/time-series/globe/land\_ocean/ytd/12/1880-2017/\#https://climate.nasa.gov/vital-signs/global-temperature/}{NOAA}}. 
+\\If you view the data file in a text editor or import into \textbf{Excel}, you can read the column headers and find out what the different columns of data are (I am not telling you!). Note that the (1st) line of the file containing the column header labels starts with a \% symbol (telling \textbf{MATLAB} to ignore this line and not attempt to read in the 'data' on it).
+
+\begin{marginfigure}[-0.5in]
 \includegraphics[width=\linewidth]{ch1-plot-temperature3.eps}
 \caption{Observed annual global mean surface temperature.}
 \label{fig:ch1-plot-temperature3}
@@ -1547,18 +1567,18 @@ It would be 'nice' ... to make some direct comparison between the observed globa
 
 You could certainly simply plot both global mean and Riverside annual mean temperatures alongside each other, using the same units, e.g. \degree F as you have previously converted the global mean temperatures to \degree F, which is the same units as the Riverside temperature data. You could have 2 sperate plots and visually compare them, but this is not very cleaver nor necessarily useful in making any sort of quantitative comparison. For instance -- contrast the global data (re-scaled to absolute degrees F) in Figure \ref{fig:ch1-plot-temperature3}, with the Riverside data, in Figure \ref{fig:ch1-plot-temperature4}.\sidenote{There are also sone odd-looking artifacts ('spikes') in the raw data that we will want to deal with in some way.}
 
+There are two main problems \sidenote{Plus artifacts in the raw data.} in making a useful comparison -- firstly, the two data sets are on different y-axis scales (but luckily on the same x-axis, year scale), with the global data temperature scale going from 56 to 59\degree F, and the local, Riverside temperature data scale going from 50 to 85\degree F.
+
+The limits can be specified and made common between the 2 plots using the \docenv{axis} command that you saw earlier. You could,  for instance, not worry about truncating the spurious spikes in the Riverside temperature data and set the y-axis limits for both plots to e.g. 55 to 70\degree F. (You are still left with comparing across 2 different plots, which we will fix in a subsequent section by means of the command \docenv{hold on}.) However, there is still an inconvenient offset between the global mean temperature and that at Riverside.
+
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch1-plot-temperature4.eps}
 \caption{Observed annual mean surface temperature in Riverside.}
 \label{fig:ch1-plot-temperature4}
 \end{marginfigure}
 
-There are two main problems \sidenote{Plus artifacts in the raw data.} in making a useful comparison -- firstly, the two data sets are on different y-axis scales (but luckily on the same x-axis, year scale), with the global data temperature scale going from 56 to 59\degree F, and the local, Riverside temperature data scale going from 50 to 85\degree F.
-
-The limits can be specified and made common between the 2 plots using the \docenv{axis} command that you saw earlier. You could,  for instance, not worry about truncating the spurious spikes in the Riverside temperature data and set the y-axis limits for both plots to e.g. 55 to 70\degree F. (You are still left with comparing across 2 different plots, which we will fix in a subsequent section by means of the command \docenv{hold on}.) However, there is still an inconvenient offset between the global mean temperature and that at Riverside.
-
 Recall that the original global temperature data was given as an anomaly compared to the average over some baseline (or reference) period -- in this case, year 1910 to 2000. If we treated both data sets the same, and transformed the Riverside temperature data into a comparable anomaly, direct comparison could be made. To create an anomaly of the Riverside temperature data, relative to the mean of the data for years 1910 to 2000, requires the mean of the years 1910 to 2000 ... this is not difficult to do, but it better left for another time ... For now, take it as having a value of 64.2\degree F. So to create an anomaly for the Riverside temperature data, simply subtract 64.2 from the values in the annual mean data column. Finally, go back to the original global mean anomaly values (re-load the data set if necessary) and convert from the anomaly in \degree C to \degree F (i.e. simply multiply by \(1.8\) -- no offset (32\degree F) is required in this particular case). If you additionally, chose and set a sensible common y-axis scale for both plots, you might end up with a pair of graphs looking like Figures \ref{fig:ch1-plot-temperature5} and \ref{fig:ch1-plot-temperature6}.
-\sidenote[][-1.0in]{There are all sorts of likely reasons for the differences. Firstly, the global mean surface temperature rise includes both ocean surface and land surface. Because of the higher heat capacity of the ocean, the ocean surface warms slower than the land, and the ocean accounts for ca. 70\% of the total global surface area. So it is somewhat inevitable that the warming trend will be stronger in Riverside. It may also be that the Riverside data is influenced by the 'urban heat island' effect, in which long0-term measured trends can be affected by increasing urbanization of the area surrounding the weather station. It may also be that the latitude and specific location of Riverside, sees much more warming that the global mean.}
+\sidenote[][-2.0in]{There are all sorts of likely reasons for the differences. Firstly, the global mean surface temperature rise includes both ocean surface and land surface. Because of the higher heat capacity of the ocean, the ocean surface warms slower than the land, and the ocean accounts for ca. 70\% of the total global surface area. So it is somewhat inevitable that the warming trend will be stronger in Riverside. It may also be that the Riverside data is influenced by the 'urban heat island' effect, in which long0-term measured trends can be affected by increasing urbanization of the area surrounding the weather station. It may also be that the latitude and specific location of Riverside, sees much more warming that the global mean.}
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch1-plot-temperature5.eps}
@@ -1576,7 +1596,7 @@ Recall that the original global temperature data was given as an anomaly compare
 \noindent\rule{4cm}{0.5pt}
 \vspace{2mm}
 
-\noindent Finally and briefly -- it was mentioned earlier that there were potential 'artifacts' in the Riverside mean annual temperature data. If you view the loaded in data array in the \textsf{Variable viewing window} (double-click on the \texttt{temperature\_riverside} variable name in the \textsf{Workspace window}), you can see for a number of years and months, rather than numbers, '\texttt{NaN}'s in the cells. \texttt{NaN} stands for 'Not a Number' and indicates that there is no (valid) numerical value for that array position (cell). The impact of there being a number of months of data missing, is that the annual mean is no longer a true annual mean but rather simply the mean of whatever monthly data exists for any particular year. For example, year 2008 has no data other than during the summer and the annual mean is hence simply equal to the July temperatures!
+\noindent Finally to some data filtering (row deletion) -- it was mentioned earlier that there were potential 'artifacts' in the Riverside mean annual temperature data. If you view the loaded in data array in the \textsf{Variable viewing window} (double-click on the \texttt{temperature\_riverside} variable name in the \textsf{Workspace window}), you can see for a number of years and months, rather than numbers, '\texttt{NaN}'s in the cells. \texttt{NaN} stands for 'Not a Number' and indicates that there is no (valid) numerical value for that array position (cell). The impact of there being a number of months of data missing, is that the annual mean is no longer a true annual mean but rather simply the mean of whatever monthly data exists for any particular year. For example, year 2008 has no data other than during the summer and the annual mean is hence simply equal to the July temperatures!
 
 One could address this by removing the years with (substantially) incomplete monthly data from the data file\sidenote{i.e. simply deleting the line in the file.} and prior to loading into \textbf{MATLAB}. Or would could process the data once in MATLAB. This can be done by assigning to particular row (vector) of data, an empty vector (\texttt{[]}). 
 
@@ -1617,7 +1637,7 @@ Similarly, to remove the 2nd row of:
 
 \noindent (instead removing e.g. the 1st column would be \texttt{B(:,1) = []})
 
-So back to the temperature data -- to for example remove the row containing the year 2008 data, which is row 11, we write:
+So back to the temperature data -- to for example remove the row containing the year 2008 data\sidenote[][-1.0in]{You can also delete rows (and columns) if you open up the \textbf{MATLAB} \texttt{Array window} (double-click on the variable name in the \texttt{Workspace window}). And ... edit/replace values ...}, which is row 11, we write:
 
 \begin{docspec}
 >> temperature\_riverside(11,:)=[];
@@ -1656,6 +1676,18 @@ The main (i.e. not an exhaustive list) data display options for the \texttt{plot
 \\\noindent \texttt{-} -- solid, \texttt{:} -- dotted, \texttt{--} -- dashed, and when specifying a point style, not specifying a line style results in no line.
 \\(3) color 
 \\\noindent  \texttt{b} -- blue, \texttt{g} -- green, \texttt{r} -- red,  \texttt{y} -- yellow, \texttt{k} -- black, \texttt{w} -- white.
+\\To use them, add a new parameter when you call the \docenv{plot} \textit{function} -- whereas before, you typed, for plotting a vector y against x:
+\begin{docspecmargin}
+plot(x,y);
+\end{docspecmargin}
+now add, following a comma, the point and line style option, encased in a pair of inverted commas, e.g. for a red, dashed line:
+\begin{docspecmargin}
+plot(x,y,'r--');
+\end{docspecmargin}
+and for blue circles (no line):
+\begin{docspecmargin}
+plot(x,y,'bo');
+\end{docspecmargin}
 \end{mdframed}}
 
 \begin{marginfigure}[-0.0in]
@@ -1790,8 +1822,8 @@ Next try something very similar. but using the \docenv{image} function. Now the 
 
 \marginnote[1.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{pcolor}
-\\MATLAB claims that pcolor(C) plots; "a rectangular array of cells with colors determined by C. Actually, I believe MATLAB on this.
-So if you have a matrix, MATLAB will plot a regular arrays of cells, with each cell representing one of the elements in the matrix, and will color that cell according to the value. (\texttt{pcolor} will by default, autoscale how the color scale maps onto the data in the matrix such that both extreme ends of the color scale are used.)
+\\MATLAB claims that pcolor(C) plots; "a rectangular array of cells with colors determined by C. Actually, I believe \textbf{MATLAB} on this.
+So if you have a matrix, \textbf{MATLAB} will plot a regular arrays of cells, with each cell representing one of the elements in the matrix, and will color that cell according to the value. (\texttt{pcolor} will by default, autoscale how the color scale maps onto the data in the matrix such that both extreme ends of the color scale are used.)
 \end{mdframed}}
 
 \marginnote[-0.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
@@ -1949,7 +1981,7 @@ You will also be doing a great deal of code debugging ...
 
 \section{Introduction to scripting (programming!) in MATLAB}
 
-Commands in MATLAB can become very lengthy, and you typically end up with multiple lines of code to get anything even remotely useful done. And as you have noticed, it can take a lot of time to enter in all these lines. When when you log off and go home ... it is all gone. \sidenote[][-0.5in]{\textbf{MATLAB} remembers all the commands used in previous session (although this may not be the case of shared, lab computers) and lists them in the \textsf{Command History window}. You can recover and re-execute a previous command in this list by double-clicking it. You can also re-run more than one line at a time by selecting multiple lines and pressing \textsf{F9} (or \textsf{Evaluate Selection} from the (R-mouse button in \textbf{Windows}) context menu).} ... If only there was some way of storing all these commands in such a way that they could be worked on and run again with the press of a button (as a wild guess, how about \textsf{F5}?), without having to enter them all in, all over again from scratch ...
+Commands in \textbf{MATLAB} can become very lengthy, and you typically end up with multiple lines of code to get anything even remotely useful done. And as you have noticed, it can take a lot of time to enter in all these lines. When when you log off and go home ... it is all gone. \sidenote[][-0.5in]{\textbf{MATLAB} remembers all the commands used in previous session (although this may not be the case of shared, lab computers) and lists them in the \textsf{Command History window}. You can recover and re-execute a previous command in this list by double-clicking it. You can also re-run more than one line at a time by selecting multiple lines and pressing \textsf{F9} (or \textsf{Evaluate Selection} from the (R-mouse button in \textbf{Windows}) context menu).} ... If only there was some way of storing all these commands in such a way that they could be worked on and run again with the press of a button (as a wild guess, how about \textsf{F5}?), without having to enter them all in, all over again from scratch ...
 
 \marginnote{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \textit{\textbf{\textcolor[rgb]{0.501961,0,0}{m-file}}}
@@ -1957,15 +1989,15 @@ Commands in MATLAB can become very lengthy, and you typically end up with multip
 \\Assume a similar convention to that for \textit{variables} in the naming of \textit{m-files}.
 \end{mdframed}}
 
-Your wish is granted. In \textbf{MATLAB}, it is possible to store all of your commands in a single text file, and then request that they (the list of commands) are all executed (sequentially)  at one go. \textbf{MATLAB} gives this text file a fancy name (because it is a very fancy piece of software, after all) -- a \textit{script}\sidenote{The conception of a \textit{function}, will be introduced later.}, otherwise known as an \textit{m-file}.  To create a new \textit{m-file}; from the  File menu, select \textsf{Script} (a common type of \textit{m-file})\sidenote[][0.0in]{In order version of \textbf{MATLAB}: \textsf{File}/\textsf{New} menu, and select: \textsf{Blank M-file}.}. You will see a text editor (more fancy-ness) appear in front of your very eyes, containing your requested (but currently empty) \textit{m-file}. Save the \textit{m-file} to your directory of choice. Alternatively, simply create a new (blank) text file and saving it with the extension \textsf{.m}, rather than e.g. \textsf{.txt}, creates you a (script) \textit{m-file}. From an \textit{m-file}, you can issue all the \textbf{MATLAB} commands you previously would have entered individually, line-by-tedious-line, at the command line. Furthermore, having created and saved  a \textbf{MATLAB} script, it can be executed again and as many times as you like.
+Your wish is granted! In \textbf{MATLAB}, it is possible to store all of your commands in a single text file, and then request that they (the list of commands) are all executed (sequentially)  at one go. \textbf{MATLAB} gives this text file a fancy name (because it is a very fancy piece of software, after all) -- a \textit{script}\sidenote{The conception of a \textit{function}, will be introduced later.}, otherwise known as an \textit{m-file}.  To create a new \textit{m-file}; from the  \textsf{File menu}, select \textsf{Script} (a common type of \textit{m-file})\sidenote[][0.0in]{In order version of \textbf{MATLAB}: \textsf{File}/\textsf{New} menu, and select: \textsf{Blank M-file}.}. You will see a text editor (more fancy-ness) appear in front of your very eyes, containing your requested (but currently empty) \textit{m-file}. Save the \textit{m-file} to your directory of choice. Alternatively, simply create a new (blank) text file and save it with the extension \textsf{.m}, rather than e.g. \textsf{.txt} -- this creates you a (script) \textit{m-file} (illustrating that an \textit{m-file} is nothing more than a text file with a \textsf{.m} file extension). From an \textit{m-file}, you can issue all the \textbf{MATLAB} commands you previously would have entered individually, line-by-tedious-line, at the command line. Furthermore, having created and saved  a \textbf{MATLAB} script, it can be executed again and as many times as you like.
  
 You can execute an \textit{m-file} by typing its name into the \textsf{Command window} (omitting the \textsf{.m} file extension). Ensure that \textbf{MATLAB} is operating in the same directory as the directory that you have saved your \textit{m-file}. You can also run the \textit{script} (\textit{m-file}) by hitting the big bright green Run icon button at the top of the \textit{m-file} editor\sidenote[][-0.25in]{In older versions of \textbf{MATLAB} -- select: \textsf{Debug}/\textsf{Run} from the 'debug' menu of the \textsf{Editor window}.}. The short-cut for running it is to whack your paw down on the Function Key \textsf{F5}.
 
 OK -- you are now ready for your very first program ... inevitably ... this has to be to print 'Hello World' to the screen. No, really. (Google it.) 
 
-Create a new \textit{m-file}, calling it e.g. \textsf{hello\_world.m}. You are going to use the function \docenvdef{disp} (see margin help box and/or type \texttt{>> help disp}  to find out the \textbf{MATLAB} \textit{function} syntax and usage). This command (/\textit{function})  will print to the screen, either any text you specify (in inverted commas), or the contents of a \textit{string} \textit{variable} (you pass the variable name to \texttt{disp}). For now, simply pass the text directly.
+Create a new \textit{m-file}, calling it e.g. \textsf{hello\_world.m} (remembering that spaces are NOT allowed in filenames). You are going to use the function \docenvdef{disp} (see margin help box and/or type \texttt{>> help disp}  to find out the \textbf{MATLAB} \textit{function} syntax and usage). This command (/\textit{function})  will print to the screen, either any text you specify (in inverted commas), or the contents of a \textit{string} \textit{variable} (you pass the variable name to \texttt{disp}). For now, simply pass the text directly.
 
-\marginnote[-1.75in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-2.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{disp}
 \\... displays something (the contents of a variable) to the screen.
 \\In the example of:
@@ -1990,7 +2022,7 @@ Your program needs just a single line in the \textit{m-file}:
 \begin{docspec}
 disp('hello, world')
 \end{docspec}
-\noindent Save the file (to your working directory). Run it at the command line by typing its name (omitting the \textsf{.m} extension). Your first program is a success! (Surely you could not screw up a single line program ... ?\sidenote[][-0.0in]{If \textbf{MATLAB} gives you an error message something like \\\texttt{Undefined function or variable 'hello\_world'} \\\noindent then it is likely you are simply not in the same directory as the \textit{m-file}, and/or the location of the \textit{m-file} is not in one of the directory paths \textbf{MATLAB} knows about (see previous Tutorials for comments on changing directory vs. adding paths.).}) 
+\noindent Save the file (to your working directory). Run it at the command line by typing its name (omitting the \textsf{.m} extension). Your first program is a success! (Surely you could not screw up a single line program ... ?\sidenote[][-0.375in]{If \textbf{MATLAB} gives you an error message something like \\\textcolor{red}{\texttt{Undefined function or variable 'hello\_world'}} \\\noindent then it is likely you are simply not in the same directory as the \textit{m-file}, and/or the location of the \textit{m-file} is not in one of the directory paths \textbf{MATLAB} knows about (see previous Tutorials for comments on changing directory vs. adding paths.).}) 
 
 You could extend this to a mighty 2-line program by defining the string as a variable and displaying the contents of the variable, i.e.,
 \begin{docspec}
@@ -1998,7 +2030,7 @@ message = 'hello, world';
 \\disp(message)
 \end{docspec}
 
-\noindent (Try this out.)
+\noindent (Try this out.)\sidenote[][0.25in]{Remember that when a \textit{function} requires a \textit{string} input, you can either pass the string directly (encased in inverted commas), or assigned the string to a variable, and pass the name of the variable (no inverted commas).}
 
 For further practice -- pick one of any of the previous exercises in which multiple lines of code were required, place them into a new \textit{m-file }(either by re-typing them in or copying them out of the \textsf{Command History window}), save the file (to the same directory that you are working from), and run it my typing its name at the command line (omitting the \textsf{.m} extension).
 
@@ -2030,7 +2062,7 @@ A typical basic format is:
 
 \item Structure the code nicely. You can break the code up into sections, e.g. by adding a blank line. You might also start each section with a label summarizing that it is going to do (via the addition of a \textit{comment} line).
 
-\item To start with -- program in as a simple step-by-step way as possible. Breaking a complex calculation into several lines of simpler calculations is much easier to debug and work out what you were doing later, particularly if comments are also added. For all practical purposes -- at this level, everything will run just as fast whether as a complex calculation on one line, or simple bite-sized calculation spread over 4 lines with comment sin between. 
+\item To start with -- program in as simple a step-by-step way as possible. Breaking a complex calculation into several lines of simpler calculations is much easier to debug and work out what you were doing later, particularly if comments are also added. For all practical purposes -- at this level, everything will run just as fast whether as a complex calculation on one line, or simple bite-sized calculation spread over 4 lines with comment sin between. 
 
 \item Always save your changes before running your program (or you may unknowingly be running the previous version).
 
@@ -2041,7 +2073,7 @@ This command close all currently open figures, plots, images, etc.
 
 \end{itemize}
 
-An illustration (and a far from perfect illustration) of a short script exhibiting at least a few examples of good practice, is:
+An illustration (and a far from perfect illustration) of a short \textit{function} (\textit{m-file}) exhibiting at least a few examples of good practice, is:
 
 \begin{docspec}
 \textcolor{blue}{function} [dum\_temp] = ebm\_basic(dum\_S0)
@@ -2072,7 +2104,7 @@ An illustration (and a far from perfect illustration) of a short script exhibiti
 
 \noindent The schematic for the program structure is shown in \ref{fig:ch2-example}. (Don't worry what this particular program does, just note how I\ have structured it.)
  
-This example also illustrates one possibility for variable naming convention (constants (\textit{variables} which never change in value) start with a \texttt{const\_} and parameters (variables whose values might be changed) with \texttt{par\_}, temporary ('local') variables with \texttt{loc\_} and variables passed into and out of the function: \texttt{dum\_}). Note use of the semi-colon at the end of every line to prevent (here unwanted) printing of results to the screen. 
+This example also illustrates one possibility for a consistent \textit{variable} naming convention -- constants (\textit{variables} which never change in value) start with a \texttt{const\_} and parameters (variables whose values might be changed) with \texttt{par\_}, temporary ('local') variables with \texttt{loc\_} and variables passed into and out of the function: \texttt{dum\_}. Note the use of the semi-colon at the end of every line to prevent (here unwanted) printing of results to the screen. (Don't worry about what a \textit{function} is yet ... just not the degree of commenting and that there is some sort of consistent and meaningful naming convention.)
 
 In the file, you can create as much 'ASCII art' as you like if it helps to make the code clearer, e.g. adding separator comment lines ...
 
@@ -2107,7 +2139,7 @@ Your Hello World program might look like the following once it has had a little 
 \textcolor[rgb]{0,0.501961,0}{\\\% ***\ END ***}
 \end{docspec}
 
-The schematic structure of this program (\textit{script}) is shown in Figure \ref{fig:ch2-hello_world}.\sidenote{Note that not all of the comment lines are shown in the structure schematic -- only the main program summary at the top.}
+The book schematic structure of this program (\textit{script}) is shown in Figure \ref{fig:ch2-hello_world}.\sidenote{Note that not all of the comment lines are shown in the structure schematic -- only the main program summary at the top.}
 
 \begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch2-hello_world.eps}
@@ -2121,7 +2153,7 @@ Finally, and related to the next subsection -- code in stages, testing the (part
 
 \subsection{Debugging the bugs in buggy code}
 
-What programming is mostly about is not writing new code so much as debugging\sidenote{The art of fault-finding in computer code.} what you have already written. Key then is to reduce the incidence of bugs occurring in the first place, and when they do occur, firstly to have code that lends itself to debugging and secondly, knowing how to go about the debugging. The first two facets are at least partly addressed through good programming practice (see earlier)\sidenote{And by the discipline of software engineering, which is way out of scope of this course.}.
+What programming is mostly about is not writing new code so much as debugging\sidenote{The art of fault-finding in computer code.} what you have already written. Key then, is to reduce the incidence of bugs occurring in the first place, and when they do occur, firstly to have code that lends itself to debugging and secondly, knowing how to go about the debugging. The first two facets are at least partly addressed through good programming practice (see earlier)\sidenote{And by the discipline of software engineering, which is way out of scope of this course.}.
 
 Here's an example to try out to start to see what might be involved in debugging,  loosely based on a previous plotting example -- go create a new \textit{m-file} called: \textsf{plot\_some\_dull\_stuff.m}\sidenote{Remember -- you are advised to name your \textit{m-files} as something vaguely descriptive of what the script actually does (and you do ont have to go with this choice, although it might turn out to be perfectly descriptive ;) (i.e. you do not have to call it this!)}. Then add the following lines to the file:
 
@@ -2171,7 +2203,7 @@ y2 = cos[x];
 
 \noindent Now you have reduced the use of the \texttt{\texttt{cos}} command to its simplest, whilst retaining the usage in your program that seemed to cause an issue. Hopefully, now the error is apparent. If still not, check out help on the \texttt{cos} function, or search \texttt{cos} in the \textbf{MATLAB} help (from the question mark icon in the toolbar).
 
-\textit{Is it important to recognise that (1) bugs will not always be flagged by MATLAB with a line number, and you can have valid code but nonsensical results, and (2) the mistake is often made earlier in the code than when MATLAB flags up a problem line.} 
+\textit{Is it important to recognise that (1) bugs will not always be flagged by \textbf{MATLAB} with a line number, and you can have valid code but nonsensical results, and (2) the mistake is often made earlier in the code than when \textbf{MATLAB} flags up a problem line.} 
 
 Other strategies for helping debug include:
 
@@ -2194,10 +2226,10 @@ Once you have fixed this, re-run the program. Ha ha -- it still does not work. (
 \noindent Now we apparently have a problem on line 12:
 
 \begin{docspec}
-Undefined function or variable 'k'.
+\textcolor{red}{Undefined function or variable 'k'.
 \\ \
 \\ Error in tmp2 (line 12)
-\\ plot(x,y2,k);?
+\\ plot(x,y2,k);?}
 \end{docspec}
 
 \noindent Now \textbf{MATLAB} does not like \texttt{function or variable 'k'} because it cannot find that it has ever been defined. Is \texttt{k} meant to be a function or variable? Look up \texttt{help plot} to remind yourself of the correct syntax if the problem is not immediately obvious.
@@ -2224,16 +2256,16 @@ A \textit{function} is defined (and differentiated from a \textit{script}) by a 
 
 \marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \textit{\textbf{Functions}}
-\\The all-important fancy first line of a \textit{function}, as defined in MATLAB help, looks like:
+\\The all-important fancy first line of a \textit{function}, as defined in \textbf{MATLAB} help, looks like:
 \begin{docspecmargin}
 function [y1,...,yN] = myfun(x1,...,xM)
 \end{docspecmargin}
-Thanks MATLAB (this seems overly complex to say the least)!
+Thanks \textbf{MATLAB} (this seems overly complex to say the least)!
 \\OK -- lets break this down. Lets assume that you call the \textbf{m-file} calc\_stuff. The minimal definition of a function then looks like:
 \begin{docspecmargin}
 function [] = calc\_stuff()
 \end{docspecmargin}
-(The syntax is critical and the definition line must look like this.) Here we are saying -- pass in not parameters and return no values either. So exactly like a normal script would work and you would execute the function calc\_stuff by typing at the command line:
+(The \textit{syntax} is critical and the definition line must look like this.) Here we are saying -- pass in not parameters and return no values either. So exactly like a normal script would work and you would execute the function calc\_stuff by typing at the command line:
 \begin{docspecmargin}
 >> calc\_stuff()
 \end{docspecmargin}
@@ -2279,13 +2311,17 @@ Your new \textit{function} is used pretty much as you would expect and have used
 \begin{docspec}
 >> Y = sin2(0.5);
 \end{docspec}
-\noindent does the same but assigns the answer to the variable Y (with the semi-colon suppressing output to the command line).
+\noindent does the same but assigns the answer to the variable \texttt{Y} (with the semi-colon suppressing output to the command line).
 
 Go make up your own \textit{function} now. Start by creating one that takes a single input and returns a value equal to the sine of the square of the value (rather than the square of the sine as above). Test it (i.e. compare the output of your \textit{function} with the equivalent calculation typed in at the command line).
 
-When you are happy with this, create one with 2 inputs (refer to \textbf{MATLAB} \texttt{help} on \texttt{function} and/or refer to the previous Box), that returns a value equal to the sine of the first input, divided by the cosine of the second input\sidenote{Mathematically, the answer is not valid for all possible values of the 2 inputs (why?), and later we'll learn how to pro-actively deal with such a situation.} (i.e. \(y = \frac{sin(x_1)}{cos(x_2)}\)).
+When you are happy with this, create one with 2 inputs (refer to \textbf{MATLAB} \texttt{help} on \texttt{function} and/or refer to the previous Box), that returns a value equal to the sine of the first input, divided by the cosine of the second input\sidenote{Mathematically, the answer is not valid for all possible values of the 2 inputs (why?), and later we'll learn how to pro-actively deal with such a situation.}, i.e.
 
-You have used other functions, perhaps without knowing it, and some of them return values, but because you have not attempted to assign the returned values to a variable, you may not have not noticed. For example, \texttt{plot} and \texttt{scatter} are in fact \textit{functions}, and return an ID of the plot graphic. We simply have not been asking for the returned value so far. As per \textbf{MATLAB} \texttt{help}:
+\vspace{2mm}
+\(y = \frac{sin(x_1)}{cos(x_2)}\))
+\vspace{2mm}
+
+You have used other \textit{functions}, perhaps without knowing it, and some of them return values, but because you have not attempted to assign the returned values to a variable, you may not have not noticed. For example, \texttt{plot} and \texttt{scatter} are in fact \textit{functions}, and return an ID of the plot graphic. We simply have not been asking for the returned value so far. As per \textbf{MATLAB} \texttt{help}:
 \begin{docspec}
 H = SCATTER(...) returns handles to the scatter objects created.
 \end{docspec}
@@ -2296,7 +2332,7 @@ with the \texttt{handle}, \texttt{H}, being an identifier of the graphic which c
 \\\textit{Functions} are a prime example of the importance of being able to pause code part the way through (e.g. by setting a \textit{breakpoint}) because when a \textit{function} terminates, or crashes, you get to see none of the values of any variables created within the \textit{function}, unless they have been returned as output (and assuming here that the code did not crash and managed to get to the end). Setting a \textit{breakpoint} allows you to interrogate the values of any internal \textit{variables}.
 \end{mdframed}}
 
-Finally, it is important to note that by default, any variables created within a \textit{function} are TOP SECRET, and by that, I mean that they are not accessible to the main \textbf{MATLAB} workspace and do not appear listed in the \textsf{Workspace window}. To see that this is a non-Trump-able true fact, create the following function (basically, the first example but split into 2 steps):
+Finally, it is important to note that by default, any variables created within a \textit{function} are TOP SECRET, and by that, I mean that they are not accessible to the main \textbf{MATLAB} workspace and do not appear listed in the \textsf{Workspace window}. To see that this is a non-Trump \uline{true fact}, create the following \textit{function} (basically, the first example but split into 2 steps):
 \begin{docspec}
 function [Y] = sin2new(X)
 \\tmp = sin(X);
@@ -2393,7 +2429,7 @@ All this will hopefully become apparent during this and later weeks, so don't wo
 
 Designing a program (a \textbf{MATLAB} script saved as an \textit{m-file})  that asks whether or not you like bananas, and if you answer 'yes', tells you 'Correct -- they are a great fruit!'.
 
-But before we worry about anything else (e.g. how to apply a \textit{conditional} statement), you'll  need to know about inputting information into a \textbf{MATLAB} program from the keyboard\sidenote{All programming languages have such a facility and man basic programs, at least in the Old Days prior to widespread GUIs, make use of keyboard input}. Amazingly, you can guess (I actually just did) the command for requesting input -- it is \docenv{input} (for 'input' -- a rare occasion when everything is logical and simple!) (see Box).
+But before we worry about anything else (e.g. how to apply a \textit{conditional} statement), you'll  need to know about inputting information into a \textbf{MATLAB} program from the keyboard\sidenote{All programming languages have such a facility and man basic programs, at least in the Old Days prior to widespread \textit{GUI}s, make use of keyboard input}. Amazingly, you can guess (I actually just did) the command for requesting input -- it is \docenv{input} (for 'input' -- a rare occasion when everything is logical and simple!) (see Box).
 
 Armed with this important new information (how to get \textbf{MATLAB} to ask for input and then receive and do something with keyboard input) -- firstly create a blank \textit{m-file} and save with a 'suitable' filename. Maybe add a header comment (1st line or lines starting with a \texttt{\%}) to remind you what this \textit{script} is going to do.
 
@@ -2434,7 +2470,7 @@ Run the program thus far. You should see the question displayed, and when you ty
 \noindent\rule{2cm}{0.5pt}
 \vspace{2mm}
 
-OK -- aside from the use of \texttt{input}, there is nothing new here. Yet. The ultimate purpose of the program is to give a reply that depends on the answer given. This is where we are going -- to utilize a \textit{conditional statement} -- depending on whether the answer is 'yes' or not, we are going to display a different message. This is a fundamental programming element -- different code (the \textit{statements} in the \textit{conditional} definition) will execute depending on the value of a \textit{variable} -- in this example, the 'different code' is a different message and the value of the variable is 'yes' or 'no' (or other answer).
+\noindent OK -- aside from the use of \texttt{input}, there is nothing new here. Yet. The ultimate purpose of the program is to give a reply that depends on the answer given. This is where we are going -- to utilize a \textit{conditional statement} -- depending on whether the answer is 'yes' or not, we are going to display a different message. This is a fundamental programming element -- different code (the \textit{statements} in the \textit{conditional} definition) will execute depending on the value of a \textit{variable} -- in this example, the 'different code' is a different message and the value of the variable is 'yes' or 'no' (or other answer).
 
 You are going to add an '\texttt{if ...}' statement to the code (starting on line 4) to test whether the answer, held in the variable \texttt{MY\_ANSWER}, is equal to '\texttt{yes}'.
 In the language of \textbf{MATLAB} syntax (see Box), the EXPRESSION is  whether the string contained in \texttt{MY\_ANSWER} is '\texttt{yes}'. How do we ask \textbf{MATLAB} to compare the value of \texttt{MY\_ANSWER} with '\texttt{yes}'?
@@ -2510,7 +2546,7 @@ Re-run (after saving) the program and confirm that it works (asking whether you 
 \noindent\rule{2cm}{0.5pt}
 \vspace{2mm}
 
-Next, you might display an alternative message is the answer is not 'yes'. Refer to \textbf{help} / the margin Box on if ... and note that you can extent the structure with an \texttt{else} which would be followed by a line displaying the alternative message (e.g. 'Then you need to get a life, apple-lover.')\sidenote{And then the line with \texttt{end} after that -- follow the prescribed structure *exactly*.}.
+\noindent Next, you might display an alternative message is the answer is not 'yes'. Refer to \textbf{help} / the margin Box on if ... and note that you can extent the structure with an \texttt{else} which would be followed by a line displaying the alternative message (e.g. 'Then you need to get a life, apple-lover.')\sidenote{And then the line with \texttt{end} after that -- follow the prescribed structure *exactly*.}.
 
 Try this first -- extend you program with an \texttt{else} line and then a an alternative message. The structure should now look like Figure \ref{fig:ch2-bananas4}.
 
@@ -2577,7 +2613,7 @@ So -- go modify your code to allow for a 'YES' or a 'yes'. Hell, try allowing fo
 
 \newthought{A non-text and non fruit related example. Almost.}
 
-How many bananas could you eat in a day? I bet it is less than ten. We'll let the computer ask and if the answer is 10 or more, you (the computer) shouts: 'lier!'.\sidenote{This example is even more stupid than the last one. But no more stupid than in any computer programming textbook and it will at least demonstrate a subtly different usage of \texttt{if ...}.}
+How many bananas could you eat in a day? I bet it is less than ten. We'll let the computer ask and if the answer is 10 or more, you (the computer) shouts: 'liar!'.\sidenote{This example is even more stupid than the last one. But no more stupid than in any computer programming textbook and it will at least demonstrate a subtly different usage of \texttt{if ...}.}
 
 The basic code is very similar to before. Create a new \textit{m-file}, add a comment line, define your question ('How many bananas do you think you could you eat in a single day?') and then get \textbf{MATLAB} to ask it and pass back whatever is entered in at the command line. The only difference at this point -- refer to the usage of \texttt{input} (see earlier Box) -- is that we want a number input rather than a string. You can call the \textit{variable} into which you assign the result of \texttt{input}, the same as before, or to make it distinct, e.g. \texttt{N\_BANANAS}, i.e.
 \begin{docspec}
@@ -3066,7 +3102,7 @@ At the end of (but still within) the \textit{loop} (i.e., before the \textit{loo
 \begin{docspec}
 pcolor(temp(:,:,month));
 \end{docspec}
-and should produce extremely exciting graphics as in Figure \ref{fig:ch3-pcolortemp}\sidenote[][0.0in]{The 2D graphics will get *much* better later -- one thing at a time!}. (\uline{Don't} just type this line in blindly (maybe it doesn't work anyway). Make sure that you understand what you are doing (otherwise why do GEO111 at all?).)
+and should produce extremely exciting graphics as in Figure \ref{fig:ch3-pcolortemp}\sidenote[][0.0in]{The 2D graphics will get *much* better later -- one thing at a time!}. (\uline{Don't} just type this line in blindly (maybe it doesn't work anyway). Make sure that you understand what you are doing (otherwise why take the class at all?).)
 
 \begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch3-pcolortemp.eps}
@@ -3100,11 +3136,9 @@ Save and run. When \textbf{MATLAB} is all done, at the commend line type in:
 
 If you want to play some more, just type \texttt{help movie} -- there are controls for not only the number of times you loop through the complete animation, but also for the numbers of frames per second. But we will revisit this later -- the 2D plotting you have done so far is *very* basic and there is no scale or sane x/y axes. Later we can also add the continental outlines that will help orient you and improve the quality of the graphical output. 
 
-\uline{Before} you move -- go look at your \textit{script} -- is it well commented? Would you be able to tell exactly what it does it by the end of GEO111? What about next year? Are the \textit{loop} contents indented? It is important that it is commented and laid out adequately.
+\uline{Before} you move -- go look at your \textit{script} -- is it well commented? Would you be able to tell exactly what it does it by the end of the course? What about next year? Are the \textit{loop} contents indented? It is important that it is commented and laid out adequately.
 
-Finally -- there are \textbf{MATLAB} commands to turn your \textbf{MATLAB} format movie into a format you can use elsewhere. The old ... and maybe still working (or not) command was \docenvdef{movie2avi} (see Box). The new/replacement command is \docenvdef{VideoWriter}. TO use this new \textbf{MATLAB} \textit{function}, adjust your code as follows and as per the \textbf{MATLAB} \texttt{help} on \docenv{VideoWriter}. We could also simplify things by not creating a 3D array, but rather over-writing a 2D array each time (having first created the animation frame).
-
-\newpage
+Finally -- there are \textbf{MATLAB} commands to turn your \textbf{MATLAB} format movie into a format you can use elsewhere. Previously ... there was a command was \docenvdef{movie2avi} (see Box). But it has been ... retired (curse you, Mathworks). The new/replacement command is \docenvdef{VideoWriter,} which differs mostly in that the animation is now created within the program and the  \textsf{.avi} format animation has its frames added (within the loop) as the graphics are created (rather than converting the frames afterwards as in \docenv{movie2avi}). . To use this new \textbf{MATLAB} \textit{function}, adjust your code as follows and as per the \textbf{MATLAB} \texttt{help} on \docenv{VideoWriter}.
 
 \begin{docspecmargin}
 \textcolor[rgb]{0,0.501961,0}{\% Prepare the new file.}\\
@@ -3122,6 +3156,8 @@ end\\
 \textcolor[rgb]{0,0.501961,0}{\% Close the file.}\\
 close(vidObj);  
 \end{docspecmargin}
+
+The code above also simplifies things by not bothering to create a 3D array, but rather over-writing a 2D array (\texttt{temp}) each time around the loop (having first created the animation frame).
     
 %================================================
 
@@ -3195,7 +3231,7 @@ which compares \texttt{my\_answer} and 'y', if this is not true (that they are t
 
 \newthought{A more practical example} would be when saving a data file, to test for a filename already that already exists and if so, automatically modify the new file name so as not to over-write the file.\sidenote{Note that while in the \texttt{m-file} Editor, \textbf{MATLAB} asks you if you want to over-write an existing file, when saving a file directly from a program, no such dialogue box or warning is given.} The relevant function is \docenv{exist}, and in the case of a test for a file, returns either \texttt{0} (the file does not exist in the \textbf{MATLAB} search path, although that does not rule out it existing somewhere else entirely{}), or \texttt{2} (the file exists).
 
-Clearly(?), in the example of saving the movie file (using the \texttt{movie2avi} command), you might well want to test whether the filename that you have chosen already exists (i.e. the value returned by \texttt{exist} is \texttt{2}). If so (i.e. the file exists), you need to modify the filename  by means of a new concatenation, perhaps appending something like '\texttt{\_NEW}' to the end of the string\sidenote[][-0.75in]{Recall that in using the \texttt{movie2avi} command, you pass a filename -- simply modify the filename passed, in a similar way to in which you modified the filename for loading the temperature data.}. If not, and the filename has not already been used, you can proceed as before -- the equivalent of 'doing nothing'. Go ahead -- try it (i.e. modify your code to avoid over-writing an existing filename).
+Clearly(?), in the example of saving the movie file, you might well want to test whether the filename that you have chosen already exists (i.e. the value returned by \texttt{exist} is \texttt{2}). If so (i.e. the file exists), you need to modify the filename  by means of a new concatenation, perhaps appending something like '\texttt{\_NEW}' to the end of the string\sidenote[][-0.75in]{Recall that in using the \texttt{movie2avi} command, you pass a filename -- simply modify the filename passed, in a similar way to in which you modified the filename for loading the temperature data.}. If not, and the filename has not already been used, you can proceed as before -- the equivalent of 'doing nothing'. Go ahead -- try it (i.e. modify your code to avoid over-writing an existing filename).
 
 \marginnote[-0.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
 \docenvdef{exist}
