@@ -4085,7 +4085,7 @@ c.Label.String = 'The units of my lovely colorbar';
 
 Each data point in the \texttt{etopo1deg} matrix should have one longitude value (\textit{x}-axis) and one latitude (\textit{y}-axis) value associated with it. It should hopefully be intuitive to you now ... that what we need is a pair of matrices, of exactly the same size as the \texttt{etopo1deg} data matrix -- one holding longitude values and one latitude values. There are various ways of creating the required matrices 'by hand' (or involving writing a program including a \textit{loop}). All of them are tedious. There is a \textbf{MATLAB} function to help. But it is not entirely intuitive\sidenote{\textbf{\textcolor{red}{DON'T\ PANIC!}}} ... \docenv{meshgrid}.
 
-Spend a few minutes reading about it in \texttt{help}. In particular, look at the examples given to help you translate the \textbf{MATLAB}-speak gobbledegook of the function \textsf{Description}. You should be able to glean from all this that this function allows us to create two \(a\times b\) arrays; one with the columns all having the same values, and one with the rows all having the same values (exactly what we need for defining the (lon,lat) of all the global data points). If not, and probably not -- see Box. And then lets do a simple example (adapted from \textbf{help}):
+Spend a few minutes reading about it in \texttt{help}. In particular, look at the examples given to help you translate the \textbf{MATLAB}-speak gobbledegook of the function description. You should be able to glean from all this that this function allows us to create two \(a\times b\) arrays; one with the columns all having the same values, and one with the rows all having the same values (exactly what we need for defining the (lon,lat) of all the global data points). If not, and probably not -- see Box. And then lets do a simple example (adapted from \textbf{help}):
 \begin{docspec}
 >> [X,Y] = meshgrid(1:3,10:14)
 \\X =
@@ -4338,39 +4338,6 @@ Play about with some other relational operators and criteria, and make up some v
 
 %------------------------------------------------
 
-\newthought{Back to the 'quake Example}: Find\sidenote{Intentional joke *and* clue.} how may earth quakes there were bigger than M = 8? Also determine how many quakes occurred bigger than M = 7, 6, 5, 4, and 3. Determine the day on which the magnitude 8.7 shock occurred.
-
-In the first problem (number of quakes greater than a specified limit) --  you need ask find to return the row numbers for all quakes satisfying the condition: \texttt{magnitude > 8.0}. \texttt{find} will return you a column vector. You don't actually need to worry about or access the contents of the vector, you just need to know how many elements there are in the vector (because there will be one element for each occurrence of \texttt{magnitude > 8.0}). This is the same as its \texttt{length} (see earlier and/or \textbf{help}).
-
-In the second problem -- you need to find the row number of the quake magnitude data which satisfies the condition: \texttt{magnitude > 8.7}. Knowing the row number, you can then access the data column containing the sate information, and hence extract the day and solve the problem.
-
-All these problems can actually be solved in a single line of \textbf{MATLAB}, but feel free to break it down into multiple steps.
-
-%------------------------------------------------
-
-\vspace{1mm}
-\noindent\rule{4cm}{0.5pt}
-\vspace{-2mm}
-
-%------------------------------------------------
-
-\newthought{In the sealevel (oxygen isotope) Example}, you could start by determining the  maximum and minimum sea-levels that have occurred over the last 782,000 years. Then ... because it would be helpful to know *when* the minimum and maximum sea-level heights occurred, use the \texttt{find} function to find the data row in which the minimum and maximum values  occurred. Once you know the respective data rows, you can then easily pull out the ages.\sidenote{HINT -- if your maximum value was stored in the variable max\_value, you found find the corresponding row by:
-\\\noindent \texttt{find(data(:,2) == max\_value)}
-\\What this is saying, is search the 2nd column (the sea-level values) of the array \texttt{data}, and look for a match to the value of \texttt{max\_value}. The equality operator (\texttt{==}) is used in this context.} 
-Find the ages of both minimum and maximum values.
-
-Also find all the occasions (times) on which sealevel was higher than today (modern). (Or equivalently, when the oxygen isotope value, that we are assuming directly reflects changes in level, was lower than modern\sidenote{Lower d18O => less ice volume => higher sealevel.}.)
-
-You can also ask questions based in time, such as what was the sealevel (or oxygen isotope value) at 21 ka (i.e. without having to look through the data manually and determine on which row 21 ka occurs, because this is exactly what \texttt{find} can do this for you)? This can be particularly useful if the value of time is calculated or passed in from elsewhere, rather than specified as e.g. 21 ka, because you may not \textit{a priori} know what the value will be, hence automating the script with \texttt{find} is super useful. Effectively then you are creating an \textit{algorithm} for taking a time input and determining sealevel.
-
-%------------------------------------------------
-
-\vspace{1mm}
-\noindent\rule{4cm}{0.5pt}
-\vspace{-2mm}
-
-%------------------------------------------------
-
 \newthought{For an Example of data-filtering} -- dig out the paleo-proxy (not ice-core) atmospheric CO\(_{2}\) data you downloaded. One further way of plotting with \texttt{scatter} is to scale the point size by a data value. We could do with by:
 \begin{docspec}
 SCATTER(data(:,1),data(:,2),data(:,2))
@@ -4488,6 +4455,84 @@ It should end up looking something like Figure \ref{fig:plot-CO2scatter4} in whi
 \label{fig:plot-CO2scatter4}
 \end{marginfigure} 
 
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
+
+\noindent In the example of the observational Riverside temperature data (data file: \texttt{temperature\_riverside.txt}), if would be nice to also be able to use \docenv{find} ... which can indeed determine all the locations at which a \texttt{NaN} occurs\sidenote{Using \docenv{isnan}.}, by e.g.:
+
+\begin{docspec}
+>> find(isnan(temperature\_riverside))
+\end{docspec}
+
+\noindent ... but it is not obvious what to 'do' with the resulting list of linear indices for each cell containing a missing value (\texttt{NaN}). For instance, you cannot remove a single cell from a \(a\times b\) array for which both \(a\) and \(b\) are \(>1\) (because an array must contain the same number of elements in each row (and the same number of elements in each column)).
+
+What you need, is a way of automatically removing each and every row in which one (or more) \texttt{NaN}s appear. There are two obvious approaches:
+
+\vspace{2mm}
+\textbf{1. use a loop}
+\vspace{2mm}
+
+We could go through the array, row by row, and for every row in which a \texttt{NaN} occurs, remove that row. The code would look something like:
+
+\begin{docspec}
+\textcolor[rgb]{0,0.501961,0}{\%\%\% script to load in data and remove NaN-containing rows}\\
+\textcolor[rgb]{0,0.501961,0}{\% load dataset}\\
+data=load(\textcolor[rgb]{1,0,1}{'temperature\_riverside.txt'},\textcolor[rgb]{1,0,1}{'ascii'});\\
+\textcolor[rgb]{0,0.501961,0}{\% determine number of rows of data}\\
+n\_max = length(data);\\
+\textcolor[rgb]{0,0.501961,0}{\% initialize row count to the first row}\\
+n = 1;\\
+\textcolor[rgb]{0,0.501961,0}{\% loop through all rows}\\
+\textcolor{blue}{while} (n <= n\_max),\\
+\ \ \    found\_nans = find(isnan(data(n,:)));\\
+\ \ \    \textcolor{blue}{if} (~isempty(found\_nans));\\
+\ \ \ \ \ \        \textcolor[rgb]{0,0.501961,0}{\% remove row}\\
+\ \ \ \ \ \        data(n,:) = [];\\
+\ \ \ \ \ \        \textcolor[rgb]{0,0.501961,0}{\% remember ot update total number of rows!!!}\\
+\ \ \ \ \ \        n\_max = n\_max - 1;\\
+\ \ \ \ \ \        \textcolor[rgb]{0,0.501961,0}{\% NOTE: don't update row count}\\
+\ \ \    \textcolor{blue}{else}\\
+\ \ \ \ \ \        \textcolor[rgb]{0,0.501961,0}{\% move on to next row}\\
+\ \ \ \ \ \        n = n+1;\\
+\ \ \    \textcolor{blue}{end}\\
+\textcolor{blue}{end}\\
+\end{docspec}
+
+\vspace{2mm}
+\textbf{2. cheat!}
+\vspace{2mm}
+
+(not really)
+
+There is a relatively new \textbf{MATLAB} \textit{function} that achieves just this: \docenv{rmmissing}. Slightly simpler code to do the same job would then look like:
+
+\begin{docspec}
+\textcolor[rgb]{0,0.501961,0}{\%\%\% alt script to load in data and remove NaN-containing rows}\\
+\textcolor[rgb]{0,0.501961,0}{\% load dataset}\\
+data=load(\textcolor[rgb]{1,0,1}{'temperature\_riverside.txt'},\textcolor[rgb]{1,0,1}{'ascii'});\\
+\textcolor[rgb]{0,0.501961,0}{\% remove problem rows!!!}\\
+data = rmmissing(data);
+\end{docspec}
+
+MATLAB [grey]
+\marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\docenvdef{rmmissing} -- 'Remove rows or columns with missing entries'.
+\\In the simplest usage:
+\begin{docspecmargin}
+B = rmmissing(A);
+\end{docspecmargin}
+Removes rows containing missing data elements from array \texttt{A}, assigning the results to array \texttt{B}.
+\\MATLAB defines missing data as:
+\begin{itemize}[noitemsep]
+\item \texttt{NaN} - for number arrays
+\item \texttt{<missing>} - for string arrays
+\item blank character \texttt{[' ']} - for character arrays
+\item empty character \texttt{{''}} - for cell arrays
+\end{itemize}
+(see \textbf{help} for further information and examples)
+\end{mdframed}}
+
 %------------------------------------------------
 
 \subsection{Basic (pretend) 'stats'}
@@ -4585,7 +4630,7 @@ If you need the total sum of all the elements in a matrix, or mean of all the el
 
 This (failure to directly obtain the standard deviation of all the elements in a matrix) brings us to array manipulation, which will prove useful in other contexts, such as graphing and particularly scatter plots. In the previous example, \texttt{std(std(D))} fails to give us what we want. Ideally, we would like to have all the elements of D reconfigured so that they were in a single vector format, and we could just write e.g. \texttt{std(D)} and get a single, complete answer.
 
-\marginnote[-1.25in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-4.00in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{reshape}
 \\Use \docenv{reshape} to transform data in an array of one shape (i.e. configurations of rows and columns), into another. \textbf{MATLAB} \texttt{help} is OK on this and for the main usage of the \textit{function}, says:
 \\\textit{'B = reshape(A,sz) reshapes A using the size vector, sz, to define size(B). For example, reshape(A,[2,3]) reshapes A into a 2-by-3 matrix.}'
@@ -4994,7 +5039,7 @@ For some reason ... you need to do \texttt{hold on} only \uline{after} creating 
 \noindent\rule{4cm}{0.5pt}
 \vspace{2mm}
 
-The command \docenv{set} can be used in the context of any (I think?) graphics object, i.e. component part of a final plot (e.g. axis, ticks, line, point, etc). For example, in creating the line segment previously:
+\noindent The command \docenv{set} can be used in the context of any (I think?) graphics object, i.e. component part of a final plot (e.g. axis, ticks, line, point, etc). For example, in creating the line segment previously:
 \begin{docspec}
 h = line(X2,Y2);
 \end{docspec}
@@ -5091,7 +5136,7 @@ Try designing/playing about with different shapes. Perhaps sketch them out on pa
 \noindent\rule{4cm}{0.5pt}
 \vspace{2mm}
 
-If you have the \textbf{MATLAB} \textsf{Image Processing Toolbox}, then you can use the command viscircles to draw circles.
+\noindent If you have the \textbf{MATLAB} \textsf{Image Processing Toolbox}, then you can use the command \texttt{viscircles} to draw circles.
 
 A crude alternative, is to \texttt{scatter} plot a single point ((x,y) location), and set a large size value for the circle. For example:
 \begin{docspec}
