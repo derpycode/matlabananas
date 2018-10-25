@@ -3897,7 +3897,7 @@ Which sort of in a round-about sort of way also brings us to how to set the colo
 
 \marginnote[-0.25in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{colormap}
-\textbf{MATLAB} has a number of 'colormaps' built in -- color scale that determine the colors that correspond to the data. The command to change the \textit{colormap} from the default is:
+\\ \textbf{MATLAB} has a number of 'colormaps' built in -- color scale that determine the colors that correspond to the data. The command to change the \textit{colormap} from the default is:
 \begin{docspecmargin}
 >> colormap NAME
 \end{docspecmargin}
@@ -3913,7 +3913,6 @@ To return to the default \textit{colormap}:
 \begin{docspecmargin}
 >> colormap default
 \end{docspecmargin}
-
 \end{mdframed}}
 
 %------------------------------------------------
@@ -5010,9 +5009,9 @@ To see how different combinations of settings pan out, try:
 \\\noindent or:
 
 \begin{docspec}
->> set(h,'XTick',[0 50 100],'XTickLabel',{'cat', 'dog', 'rabbit'});
+>> set(h,'XTick',[0 50 100],'XTickLabel',\{'cat', 'dog', 'rabbit'\});
 \end{docspec}
-where \texttt{{'cat', 'dog', 'rabbit'}} is actually a 3 string \textit{cell array}.
+where \texttt{\{'cat', 'dog', 'rabbit'\}} is actually a 3 string \textit{cell array}.
 
 All this insanity should be looking like Figure \ref{fig:ch3-graphics04} (if we also remove the y-axis ticks and labels\sidenote[][-1.5in]{It is sufficient just to type: \begin{docspecmargin}>> set(h,'YTick',[]);
 \end{docspecmargin}}).
@@ -5104,7 +5103,7 @@ Or we could re-orientate the square:nits on each side. We could create our vecto
 >> Y2 = [50 60 50 40];
 \end{docspec}
 \begin{docspec}
->> patch(X2,Y2,[0 1 1]);
+>> patch(X2,Y2,'c');
 \end{docspec}
 shown in Figure \ref{fig:ch3-shape02}.
 
@@ -5120,7 +5119,7 @@ shown in Figure \ref{fig:ch3-shape02}.
 >> Y3 = [50 60 50 60 40 30];
 \end{docspec}
 \begin{docspec}
->> patch(X3,Y3,[0 1 0]);
+>> patch(X3,Y3,'g');
 \end{docspec}
 gives Figure \ref{fig:ch3-shape03}.
 
@@ -5151,8 +5150,10 @@ or filled:
 
 \subsection{Colors}
 
-You are already familiar with setting colors for lines, with the notation: \texttt{'r'}, or \texttt{'b'} (for red, blue, respectively). This is nice and simple and so totally fabulous ... except there are a limited number of colors available in this notation:
+You are already familiar with setting colors for lines, with the notation: \texttt{'r'}, or \texttt{'b'} (for red, blue, respectively). This is nice and simple and so totally fabulous ... except there are a limited number of colors available in this notation (see Box).
 
+\marginnote[-1.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\textbf{MATLAB} quick colors:
 \begin{itemize}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item \texttt{y} -- yellow
@@ -5164,6 +5165,7 @@ You are already familiar with setting colors for lines, with the notation: \text
 \item \texttt{w} -- white
 \item \texttt{k} -- black
 \end{itemize}
+\end{mdframed}}
 
 Hence there is an alternative that enables a more exact specification of color. In this particular scheme -- red-green-blue, abbreviated to \textit{RGB}, you set the intensity of red, green, and blue, on a scale of 0 to 1. And supply this in a vector format to \textbf{MATLAB}. For example:
 
@@ -5182,7 +5184,7 @@ Play around with some RGB value combinations, plotting shapes, or filled circles
 \end{docspec}
 
 A rendition of the RGB color scale is shown for reference in Figure \ref{fig:RGB_color_solid_cube}. 
-\begin{marginfigure}[-1.0in]
+\begin{marginfigure}[-4.0in]
 \includegraphics[width=\linewidth]{RGB_color_solid_cube.png}
 \caption{RGB scale. By SharkD - Own work, GFDL, https://commons.wikimedia.org/
 w/index.php?curid=3375025}
@@ -5191,13 +5193,238 @@ w/index.php?curid=3375025}
 
 %------------------------------------------------
 
+\subsection{Creating color maps}
+
+As mentioned earlier -- \textbf{MATLAB} enables a range of different color scales (\textit{colormaps}) to be used in (esp. contour) plotting and provides around  dozen built-in possibilities (see Box).
+
+\marginnote[-2.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\docenvdef{colormap} (2)
+\\ As mentioned earlier, \textbf{MATLAB} has a number of 'colormaps' built in, which are:
+
+\begin{itemize}[noitemsep]
+\item parula (default)
+\item jet (old default ... avoid ...!)
+\item hsv
+\item hot    
+\item cool
+\item spring
+\item summer
+\item autumn
+\item winter
+\item gray
+\item bone
+\item copper
+\item pink
+\item lines
+\item colorcube
+\item prism
+\item flag
+\end{itemize}
+
+\noindent and which you can set by:
+\begin{docspecmargin}
+>> colormap NAME
+\end{docspecmargin}
+\noindent (or \texttt{colormap(NAME)}), e.g.:
+\begin{docspecmargin}
+>> colormap 'hot'
+\end{docspecmargin}
+\noindent (or \texttt{colormap('hot')})
+
+\end{mdframed}}
+
+Taking the earlier example of loading and plotting the global topography data:
+
+\begin{docspec}
+>> data = load('etopo1deg.dat','-ascii');\\
+>> imagesc(data);
+\end{docspec}
+
+\noindent gives Figure \ref{fig:ch3-etopo3}, and
+
+\begin{docspec}
+>> colormap('hot');\\
+>> imagesc(data);
+\end{docspec}
+
+\noindent gives Figure \ref{fig:ch3-etopo3}.
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch3-etopo3.eps}
+\caption{Global topography plotted with the default \textbf{MALTAB} color scheme.}
+\label{fig:ch3-etopo3}
+\end{marginfigure}
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch3-etopo4.eps}
+\caption{Global topography plotted with \texttt{hot}.}
+\label{fig:ch3-etopo4}
+\end{marginfigure}
+
+You can also define your own \textit{colormap}. \textit{Colormaps} are simply a matrix of \([R G B]\) colors. The most trivial \textit{colormap} would be:
+
+\begin{docspec}
+>> cmap1 = [0 0 0];\\
+>> colormap(cmap1);
+\end{docspec}
+
+\noindent creates and applies a \textit{colormap} containing a single color (black). Try it ... but ti is clearly not very useful ...
+
+Better, would be:
+
+\begin{docspec}
+>> cmap2 = [0 0 0; 1 1 1];\\
+>> colormap(cmap2);
+\end{docspec}
+
+\noindent which creates and applies a color scale containing 2 colors - black and white and when used for the topography data, gives Figure \ref{fig:ch3-etopo5}. 
+\sidenote{Remember, \texttt{imagesc} plots using the maximum number of colors available, and in this example, the mid value between the deepest place in the ocean and highest point on land, divides the colors into black and white -- within specifying a particular scale, this color separation does not occur at zero (sealevel)}
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch3-etopo5.eps}
+\caption{Global topography plotted with a basic black+white dual color scheme.}
+\label{fig:ch3-etopo5}
+\end{marginfigure}
+
+You can keep adding colors, e.g.
+
+\begin{docspec}
+>> cmap3 = [0 0 0; 0.5 0.5 0.0; 0.0 0.5 0.5; 1 1 1];
+\end{docspec}
+
+\noindent but this is a lot of effort to keep adding single additional colors. What you really want to do, is to define end-member colors, and then tell \textbf{MATLAB} to \textit{interpolate} in between these. Recalling back a couple of subsections:
+
+\begin{docspec}
+>> ynew = interp1(xold,yold,xnew);
+\end{docspec}
+
+\noindent takes the values told at x-values \texttt{xold}, and interpolates onto the x-values \texttt{xnew} (and assigns the new y-values to \texttt{ynew}). For instance, if we have the following crudely spaced data\sidenote{In MATLAB notation:
+\begin{docspecmargin}
+xold = [0 3 7 13 16 22 30];\\
+yold = [0.2 0.6 0.7 0.3 0.3 0.1 0.0];
+\end{docspecmargin}
+}:
+
+\vspace{2mm}
+\(\begin{pmatrix}
+0 & 0.2 \\
+3 & 0.6 \\
+7 & 0.7 \\
+13 & 0.3 \\
+16 & 0.3 \\
+22 & 0.1 \\
+30 & 0.0 \\
+\end{pmatrix}\)
+\vspace{2mm}
+
+\noindent and we wanted to create an interpolated dataset from \(0.0\) to \(30.0\) (x-axis values) in steps of \(1.0\), we would first create the new x-axis vector that the data will be interpolated on to:
+
+\begin{docspec}
+xnew = [0.0:1.0:30.0];
+\end{docspec}
+
+\noindent we would write:
+
+\begin{docspec}
+>> ynew = interp1(xold,yold,xnew,'spline');
+\end{docspec}
+
+\noindent and obtain the interpolated data as shown in Figure \ref{fig:ch3-interp1}.
+
+\begin{marginfigure}[0.75in]
+\includegraphics[width=\linewidth]{ch3-interp1.eps}
+\caption{Comparison of sparsely sampled data (points) compared with a more finely spaced spline interpolation (solid line). (x-axis and y-axis are both unit-less.)}
+\label{fig:ch3-interp1}
+\end{marginfigure}
+
+We can do something similar for the \textit{colormaps}. Consider the simple end-member black-to-white white scale:
+
+\begin{docspec}
+>> cmap2 = [0 0 0; 1 1 1];\\
+>> colormap(cmap2);
+\end{docspec}
+
+\noindent We can write this as an (normalised) scale vector \(x\) together 3 color vectors (for red, green, and blue):
+
+\vspace{2mm}
+\(xold = \begin{pmatrix}0.0 \\
+1.0 \\
+\end{pmatrix}\),
+\(rold = \begin{pmatrix}0.0 \\
+1.0 \\
+\end{pmatrix}\),
+\(gold = \begin{pmatrix}0.0 \\
+1.0 \\
+\end{pmatrix}\),
+\(bold = \begin{pmatrix}0.0 \\
+1.0 \\
+\end{pmatrix}\)
+\vspace{2mm}
+
+\noindent and:
+
+\begin{docspec}
+>> xold = [0.0; 1.0];\\
+>> rold = [0; 1];\\
+>> gold = [0; 1];\\
+>> bold = [0; 1];
+\end{docspec}
+
+If we want to create a scale of 11 (from \(0.0\) to \(1.0\) in steps of \(0.1\)) different colors, we can create a new \(x\) vector to interpolate on to:
+
+\begin{docspec}
+xnew = [0.0:0.1:1.0];
+\end{docspec}
+
+\noindent and then either interpolate the 3 color vectors separately:
+
+\begin{docspec}
+rnew = interp1(xold,rold,xnew,'spline');
+\end{docspec}
+
+\noindent etc., or \textbf{MATLAB} allows us to combine them:
+
+\begin{docspec}
+mapold = [rold gold bold];
+\end{docspec}
+
+\noindent and then:
+
+\begin{docspec}
+mapnew = interp1(xold,colold,xnew,'spline');
+\end{docspec}
+
+If you now set the new \textit{colormap} (\texttt{colormap(mapnew);}) and re-plot the global topography -- Figure \ref{fig:ch3-etopo6}.
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch3-etopo6.eps}
+\caption{Global topography plotted with a user-defined grey-scale.}
+\label{fig:ch3-etopo6}
+\end{marginfigure}
+
+%------------------------------------------------
+
 \subsection{Placing and making text nice}
 
-There is not much to placing text and specifying its properties. The \textbf{MATLAB} command for writing a string to a \textsf{figure window}, is \docenvdef{text}.
+There is not much to placing text and specifying its properties. The \textbf{MATLAB} command for writing a string to a \textsf{figure window}, is \docenvdef{text}. That's it! (see Boxes)
 
-That's it! (see Boxes)
+For instance, you could write:
 
-\marginnote{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\begin{docspec}
+>> text(25,25,'bananas');
+\end{docspec}
+
+\noindent and the text \texttt{bananas} will appear at location \((25,25)\) on your plot.
+
+Additional parameters can be added to change font, size, etc (see Box), e.g.:
+
+\begin{docspec}
+>> text(25,25,'bananas','FontSize',24,'Color',[0 1 1]);
+\end{docspec}
+
+\noindent for big light blue bananas.
+
+\marginnote[2.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{text}
 \begin{docspecmargin}
 text(X,Y,STRING);
