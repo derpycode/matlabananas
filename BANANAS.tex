@@ -3624,13 +3624,13 @@ Lets do the easy bit first -- to tell \textbf{MATLAB} to skip \textit{n} lines o
 \begin{docspec}
 my\_data = textscan(openfile\_id2, ... ,'HeaderLines',3);
 \end{docspec}
-OK -- now to dive back into the MATLAB syntax mire ... Lets just load in just the first 2 columns of data, and assume that they are both integers (and skipping the first 3 lines of the file as per above). We might guess that we could simply write:
+OK -- now to dive back into the \textbf{MATLAB} syntax mire ... Lets just load in just the first 2 columns of data, and assume that they are both integers (and skipping the first 3 lines of the file as per above). We might guess that we could simply write:
 \begin{docspec}
 my\_data = textscan(openfile\_id2,'\%d \%d','HeaderLines',3);
 \end{docspec}
 Try it (including closing the file, and a call to \texttt{cell2mat}, as before). What has happened?
 
-It seems that MATLAB translates your format (\texttt{'\%d,\%d'}) into: 'read in a pair of integers, and keep automatically repeating this, until something else is encountered'. That something else is sequence of characters at the end of the first data line (line \#4, because we skipped the first 3), that makes \textbf{MATLAB} think that it has finished (or rather, that it cannot reading in 2 pairs of integers any longer). This leaves you with 2 pairs of integers -- i.e. a 2\(\times\)2 matrix (as you'll see if you look at \texttt{my\_data\_array}).
+It seems that \textbf{MATLAB} translates your format (\texttt{'\%d,\%d'}) into: 'read in a pair of integers, and keep automatically repeating this, until something else is encountered'. That something else is sequence of characters at the end of the first data line (line \#4, because we skipped the first 3), that makes \textbf{MATLAB} think that it has finished (or rather, that it cannot reading in 2 pairs of integers any longer). This leaves you with 2 pairs of integers -- i.e. a 2\(\times\)2 matrix (as you'll see if you look at \texttt{my\_data\_array}).
 
 Here is a solution -- we could omit all the information following the first 2 elements (something for Google to help with).\sidenote{This turns out to be specifying \texttt{'\%*[\(^{\wedge}\)$\backslash$n]'}, which in effects sort of says:\\'skip everything (all the fields) (\texttt{\%*}) up until the end of the line is found (\texttt{[\(^{\wedge}\)$\backslash$n]}).}: 
 \begin{docspec}
@@ -3717,11 +3717,42 @@ If you happen to have an \textbf{Excel} file with data (of any sort) in it from 
 
 \subsection{Importing ... netCDF format data}
 
-Much of spatial, and particularly model-generated, scientific output, is in the form of \textit{netCDF} files. This is a format designed as a common standard to facilitate sharing and transfer of spatial data, but in a way that enables e.g. a 'complete' description of dimensions and various types of meta-data to be incorporated along with the data. The format is platform independent and a variety of graphical viewers exist for viewing and interrogating the data. Most programming languages support the reading and writing of \textit{netCDf} format data. \textbf{MATLAB} is no exception here.
+Much of spatial, and particularly model-generated, scientific output, is in the form of \textit{netCDF} files. This is a format designed as a common standard to facilitate sharing and transfer of spatial data, but in a way that enables e.g. a 'complete' description of dimensions and various types of meta-data to be incorporated along with the data. The format is platform independent and a variety of graphical viewers exist for viewing and interrogating the data. Most programming languages support the reading and writing of \textit{netCDF} format data. \textbf{MATLAB} is no exception here.
 
-As per the previous subsection on data import, and indeed file read/write in programming languages in general -- one opens a file and receives an ID for that file. The file can then be written to or read (including just interrogating its properties rather than necessarily extracting spatial data) using this ID. And of course, closed (using the ID). However, the \textit{netCDF} standard is a little odd in how reading/writing is implemented and everything has to be done by determining the ID of a particular data variable or property of the file. As you'll see ...
+\textbf{MATLAB} actually has a quick and simple, and ... a long-winded formal way of accessing data in a \textit{netCDF} file:
 
-The general approach for reading \textit{netCDF} data is as follows:
+\begin{enumerate}
+\item Using \docenv{ncread}, which reads data directly from the file.
+\item Via a series of function calls to the netCDF library.
+\end{enumerate}
+
+\vspace{2mm}
+\noindent \LARGE\textbf{1.}\normalsize
+\vspace{1mm}
+
+\noindent \docenv{ncread} is by far the simplest way, although it lacks in flexibility and deviates from standard practices used across other programming languages.
+
+\marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\docenvdef{ncread}
+\\In its simplest incarnation:
+\begin{docspecmargin}
+data = ... ncread(filename,varname)
+\end{docspecmargin}
+where \texttt{filename} is the name of a \textit{netCDF} file, and \texttt{varname} is the name of the data variable in the \textit{netCDF} file.
+\\e.g. if there was a variable called \texttt{rain} in the file \texttt{climate.nc},
+\begin{docspecmargin}
+data = ... ncread('climate.nc','rain')
+\end{docspecmargin}
+would read the values in the \textit{netCDF} file variable \texttt{rain} and assign to the variable \texttt{data}.
+\\\textbf{MATLAB} provides a couple of further tricks, allowing you to read sections of the full \textit{netCDF} variable data array, or sample the data array -- see \textbf{help}.
+\end{mdframed}}
+
+\vspace{2mm}
+\noindent \LARGE\textbf{2.}\normalsize
+\vspace{1mm}
+
+\noindent In the formal and more long-winded approach, you open the file and receive an ID for that file. The file can then be written to or read (including just interrogating its properties rather than necessarily extracting spatial data) using this ID. And of course, closed (using the same ID). The \textit{netCDF} standard is also little odd in how reading/writing is implemented and everything has to be done by determining the ID of a particular data variable or property of the file. 
+The general approach is as follows:
 
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
@@ -3748,7 +3779,7 @@ netcdf.close(\textcolor{blue}{ncid});
 
 Note that you need to pass the ID of the \textit{netCDF} file for each and every command (after \texttt{netcdf.open}) so that \textbf{MATLAB} knows which \textit{netCDF} object you are referring to (you are allowed to have multiple \textit{netCDF} files open simultaneously).
 
-\vspace{1mm}
+\vspace{-1mm}
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
@@ -4337,7 +4368,7 @@ Play about with some other relational operators and criteria, and make up some v
 
 %------------------------------------------------
 
-\newthought{For an Example of data-filtering} -- dig out the paleo-proxy (not ice-core) atmospheric CO\(_{2}\) data you downloaded. One further way of plotting with \texttt{scatter} is to scale the point size by a data value. We could do with by:
+\newthought{For an Example of data-filtering} -- dig out the paleo-proxy (\texttt{paleo\_CO2\_data.txt}) atmospheric CO\(_{2}\) data you downloaded earlier. One further way of plotting with \texttt{scatter} is to scale the point size by a data value. We could do with by:
 \begin{docspec}
 SCATTER(data(:,1),data(:,2),data(:,2))
 \end{docspec}
@@ -4353,7 +4384,7 @@ N = NaN(sz1,...,szN)
 which will (according to \textbf{help}) "generate a a sz1-by-...-by-szN array of NaN values where sz1,...,szN indicates the size of each dimension. For example, \texttt{NaN(3,4)} returns a 3-by-4 array of NaN values."
 \end{mdframed}}
 
-This leads us to a new use for \docenv{find} and some basic data filtering. The simplest thing you could do to ensure no zero values, would be to add a very small number to all the values. This would defeat the 'no zero' parameter restriction, but would not help if there were negative values and you have now slightly modified and distorted the data which is not very scientific. Substituting a \docenv{NaN} for problem values is a useful trick, as \textbf{MATLAB} will simply ignore and not attempt to plot such values.
+This leads us to a new use for \docenv{find} and some basic data filtering. The simplest thing you could do to ensure that no zero value appear anywhere, would be to add a very small number to all the values. This would defeat the 'no zero' parameter restriction, but would not help if there were negative values and you have now slightly modified and distorted the data which is not very scientific. Substituting a \docenv{NaN} for problem values is a useful trick, as \textbf{MATLAB} will simply ignore and not attempt to plot such values.
 
 So first, lets replace any zero in the CO\(_{2}\) column of the data with a \texttt{NaN}. The compact version of the command you need is:
 \begin{docspec}
@@ -4364,7 +4395,7 @@ But as ever -- perhaps break this down into separate steps and use additional ar
 list\_of\_zero\_locations = find(data(:,2)==0);
 \\data(list\_of\_zero\_locations,2) = NaN;
 \end{docspec}
-What this is saying is: first find all the locations (rows) in the 2nd column of \texttt{data} which are equivalent (\texttt{==}) to zero. Set the CO\(_{2}\) value in all these rows, to a \texttt{NaN} (technically speaking: assign a value of \texttt{NaN} to these locations). You have now filtered out zeros, and replaced the offending values with a \texttt{NaN} and when \textbf{MATLAB} encounters NaNs in plotting -- it ignores them and omits that row of data from the plot.
+What this is saying is: first find all the locations (row indices) in the 2nd column of \texttt{data} for which the value is equivalent (\texttt{==}) to zero. Replace the CO\(_{2}\) value in all these rows (which is originally zero) to a \texttt{NaN} (technically speaking: assign a value of \texttt{NaN} to these locations). You have now filtered out zeros, and replaced the offending values with a \texttt{NaN} and when \textbf{MATLAB} encounters \textit{NaNs} in plotting -- it ignores them and omits that row of data from the plot.
  
 Alternatively, we could have simply deleted the entire row containing each offending zero.  Breaking it down, this is similar to before in that you start by identifying the row numbers of were zeros appear in the 2nd column, but now we set the entire row to be 'empty', represented by \texttt{[]}:
 \begin{docspec}
@@ -4424,10 +4455,10 @@ ans =\\
 \noindent\rule{4cm}{0.5pt}
 \vspace{2mm}
 
-\noindent As a last (optional) exercise on this ... In the CO\(_{2}\) data, there are min and max uncertainty limit values. One could color-code the points in a scatter-plot to represent either the min or the max (perhaps try this first), but one on its own is not necessarily much use. One could color-code by the difference, but this is a function of the absolute value and one would expect large uncertainty bars if the mean (central) estimate was high, and lower if it were low. Perhaps we need the \textit{relative} range in uncertainty? Can you do this? i.e., \texttt{scatter}-plot the mean CO\(_{2}\) estimate (as a function of time), but color-coding for the range in uncertainty as a proportion of the value?
+\noindent In the CO\(_{2}\) data, there are min and max uncertainty limit values. One could color-code the points in a scatter-plot to represent either the min or the max (perhaps try this first), but one on its own is not necessarily much use. One could color-code by the difference, but this is a function of the absolute value and one would expect large uncertainty bars if the mean (central) estimate was high, and lower if it were low. Perhaps we need the \textit{relative} range in uncertainty? Can you do this? i.e., \texttt{scatter}-plot the mean CO\(_{2}\) estimate (as a function of time), but color-coding for the range in uncertainty as a proportion of the value?
 
-It turns out this is not entirely trivial because as you have seen, the data is not as well behaved as you might have hoped. In fact, it is just like real data you might encounter all the time! Before you do anything -- break down into small steps what you need to do with the data, as this will inform what (if any) additional processing you might have to carry out on the data. It should be obvious, that to create a CO\(_{2}\) difference, \textit{relative} to the mean, you are going to have to divide by the mean value (column \#2 in the array).  So first off -- if any of the mean values are zero, it is all going to go pear-shaped. Actually, equally unhelpful, or at least, lacking in any meaning, may be negative values. If you inspect the data (in the \textsf{Variable window}), there are both zeros and negative values for mean CO\(_{2}\) proxy estimates. We need to get rid of these. Follow the steps as before. You may also have to process the min and max values should they turn out to be the same. Likely you are going to have to delete all the rows in which (1) column \#2 values are zero or below, and (2) column \#3 and \#4 values are equal (you could also try the \texttt{NaN} substitution and see if it works out).
-(If you need a slight hint ... one possible answer is here\sidenote{
+It turns out this is not entirely trivial because as you have seen, the data is not as well behaved as you might have hoped. In fact, it is just like real data you might encounter all the time! Before you do anything -- break down into small steps what you need to do with the data, as this will inform what (if any) additional processing you might have to carry out on the data. It should be obvious, that to create a CO\(_{2}\) difference, \textit{relative} to the mean, you are going to have to divide by the mean value (the values in column \#2 of the array).  So first off -- if any of the mean values are zero, it is all going to go pear-shaped (dividing by zero ...). Actually, equally unhelpful, or at least, lacking in any meaning, may be negative values. If you inspect the data (in the \textsf{Variable window}), there are both zeros and negative values for mean CO\(_{2}\) proxy estimates. We need to get rid of these. Follow the steps as before (i.e. identifying zero of negative values and either removing the corresponding rows in the array, or setting the values to a \texttt{NaN}). You may also have to process the min and max values should they turn out to be the same. Likely, you are going to have to delete all the rows in which: (1) column \#2 values are zero or below, and (2) column \#3 and \#4 values are equal (you could also try the \texttt{NaN} substitution and see if it works out).
+(If you need a slight hint ... one possible answer is here\sidenote[][-1.375in]{
 In this possible solution -- all rows in the array \texttt{data}, with mean CO2 values less than or equal to zero, are deleted. Also, all rows for which the max and min values are the same, are also deleted.
 \texttt{\scriptsize{
 \\>> data=load('paleo\_CO2\_data.txt',\\...'-ascii');
@@ -4448,15 +4479,13 @@ colorbar\_id=colorbar;
 
 It should end up looking something like Figure \ref{fig:plot-CO2scatter4} in which you can see the high relative uncertainty (bight colors) prevail at low CO\(_{2}\) values and 'deeper time' (ca. 200-300 Ma). The colorbar title (label) is maybe not ideal, nicer would be one aligned vertically rather than horizontally. We'll worry about that sort of refinement another time.
 
-\begin{marginfigure}[0.0in]
+\begin{marginfigure}[-3.75in]
 \includegraphics[width=\linewidth]{plot-CO2scatter4.eps}
 \caption{Proxy reconstructed past variability in atmospheric CO2 (scatter plot).}
 \label{fig:plot-CO2scatter4}
 \end{marginfigure} 
 
-\vspace{1mm}
-\noindent\rule{4cm}{0.5pt}
-\vspace{2mm}
+\subsection{Other data filtering}
 
 \noindent In the example of the observational Riverside temperature data (data file: \texttt{temperature\_riverside.txt}), if would be nice to also be able to use \docenv{find} ... which can indeed determine all the locations at which a \texttt{NaN} occurs\sidenote{Using \docenv{isnan}.}, by e.g.:
 
@@ -4485,10 +4514,10 @@ n = 1;\\
 \textcolor[rgb]{0,0.501961,0}{\% loop through all rows}\\
 \textcolor{blue}{while} (n <= n\_max),\\
 \ \ \    found\_nans = find(isnan(data(n,:)));\\
-\ \ \    \textcolor{blue}{if} (~isempty(found\_nans));\\
+\ \ \    \textcolor{blue}{if} (\(\sim\)isempty(found\_nans));\\
 \ \ \ \ \ \        \textcolor[rgb]{0,0.501961,0}{\% remove row}\\
 \ \ \ \ \ \        data(n,:) = [];\\
-\ \ \ \ \ \        \textcolor[rgb]{0,0.501961,0}{\% remember ot update total number of rows!!!}\\
+\ \ \ \ \ \        \textcolor[rgb]{0,0.501961,0}{\% remember to update total number of rows!!!}\\
 \ \ \ \ \ \        n\_max = n\_max - 1;\\
 \ \ \ \ \ \        \textcolor[rgb]{0,0.501961,0}{\% NOTE: don't update row count}\\
 \ \ \    \textcolor{blue}{else}\\
@@ -4514,8 +4543,7 @@ data=load(\textcolor[rgb]{1,0,1}{'temperature\_riverside.txt'},\textcolor[rgb]{1
 data = rmmissing(data);
 \end{docspec}
 
-MATLAB [grey]
-\marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-2.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{rmmissing} -- 'Remove rows or columns with missing entries'.
 \\In the simplest usage:
 \begin{docspecmargin}
@@ -4957,13 +4985,13 @@ as shown in Figure \ref{fig:ch3-graphics03}.
 
 \noindent Obviously, both line segments could be drawn using \texttt{plot}, or both with \texttt{line}.
 
-\begin{marginfigure}[-0.0in]
+\begin{marginfigure}[0.5in]
 \includegraphics[width=\linewidth]{ch3-graphics02.eps}
 \caption{Figure window with single line segment (via \texttt{plot}).}
 \label{fig:ch3-graphics02}
 \end{marginfigure}
 
-\begin{marginfigure}[-0.0in]
+\begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch3-graphics03.eps}
 \caption{Figure window with a second line segment (via \texttt{line}).}
 \label{fig:ch3-graphics03}
@@ -4979,7 +5007,7 @@ as shown in Figure \ref{fig:ch3-graphics03}.
 >> h = gca;
 \end{docspec}
 
-\noindent Having got the axis \textit{handle}\sidenote[][1.0in]{It is worth omitting the \texttt{;} in order to see the properties associated with the axes, and in fact, it is worth clicking on \texttt{Show \uline{\textcolor{blue}{all properties}}} to see a list of everything that can be edited and adjusted. \\ALL these can be changed if you ever want!!!}, we can now 'set' the properties of the axes, using \docenvdef{set}:
+\noindent Having got the axis \textit{handle}\sidenote[][2.0in]{It is worth omitting the \texttt{;} in order to see the properties associated with the axes, and in fact, it is worth clicking on \texttt{Show \uline{\textcolor{blue}{all properties}}} to see a list of everything that can be edited and adjusted. \\ALL these can be changed if you ever want!!!}, we can now 'set' the properties of the axes, using \docenvdef{set}:
 
 \begin{docspec}
 >> set(h,'XTick',[],'XTickLabel','');
@@ -5298,7 +5326,7 @@ You can keep adding colors, e.g.
 >> ynew = interp1(xold,yold,xnew);
 \end{docspec}
 
-\noindent takes the values told at x-values \texttt{xold}, and interpolates onto the x-values \texttt{xnew} (and assigns the new y-values to \texttt{ynew}). For instance, if we have the following crudely spaced data\sidenote{In MATLAB notation:
+\noindent takes the y-values (\texttt{yold}) at x-values \texttt{xold}, and interpolates onto the x-values   defined by the vector \texttt{xnew} (and assigns the new y-values to vector \texttt{ynew}). For instance, if we have the following crudely spaced data\sidenote{In MATLAB notation:
 \begin{docspecmargin}
 xold = [0 3 7 13 16 22 30];\\
 yold = [0.2 0.6 0.7 0.3 0.3 0.1 0.0];
@@ -5317,19 +5345,19 @@ yold = [0.2 0.6 0.7 0.3 0.3 0.1 0.0];
 \end{pmatrix}\)
 \vspace{2mm}
 
-\noindent and we wanted to create an interpolated dataset from \(0.0\) to \(30.0\) (x-axis values) in steps of \(1.0\), we would first create the new x-axis vector that the data will be interpolated on to:
+\noindent and we wanted to create an interpolated dataset from \(0.0\) to \(30.0\) (in x-axis values) in steps of \(1.0\), we would first create the new x-axis vector that the data will be interpolated on to:
 
 \begin{docspec}
 xnew = [0.0:1.0:30.0];
 \end{docspec}
 
-\noindent we would write:
+\noindent and then we would write:
 
 \begin{docspec}
 >> ynew = interp1(xold,yold,xnew,'spline');
 \end{docspec}
 
-\noindent and obtain the interpolated data as shown in Figure \ref{fig:ch3-interp1}.
+\noindent and obtain the interpolated data as shown in Figure \ref{fig:ch3-interp1}. (Try this.)
 
 \begin{marginfigure}[0.75in]
 \includegraphics[width=\linewidth]{ch3-interp1.eps}
@@ -5340,11 +5368,10 @@ xnew = [0.0:1.0:30.0];
 We can do something similar for the \textit{colormaps}. Consider the simple end-member black-to-white white scale:
 
 \begin{docspec}
->> cmap2 = [0 0 0; 1 1 1];\\
->> colormap(cmap2);
+>> cmap2 = [0 0 0; 1 1 1];
 \end{docspec}
 
-\noindent We can write this as an (normalised) scale vector \(x\) together 3 color vectors (for red, green, and blue):
+\noindent We can write this as points along a vector \(x\) (the axis not representing anything in particular -- the number of the color, or simply the normalized distance between the extreme end-member colors), together 3 color vectors (for the separate red, green, and blue  component values):
 
 \vspace{2mm}
 \(xold = \begin{pmatrix}0.0 \\
@@ -5370,7 +5397,7 @@ We can do something similar for the \textit{colormaps}. Consider the simple end-
 >> bold = [0; 1];
 \end{docspec}
 
-If we want to create a scale of 11 (from \(0.0\) to \(1.0\) in steps of \(0.1\)) different colors, we can create a new \(x\) vector to interpolate on to:
+If we want to create a scale of 11 total (from \(0.0\) to \(1.0\) in steps of \(0.1\)) different colors, we can create a new \(x\) vector to interpolate on to:
 
 \begin{docspec}
 xnew = [0.0:0.1:1.0];
@@ -5379,10 +5406,12 @@ xnew = [0.0:0.1:1.0];
 \noindent and then either interpolate the 3 color vectors separately:
 
 \begin{docspec}
-rnew = interp1(xold,rold,xnew,'spline');
+rnew = interp1(xold,rold,xnew,'spline');\\
+gnew = interp1(xold,gold,xnew,'spline');\\
+bnew = interp1(xold,bold,xnew,'spline');
 \end{docspec}
 
-\noindent etc., or \textbf{MATLAB} allows us to combine them:
+\noindent or \textbf{MATLAB} allows us to interpolate all together if we first combine the sperate vectors:
 
 \begin{docspec}
 mapold = [rold gold bold];
@@ -5391,10 +5420,10 @@ mapold = [rold gold bold];
 \noindent and then:
 
 \begin{docspec}
-mapnew = interp1(xold,colold,xnew,'spline');
+mapnew = interp1(xold,mapold,xnew,'spline');
 \end{docspec}
 
-If you now set the new \textit{colormap} (\texttt{colormap(mapnew);}) and re-plot the global topography -- Figure \ref{fig:ch3-etopo6}.
+If you now set the new \textit{colormap} (\texttt{>> colormap(mapnew);}) and re-plot the global topography, you should get Figure \ref{fig:ch3-etopo6}.
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch3-etopo6.eps}
@@ -5424,7 +5453,7 @@ Additional parameters can be added to change font, size, etc (see Box), e.g.:
 
 \noindent for big light blue bananas.
 
-\marginnote[2.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-1.5in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{text}
 \begin{docspecmargin}
 text(X,Y,STRING);
@@ -9611,7 +9640,7 @@ Now set the production (at depth) rate similar to the net (from atmosphere) cons
 
 \begin{fullwidth}
 
-In this chapter we'll learn how MATLAB can create a simple Graphical User Interface (GUI), which you can used to interface to your program with (as an alternative to e.g. the command line). Scientifically ... this is not particularly useful, although it is fun(ish) and is how all computer/device software/apps tend to 'work' these days (excepting devices (e.g. wifi routers) that use a web-browser for their interface, but then that is effectively a GUI within a GUI ...).
+In this chapter we'll learn how \textbf{MATLAB} can create a simple \textit{Graphical User Interface} (\textit{GUI}), which you can used to interface to your program with (as an alternative to e.g. the command line). Scientifically ... this is not particularly useful, although it is fun(ish) and is how all computer/device software/apps tend to 'work' these days (excepting devices (e.g. wifi routers) that use a web-browser for their interface, but then that is effectively a \textit{GUI} within a \textit{GUI} ...).
 
 \end{fullwidth}
 
@@ -9623,10 +9652,10 @@ In this chapter we'll learn how MATLAB can create a simple Graphical User Interf
 
 \section{\textbf{MATLAB} GUI basics}
 
-\textbf{MATLAB} kindly\sidenote{For once, it is not a sperate, zillion-dollar license ...} provides a tool (itself a GUI) for creating GUIs -- the 'Graphical User Interface Development Environment' (\textbf{GUIDE}). \textbf{GUIDE} does 2 main things for you:
+\textbf{MATLAB} kindly\sidenote{For once, it is not a sperate, zillion-dollar license ...} provides a tool (itself a \textit{GUI}) for creating \textit{GUI}s -- the 'Graphical User Interface Development Environment' (\textbf{GUIDE}). \textbf{GUIDE} does 2 main things for you:
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
-\item Firstly, it facilitates the design of the GUI window(s).
+\item Firstly, it facilitates the design of the \textit{GUI} window(s).
 \item Secondly, it creates a code framework for the associated program.
 \end{enumerate}
 
