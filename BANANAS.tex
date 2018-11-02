@@ -3732,7 +3732,7 @@ Much of spatial, and particularly model-generated, scientific output, is in the 
 
 \noindent \docenv{ncread} is by far the simplest way, although it lacks in flexibility and deviates from standard practices used across other programming languages.
 
-\marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-0.625in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{ncread}
 \\In its simplest incarnation:
 \begin{docspecmargin}
@@ -4267,7 +4267,13 @@ k = find(X)
 \end{docspecmargin}
 as '\textit{return[ing] a vector containing the linear indices of each nonzero element in array X}'.
 \\That means ... nothing to me. This is going to have to be a job for some Examples ... (in order to see what \docenv{find} is all about).
-\\(Actually, \texttt{find} returns the indices of the array and if the array is a vector, what is does is simple. For a matrix, \texttt{MATLAB} counts the elements sequentially, starting at the 1st row and 1st column, and working down the first column, rather than provide the (row,column) for indexing format you are used to. Hence where the '\textit{linear indices}' bit comes in.)
+\\ Actually, \texttt{find} returns the indices of the non-zero elements in the array and if the array is a vector, what is does is simple. For a matrix, \texttt{MATLAB} counts the elements sequentially, starting at the 1st row and 1st column, and working down the first column, rather than provide the (row,column) for indexing format you are used to. Hence where the '\textit{linear indices}' bit comes in.
+\\ Furthermore, 'non-zero' indices is really just code-word for 'true'. So you are asking where the true values occur in \texttt{X}. If \texttt{X} is the answer to a \textit{logical} or \textit{relational} operation, then find tells you the indices of the elements that are true.
+\\ For example, \texttt{3 > [5 3 1]} equates to \texttt{[0 0 1]}, i.e. only the first element in the vector \texttt{[5 3 1]} is less than \texttt{3}. Hence:
+\begin{docspecmargin}
+find(3 > [5 3 1])
+\end{docspecmargin}
+first evaluates the relational operation and generates a vector of true and false values, and then \texttt{find} tells you the index (or indices) where the true values occur (here, \texttt{ans = 3}).
 \end{mdframed}}
 
 \docenv{find} ... finds where-ever in an \textit{array}, a specific condition is met. If the specific condition occurs once, a single \textit{array} location is returned. The specific condition could occur multiple times, in which case \texttt{find} will report back multiple positions in the \textit{array}.
@@ -9633,7 +9639,7 @@ Now set the production (at depth) rate similar to the net (from atmosphere) cons
 % CHAPTER 9
 %----------------------------------------------------------------------------------------
 
-\chapter{Graphical User Interfaces (GUIs)}
+\chapter{Graphical User Interfaces (GUI)}
 \label{ch:09}
 
 %------------------------------------------------
@@ -9669,9 +9675,9 @@ You run \textbf{GUIDE} at the command line by typing its name:
 \begin{docspec}
 >> guide
 \end{docspec}
-and a window as shown in Figure \ref{fig:chGUI-START} should appear. We'll only concern ourselves with the default option amongst the (4) '\textsf{GUIDE templates}' -- '\textsf{Blank GUI (default)}'\sidenote{So don't go randomly clicking on anything just yet!}. As for the tick-box '\textsf{Save new figure as:}' -- we'll leave this alone\sidenote{You can save the resulting figure (and code) under whatever filename you wish, later anyway. (If you really want, you can enter it in now here -- it makes little difference.)}. The '\textsf{Preview}' window is blank at this point because you have selected a blank template (d'uh!) (and are not loading in a previously created GUI). 
+and a window as shown in Figure \ref{fig:chGUI-START} should appear. We'll only concern ourselves with the default option amongst the (4) '\textsf{GUIDE templates}' -- '\textsf{Blank GUI (default)}'\sidenote{So don't go randomly clicking on anything just yet!}. As for the tick-box '\textsf{Save new figure as:}' -- we'll leave this alone\sidenote{You can save the resulting figure (and code) under whatever filename you wish, later anyway. (If you really want, you can enter it in now here -- it makes little difference.)}. The '\textsf{Preview}' window is blank at this point because you have selected a blank template (d'uh!) (and are not loading in a previously created \textit{GUI}). 
 
-Before you move on, it is worth pausing at this point and reflecting on what happened and what the implications are for what you might like to do (GUI-wise). At the command line, you entered the command \texttt{guide}, which presumably ran a script or function (a piece of code in any case). A window (the '\textsf{GUIDE Quick Start}' window) was summoned (actually a \textsf{figure window} was created). The (figure) window did not open completely blank, but instead you might note it has:
+Before you move on, it is worth pausing at this point and reflecting on what happened and what the implications are for what you might like to do (\textit{GUI}-wise). At the command line, you entered the command \texttt{guide}, which presumably ran a script or function (a piece of code in any case). A window (the '\textsf{GUIDE Quick Start}' window) was summoned (actually a \textsf{figure window} was created). The (figure) window did not open completely blank, but instead you might note it has:
 \begin{itemize}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item Close/minimize/maximize buttons at the top right (and the window can be re-sized by grabbing the corner and dragging the mouse).
@@ -9700,17 +9706,17 @@ In essence, most of the primary (or at least, basic) features of a GUI are here 
 
 Rather than creating a blank \textsf{m-file} and/or some basic code first\sidenote{Actually, \textbf{MATLAB} has done this too and you would have seen it open up in the \textbf{Code Editor} window if you have provided a filename in the '\textsf{GUIDE Quick Start}' window.}, \textbf{MATLAB}  throws you straight into a window design tool as per Figure \ref{fig:chGUI-GUI1}. There is a lot going on here, but start by noting there is the usual drop-down menu bar at the very top (under the title bar ('\textsf{untitled.fig}') of the window) and a row of icons underneath that (no re-appearance of the \textbf{MATLAB} icon thankfully). At the bottom of the window there is some information, mostly about location (of what?) -- \textsf{Current Point }and \textsf{Position}. To the left of the window is a group of icons\sidenote{Still no re-appearance of the MATLAB icon!} plus a (depressed, by default) mouse pointer icon. Most of the window is made up of a pane (whose contents apparently is, or might be, larger than the area shown as indicated by the presence of scroll bars along the right and bottom edges). The pane itself is ruled with a grid pattern. At least, that is what I see!
 
-Again -- the great advantage of familiarity (of program GUI design) -- you might guess (you'd be correct if you did) that the icons to the left allow you to select an object and place it in the pane, the grid serving to help you position the object. And this leads us to an important point -- creating GUI-based programs is as much (or more) about design as it is about programming. The cleverest program (and most complex calculations) might simply be a total fail if the GUI is wholly unappealing or complete un-intuitive (or lacks a GUI entirely). The grid is hence there for a reason and that is to guide you towards creating an ordered (and aligned), logical, and uncluttered arrangement of things (we'll come to what the 'things' are shortly) within the GUI window.
+Again -- the great advantage of familiarity (of program \textit{GUI} design) -- you might guess (you'd be correct if you did) that the icons to the left allow you to select an object and place it in the pane, the grid serving to help you position the object. And this leads us to an important point -- creating \textit{GUI}-based programs is as much (or more) about design as it is about programming. The cleverest program (and most complex calculations) might simply be a total fail if the \textit{GUI} is wholly unappealing or complete un-intuitive (or lacks a \textit{GUI} entirely). The grid is hence there for a reason and that is to guide you towards creating an ordered (and aligned), logical, and uncluttered arrangement of things (we'll come to what the 'things' are shortly) within the \textit{GUI} window.
 
-You might be tempted ... to click on everything and throw all sort of objects (what things?) into the pane of your embryonic GUI window. But the more GUI objects you have ... ultimately, the more code and the more debugging\sidenote{Which has a steep power relationship with the amount of code.} you'll have to do. So we'll start as simply as possible and build up. 
+You might be tempted ... to click on everything and throw all sort of objects (what things?) into the pane of your embryonic \textit{GUI} window. But the more \textit{GUI} objects you have ... ultimately, the more code and the more debugging\sidenote{Which has a steep power relationship with the amount of code.} you'll have to do. So we'll start as simply as possible and build up. 
 
 %------------------------------------------------
 
 \subsection{Hello, World [\textit{Static Text (box)}]}
 
-This is as simple as it is going to get for a 'program' with a GUI. In the \textsf{GUIDE window editor}, which should be already open if you haven't fatally mucked about with it (or open up a new GUI by typing \texttt{guide} (or \texttt{GUIDE}) at the command line again) -- identify the \textsf{Static Text} icon (by hovering the mouse pointed over an icon, its function is revealed). Click (\texttt{left mouse button}) on it. The mouse pointer, when over the gridded design pane, should change to a cross-hairs mouse pointer icon.\sidenote{Note that this is to facilitate the positioning of the icon rather than being anything about guns and shooting at the coders behind \textbf{Windows}.} Find a convenient place .... perhaps at the intersection of two grid lines, click the mouse down and drag out a box -- this will be the size (and location) of the \textsf{Static Text} object. Release the mouse button to finish. If you don't like the size or location, you can move/re-size just like you would with a normal \textbf{Windows} (or \textbf{MacOS} etc.) window.
+This is as simple as it is going to get for a 'program' with a \textit{GUI}. In the \textsf{GUIDE window editor}, which should be already open if you haven't fatally mucked about with it (or open up a new \textit{GUI} by typing \texttt{guide} (\uline{lowercase}) at the command line again) -- identify the \textsf{Static Text} icon (by hovering the mouse pointed over an icon, its function is revealed). Click (\texttt{left mouse button}) on it. The mouse pointer, when over the gridded design pane, should change to a cross-hairs mouse pointer icon.\sidenote{Note that this is to facilitate the positioning of the icon rather than being anything about guns and shooting at the coders behind \textbf{Windows}.} Find a convenient place .... perhaps at the intersection of two grid lines, click the mouse down and drag out a box -- this will be the size (and location) of the \textsf{Static Text} object. Release the mouse button to finish. If you don't like the size or location, you can move/re-size just like you would with a normal \textbf{Windows} (or \textbf{MacOS} etc.) window.
 
-So far, the (static) text object has a rather unappealing content of '\textsf{Static Text}' in a pretty small font. You can edit the properties of this object by double-clicking on it\sidenote{I didn't actually read this anywhere -- the operation of the editor or Windows has the same feel and intuitive usage as the sort (hopefully) of Windows you you are going to create in your GUI(s)).}. Whoa! That's a long list of ... actually, \textit{properties} of the \textit{object} (thats two new buzz-words in one -- \textit{object} and \textit{properties}). Each property (the column on the left) has a default value (the column on the right) assigned to it. Evidently, you can edit the properties using the design tool rather than in the code code, setting a parameter value.\sidenote{In reality: \textbf{MATLAB} is secretely writing the relevant code and setting the parameter value ...} For now, we'll just make two changes:
+So far, the (static) text object has a rather unappealing content of '\textsf{Static Text}' in a pretty small font. You can edit the properties of this object by double-clicking on it\sidenote{I didn't actually read this anywhere -- the operation of the editor or Windows has the same feel and intuitive usage as the sort (hopefully) of Windows you you are going to create in your \textit{GUI}(s)).}. Whoa! That's a long list of ... actually, \textit{properties} of the \textit{object} (thats two new buzz-words in one -- \textit{object} and \textit{properties}). Each property (the column on the left) has a default value (the column on the right) assigned to it. Evidently, you can edit the properties using the design tool rather than in the code code, setting a parameter value.\sidenote{In reality: \textbf{MATLAB} is secretely writing the relevant code and setting the parameter value ...} For now, we'll just make two changes:
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item For the \textsf{String} property -- click in the box to the right, delete '\textsf{Static Text}' and write '\textsf{Hello, World}'.
@@ -9725,19 +9731,29 @@ So far, the (static) text object has a rather unappealing content of '\textsf{St
 \label{fig:chGUI-HelloWorld}
 \end{marginfigure}
 
-When you are done (editing properties) -- click the \textsf{Save} icon. If this is a GUI that you have not previously created or previously assigned a filename to, you'll get a \textsf{Save As} dialogue box. At this point, \textbf{MATLAB} is going to save the window design with a \textsf{.fig} extension.
+When you are done (editing properties) -- click the \textsf{Save} icon. If this is a \textit{GUI} that you have not previously created or previously assigned a filename to, you'll get a \textsf{Save As} dialogue box. At this point, \textbf{MATLAB} is going to save the window design with a \textsf{.fig} extension.
 
 Something a little scary now happens -- \textbf{MATLAB} opens up the \textsf{code editor window} and there is a whole bunch of code in it (a series of \textit{functions} in fact). Note that the code file has a filename the same as you entered in for the \textsf{.fig} window but now with a \textsf{.m} extension (and so is presumably directly associated with the figure you just created). There is nothing we need worry about ... yet. In fact, half the file is taken up with a main \textit{function} that has the comment: \texttt{DO NOT EDIT}. Please take this advice ... :o)
 
-Close the design window (and the code editor if it distracts you). At the command line, type the filename (no extension) to run the automatically generated code \textsf{m-file}. A window opens up ... the contents should come as no surprise, because you have just specified them (via the GUIDE GUI design tool). Your first GUI! But one you might notice does not actually do anything -- it just sits there unresponsive. Although you can at least close it (because it is automatically generated with the usual basic close/minimize icons plus the name of the m-file in the \textit{titlebar}.
+In fact, you get given the framework code for 3 functions:
+
+\begin{enumerate}[noitemsep]
+\item The long one at the top (which you DO NOT edit ...) -- \texttt{FUNCTIONNAME} -- defines the function for your app/program.
+\item  The middle one (\texttt{FUNCTIONNAME\_OpeningFcn} ) allows you to execute any code before the window appears. Such code is typically associated with initialization (setting sup arrays and defining parameters etc.)
+\item The third and final one, simply allows you to set any output (\textit{function} return) variables that you wish to pass back to the command line. (You need not pass anything back.)
+\end{enumerate}
+
+Although there looks like a lot of stuff here, the code is automatically generated and generic and there are both a bunch of blank lines that bloat it all, and lots of comment lines, mostly briefly describing the functions and their inputs. (Few of these bit of information we care about.) 
+
+Close the design window (and the code editor if it distracts you). At the command line, type the filename (no extension) to run the automatically generated code \textbf{m-file}. A window opens up ... the contents should come as no surprise, because you have just specified them (via the \textbf{GUIDE} \textit{GUI} design tool). Your first \textit{GUI}! But one you might notice does not actually do anything -- it just sits there unresponsive. Although you can at least close it (because it is automatically generated with the usual basic close/minimize icons plus the name of the \textbf{m-file} in the \textit{titlebar}.
 
 %------------------------------------------------
 
 \subsection{Simple GUI responses [\textit{Push Button}]}
 
-A GUI is only of any particular use if it allows some response to input. This is going to involve a little code of your own ... so we'll start with the simplest possible action -- a \textit{button} that performs a simple action (closes the window).
+A \textit{GUI} is only of any particular use if it allows some response to input. This is going to involve a little code of your own ... so we'll start with the simplest possible action -- a \textit{button} that performs a simple action (closes the window).
 
-Re-run the \texttt{guide} program and open up a new window editor (by clicking \textsf{OK} in the \textsf{GUIDE Quick Start} window). Now find the \textsf{Push Button} icon, click it, and drag out a push button object in the design pane. You should see a box (with a pseudo 3D shading at the edges) with the text \textsf{Push Button} in the centre as per Figure \ref{fig:chGUI-PushButton}. As before, you can edit the properties of the push button object (because the default properties are totally boring) by double-clicking it. Start by editing the font (size) and message. Perhaps 'Go away!'. And then save it.
+Re-run the \texttt{guide} program and open up a new window editor (by clicking \textsf{OK} in the \textbf{GUIDE} \textsf{Quick Start} window). Now find the \textsf{Push Button} icon, click it, and drag out a push button object in the design pane. You should see a box (with a pseudo 3D shading at the edges) with the text \textsf{Push Button} in the centre as per Figure \ref{fig:chGUI-PushButton}. As before, you can edit the properties of the push button object (because the default properties are totally boring) by double-clicking it. Start by editing the font (size) and message. Perhaps 'Go away!'. And then save it.
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{chGUI-PushButton.png}
@@ -9745,9 +9761,9 @@ Re-run the \texttt{guide} program and open up a new window editor (by clicking \
 \label{fig:chGUI-PushButton}
 \end{marginfigure}
 
-When it saves, \textbf{MATLAB} again opens up the code associated with the figure window that it has automatically generated. There is slightly more code in the file this time and shortly, you'll need to look at it. But for now: ignore it again and type the name of your \textsf{m-file} file at the command line. Again, you'll get a window opening with the push button you created in it. Click on it. It does seems to 'respond' (pretends to depress by means of changing the edges with the pseudo 3-D shading) to the mouse click, but ... nothing else happens. This is where YOU (and your amazing coding skills) now come in.
+When it saves, \textbf{MATLAB} again opens up the code associated with the figure window that it has automatically generated. There is slightly more code in the file this time and shortly, you'll need to look at it. But for now: ignore it again and type the name of your \textbf{m-file} file at the command line. Again, you'll get a window opening with the push button you created in it. Click on it. It does seems to 'respond' (pretends to depress by means of changing the edges with the pseudo 3-D shading) to the mouse click, but ... nothing else happens. This is where YOU (and your amazing coding skills) now come in.
 
-If you have closed the design window, re-run \texttt{guide} and rather than creating a new GUI -- switch to the \textsf{Open Existing GUI} tab and double-click your filename (of the push button GUI) or select and OK. Double-click on the push button object to open up the property editor. We'll make only one (more) change here -- down the list of properties your fine '\textsf{Tag}'. This is the name (ID or \textit{handle}) of the push button object.\sidenote{In essence, no different from a filename -- a unique identifier for an object (/file).} By default, the name is \textsf{pushbutton1}. Edit this to ... \textsf{goawayButton} (or pick an alternative name) and re-save the GUI.
+If you have closed the design window, re-run \textbf{GUIDE} (\texttt{\textgreater\textgreater\ guide}) and rather than creating a new \textit{GUI} -- switch to the \textsf{Open Existing GUI} tab and double-click your filename (of the push button \textit{GUI}) or select and OK. Double-click on the push button object to open up the property editor. We'll make only one (more) change here -- down the list of properties your fine '\textsf{Tag}'. This is the name (ID or \textit{handle}) of the push button object.\sidenote{In essence, no different from a filename -- a unique identifier for an object (/file).} By default, the name is \textsf{pushbutton1}. Edit this to ... \textsf{goawayButton} (or pick an alternative name) and re-save the GUI.
 
 Go to the code editor for the associated \textsf{m-file} (which will have the same name as the \textsf{.fig} figure, remember). In the file we have:
 \begin{itemize}
@@ -9815,19 +9831,19 @@ This function is executed when your 'Go Away!' push button is pressed.
 Anything you wish to 'happen', in terms of code executed, when you click on this particular button, goes here in this function. 
 \end{itemize}
 
-Note that \textbf{MATLAB} does not formally end any of the functions with \textcolor{blue}{end}. Don't get confused as to where to place code -- assume that when the next function starts, the next \textcolor{blue}{function} definition starts, that the previous function has ended. If ti helps -- add in lines (with \textcolor{blue}{end}) to end each \textit{function}. Or perhaps add some ASCII art/comment line before each new function to help make it clearer, e.g.
+Note that \textbf{MATLAB} does not formally end any of the functions with \textcolor{blue}{end}. Don't get confused as to where to place code -- assume that when the next function starts, the next \textcolor{blue}{function} definition starts, that the previous function has ended. If it helps -- add in lines (with \textcolor{blue}{end}) to end each \textit{function}. Or perhaps add some ASCII art/comment line before each new function to help make it clearer, e.g.
 
 \begin{docspec}
 \textcolor[rgb]{0,0.501961,0}{\% === END FUNCTION ============================================}
 \end{docspec}
 
-In this simple GUI, we have only one figure and it is \textit{active} (has the mouses' attention)\sidenote{Often in operating systems -- the active window, i.e. the one that is the one to respond to mouse clicks or key presses, has its titlebar highlighted in a bright color (while inactive ones might be grey.)}, so we could simply use the \texttt{close} command ('\textit{deletes the current figure}') on its own (just this on one line). 
+In this simple \textit{GUI}, we have only one figure and it is \textit{active} (it has the mouses' attention)\sidenote{Often in operating systems -- the active window, i.e. the one that is the one to respond to mouse clicks or key presses, has its titlebar highlighted in a bright color (while inactive ones might be grey.)}, so we could simply use the \texttt{close} command ('\textit{deletes the current figure}') on its own (just this on one line). 
 
-Insert this simple command in the
+Insert this simple command (\texttt{close}) in the
 \begin{docspec}
 \textcolor{blue}{function} goawayButton\_Callback
 \end{docspec}
- \textit{function}, after the last comment line.\sidenote{Note that automatically generated \textbf{MATLAB} code does not seem to ever formally \texttt{\textcolor{blue}{end}} a function as one really should do ...} Save the \textsf{m-file} and re-run. Now if you run your program and click on the 'Go Away!' push button, the window does indeed go away (aka, closes).
+ \textit{function}, after the last comment line.\sidenote{Note that automatically generated \textbf{MATLAB} code does not seem to ever formally \texttt{\textcolor{blue}{end}} a function as one really should do ...} Save the \textbf{m-file} and re-run. Now if you run your program and click on the 'Go Away!' push button, the window does indeed go away (aka, closes).
 
 Phew! So, to recap -- you have created a program with a window, and within that window a \textsf{Push Button} object.
 In the design window, you gave that button a special property, such that when clicked, a message (an \textit{event}) would be passed back to your program. The code (a function) that responds (is called) when the button is clicked was automatically generated for you, but with no code inside. You added the code (to close the program/window).
@@ -9836,11 +9852,11 @@ In the design window, you gave that button a special property, such that when cl
 
 \subsection{Updating object properties (do you like bananas?)}
 
-Bananas. Do you like them? Perhaps the GUI can provide an answer (rather than just text statements written  to the command line via \texttt{disp} as before).
+Bananas. Do you like them? Perhaps the \textit{GUI} can provide an answer (rather than just text statements written  to the command line via \texttt{disp} as before).
 
-Now you are going to want to think about the design of the GUI a little. Perhaps sketch out a sign on paper\sidenote{The white flat stuff that you write on. Maybe you have forgotten what it is? Clue: it is not an app on iTunes.} first.
+Now you are going to want to think about the design of the \textit{GUI} a little. Perhaps sketch out a sign on paper\sidenote{The white flat stuff that you write on. Maybe you have forgotten what it is? Clue: it is not an app on iTunes.} first.
 
-What we want is for the the GUI to display a question ('Do you like bananas?'). There will be two options, 'Yes' and 'No' that can be clicked. Depending on which one is clicked, some appropriately supportive, or otherwise, message will appear in response. We need:
+What we want is for the the \textit{GUI} to display a question ('Do you like bananas?'). There will be two options, 'Yes' and 'No' that can be clicked. Depending on which one is clicked, some appropriately supportive, or otherwise, message will appear in response. We need:
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item A plain (static) \textit{text box} as before to display the question.
@@ -9853,7 +9869,7 @@ The latter part is not as bad as it sounds. We could have no text initially in t
 
 OK ...
 
-Firstly -- re-run GUIDE. Create a new GUI window with the 4 elements (2 static text boxes and 2 push buttons). It is up to you how you arrange these 4 objects in the design pane. You might be guided how windows in programs that you have used, are designed. At the minimum, it is standard practice to place a 'No' push button next to and aligned horizontally with, the 'Yes' (and often 'Yes' to the right of 'No').
+Firstly -- re-run \textbf{GUIDE} (\texttt{>> guide}). Create a new \textit{GUI} window with the 4 elements (2 static text boxes and 2 push buttons). It is up to you how you arrange these 4 objects in the design pane. You might be guided how windows in programs that you have used, are designed. At the minimum, it is standard practice to place a 'No' push button next to and aligned horizontally with, the 'Yes' (and often 'Yes' to the right of 'No').
 
 No idiot would design anything like Figure \ref{fig:chGUI-bananas} and certainly not with those color choices ... but you get the idea.
 
@@ -9865,7 +9881,7 @@ No idiot would design anything like Figure \ref{fig:chGUI-bananas} and certainly
 
 For each of the objects (2 text boxes and 2 push buttons),  rename them (the \textsf{Tag} property) to something more memorable than e.g. button or box, \#1, \#2, \#3, etc etc..
 
-The code that \textbf{MATLAB} generates for \textsf{bananas.m} (my name choice!) is not a lot more involved than before. Primarily, there is just a second function associated with a mouse click on the 2nd push button. So the end of the automatically generated \textbf{MATLAB} code now looks like:
+The code that \textbf{MATLAB} generates for \textsf{bananas.m} (my name choice! it need not be yours ...) is not a lot more involved than before. Primarily, there is just a second function associated with a mouse click on the 2nd push button. So the end of the automatically generated \textbf{MATLAB} code now looks like:
 
 \begin{docspec}
 \textcolor[rgb]{0,0.501961,0}{\% --- Executes on button press in yesbutton.}
@@ -9880,9 +9896,9 @@ The code that \textbf{MATLAB} generates for \textsf{bananas.m} (my name choice!)
 
 The logic is going to be very simple. In fact, we don't need any, because if the Yes button is clicked, \textbf{MATLAB} will call one function (my name: \texttt{\textcolor{blue}{function} yesbutton\_Callback}), and if the No button is clicked, the other function (\texttt{\textcolor{blue}{function} nobutton\_Callback}) is called. As alluded to above, how do we get the text to change in the 2nd text box (from the default of no text)?
 
-Unfortunately, \textbf{MATLAB} does get all weird here.\sidenote{Actually, no weirder than \textbf{netCDF}. Or arguably, \textbf{Python} ...} If you had a friend called Luna, you might reasonably communicate with them via the name 'Luna'. \textbf{MATLAB} doesn't do it this way and instead assigns a numeric ID. Think of it as rather than storing information in a database about Luna and by name, information might be stored by SSN instead. So too retrieve or write information about Luna, you do it via their SSN.\sidenote{Or you could think about university student databases and access via the unique student number.} Here, we want to change a property (the displayed text  of the 2nd text box), and you are going to have to get its ID first in order to do it.
+Unfortunately, \textbf{MATLAB} does get all weird here.\sidenote{Actually, no weirder than \textbf{netCDF}. Or arguably, \textbf{Python} ...} If you had a friend called Luna, you might reasonably communicate with them via the name 'Luna'. \textbf{MATLAB} doesn't do it this way and instead assigns a numeric ID. Think of it as rather than storing information in a database about Luna and by name, information might be stored by SSN instead. So to retrieve or write information about Luna, you do it via their SSN.\sidenote{Or you could think about university student databases and access via the unique student number.} Here, we want to change a property (the displayed text  of the 2nd text box), and you are going to have to get its ID first in order to do it.
 
-First off, you can get the ID of the object property using \texttt{findobj} and assign the result to some memorably variable\sidenote{Here, the \texttt{h} bit stands for 'handle' but you might chose \texttt{id} for ID instead?.}, e.g.
+First off, you can get the ID of the object property using the \texttt{findobj} \textit{function} and assign the result to some memorably variable\sidenote{Here, the \texttt{h} bit stands for 'handle' but you might chose \texttt{id} for ID instead?.}, e.g.
 \begin{docspec}
 h\_answertext = findobj('Tag','answertextbox');
 \end{docspec}
@@ -9926,7 +9942,7 @@ Other embellishments you could make might be to make the color of the button you
 \noindent\rule{4cm}{0.5pt}
 \vspace{2mm}
 
-\noindent To put your coding skills more to the test: how about displaying a 3rd message ('Make up your mind!'?) if someone changes their mind -- i.e. if a second button is pressed (after the first one). You'll need a variable to store whether any button has been pressed and assign this an initial value of \textit{false}, e.g.
+\noindent To put your coding skills more to the test: how about displaying a 3rd message ('Make up your mind!'?) if someone changes their mind -- i.e. if a second button is pressed (after the first one). You'll need a variable to remember whether any button has been pressed and assign this an initial value of \textit{false}, e.g.
 \begin{docspec}
 var\_pressed = false;
 \end{docspec}
@@ -9938,7 +9954,7 @@ We can enforce that the same \textit{variable} is seen by multiple \textit{funct
 \begin{docspec}
 \textcolor{blue}{global} var\_pressed;
 \end{docspec}
-This line needs to appear at the start of each \textit{function} in which you need to read or write the value of \texttt{var\_pressed}, i.e. in both callback \textit{functions} as well as the initialization \textit{function}.
+\uline{This line needs to appear at the start of each \textit{function}} in which you need to read or write the value of \texttt{var\_pressed}, i.e. in both callback \textit{functions} as well as the initialization \textit{function}.
 
 What is going on is that in each \textit{function} that a \textit{variable} is defined as being \textit{global} -- the value of that \textit{variable} is linked, so that any change made to the value of that \textit{variable} in any \textit{function}, is seen by all the other ones.\sidenote{Like multi-way \textbf{Skype} call, where the global definition is each person connecting to the conference call.} 
 
@@ -9960,12 +9976,12 @@ The complete code for the \textsf{Yes} button call box function would then look 
 \\\textcolor{blue}{end}
 \\\textcolor[rgb]{0,0.501961,1}{var\_pressed} = true;
 \end{docspec}
-and with
+and with the code:
 \begin{docspec}
 \\\textcolor{blue}{global} \textcolor[rgb]{0,0.501961,1}{var\_pressed};\\
 \textcolor[rgb]{0,0.501961,1}{var\_pressed} = false;
 \end{docspec}
-also appearing in \texttt{\textcolor{blue}{function} bananas\_OpeningFcn}.
+appearing in \texttt{\textcolor{blue}{function} bananas\_OpeningFcn} (to initialize the value of \texttt{var\_pressed} to \texttt{false}).
 
 %------------------------------------------------
 
@@ -9975,12 +9991,12 @@ We can create a variant on the previous program to illustrate numerical input an
 
 \begin{enumerate}
 \setlength{\itemindent}{.2in}
-\item First create a new (blank) GUI.
+\item First create a new (blank) \textit{GUI}.
 \item Add a \textit{Static Text} box \textit{object} to ask: 'On a scale of 0 to 10, how much do you like bananas?' (replace the default text by editing the \textit{object}).
 \item Add a second \textit{Static Text} box \textit{object} to report the value. Create it blank to start with (i.e. delete the default text).
 \item Add ... a \textsf{Slider}! Double-click to edit the \textsf{Slider} object.
 \\Firstly, note that there is a \textsf{Max} and \textsf{Min} property -- these are the values assigned when the \textsf{Slider} is at it maximum and minimum position, respectively. Since you want a score for 0 to 10 -- edit the \textsf{Max} value. There is also a \textsf{Value} property which will be the default value of the \textsf{Slider} when the program/app starts up. (If you want change the default value.) Make any other e.g. cosmetic changes you fancy. Close the editor ('\textsf{Inspector}') window.
-\item Save the GUI.
+\item Save the \textit{GUI}.
 \end{enumerate}
 
 In place of the button Callback functions,  you now have:
@@ -9991,7 +10007,7 @@ In place of the button Callback functions,  you now have:
 \end{docspec}
 (although if you were paying attention earlier, you would have name the \textsf{Slider} something helpful rather than the default of \texttt{slider1}). And a last \textit{function} (\texttt{slider1\_CreateFcn}) that we shall ignore.
 
-This is no so different form the button example -- when the slider bar is dragged, or the up/down arrows are clicked (and the slider bar moved that way), this \textit{function} is called. It is then up to you to:
+This is not so different form the button example -- when the slider bar is dragged, or the up/down arrows are clicked (and the slider bar moved that way), this \textit{function} is called. It is then up to you (in code) to:
 
 \begin{enumerate}[noitemsep]
 \item Read the value of the \textsf{Slider}.
@@ -10005,7 +10021,7 @@ h\_slider1 = findobj(\textcolor[rgb]{1,0,1}{'Tag'},\textcolor[rgb]{1,0,1}{'slide
 \end{docspec}
 (which goes in the \texttt{slider1\_Callback} function).
 
-To set the text in the \textsf{Static Text} box object, as befor eyou need to obtain the ID of the object:
+To set the text in the \textsf{Static Text} box object, as before you need to obtain the ID of the object:
 \begin{docspec}
 h\_text2 = findobj(\textcolor[rgb]{1,0,1}{'Tag'},\textcolor[rgb]{1,0,1}{'text2'});
 \end{docspec}
@@ -10013,10 +10029,25 @@ h\_text2 = findobj(\textcolor[rgb]{1,0,1}{'Tag'},\textcolor[rgb]{1,0,1}{'text2'}
 
 Now simply set the \textsf{String} property of the \textsf{Static Text} box, to the value of the \textsf{Slider}, contained in variable \texttt{bananaindex}.\sidenote{Remember that you cannot display a number directly where a string is required -- use \texttt{num2str}.}
 
-Now ... if the value of \texttt{bananaindex} goes above 5, make the text box background blue. And it \texttt{bananaindex} is below (or equal to) 5, set the color to red.
+Now ... if the value of \texttt{bananaindex} goes above 5, make the text box background blue. And it \texttt{bananaindex} is below (or equal to) 5, set the color to red.\sidenote{The \textsf{Static Text} box property is called \textsf{Foregroundcolor}. To set, e.g. add the code:
+\begin{docspecmargin}
+set(h\_text2,\textcolor[rgb]{1,0,1}{'Foregroundcolor'},[1 0 0]);
+\end{docspecmargin}
+}
 
 There are various refinements you could make, such as when the program/app starts up, you could read the default value of the \textsf{Slider} and update the display (the \textsf{Static Text} box)\sidenote{Code going in the \textit{function}, \texttt{OpeningFcn}.}. You might also add a \textsf{Push Button} to close the app.
 
+%------------------------------------------------
+
+\newpage
+
+%------------------------------------------------
+
+\section{\textbf{MATLAB} apps}
+
+
+%------------------------------------------------
+%
 %----------------------------------------------------------------------------------------
 % CHAPTER 10
 %----------------------------------------------------------------------------------------
