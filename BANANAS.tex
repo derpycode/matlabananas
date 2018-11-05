@@ -5657,6 +5657,142 @@ Nor, do the number of rows and columns have to be the same. For example you migh
 \textcolor{blue}{end}
 \end{docspec}
 
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{-2mm}
+
+\newthought{To test your understanding ...} for the matrix:
+
+\vspace{4mm}
+\(A=\begin{pmatrix}4 & 66 & 13 & 42 & 36 & 14 \\
+33 & 4 & 0 & 28 & 11 & 22 \\
+18 & 26 & 7 & 1 & 5 & 19 \\
+12 & 9 & 23 & 30 & 7 & 2 \\
+0 & 0 & 2 & 0 & 15 & 33 \\
+14 & 42 & 17 & 27 & 8 & 0 \\
+\end{pmatrix}\)
+\vspace{4mm}
+
+\noindent determine ... NOT using \texttt{find} (or similar), but rather a nested loop, how many occurrences there are of values
+\sidenote{Hint: Before the next loop starts, you'll need to define a parameter to keep count of the number of values you find that meet the criteria, and set it to zero. Then in the (nested) loop, increment the counter variable by \texttt{1} each time you find a value matching the criteria.}
+\sidenote{Also hint: At the start of the script (after your initial descriptive comments!), define \texttt{A}.}:
+
+\begin{enumerate}[noitemsep]
+\item greater than \texttt{9}
+\item greater than \texttt{9} but less than \texttt{20}
+\end{enumerate}
+
+Make this a new \textit{script} \textbf{m-file} program. Display (\texttt{disp}) the result at the end (after the (nested) loop has ended).
+
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{-2mm}
+
+\newthought{Next}: for the simple tic-tac-toe (\(3\times3\)) grid, at each (\textit{column,row}) location, you are going to draw a colored square.
+
+Firstly, at the start of a new \textit{script} \textbf{m-file}, add:
+
+\begin{docspec}
+\textcolor[rgb]{0,0.501961,0}{\% **************************\\
+\% YOUR COMMENTS ON WHAT THE PROGRAM DOES\\
+\% **************************\\}
+\ \\
+\textcolor[rgb]{0,0.501961,0}{\% create a new figure window\\}
+figure;\\
+\textcolor[rgb]{0,0.501961,0}{\% create a set of invisible axes that will the window\\}
+fh = axes(\textcolor[rgb]{1,0,1}{'Position'},[0 0 1 1],\textcolor[rgb]{1,0,1}{'Visible'},\textcolor[rgb]{1,0,1}{'off'});\\
+\textcolor[rgb]{0,0.501961,0}{\% scale the axes\\}
+axis([0 3 0 3]);\\
+\textcolor[rgb]{0,0.501961,0}{\% hold on!\\}
+hold \textcolor[rgb]{1,0,1}{on};
+\end{docspec}
+
+\noindent Here:
+
+\begin{itemize}[noitemsep]
+\item The line starting \texttt{fh = ...} creates a plotting area with no axes visible, and filling the Figure window area (\texttt{[0 0 1 1]} in normalized units). The handle to this is returned (variable \texttt{fh}), just in case we ever need it later.
+\item Then, the axes are scaled for convenience -- there are 3 rows and 3 columns in the grid we want to create, so a 'reasonable' choice is to set \texttt{axis([0 3 0 3])}, although we need not have.
+\item You know what \texttt{hold on} does, right ... ?
+\end{itemize}
+
+You can then add (after) the nested loop code framework:
+
+\begin{docspec}
+\textcolor[rgb]{0,0.501961,0}{\% loop 1 start\\}
+\textcolor{blue}{for} column=1:3\\
+\ \ \ \textcolor[rgb]{0,0.501961,0}{\% loop 2 start\\}
+\ \ \ \textcolor{blue}{for} row=1:3\\
+\ \ \ \ \ \ \ \ \ ...\\
+\ \ \ \textcolor{blue}{end}\\
+\textcolor{blue}{end}
+\end{docspec}
+
+To draw a square, the easiest function to use is \texttt{patch} (see earlier). For the coordinate parameters to be passed to \texttt{patch}, if your current location in the loop is \texttt{column=1}, \texttt{row=1} -- now taking for convenience, a notation and orientation where we start counting from the \uline{bottom left-hand corner} (unlike in the previous notation and orientation) --  the coordinates for the square are:
+\vspace{1mm}
+\\\((0,0), (1,0), (1,1), (0,1)\)
+\vspace{1mm}
+\\\noindent and for which \texttt{patch} will take input:
+
+\begin{docspec}
+patch([0 1 1 0], [0 0 1 1],'black');
+\end{docspec}
+
+\noindent (remembering that patch takes a vector of all the \textit{x}-coordinates as a 1st parameter, and then a vector of all the \textit{y}-coordinates as the second parameter)
+
+If you do not more than this, you end up looping through the (\(3\times3\)) grid, but only even (re-)plotting the same square in the bottom left-hand corner ...
+
+The mental leap is to \uline{generalize} the problem and  to notice that if your column (\textit{x}) and row (\textit{y}) values are held in variables \texttt{column} and \texttt{row}, respectively, you could write:
+
+\begin{docspec}
+patch([column-1 column column column-1], ...\\
+\ \ \ [row-1 row-1 row row],'black');
+\end{docspec}
+
+Complete the code and try this. You should end up with 9 black squares in a (\(3\times3\)) grid ... which will simply look like a huge black square filling the figure window, as per Figure \ref{fig:ch4-grid1} ... :o)
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch4-grid1.eps}
+\caption{3x3 grid of black squares ...}
+\label{fig:ch4-grid1}
+\end{marginfigure}
+
+You could make it a little more interesting by creating a color value derived from the values of the \texttt{column} and \texttt{row} counters. e.g. if you write:
+
+\begin{docspec}
+patch([column-1 column column column-1], ...\\
+\ \ \ [row-1 row-1 row row],color);
+\end{docspec}
+
+\noindent (substituting a specification of \texttt{'black'} for whatever color corresponds to the value contained in variable \texttt{color}), and immediately before this (still in the loop) write:
+
+\begin{docspec}
+color = (column + row);
+\end{docspec}
+
+Re-running the script, you now get Figure \ref{fig:ch4-grid2}.
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch4-grid2.eps}
+\caption{3x3 grid of colored squares.}
+\label{fig:ch4-grid2}
+\end{marginfigure}
+
+You might notice that the colors are the same along diagonals, because you get the same value of \texttt{color} whether you are at location \((1,2)\) or \((2,1)\). We could make the location colors more distinct by modifying how we derive a value for \texttt{color}, e.g.
+
+\begin{docspec}
+color = (column\(^{\wedge}\)2 + row);
+\end{docspec}
+
+\noindent (Figure \ref{fig:ch4-grid3})
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch4-grid3.eps}
+\caption{(yawn)}
+\label{fig:ch4-grid3}
+\end{marginfigure}
+
+Maybe play about a little creating different patterns of colors by means of different equations combining the values of \texttt{column} and \texttt{row}.
+
 %------------------------------------------------
 
 \newpage
