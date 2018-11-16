@@ -5801,15 +5801,15 @@ Maybe play about a little creating different patterns of colors by means of diff
 
 \section{Algorithms and problem-solving}
 
-This (algorithms (e.g. see Box) and problem-solving) is not something that can really be taught. So we'll go through a series of step-by-step examples. Hopefully this will illustrate some general coding approaches.
+This (algorithms  and problem-solving) is not something that can really be 'taught' \textit{per se}, but rather practised and aided by a logical state of mind. We'll go through a series of step-by-step examples. Hopefully this will also illustrate some general coding approaches.
 
 %------------------------------------------------
 
 \subsection{Example \#1: max(!)}
 
-So yes, this is a built-in \textit{function} \texttt{max} in \textbf{MATLAB}, but suspend disbelief, and pretend that there is not one. What if we wanted to create one, i.e. \textit{function} that is passed a vector of numbers, and returns the maximum value?
+So yes, this is a built-in \textit{function} \texttt{max} in \textbf{MATLAB}, but suspend disbelief for a moment ... and pretend that there is not one. What if we wanted to create one, i.e. \textit{function} that is passed a vector of numbers, and returns the maximum value?
 
-So already, from the definition of the problem, you know to create a new \textsf{m-file} a define a \textit{function}, that takes as input a variable (a vector), and returns the largest value in that vector.\sidenote{Note that you do not need to specify that the input variable is a vector, just that there is a variable input.}\sidenote{Here, my personal naming convention has:\\
+So already, from the definition of the problem, you know to create a new \textbf{m-file} a define a \textit{function}, that takes as input a variable (a vector), and returns the largest value in that vector.\sidenote{Note that you do not need to specify that the input variable is a vector, just that there is a variable input.}\sidenote{Here, my personal naming convention has:\\
 \texttt{s\_out} -- the output variable, and \texttt{s} for scalar\\
 \texttt{v\_in} -- an input variable, with \texttt{v} designating vector ...\\(This is perhaps, overkill, but leads little room for any confusion later.)}
 
@@ -5828,7 +5828,7 @@ You have hence created a (empty) shell for the program. You could try calling it
 s\_out = v\_in(1);
 \end{docspec}
 
-You are still not solving the problem, but in this step, you have now demonstrated that your functions can take a (vector) input, do something with it, and set the output variable.
+You are still not solving the problem, but in this step, you have now demonstrated that your function can take in a (vector) input, do something with it, and set the output variable (/return a scalar output)\marginnote{Which in this example just happens to be the first element of the vector}.
 
 OK, so ... we need to devise an algorithm to find the largest value in the vector \texttt{v\_in}. The first piece of potentially useful information you can find, is the number of elements in the vector. You can obtain this via the function \docenv{length}\sidenote{It turns out that \texttt{length} does not care about the orientation of a vector, and:
 \begin{docspecmargin}
@@ -5867,7 +5867,7 @@ The crux of the problem is recognising that you need to keep a running maximum, 
 
 Almost there. Run the program/function and see what happens.
 
-MATLAB is unhappy about the line where the value of \texttt{temp\_max} is being tested against v\_in(n). It may be obvious to you when (in terms of loop iteations) this is occurring. If not, why not, just after:
+\textbf{MATLAB} is unhappy about the line where the value of \texttt{temp\_max} is being tested against v\_in(n). It may be obvious to you when (in terms of loop iterations) this is occurring. If not, why not, just after:
 
 \begin{docspec}
 \textcolor{blue}{for} n = 1:nmax,
@@ -5932,7 +5932,7 @@ There are 2 further testing or debugging (if you have issues) steps:
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\newthought{If you are passably happy with that --} try writing a (new) function that finds the \textit{minimum} element in the array.\sidenote[][-1.0in]{This is in fact employed a little later, where it is referred to as \texttt{minxx}.}
+\newthought{If you are passably happy with that --} write a (new) function that finds the \textit{minimum} element in a vector array.\sidenote[][-1.0in]{This is in fact employed a little later, where it is referred to as \texttt{minxx}.}
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
@@ -6007,7 +6007,7 @@ In general -- if the code works for a selection of extreme assumptions, it will 
 (And yes, \textbf{MATLAB} also has functions for sorting values in an array ...)
 
 \vspace{-2mm}
-\newthought{In this second Example --} you have a vector of numbers, and you wish to sort them into ascending order. The function would take a vector as input, and return a vector of the same length as output, comprising all the value of the input vector, but sorted.
+\newthought{In this second set of Examples --} imagine that you have a vector of numbers, and you wish to sort them into ascending order. The function would take a vector as input, and return a vector of the same length as output, comprising all the values of the input vector, but now sorted in order.
 
 How to go about this?
 
@@ -6032,20 +6032,23 @@ v\_out = [v\_out x];
 \end{docspec}
 Here -- one way to build up an array for the output, is to append to (concatenate) a value to an existing array. The array must start defined as something ... here, as empty\texttt{ ([]).}\sidenote{Also in this code fragment -- you need to have created that minimum finding function ...} 
 
-This will work, but only return the lowest (1st) value, rather than sorting them all. You might spot that the 3rd through 6th lines of code, need to be repeated -- i.e. you keep calling the find-the-minimum function, and adding this value to the output vector. But if this is all you did, the program would run forever and return an infinite number of repeats of the minimum value -- this is because once you have found the minimum value, and added it to the output array, the value still exists in the input array and will be found again (and again and again) if you create a loop.
+This will work, but only return the lowest (1st) value, rather than sorting them all. You might spot that the 3rd through 6th lines of code, need to be repeated -- i.e. you keep calling the find-the-minimum function, and adding this value to the output vector. But if this is all you did, the program would run forever and return an infinite number of repeats of the minimum value (or give you a vector the length of the input vector with identical (minimum) values in, depending on how you set up the loop (e.g. \texttt{for} or \texttt{while})) -- this is because once you have found the minimum value, and added it to the output array, the value still exists in the input array and will be found again (and again and again) if you create a loop around it.
 
-The key, at least, the key to creating the particular algorithm/solution I will outline next, is to remove the element from the input array, that you have just used. e.g. if we find a '\texttt{1}' and this is the lowest value, after it has been added t the output array, it needs to be deleted from the input array. This means that we need to know 'where' in the (input) array the minimum value was, so you next task is to \uline{modify your \texttt{minxx} function, to return the position in the vector that the minimum value occurred at} (in addition to the value of the minimum value itself).\sidenote{HINT: When you find a new minimum value in the loop, the index (the position of that minimum value) is \texttt{n}. So you need to create a temporary variable that you update with the value of \texttt{n}, only when a new minimum value is found in the loop. You will see this variable with '\texttt{1}', consistent with assigning the first minimum value from index \texttt{1} in the vector.} i.e. your \texttt{minxx} (or whatever you called it) function needs to look like:
+The key, at least, the key to creating the particular algorithm/solution I will outline next, is to remove the element from the input array, that you have just used. e.g. if we find a '\texttt{1}' and this is the lowest value, after it has been added to the output array, it needs to be deleted from the input array. This means that we need to know 'where' in the (input) array the minimum value was, so you next task is to \uline{modify your \texttt{minxx} function, to return the position in the vector that the minimum value occurred at} (in addition to the value of the minimum value itself).\sidenote{HINT: When you find a new minimum value in the loop, the index (the position of that minimum value) is \texttt{n}. So you need to create a temporary variable that you update with the value of \texttt{n}, only when a new minimum value is found in the loop. You will see this variable with '\texttt{1}', consistent with assigning the first minimum value from index \texttt{1} in the vector.} i.e. your \texttt{minxx} (or whatever you called it) function needs to look like:
+
 \begin{docspec}
 \textcolor{blue}{function} [s\_out1 s\_out2] = minxx(v\_in)
 \end{docspec}
 
-Having obtained the index of the minimum value, you can delete thsi entry from the input array by:
+\noindent where \texttt{s\_out1} is the minimum found value, as before, and \texttt{s\_out2} is the index position of that number in the vector.
+
+Having obtained the index of the minimum value, you can delete this entry from the input array by:
 \begin{docspec}
 v\_in(m) = [];
 \end{docspec}
 where \texttt{m} is the index.
 
-The complete code within your sort function, minus your (modified) \texttt{minxx} function, might look like\sidenote{Note the notation for catching the 2 returned values from the \texttt{minxx} function:
+The code within your modified sort (not \texttt{minxx}) function, might look like\sidenote{Note the notation for catching the 2 returned values from the \texttt{minxx} function:
 \begin{docspecmargin}[x m] = minxx(v\_in);
 \end{docspecmargin}}:
 \begin{docspec}
@@ -6075,6 +6078,10 @@ v\_out = [];\\
 \vspace{-2mm}
 
 \newthought{For even more (but less easy) fun:} create a function that sorts in descending order ... but ... \uline{excludes duplicate values}, i.e. no 2 values should be the same in the output vector.\sidenote{HINT: modify the \texttt{maxxx} function to return the index of all the elements having a value equal to the maximum value. This will be a vector, which will be appended to as the loop progresses, with each value being assigned the current value of \texttt{n} (the position of the maximum value in the vector).}
+
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{-2mm}
 
 %------------------------------------------------
 
