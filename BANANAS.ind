@@ -81,7 +81,7 @@
     \subitem \texttt  {end}, \hyperpage{32}
     \subitem \texttt  {equality}, \hyperpage{28}
     \subitem \texttt  {exist}, \hyperpage{86}, \hyperpage{89}
-    \subitem \texttt  {exit}, \hyperpage{29}, \hyperpage{201}
+    \subitem \texttt  {exit}, \hyperpage{29}, \hyperpage{202}
     \subitem \texttt  {exponentiation}, \hyperpage{27}
     \subitem \texttt  {fclose}, \hyperpage{94}
     \subitem \texttt  {figure}, \hyperpage{33}
@@ -96,13 +96,13 @@
     \subitem \texttt  {gca}, \hyperpage{128}
     \subitem \texttt  {geoshow}, \hyperpage{110}
     \subitem \texttt  {getframe}, \hyperpage{83}
-    \subitem \texttt  {ginput}, \hyperpage{179}
+    \subitem \texttt  {ginput}, \hyperpage{181}
     \subitem \texttt  {greater than}, \hyperpage{28}
     \subitem \texttt  {greater than or equal to}, \hyperpage{28}
     \subitem \texttt  {help}, \hyperpage{17}, \hyperpage{23}
     \subitem \texttt  {hold}, \hyperpage{50}
     \subitem \texttt  {hold on}, \hyperpage{48}
-    \subitem \texttt  {icecream}, \hyperpage{154}
+    \subitem \texttt  {icecream}, \hyperpage{155}
     \subitem \texttt  {if ... end}, \hyperpage{67}
     \subitem \texttt  {image}, \hyperpage{53}, \hyperpage{103}
     \subitem \texttt  {imagesc}, \hyperpage{103, 104}
@@ -111,33 +111,33 @@
     \subitem \texttt  {inequality}, \hyperpage{28}
     \subitem \texttt  {input}, \hyperpage{67, 68}, \hyperpage{89}
     \subitem \texttt  {interp1}, \hyperpage{123}
-    \subitem \texttt  {isempty}, \hyperpage{183}
-    \subitem \texttt  {ismember}, \hyperpage{184, 185}
+    \subitem \texttt  {isempty}, \hyperpage{185}
+    \subitem \texttt  {ismember}, \hyperpage{186, 187}
     \subitem \texttt  {isnan}, \hyperpage{115}, \hyperpage{117}, 
 		\hyperpage{119}
     \subitem \texttt  {isnana}, \hyperpage{115}
     \subitem \texttt  {legend}, \hyperpage{51}
     \subitem \texttt  {length}, \hyperpage{31}, \hyperpage{91}, 
-		\hyperpage{141}
+		\hyperpage{142}
     \subitem \texttt  {less than}, \hyperpage{28}
     \subitem \texttt  {less than or equal to}, \hyperpage{28}
-    \subitem \texttt  {line}, \hyperpage{127}, \hyperpage{198}, 
+    \subitem \texttt  {line}, \hyperpage{127}, \hyperpage{194}, 
 		\hyperpage{225}
     \subitem \texttt  {load}, \hyperpage{42--45}
     \subitem \texttt  {m-files}, \hyperpage{34}
     \subitem \texttt  {mean}, \hyperpage{231}
     \subitem \texttt  {meshgrid}, \hyperpage{107}
-    \subitem \texttt  {mod}, \hyperpage{194}
+    \subitem \texttt  {mod}, \hyperpage{141}
     \subitem \texttt  {movie2avi}, \hyperpage{83}
     \subitem \texttt  {multiplication}, \hyperpage{27}
     \subitem \texttt  {NaN}, \hyperpage{114}
     \subitem \texttt  {ncread}, \hyperpage{99}
     \subitem \texttt  {not}, \hyperpage{28}
     \subitem \texttt  {num2str}, \hyperpage{81}
-    \subitem \texttt  {numel}, \hyperpage{172}
+    \subitem \texttt  {numel}, \hyperpage{173}
     \subitem \texttt  {or}, \hyperpage{28}
     \subitem \texttt  {patch}, \hyperpage{130}
-    \subitem \texttt  {pause}, \hyperpage{218}
+    \subitem \texttt  {pause}, \hyperpage{219}
     \subitem \texttt  {pcolor}, \hyperpage{52, 53}, \hyperpage{90}
     \subitem \texttt  {pi}, \hyperpage{29}
     \subitem \texttt  {plot}, \hyperpage{33}, \hyperpage{46}, 
@@ -147,15 +147,15 @@
     \subitem \texttt  {rand}, \hyperpage{275}
     \subitem \texttt  {reshape}, \hyperpage{120, 121}
     \subitem \texttt  {rmmissing}, \hyperpage{118}
-    \subitem \texttt  {rocker}, \hyperpage{194}
+    \subitem \texttt  {rocker}, \hyperpage{141}
     \subitem \texttt  {rotate}, \hyperpage{39}
-    \subitem \texttt  {round}, \hyperpage{180}
-    \subitem \texttt  {save}, \hyperpage{44}, \hyperpage{162}
+    \subitem \texttt  {round}, \hyperpage{182}
+    \subitem \texttt  {save}, \hyperpage{44}, \hyperpage{163}
     \subitem \texttt  {scatter}, \hyperpage{33}, \hyperpage{52}
     \subitem \texttt  {set}, \hyperpage{128, 129}, \hyperpage{253}
     \subitem \texttt  {sin}, \hyperpage{35}
     \subitem \texttt  {size}, \hyperpage{31}, \hyperpage{38}, 
-		\hyperpage{152}
+		\hyperpage{153}
     \subitem \texttt  {sort}, \hyperpage{45}
     \subitem \texttt  {sortrows}, \hyperpage{46}
     \subitem \texttt  {strcmp}, \hyperpage{69}
@@ -175,10 +175,10 @@
     \subitem \texttt  {xlabel}, \hyperpage{34}
     \subitem \texttt  {xlsread}, \hyperpage{98}
     \subitem \texttt  {ylabel}, \hyperpage{34}
-    \subitem \texttt  {zeros}, \hyperpage{152}, \hyperpage{193}
+    \subitem \texttt  {zeros}, \hyperpage{153}, \hyperpage{197}
   \item \texttt  {equality} environment, \hyperpage{28}
   \item \texttt  {exist} environment, \hyperpage{86}, \hyperpage{89}
-  \item \texttt  {exit} environment, \hyperpage{29}, \hyperpage{201}
+  \item \texttt  {exit} environment, \hyperpage{29}, \hyperpage{202}
   \item \texttt  {exponentiation} environment, \hyperpage{27}
 
   \indexspace
@@ -200,7 +200,7 @@
   \item \texttt  {gca} environment, \hyperpage{128}
   \item \texttt  {geoshow} environment, \hyperpage{110}
   \item \texttt  {getframe} environment, \hyperpage{83}
-  \item \texttt  {ginput} environment, \hyperpage{179}
+  \item \texttt  {ginput} environment, \hyperpage{181}
   \item \texttt  {greater than} environment, \hyperpage{28}
   \item \texttt  {greater than or equal to} environment, \hyperpage{28}
 
@@ -212,7 +212,7 @@
 
   \indexspace
 
-  \item \texttt  {icecream} environment, \hyperpage{154}
+  \item \texttt  {icecream} environment, \hyperpage{155}
   \item \texttt  {if ... end} environment, \hyperpage{67}
   \item \texttt  {image} environment, \hyperpage{53}, \hyperpage{103}
   \item \texttt  {imagesc} environment, \hyperpage{103, 104}
@@ -222,8 +222,8 @@
   \item \texttt  {input} environment, \hyperpage{67, 68}, 
 		\hyperpage{89}
   \item \texttt  {interp1} environment, \hyperpage{123}
-  \item \texttt  {isempty} environment, \hyperpage{183}
-  \item \texttt  {ismember} environment, \hyperpage{184, 185}
+  \item \texttt  {isempty} environment, \hyperpage{185}
+  \item \texttt  {ismember} environment, \hyperpage{186, 187}
   \item \texttt  {isnan} environment, \hyperpage{115}, \hyperpage{117}, 
 		\hyperpage{119}
   \item \texttt  {isnana} environment, \hyperpage{115}
@@ -232,11 +232,11 @@
 
   \item \texttt  {legend} environment, \hyperpage{51}
   \item \texttt  {length} environment, \hyperpage{31}, \hyperpage{91}, 
-		\hyperpage{141}
+		\hyperpage{142}
   \item \texttt  {less than} environment, \hyperpage{28}
   \item \texttt  {less than or equal to} environment, \hyperpage{28}
   \item license, \hyperpage{2}
-  \item \texttt  {line} environment, \hyperpage{127}, \hyperpage{198}, 
+  \item \texttt  {line} environment, \hyperpage{127}, \hyperpage{194}, 
 		\hyperpage{225}
   \item \texttt  {load} environment, \hyperpage{42--45}
 
@@ -245,7 +245,7 @@
   \item \texttt  {m-files} environment, \hyperpage{34}
   \item \texttt  {mean} environment, \hyperpage{231}
   \item \texttt  {meshgrid} environment, \hyperpage{107}
-  \item \texttt  {mod} environment, \hyperpage{194}
+  \item \texttt  {mod} environment, \hyperpage{141}
   \item \texttt  {movie2avi} environment, \hyperpage{83}
   \item \texttt  {multiplication} environment, \hyperpage{27}
 
@@ -255,7 +255,7 @@
   \item \texttt  {ncread} environment, \hyperpage{99}
   \item \texttt  {not} environment, \hyperpage{28}
   \item \texttt  {num2str} environment, \hyperpage{81}
-  \item \texttt  {numel} environment, \hyperpage{172}
+  \item \texttt  {numel} environment, \hyperpage{173}
 
   \indexspace
 
@@ -264,7 +264,7 @@
   \indexspace
 
   \item \texttt  {patch} environment, \hyperpage{130}
-  \item \texttt  {pause} environment, \hyperpage{218}
+  \item \texttt  {pause} environment, \hyperpage{219}
   \item \texttt  {pcolor} environment, \hyperpage{52, 53}, 
 		\hyperpage{90}
   \item \texttt  {pi} environment, \hyperpage{29}
@@ -281,19 +281,19 @@
   \item \texttt  {rand} environment, \hyperpage{275}
   \item \texttt  {reshape} environment, \hyperpage{120, 121}
   \item \texttt  {rmmissing} environment, \hyperpage{118}
-  \item \texttt  {rocker} environment, \hyperpage{194}
+  \item \texttt  {rocker} environment, \hyperpage{141}
   \item \texttt  {rotate} environment, \hyperpage{39}
-  \item \texttt  {round} environment, \hyperpage{180}
+  \item \texttt  {round} environment, \hyperpage{182}
 
   \indexspace
 
-  \item \texttt  {save} environment, \hyperpage{44}, \hyperpage{162}
+  \item \texttt  {save} environment, \hyperpage{44}, \hyperpage{163}
   \item \texttt  {scatter} environment, \hyperpage{33}, \hyperpage{52}
   \item \texttt  {set} environment, \hyperpage{128, 129}, 
 		\hyperpage{253}
   \item \texttt  {sin} environment, \hyperpage{35}
   \item \texttt  {size} environment, \hyperpage{31}, \hyperpage{38}, 
-		\hyperpage{152}
+		\hyperpage{153}
   \item \texttt  {sort} environment, \hyperpage{45}
   \item \texttt  {sortrows} environment, \hyperpage{46}
   \item \texttt  {strcmp} environment, \hyperpage{69}
@@ -335,6 +335,6 @@
 
   \indexspace
 
-  \item \texttt  {zeros} environment, \hyperpage{152}, \hyperpage{193}
+  \item \texttt  {zeros} environment, \hyperpage{153}, \hyperpage{197}
 
 \end{theindex}

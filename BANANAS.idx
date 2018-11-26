@@ -431,60 +431,60 @@
 \indexentry{environments!text@\texttt  {text}|hyperpage}{133}
 \indexentry{text environment@\texttt  {text} environment|hyperpage}{134}
 \indexentry{environments!text@\texttt  {text}|hyperpage}{134}
-\indexentry{length environment@\texttt  {length} environment|hyperpage}{141}
-\indexentry{environments!length@\texttt  {length}|hyperpage}{141}
-\indexentry{size environment@\texttt  {size} environment|hyperpage}{152}
-\indexentry{environments!size@\texttt  {size}|hyperpage}{152}
-\indexentry{size environment@\texttt  {size} environment|hyperpage}{152}
-\indexentry{environments!size@\texttt  {size}|hyperpage}{152}
-\indexentry{size environment@\texttt  {size} environment|hyperpage}{152}
-\indexentry{environments!size@\texttt  {size}|hyperpage}{152}
-\indexentry{zeros environment@\texttt  {zeros} environment|hyperpage}{152}
-\indexentry{environments!zeros@\texttt  {zeros}|hyperpage}{152}
-\indexentry{zeros environment@\texttt  {zeros} environment|hyperpage}{152}
-\indexentry{environments!zeros@\texttt  {zeros}|hyperpage}{152}
-\indexentry{icecream environment@\texttt  {icecream} environment|hyperpage}{154}
-\indexentry{environments!icecream@\texttt  {icecream}|hyperpage}{154}
-\indexentry{save environment@\texttt  {save} environment|hyperpage}{162}
-\indexentry{environments!save@\texttt  {save}|hyperpage}{162}
-\indexentry{numel environment@\texttt  {numel} environment|hyperpage}{172}
-\indexentry{environments!numel@\texttt  {numel}|hyperpage}{172}
-\indexentry{ginput environment@\texttt  {ginput} environment|hyperpage}{179}
-\indexentry{environments!ginput@\texttt  {ginput}|hyperpage}{179}
-\indexentry{ginput environment@\texttt  {ginput} environment|hyperpage}{179}
-\indexentry{environments!ginput@\texttt  {ginput}|hyperpage}{179}
-\indexentry{ginput environment@\texttt  {ginput} environment|hyperpage}{179}
-\indexentry{environments!ginput@\texttt  {ginput}|hyperpage}{179}
-\indexentry{round environment@\texttt  {round} environment|hyperpage}{180}
-\indexentry{environments!round@\texttt  {round}|hyperpage}{180}
-\indexentry{isempty environment@\texttt  {isempty} environment|hyperpage}{183}
-\indexentry{environments!isempty@\texttt  {isempty}|hyperpage}{183}
-\indexentry{ismember environment@\texttt  {ismember} environment|hyperpage}{184}
-\indexentry{environments!ismember@\texttt  {ismember}|hyperpage}{184}
-\indexentry{ismember environment@\texttt  {ismember} environment|hyperpage}{185}
-\indexentry{environments!ismember@\texttt  {ismember}|hyperpage}{185}
-\indexentry{zeros environment@\texttt  {zeros} environment|hyperpage}{193}
-\indexentry{environments!zeros@\texttt  {zeros}|hyperpage}{193}
-\indexentry{mod environment@\texttt  {mod} environment|hyperpage}{194}
-\indexentry{environments!mod@\texttt  {mod}|hyperpage}{194}
-\indexentry{rocker environment@\texttt  {rocker} environment|hyperpage}{194}
-\indexentry{environments!rocker@\texttt  {rocker}|hyperpage}{194}
-\indexentry{mod environment@\texttt  {mod} environment|hyperpage}{194}
-\indexentry{environments!mod@\texttt  {mod}|hyperpage}{194}
-\indexentry{line environment@\texttt  {line} environment|hyperpage}{198}
-\indexentry{environments!line@\texttt  {line}|hyperpage}{198}
-\indexentry{line environment@\texttt  {line} environment|hyperpage}{198}
-\indexentry{environments!line@\texttt  {line}|hyperpage}{198}
-\indexentry{exit environment@\texttt  {exit} environment|hyperpage}{201}
-\indexentry{environments!exit@\texttt  {exit}|hyperpage}{201}
+\indexentry{mod environment@\texttt  {mod} environment|hyperpage}{141}
+\indexentry{environments!mod@\texttt  {mod}|hyperpage}{141}
+\indexentry{rocker environment@\texttt  {rocker} environment|hyperpage}{141}
+\indexentry{environments!rocker@\texttt  {rocker}|hyperpage}{141}
+\indexentry{mod environment@\texttt  {mod} environment|hyperpage}{141}
+\indexentry{environments!mod@\texttt  {mod}|hyperpage}{141}
+\indexentry{length environment@\texttt  {length} environment|hyperpage}{142}
+\indexentry{environments!length@\texttt  {length}|hyperpage}{142}
+\indexentry{size environment@\texttt  {size} environment|hyperpage}{153}
+\indexentry{environments!size@\texttt  {size}|hyperpage}{153}
+\indexentry{size environment@\texttt  {size} environment|hyperpage}{153}
+\indexentry{environments!size@\texttt  {size}|hyperpage}{153}
+\indexentry{size environment@\texttt  {size} environment|hyperpage}{153}
+\indexentry{environments!size@\texttt  {size}|hyperpage}{153}
+\indexentry{zeros environment@\texttt  {zeros} environment|hyperpage}{153}
+\indexentry{environments!zeros@\texttt  {zeros}|hyperpage}{153}
+\indexentry{zeros environment@\texttt  {zeros} environment|hyperpage}{153}
+\indexentry{environments!zeros@\texttt  {zeros}|hyperpage}{153}
+\indexentry{icecream environment@\texttt  {icecream} environment|hyperpage}{155}
+\indexentry{environments!icecream@\texttt  {icecream}|hyperpage}{155}
+\indexentry{save environment@\texttt  {save} environment|hyperpage}{163}
+\indexentry{environments!save@\texttt  {save}|hyperpage}{163}
+\indexentry{numel environment@\texttt  {numel} environment|hyperpage}{173}
+\indexentry{environments!numel@\texttt  {numel}|hyperpage}{173}
+\indexentry{ginput environment@\texttt  {ginput} environment|hyperpage}{181}
+\indexentry{environments!ginput@\texttt  {ginput}|hyperpage}{181}
+\indexentry{ginput environment@\texttt  {ginput} environment|hyperpage}{181}
+\indexentry{environments!ginput@\texttt  {ginput}|hyperpage}{181}
+\indexentry{ginput environment@\texttt  {ginput} environment|hyperpage}{181}
+\indexentry{environments!ginput@\texttt  {ginput}|hyperpage}{181}
+\indexentry{round environment@\texttt  {round} environment|hyperpage}{182}
+\indexentry{environments!round@\texttt  {round}|hyperpage}{182}
+\indexentry{isempty environment@\texttt  {isempty} environment|hyperpage}{185}
+\indexentry{environments!isempty@\texttt  {isempty}|hyperpage}{185}
+\indexentry{ismember environment@\texttt  {ismember} environment|hyperpage}{186}
+\indexentry{environments!ismember@\texttt  {ismember}|hyperpage}{186}
+\indexentry{ismember environment@\texttt  {ismember} environment|hyperpage}{187}
+\indexentry{environments!ismember@\texttt  {ismember}|hyperpage}{187}
+\indexentry{line environment@\texttt  {line} environment|hyperpage}{194}
+\indexentry{environments!line@\texttt  {line}|hyperpage}{194}
+\indexentry{line environment@\texttt  {line} environment|hyperpage}{194}
+\indexentry{environments!line@\texttt  {line}|hyperpage}{194}
+\indexentry{zeros environment@\texttt  {zeros} environment|hyperpage}{197}
+\indexentry{environments!zeros@\texttt  {zeros}|hyperpage}{197}
+\indexentry{exit environment@\texttt  {exit} environment|hyperpage}{202}
+\indexentry{environments!exit@\texttt  {exit}|hyperpage}{202}
 \indexentry{D'uh! environment@\texttt  {D'uh!} environment|hyperpage}{216}
 \indexentry{environments!D'uh!@\texttt  {D'uh!}|hyperpage}{216}
 \indexentry{duh environment@\texttt  {duh} environment|hyperpage}{216}
 \indexentry{environments!duh@\texttt  {duh}|hyperpage}{216}
-\indexentry{pause environment@\texttt  {pause} environment|hyperpage}{218}
-\indexentry{environments!pause@\texttt  {pause}|hyperpage}{218}
-\indexentry{pause environment@\texttt  {pause} environment|hyperpage}{218}
-\indexentry{environments!pause@\texttt  {pause}|hyperpage}{218}
+\indexentry{pause environment@\texttt  {pause} environment|hyperpage}{219}
+\indexentry{environments!pause@\texttt  {pause}|hyperpage}{219}
+\indexentry{pause environment@\texttt  {pause} environment|hyperpage}{219}
+\indexentry{environments!pause@\texttt  {pause}|hyperpage}{219}
 \indexentry{line environment@\texttt  {line} environment|hyperpage}{225}
 \indexentry{environments!line@\texttt  {line}|hyperpage}{225}
 \indexentry{mean environment@\texttt  {mean} environment|hyperpage}{231}

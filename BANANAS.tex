@@ -5793,6 +5793,72 @@ color = (column\(^{\wedge}\)2 + row);
 
 Maybe play about a little creating different patterns of colors by means of different equations combining the values of \texttt{column} and \texttt{row}.
 
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{-2mm}
+
+\newthought{As a final example, consider teh chess board.} A chess board consists of squares in a \(8\times8\) grid. The squares alternate black and white. To define 8 squares (points) along the \textit{x}-axis on the bottom row, you'd write something of the form:
+\begin{docspec}
+\textcolor{blue}{for} m=1:8
+\\ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% SOME CODE GOES HERE}
+\\\textcolor{blue}{end}
+\end{docspec}
+Now, if you wanted to define 8 squares along each column (the \textit{y}-axis), at each and every \textit{x}-axis value, you'd need to loop through all the rows, So you need a loop in e.g. \texttt{n}, inside the loop for \texttt{m}:
+\begin{docspec}
+\textcolor{blue}{for} m=1:8
+\\ \ \ \ \textcolor{blue}{for} n=1:8
+\\ \ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% SOME CODE GOES HERE}
+\\ \ \ \ \textcolor{blue}{end}
+\\\textcolor{blue}{end}
+\end{docspec}
+Follow this through to satisfy yourself that for each and every value of \texttt{m} from \texttt{1} to \texttt{8}, \texttt{n} loops from \texttt{1} to \texttt{8}, and hence visits every point in turn of a  \(8\times8\) (\texttt{n,m}) grid.
+
+Actually, now we have got this far, it is good practice to consider how we'd define the black and white squares. We'll assume that black is represented by '\texttt{1}' (\textit{true}) and white by \texttt{'0'} (\textit{false}) and create a board (array) of all white squares to start with, i.e.
+\begin{docspec}
+board = zeros(8);
+\end{docspec}
+\noindent(Refer to \textbf{help} or earlier for the syntax for help on the function \texttt{zeros}.\sidenote[][-1.5in]{You could alternatively write this:
+\begin{docspecmargin}board = zeros(8,8);\end{docspecmargin}})
+
+\marginnote[-1.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\docenvdef{mod}
+\\Not ... the opposite of \docenvdef{rocker} (which doesn't exist in \textbf{MATLAB} anyway) but short for \textit{modulo}. Wikipedia helpfully tells us:
+\\"\textit{In computing, the modulo operation finds the remainder after division of one number by another (sometimes called modulus).}"
+\\Or in \textbf{MATLAB}-speak:
+\begin{docspecmargin}
+b = mod(a,m) 
+\end{docspecmargin}
+"\textit{returns the remainder after division of \texttt{a} by \texttt{m}, where \texttt{a} is the dividend and \texttt{m} is the divisor}".
+\\It turns out that as long as a is positive, you can use to test for whether an integer \texttt{a} is \textit{even} or \textit{odd} by:
+\begin{docspecmargin}
+b = mod(a,2) 
+\end{docspecmargin}
+When the returned value \texttt{b} is \texttt{0}, \texttt{a} is \textit{even}, and when \texttt{b} is \texttt{1}, \texttt{a} is \textit{odd}.
+\end{mdframed}}
+
+If we start with a black square ('\texttt{1}') at the bottom left, we could define an \textit{algorithm} for creating the grid as: odd column number squares are black, as long as the row number is odd, otherwise they are white.\sidenote{Look up a picture of a chess board to convince yourself that this works.} So to implement this in code -- as we loop through both column (\texttt{m}) and row (\texttt{n}) on the board, we test for  the column number being odd and row number odd, OR, the column number being even and row number being even. If \textit{true}, the square is defined as black. The only tricky bit is to determine whether the row or column number is even or odd. We do this by testing whether there is any remainder after dividing by 2, using the function \docenv{mod}.
+
+The complete code looks like:
+\begin{docspecmargin}
+board = zeros(8);
+\\\textcolor{blue}{for} m=1:8
+\\ \ \ \ \ \textcolor{blue}{for} n=1:8
+\\ \ \ \ \ \ \ \ \ \textcolor{blue}{if} ((mod(m,2)>0 \&\& mod(n,2)>0) || (mod(m,2)==0 \&\& mod(n,2)==0))
+\\ \ \ \ \ \ \ \ \ \ \ \ \ board(n,m) = 1;
+\\ \ \ \ \ \ \ \ \ \textcolor{blue}{end}
+\\ \ \ \ \ \textcolor{blue}{end}
+\\\textcolor{blue}{end}
+\end{docspecmargin}
+Spend a little time decoding the \texttt{if} statement for practice ...
+If you want to see that it works -- code it in a new \textbf{m-file}, run it, and then plot up \texttt{board} by e.g. using \texttt{imagesc} (cf. Figure \ref{fig:ch8-chess}). Beautiful.
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch8-chess.png}
+\caption{Chess board grid pattern.}
+\label{fig:ch8-chess}
+\end{marginfigure}
+
+
 %------------------------------------------------
 
 \newpage
@@ -7681,11 +7747,11 @@ In this Section, you are going to create, and then use in a series of applicatio
 \\The surface energy budget at the Earths surface, to a zero-th order approximation, can be thought of as a simple balance between incoming, sort-wave radiation that is *absorbed*, and out-going, infra-red radiation.
 \\On average (over the Earths surface and annually), the energy flux per unit area received from the sun, can be written:
 \begin{docspecnormal}
-\(F_{in} = \frac{(1-\alpha) \cdot S_{0}}{4}\)
+\(F_{in} = \frac{(1-\alpha) \cdot S}{4}\)
 \end{docspecnormal}
-where the present-day value of the solar constant, \(S_{0}\) is \( 1368 Wm^{-2}\)
-(The \(\frac{1}{4}\) appears because the cross-sectional area of the Earth is \(\frac{1}{4}\) of its total surface area -- i.e. you take energy intercepted by the Earth, which has an effective area of \(\pi\cdot r^{2}\), and spread it out over the entire surface -- an area of \(4\cdot\pi\cdot r^{2}\).)
-\\Albedo (\(\alpha\)) -- the fraction of incoming solar radiation that is reflected back to (-wards) space -- varies hugely across surface types (and angle of incoming radiation). A commonly used mean global approximation is to set: \(\alpha=0.3\).
+where \(S\) is the solar 'constant' which has a present-day value (given the notation \(S_{0}\)) of \( 1368 Wm^{-2}\)
+\\(NOTE: the \(\frac{1}{4}\) appears because the cross-sectional area of the Earth is \(\frac{1}{4}\) of its total surface area -- i.e. you take energy intercepted by the Earth, which has an effective area of \(\pi\cdot r^{2}\), and spread it out over the entire surface -- an area of \(4\cdot\pi\cdot r^{2}\).)
+\\Albedo (\(\alpha\)), is the fraction of incoming solar radiation that is reflected back to (-wards) space -- varies hugely across surface types (and angle of incoming radiation). A commonly used mean global approximation is to set: \(\alpha=0.3\).
 \\Net outgoing infrared radiation proceeds according to black body emissions:
 \begin{docspecnormal}
 \(F_{out} = \epsilon \cdot \sigma \cdot T^{4}\)
@@ -7698,58 +7764,64 @@ where \(\epsilon\) is the emissivity, \(\sigma\) is the Stefan-Boltzmann constan
 See Figure \ref{fig:ch8-blackbody}.
 \end{mdframed}}
 
-The exercises that follow are structured and you need to pay attention to which \textsf{m-files} you are creating from scratch, which ones, having been created and coded up, you  do not then further edit ... 
+The exercises that follow are structured and you need to \uline{pay attention} to which \textsf{m-files} you are creating from scratch, which ones, having been created and coded up, you  do not then further edit, and which are \textit{functions} and which are \textit{script} files ... 
+
+The sequence of work is as follows:
+
+
 
 \begin{description}[align=right]
 
 \setlength{\itemindent}{-0.2in}
 
-\item [7.1.1] In this first Subsection ('\textit{The basic EBM}'), you'll  create a script (\# \texttt{scr\_1\sidenote{This is not a suggested name of the \textbf{m-file}, but an ID to help you not get confused as to which script or function is being referred to in the text ...}}) containing the Energy Balance Model (EBM), and test it.
+\item [6.1.1] In this first Subsection ('\textit{The basic EBM}'), you'll  create a \textit{script} (\# \texttt{scr\_1\sidenote{This is not a suggested name of the \textbf{m-file}, but an ID to help you not get confused as to which script or function is being referred to in the text ...}}) \textbf{m-file} containing the Energy Balance Model (EBM), and test it.
 
 \noindent (See Figure \ref{fig:ch8-schematic-scr1}.)
 
-\item [7.1.2] Next, you'll turn your EBM script (\texttt{scr\_1}) into a function (\texttt{fun\_1})\sidenote{\textbf{Once the EBM function has been created, you do not at any point edit it any further!}} -- passing in the solar constant and albedo as parameters, and returning the surface temperature. (And test it.)
+\item [6.1.2] Next, you'll turn your EBM \textit{script} (\texttt{scr\_1}) into a \textit{function} (\texttt{fun\_1})\sidenote{\textbf{Once the EBM function has been created, you do not at any point edit it any further!}} -- passing in the solar constant and albedo as parameters, and returning the surface temperature. (And test it.)
 
 \noindent (See Figure \ref{fig:ch8-schematic-fun1}.)
 
-\item [7.1.3] In the Subsection '\textit{Parameter sensitivity experiments using the EBM -- \#1}', you will create a new script (\texttt{scr\_2}) with a single loop in it. Within the loop, you will make a call to the EBM function (\# \texttt{fun\_1}) that you created.\sidenote{DO\ NOT put code the loops into the EBM function -- leave the function alone ...}
-
-\noindent (See Figure \ref{fig:ch8-schematic-scr2fun1}.)
-
-\item [7.1.3] Then, in an extension to the previous Subsection work, you will create another new script (\texttt{scr\_3}), this time  with a double (nested) loop in it. As before -- within the loop, you will make a call to the EBM function.
-Note that there is going to something of a diversion in this Subsection that will further help illustrate nested loops for you.
-
-\noindent (See Figure \ref{fig:ch8-schematic-scr3fun1}.)
-
-\item [7.1.4] In the penultimate Subsection ('Calculating the evolution of the solar constant'), you'll create a new function (\texttt{fun\_2}), which will take time (counted from the formation of the Sun) in \(Ga\), and return the value of the solar constant at that time (\(S(t)\) (\(Wm^{-2}\)) ).
+\item [6.1.3] In the penultimate Subsection ('\textit{Calculating the evolution of the solar constant}'), you'll create a new function (\texttt{fun\_2}), which will take time (counted from the formation of the Sun) in \(Ga\), and return the value of the solar constant at that time (\(S(t)\) (\(Wm^{-2}\)) ).
 
 \noindent (See Figure \ref{fig:ch8-schematic-fun2}.)
 
 And then ...
 
-\item [7.1.5] ... finally (Subsection '\textit{Evolution} of Earth's surface temperature'), you'll create one last script (\texttt{scr\_4}), with a loop in time in it, and from within this loop, you'll call first the solar constant function (\texttt{fun\_2}), taking time as an input and returning the value of \(S(t)\), which you will then pass into the EBM (\# \texttt{fun\_1}), returning \(T\).
+\item [6.1.4] ... finally (Subsection '\textit{Evolution of Earth's surface temperature}'), you'll create one last script (\texttt{scr\_4}), with a loop in time in it, and from within this loop, you'll call first the solar constant function (\texttt{fun\_2}), taking time as an input and returning the value of \(S_{(t)}\), which you will then pass into the EBM (\# \texttt{fun\_1}), returning the surface temperature at time t --  \(T_{(t)}\).
 
 \noindent (See Figure \ref{fig:ch8-schematic-scr4fun1fun2}.)
 
 \end{description}
 
-Note that because you will be creating, running, and no doubt debugging a number of different scripts, that it is beneficial to add the line:
-\begin{docspec}
-clear all;
-\end{docspec}
-somewhere near the very top of the \textsf{m-file} (but before you try and define any parameters). This is because in script files, all the variables are global and appear in the MATLAB workspace. When you run a script a 2nd time (or a different script), it is possible that pre-existing variables or arrays might interfere with your script, or at least create the potential for confusion.\sidenote[][-3.25in]{This is different from \textit{functions}, where all the variables within the \textit{function} are \textit{private} and hence isolated from the rest of the \textbf{MATLAB} universe.}
+You can also take the EMBM function (now ignoring the solar constant function), and play some theoretical games with it in order to understand how sensitive global surface temperature is to key variables (solar constant and albedo):
+
+\begin{description}[align=right]
+
+\setlength{\itemindent}{-0.2in}
+
+\item [6.1.5] In the Subsection '\textit{Parameter sensitivity experiments using the EBM -- \#1}', you will create a new script (\texttt{scr\_2}) with a single loop in it. Within the loop, you will make a call to the EBM function (\# \texttt{fun\_1}) that you created.\sidenote{DO\ NOT put code the loops into the EBM function -- leave the function alone ...}
+
+\noindent (See Figure \ref{fig:ch8-schematic-scr2fun1}.)
+
+\item [6.1.6] Then, in '\textit{Parameter sensitivity experiments using the EBM -- \#2}' -- an extension to the previous Subsection work, you will create another new script (\texttt{scr\_3}), this time  with a double (nested) loop in it. As before -- within the loop, you will make a call to the EBM function.
+Note that there is going to something of a diversion in this Subsection that will further help illustrate nested loops for you.
+
+\noindent (See Figure \ref{fig:ch8-schematic-scr3fun1}.)
+
+\end{description}
 
 %------------------------------------------------
 
 \subsection{The basic EBM}
 
-\begin{marginfigure}[-2.5in]
+\begin{marginfigure}[-2.25in]
 \includegraphics[width=\linewidth]{ridgwell-and-valdes-Figures.png}
 \caption{The pattern of absorption bands generated by various greenhouse gases and aerosols (lower panel) and how they impact both incoming solar radiation (upper left) and outgoing thermal radiation from the Earths surface (upper right). (Figure prepared by Robert A. Rohde for the Global Warming Art project.).}
 \label{fig:ch8-blackbody}
 \end{marginfigure}
 
-To kick off -- create a new script (\textbf{m-file}) ('\texttt{scr\_1}' in the summary notation) and code up the analytical solution to the basic global mean energy budget at the surface of the Earth (see Box) in a program structure illustrated schematically in Figure \ref{fig:ch8-schematic-scr1}.\sidenote[][0.0in]{
+To kick off -- create a new \textit{script} (\textbf{m-file}) ('\texttt{scr\_1}' in the summary notation) and code up the analytical solution to the basic global mean energy budget at the surface of the Earth (see Box) in a program structure illustrated schematically in Figure \ref{fig:ch8-schematic-scr1}.\sidenote[][0.0in]{
 Note that the code is relatively simple and does not involve (yet) loops or conditionals or anything like that. Although ... I am sure it will involve lots of nice juicy comments and sensible variable names(?) \\Simply set up the values of the various constants and parameters you need at the start of the code, then solve for \(T\) at the end of the code. The structure (omitting \textcolor[rgb]{0,0.501961,0.25098}{\texttt{\% comments}}) of your code may look like:
 \begin{docspecmargin}
 \textcolor[rgb]{0,0.501961,0.25098}{\% section for constants (variables you do not expect ever to change)}
@@ -7759,7 +7831,7 @@ Note that the code is relatively simple and does not involve (yet) loops or cond
 \\\textcolor[rgb]{0,0.501961,0.25098}{\% solve for T}
 \\\(T = \ldots\)
 \end{docspecmargin}
-} The equations for in-coming and out-going radiation (energy) were given previously. You simply need to re-arrange these in terms of \(T\) (i.e. \(T=...\)) and write them as code. This will form the basis of subsequent, more complex (and later, time-stepping) models. You will need to find (from the Internet?) the values of the constants you need ... and will need to be careful with units of these. 
+} The equations for in-coming and out-going radiation (energy) were given previously. You simply need to re-arrange these in terms of \(T\) (i.e. \(T=...\)) and write them as code. This will form the basis of subsequent, more complex (and later, time-stepping) models. You will need to find (from the Internet?) the value of the constant you need ... and will need to be careful with units of this. 
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch8-schematic-scr1.eps}
@@ -7767,19 +7839,19 @@ Note that the code is relatively simple and does not involve (yet) loops or cond
 \label{fig:ch8-schematic-scr1}
 \end{marginfigure}
 
-For now -- prescribe the value of \(S_{0}\) -- for which the modern value is 1368 Wm\(^{-2}\) as well as the value of surface albedo (\(\alpha=0.3\)  by default) -- somewhere near the start of the program. Then run it.
+For now -- prescribe the value of \(S\) -- for which the modern value is 1368 Wm\(^{-2}\) (\(S_{0}\)) as well as the value of surface albedo (\(\alpha=0.3\)  by default) -- somewhere near the start of the program. Then run it.
 
-If you found a reasonable value for the solar constant, and did not screw-up the units on the Stefan-Boltzmann constant, then you should have an equilibrium (global, annual mean) surface temperature of around 14\degree C ... If not -- debug. Assuming that the code ran without errors but gave a nutty answer:
+If you found a reasonable value for the solar constant, and did not screw-up the units on the Stefan-Boltzmann constant, then you should have an equilibrium (global, annual mean) surface temperature of around 14\degree C\sidenote{Remembering to convert from Kelvin (\(K\)) to degrees Centigrade (\degree C).} ... If not -- debug. Assuming that the code ran without errors but gave a nutty answer:
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item Check that the units are correct.
 \item Check that the equation has been re-arranged correctly -- a common source of errors is incorrect placement of parentheses ... or not placing parentheses around multiple variables you are divining something all by.
 \\ If it helps you to avoid confusion and potential errors and bugs by breaking down calculations into multiple steps using temporary/intermediate variables and partial calculations ... then do it!
-\item If still 'no' -- maybe take the 2 component equations (for \(F_{in}\) and \(F_{out}\)), plug \(S_{0}\) into the equation for \(F_{in}\) and then play with different values of \(T\) to find a value for \(F_{out}\) that is approximately equal -- is the value for \(T\) sane? If not, double-check the units and values in both component equations.
-\item If still 'no' -- WHAT HAVE YOU DONE?
+\item If still 'no' -- maybe take the 2 component equations (for \(F_{in}\) and \(F_{out}\)), plug \(S\) into the equation for \(F_{in}\) and then play with different values of \(T\) to find a value for \(F_{out}\) that is approximately equal -- is the value for \(T\) sane? If not, double-check the units and values in both component equations.
+\item If still 'no' -- WHAT HAVE YOU DONE???
 \end{enumerate} 
 
-Once it is working, have a quick play about, changing the value of \(S_{0}\) and albedo (\(\alpha\)) (saving the \textsf{m-file} each time and re-running) to get a vague feel for how sensitive the surface temperature is to these two parameters.
+Once it is working, have a quick play about, changing the value of \(S\) and albedo (\(\alpha\)) (saving the \textbf{m-file} each time and re-running) to get a vague feel for how sensitive the surface temperature is to these two parameters.
 
 \begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch8-schematic-fun1.eps}
@@ -7803,26 +7875,135 @@ where \texttt{OUT} represents one (or more) variables that are passed out (the '
 \textcolor{blue}{function} [OUT] = ... 
 \\ \ \ \ FUNCTION\_NAME(IN\_1,IN\_2)
 \end{docspecmargin}
-} that takes in 2 parameters -- the solar constant (\(S_{0}\)) and the mean global albedo (\(\alpha\)). The function should return the global mean surface temperature, \(T\).\sidenote{Note that the parameters passed into, and returned by, the function, can be called anything you want. As long as they are useful (and clearly defined/explained in a comment somewhere).} (See Figure \ref{fig:ch8-schematic-fun1})
+} that takes in 2 parameters -- the solar constant (\(S\)) and the mean global albedo (\(\alpha\)). The function should return the global mean surface temperature, \(T\).\sidenote{Note that the parameters passed into, and returned by, the function, can be called anything you want. As long as they are useful (and clearly defined/explained in a comment somewhere).} (See Figure \ref{fig:ch8-schematic-fun1})
 
-Try playing with the function in the same way as before, but now passing the different values of \(S_{0}\) and \(\alpha\) (rather than having to edit the \textsf{m-file}, save, and re-run each time). To use the function (assuming you called it e.g. \texttt{fun\_1}), and assuming the 2 passed parameters are in the order: \(S_{0}\), \(\alpha\) and are given their default values, you'd write (at the command line):
+Try playing with the function in the same way as before, but now passing the different values of \(S\) and \(\alpha\) (rather than having to edit the \textsf{m-file}, save, and re-run each time). To use the function (assuming you called it e.g. \texttt{fun\_1}), and assuming the 2 passed parameters are in the order: \(S\), \(\alpha\) and are given their default values, you'd write (at the command line):
 \begin{docspec}
 >> fun\_1(1368.0,0.3)
 \end{docspec}
-(and get a value close to 14\degree C returned).
+(and get a value close to 14\degree C returned, and if not -- debug it ...).
+
+%------------------------------------------------
+
+\begin{marginfigure}[0.5in]
+\includegraphics[width=\linewidth]{ch8-schematic-fun2.eps}
+\caption{Schematic structure of code for calculating the solar constant (output) as a function of time (input).}
+\label{fig:ch8-schematic-fun2}
+\end{marginfigure}
+
+\subsection{Creating a function for the evolution of solar constant through geological time}
+
+In this  Sub-subsection, as a precursor to simulating how Earths surface temperature may have changed through geological time, you are going to code up a \textit{function} that calculates (and returns) the value of the solar constant as a function of time.
+
+So far you only have a function equating solar constant (\(S\)) to temperature (\(T\)). What you need is some way of equating time (\(t\)) to the value of the solar constant at that time \(S_{(t)}\) (which you can then turn into temperature). We'll remedy this toot sweet.
+
+Start by creating a new  (blank) \textbf{m-file} and define it as a \textit{function} that takes in a variable for time, \(t\) (in units of \(Ga\)) and spits out  (aka, returns) the calculated value of \(S_{(t)}\) (\(Wm^{-2}\)) (this will be '\texttt{fun\_2}' in the on-going notation).
+
+The background to the equation that will go into your function is given in the Solar constant Box. In this, you'll first need to substitute the modern value of the solar constant (\(S_{(t=0)}\) or \(S_{0}\)) into the equation to leave it in terms of \(S_{(t)}\) (the solar constant value at time \(t\)).
+ 
+Your function, aside from the all-important 1st line (and \textcolor{blue}{\texttt{end}} at the end) and appropriate \textcolor[rgb]{0,0.501961,0.25098}{\texttt{\% comments}}, need have little more in than a definition for any constant you might want to use, such as the modern value of \(S_{(t=0)}\) and perhaps the reference time\sidenote[][2.0in]{Which is also equal to the current time (since the formation of the Sun).} (\(t_{0}\)) (4.57 Ga) ... and a single line for the equation giving the value of \(S_{(t)}\). 
+
+When you think you have done this -- check it -- plug in values of time into your function, i.e.
+\begin{docspec}
+>> fun\_S(4.57)
+\end{docspec}
+for passing the time now into a \textit{function} called '\texttt{fun\_2}' in the on-going notation (which in this example should return a value of \(1368\) (\(Wm^{-2}\))).
+
+As a little test -- see if you can adjust your \uline{function} so that rather than passing in time, measured since the formation of the Sun, you pass in time relative to now (i.e. \texttt{>> fun\_S(0.0)} would then give you a value of \(1368\)).
+
+(As a recap -- time here is in units of billions of years, and is counted from the formation of the Sun. Hence, today, is time 4.57 Ga.)
+
+\marginnote[-3.75in]{\begin{mdframed}[backgroundcolor=light-blue, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\textbf{Solar constant}
+\\The long-term evolution of solar luminosity \(L_{t}\) as a function of time \(t\) can be approximated [\textit{Gough} [1981]; \textit{Feulner} [2012]) by:
+\begin{docspeclarge}
+\(\frac{L_{t}}{L_{0}} = \frac{1}{1+\frac{2}{5}\cdot (1-\frac{t}{t_{0}})}\)
+\end{docspeclarge}
+where \(t_{0}\) is the age of the sun -- 4.57 Gyr (4.57\(\times\)10\(^{9}\) yr) and \(L_{0}\) is the present-day solar luminosity (3.85\(\times\)10\(^{26}\) W).
+\\The value of \(L_{0}\) is equivalent to a flux (\(Wm^{-2}\)) of 1368 Wm\(^{-2}\) incident at the top of the atmosphere at Earth -- the present-day solar 'constant' \(S_{0}\). In the equation, \(L\) can hence be substituted for \(S\) to give the value of \(S\) (\(Wm^{-2}\)) at any time (\(S_{(t)}\)), i.e.
+\begin{docspeclarge}
+\(\frac{S_{(t)}}{S_{(t=0)}} = \frac{1}{1+\frac{2}{5}\cdot (1-\frac{t}{t_{0}})}\)
+\end{docspeclarge}
+or, in terms of the value of \(S\) at time \(t\) and using using the notation \(S_{0}\) in place of \(S_{(t=0)}\):
+\begin{docspeclarge}
+\(S_{(t)} = \frac{S_{0}}{1+\frac{2}{5}\cdot (1-\frac{t}{t_{0}})}\)
+\end{docspeclarge}
+Note that in the formula, \(t\) is counted (in Gyr) relative to the formation of the Sun (i.e. present-day would be: \(t=4.57\)). 
+\\The reference value of \(t\): \(t_{0}\), is \(t_{0}=4.57\) Gyr.
+\\The reference value of \(S\): \(S_{0}=1368\) Wm\(^{-2}\).
+\end{mdframed}}
+
+%------------------------------------------------
+
+\subsection{Using multiple functions and calculating global surface temperature as a function of geological time}
+
+Finally ... you are going to bring it all together and calculate and then at the end (of the program), plot,  the surface temperature of the Earth, at 100 Myr intervals, and spanning approximately the age of the Earth and much of its potential long-term future.
+
+Start by creating a new (yet another blank \textbf{m-file}) \textit{script} ('\texttt{scr\_4}').. You are going to need a loop in time, perhaps looping from 0.0 to 10.0 Ga (with the step size being 0.1 Ga). \uline{Within the time loop}, you will:
+
+\begin{enumerate}[noitemsep]
+\setlength{\itemindent}{.2in}
+\item Pass to your solar constant function your time variable, and obtain the corresponding value of \(S_{(t)}\).
+\item  Call your zeroD EBM function to calculate the corresponding surface temperature, passing it the value of \(S_{(t)}\) that you have just calculated.
+\item Store in an array, or pairs of vectors, the current time in the loop alongside the corresponding value of \(T\). (For hints on the various different possibilities in doing this -- see Section 6.1.5.)
+\end{enumerate}
+
+Once the loop has completed, plot surface temperature (\textit{y}-axis) as a function of time (\textit{x}-axis).
+
+Likely bug possibilities include mistakes with nested parentheses (()). A schematic of the program structure is shown in Figure \ref{fig:ch8-schematic-scr4fun1fun2}.
+
+\begin{marginfigure}[-2.5in]
+\includegraphics[width=\linewidth]{ch8-schematic-scr4fun1fun2.eps}
+\caption{Schematic of the evolution of surface temperature over geological time program, and relationship between main program script, and solar constant and EBM functions.}
+\label{fig:ch8-schematic-scr4fun1fun2}
+\end{marginfigure}
+
+Assuming that you have managed something like Figure \ref{fig:ch8-ebm-solarconst}\sidenote[][0.0in]{Note that a line has been added to highlight \(t=0\) (i.e. the present-day) -- see \docenv{line} (see earlier).} -- what strikes you, in light of (hopefully) what you know about the past history of climate and evolution of life on this planet, about your model projection (for the past)? What is 'missing'?
+
+As an additional step and noting that the time-scale is not entirely helpful in terms of knowing when 'now' is, you could:
+
+\begin{enumerate}
+
+\item Draw on a vertical line (\texttt{hold on}) at 4.57 ('now', relative to the time of formation of the Sun).
+
+\item Transform the \textit{x}-axis time scale to time relative to now. 
+
+To do this -- as you loop through time relative to the formation of the Sun, when you save the current time for plotting, you could subtract 4.57 from the loop value.
+
+\item Or ... you could save the time as given in the loop, but transform the \textit{x}-axis time scale to time relative to now by subtracting a value of 4.57 when you come to plot, e.g.:
+
+\begin{docspec}
+>> plot(x-4.57,y);
+\end{docspec}
+
+or more explicitly so you can see what is going on:
+
+\begin{docspec}
+>> plot( (x(:)-4.57) , y(:) );
+\end{docspec}
+
+\end{enumerate}
+
+Note that you do not have to plot the entire dataset and could set the x-axis limits to e.g. \(-4 \rightarrow\ +4\) Gyr relative to present.
+
+\begin{marginfigure}[-4.0in]
+\includegraphics[width=\linewidth]{ch8-ebm-solarconst.eps}
+\caption{Simple EBM projection of the evolution of Earth surface temperature with time. Time at the present-day is highlighted by a vertical line (drawn using the \textbf{MATLAB} \docenv{line} function).}
+\label{fig:ch8-ebm-solarconst}
+\end{marginfigure}
 
 %------------------------------------------------
 
 \subsection{Parameter sensitivity experiments using the EBM -- \#1}
 
-Now to utilize your new function ('\texttt{fun\_1}' in the summary notation). Create a new blank script ('\texttt{scr\_2}') and define 2 parameters near the start -- one for the value of \(S_{0}\) and one for \(\alpha\), then further down the code, call your function (\texttt{fun\_1}), passing it these 2 parameters \uline{but remembering} that you need to assign the result of your function to some \textit{variable}\sidenote{i.e.
+Now to utilize your new function ('\texttt{fun\_1}' in the summary notation). Create a new blank script ('\texttt{scr\_2}') and define 2 parameters near the start -- one for the value of \(S\) and one for \(\alpha\), then further down the code, call your function (\texttt{fun\_1}), passing it these 2 parameters \uline{but remembering} that you need to assign the result of your function to some \textit{variable}\sidenote{i.e.
 \begin{docspecmargin}
 T = fun\_1(1368.0,0.3);
 \end{docspecmargin}assigns the result of your temperature calculation to the variable \texttt{T}.}. So far so boring, as this is in effect what you had been doing in 'playing' with the function previously. 
 
-Common in numerical modelling is quantifying how sensitive a system is to the choice of parameter values -- called a \textit{sensitivity experiment}. You may already have gotten a feel for roughly how sensitive \(T\) was to changing \(S_{0}\) on its own, or changing \(\alpha\) on its own, but what about when both parameters vary together?
+Common in numerical modelling is quantifying how sensitive a system is to the choice of parameter values -- called a \textit{sensitivity experiment}. You may already have gotten a feel for roughly how sensitive \(T\) was to changing \(S\) on its own, or changing \(\alpha\) on its own, but what about when both parameters vary together?
 
-Lets start with a simple 1-D case, and consider just a change in the value of \(S_{0}\). To automate generate different values of \(S_{0}\) and call the function, you are going to need a loop\sidenote{You are going to put the loop in the script (\# \texttt{scr\_2}), NOT the function (\# \texttt{fun\_1}).
+Lets start with a simple 1-D case, and consider just a change in the value of \(S\). To automate generate different values of \(S\) and call the function, you are going to need a loop\sidenote{You are going to put the loop in the script (\# \texttt{scr\_2}), NOT the function (\# \texttt{fun\_1}).
 
 \textbf{An entire plane of Hell is reserved for anyone coding the loop in the function.}
 }. There are two ways of constructing the loop\sidenote{In both cases a \texttt{for ...} loop.}:
@@ -7830,20 +8011,20 @@ Lets start with a simple 1-D case, and consider just a change in the value of \(
 \begin{enumerate}
 \setlength{\itemindent}{.65in}
 
-\item [\textbf{loop option \#1}] You could loop directly through the range of values of \(S_{0}\) that you are interested in, e.g.
+\item [\textbf{loop option \#1}] You could loop directly through the range of values of \(S\) that you are interested in, e.g.
 \begin{docspec}
 \textcolor{blue}{for} S0 = 1000:100:1500
 \\ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% CODE GOES HERE}
 \\\textcolor{blue}{end}
 \end{docspec}
-in which \(S_{0}\) will go from 1000 to 1500 Wm\(^{-2}\) in steps of 100 Wm\(^{-2}\) \sidenote{You can pick a different range and increment ... this is just a quasi-random example to illustrate ...}.
+in which \(S\) will go from 1000 to 1500 Wm\(^{-2}\) in steps of 100 Wm\(^{-2}\) \sidenote{You can pick a different range and increment ... this is just a quasi-random example to illustrate ...}.
 \\Perhaps a little inconveniently, this does not pass through the modern value (1368 Wm\(^{-2}\)), although when you plot as a continuous line (e.g. in \texttt{plot}) or otherwise interpolate the results, maybe this does not matter. You could have addressed this by constructing a slightly less convenient form of the loop, e.g.:
 \begin{docspec}
 \textcolor{blue}{for} S0 = 1068:100:1568
 \\ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% CODE GOES HERE}
 \\\textcolor{blue}{end}
 \end{docspec}
-which now passes exactly through the modern value of \(S_{0}\).
+which now passes exactly through the modern value of \(S\).
 
 \item [\textbf{loop option \#2}] Alternatively, you could have an integer count for the loop, and then derive a changing value of \(S_{0}\) from this. For example:
 \begin{docspec}
@@ -7853,7 +8034,7 @@ S0\_modern = 1368.0;
 \\ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% CODE GOES HERE}
 \\\textcolor{blue}{end}
 \end{docspec}
-Look carefully through this code and follow what is going -- as \texttt{m} counts from \texttt{-5} to \texttt{5} (in steps of\texttt{ 1}), \texttt{100} times the value of \texttt{m} is added to the modern value of \(S_{0}\)\sidenote{The variable definition \texttt{S0\_modern = 1368.0} at the top of the code fragment.}, meaning that \(S_{0}\) ends up going from \texttt{S0\_modern} - 500, to \texttt{S0\_modern} + 500 Wm\(^{-2}\) (in steps of 100 Wm\(^{-2}\)).
+Look carefully through this code and follow what is going -- as \texttt{m} counts from \texttt{-5} to \texttt{5} (in steps of\texttt{ 1}), \texttt{100} times the value of \texttt{m} is added to the modern value of \(S\) (\(S_{0}\)) \sidenote{The variable definition \texttt{S0\_modern = 1368.0} at the top of the code fragment.}, meaning that \(S\) ends up going from \texttt{S0\_modern} - 500, to \texttt{S0\_modern} + 500 Wm\(^{-2}\) (in steps of 100 Wm\(^{-2}\)).
 
 \item [\textbf{loop option \#3}]
 Or ... as a variant on \#2:
@@ -7879,7 +8060,7 @@ count = 0;
 \\\textcolor{blue}{end}
 \end{docspec}
 
-And why might we want some sort of an integer counter in the first place? Well, you might want to save the data(!), i.e. the calculated (by your function) value of \(T\) vs. the inputted value of \(S_{0}\). This data will need to go into an array, with one row corresponding to each value of \(S_{0}\).
+And why might we want some sort of an integer counter in the first place? Well, you might want to save the data(!), i.e. the calculated (by your function) value of \(T\) vs. the inputted value of \(S\). This data will need to go into an array, with one row corresponding to each value of \(S\).
 
 There are  two-and-a-bit obvious alternative ways of saving the data (assigning calculated values to sequential locations in an array):
 
@@ -7888,18 +8069,18 @@ There are  two-and-a-bit obvious alternative ways of saving the data (assigning 
 
 \item [\textbf{save option \#1}] Create the necessary array(s) beforehand, e.g. using the \texttt{zeros} \textit{function}. For instance, to create a vector with 11 rows (and 1 column), suitable for saving the value of \(T\) calculated by each call to the EBM function, you could write:
 \begin{docspec}
-data\_S0 = zeros(11,1);
+data\_T = zeros(11,1);
 \end{docspec}
-which would create a (single) column vector with 11 rows. You'd need an equivalent vector (e.g. \texttt{data\_S0} in this example) for storing the corresponding value of \(S_{0}\) used in the temperature calculation. These vectors are created before the loop starts.
-\\Then within the loop (and after the calculation of \(T\)), you'd assign your values of \(S_{0}\) and \(T\) by using whichever index you created\sidenote{i.e. which of the two OPTIONS you chose earlier.}:
+which would create a (single) column vector with 11 rows. You'd need an equivalent vector (e.g. \texttt{data\_S} in this example) for storing the corresponding value of \(S\) used in the temperature calculation. These vectors are created before the loop starts.
+\\Then within the loop (and after the calculation of \(T\)), you'd assign your values of \(S\) and \(T\) by using whichever index you created\sidenote{i.e. which of the two OPTIONS you chose earlier.}:
 \begin{docspec}
-\ \ \ data\_S0(m) = S\_0;
-\\ \ \ \ data\_T(m) \ = T;
+\ \ \ data\_S(m) = S;
+\\ \ \ \ data\_T(m) = T;
 \end{docspec}
 or:
 \begin{docspec}
-\ \ \ data\_S0(count) = S\_0;
-\\ \ \ \ data\_T(count) \ = T;
+\ \ \ data\_S(count) = S;
+\\ \ \ \ data\_T(count) = T;
 \end{docspec}
 where \texttt{m} and \texttt{count} are integers, starting at a value of one, and incrementing by a value of one on each successive execution of the loop. \texttt{m} (or \texttt{count}) represents an index that allows you to store the result of each successive calculation  (as well as the corresponding input value) in a vector.
 
@@ -7910,11 +8091,11 @@ data = zeros(11,2);
 which creates a matrix of zeros of 11 rows by 2 columns.
 \\\noindent Within the loop, data is now assigned:
 \begin{docspec}
-\ \ \ data(m,1)\ = S\_0;
+\ \ \ data(m,1)\ = S;
 \\ \ \ \ data(m,2) = T;
 \end{docspec}
 
-\item [\textbf{save option \#3}] Or ... \textbf{MATLAB} will allow you to 'grow' a vector, one element at a time (but not for matrices).\sidenote[][-2.0in]{
+\item [\textbf{save option \#3}] Or ... \textbf{MATLAB} will allow you to 'grow' a vector, one element at a time (but not for matrices).\sidenote[][-0.0in]{
 The vector automatically grows in length as you add values to it. If you don't believe me, try the following:
 \begin{docspecmargin}
 >> A=1;
@@ -7923,39 +8104,39 @@ The vector automatically grows in length as you add values to it. If you don't b
 \end{docspecmargin}
 You could instead define at the start f the code (before the loop) a vector of zeros of the correct length, the 'correct length' being the number of time around the loop. See function \docenv{zeros}. Or even \texttt{NaN}s ...
 }
-The  the code  within the loop actually looks identical, but instead of creating a pair of vectors (or a matrix) of a size (number of rows) that matches the number of iterations of the loop, you create an empty vector (or matrix)\sidenote[][-0.5in]{Try the code \uline{without} creating empty vectors at the start, and see what happens? Why is \textbf{MATLAB} unhappy?}:
+The  the code  within the loop actually looks identical, but instead of creating a pair of vectors (or a matrix) of a size (number of rows) that matches the number of iterations of the loop, you create an empty vector (or matrix)\sidenote[][-0.0in]{Try the code \uline{without} creating empty vectors at the start, and see what happens? Why is \textbf{MATLAB} unhappy?}:
 \begin{docspec}
-data\_S0 = [];\\
-data\_T \ = [];
+data\_S = [];\\
+data\_T = [];
 \end{docspec}
 and then within the loop:
 \begin{docspec}
-\ \ \ data\_S0 = [data\_S0; S\_0];
+\ \ \ data\_S0 = [data\_S; S];
 \\ \ \ \ data\_T \ = [data\_T(m); T];
 \end{docspec}
 However, note that you cannot grow a matrix by adding data for a single cell, as a matrix always has to have a complete number of rows and columns. Instead, you'd write: 
 \begin{docspec}
 data = [];\\
 \end{docspec}
-and then:
+during initialization before the loop starts, and then in the loop:
 \begin{docspec}
-\ \ \ data = [data; S\_0 T];
+\ \ \ data = [data; S T];
 \end{docspec}
 \end{enumerate}
 
 So pick one (i.e. a way of saving a pair of values each time around the loop) and code it up, or better, \uline{try all}!
 
-Finally, at the end of your program (after the end of the loop), you can now plot (\texttt{plot} or \texttt{scatter}) how \(T\) varies as a function of \(S_{0}\), having saved all the values of \(S_{0}\) you tested, plus the corresponding calculated temperatures, in a handy matrix (or pair of vectors). Note that regardless of whether you use \texttt{plot} or \texttt{scatter}), you need to specify to \textbf{MATLAB} that you want the values in the 2nd column of the array (\textit{y}-axis), plotted against the first column (\textit{x}-axis).\sidenote[][-4.0in]{Refer back to the earlier chapters on plotting of e.g. the CO2 or glboal temperature data you analysed, and also recall how to specify e.g. all the rows in the first column of an array.}
+Finally, at the end of your program (after the end of the loop), you can now plot (\texttt{plot} or \texttt{scatter}) how \(T\) varies as a function of \(S_{0}\), having saved all the values of \(S\) you tested, plus the corresponding calculated temperatures, in a handy matrix (or pair of vectors). Note that regardless of whether you use \texttt{plot} or \texttt{scatter}), you need to specify to \textbf{MATLAB} that you want the values in the 2nd column of the array (\textit{y}-axis), plotted against the first column (\textit{x}-axis).\sidenote[][-2.0in]{Refer back to the earlier chapters on plotting of e.g. the CO2 or glboal temperature data you analysed, and also recall how to specify e.g. all the rows in the first column of an array.}
 
-The structure of your code should look like Figure \ref{fig:ch8-schematic-scr2fun1}. and your resulting figure (depending on the range you assume for \(S_{0}\)), something like Figure \ref{fig:ch8-sens1D}.
+The structure of your code should look like Figure \ref{fig:ch8-schematic-scr2fun1}. and your resulting figure (depending on the range you assume for \(S\)), something like Figure \ref{fig:ch8-sens1D}.
 
-\begin{marginfigure}[-5.5in]
+\begin{marginfigure}[-1.0in]
 \includegraphics[width=\linewidth]{ch8-schematic-scr2fun1.eps}
 \caption{Schematic structure of the model configured to carry out a single parameter sensitivity study.}
 \label{fig:ch8-schematic-scr2fun1}
 \end{marginfigure}
 
-\begin{marginfigure}[-1.5in]
+\begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch8-sens1D.eps}
 \caption{Sensitivity of global mean surface temperature vs. solar constant (mean surface albedo held constant at an albedo value of 0.3).}
 \label{fig:ch8-sens1D}
@@ -7965,76 +8146,13 @@ The structure of your code should look like Figure \ref{fig:ch8-schematic-scr2fu
 
 \subsection{Parameter sensitivity experiments using the EBM -- \#2}
 
-In this Sub-sub-section, we'll extend the parameter sensitivity analysis of your model to 2D, assuming for instance that you are  now interested in how \(T\) also varies as a function of \(\alpha\) (surface albedo). So, you'll need to vary both \(S_{0}\) and \(\alpha\), and in all combinations of the two. In fact, in a grid pattern, with \(S_{0}\) increasing in steps on one axis (as before), and \(\alpha\) on the other.
+In this Sub-subsection, we'll extend the parameter sensitivity analysis of your model to 2D, assuming for instance that you are  now interested in how \(T\) also varies as a function of \(\alpha\) (surface albedo). So, you'll need to vary both \(S\) and \(\alpha\), and in all combinations of the two. In fact, in a grid pattern, with \(S\) increasing in steps on one axis (as before), and \(\alpha\) on the other.
 
-Hopefully, you might have guessed that you'll need a \textit{nested loop}(?) -- one loop going through all possible values of \(\alpha\), \textit{for each and every possible value of \(S_{0}\)}??
+Hopefully, you might have guessed that you'll need a \textit{nested loop}(?) -- one loop going through all possible values of \(\alpha\), \textit{for each and every possible value of \(S\)}??
 
-Perhaps, as an aside, we'll go through a simpler example/system first.
+OK -- that was easily the greatest and least interesting diversion in pedagogical history, but nested loops should now come almost as second nature to you :o) So how about coding up the nested loop for the question we were meant to be addressing -- carrying out a 2D sensitivity test of the parameters \(S\) and \(\alpha\). See if you can create this.
 
-A chess board consists of squares in a \(8\times8\) grid. The squares alternate black and white. To define 8 squares (points) along the \textit{x}-axis on the bottom row, you'd write something of the form:
-\begin{docspec}
-\textcolor{blue}{for} m=1:8
-\\ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% SOME CODE GOES HERE}
-\\\textcolor{blue}{end}
-\end{docspec}
-Now, if you wanted to define 8 squares along each column (the \textit{y}-axis), at each and every \textit{x}-axis value, you'd need to loop through all the rows, So you need a loop in e.g. \texttt{n}, inside the loop for \texttt{m}:
-\begin{docspec}
-\textcolor{blue}{for} m=1:8
-\\ \ \ \ \textcolor{blue}{for} n=1:8
-\\ \ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% SOME CODE GOES HERE}
-\\ \ \ \ \textcolor{blue}{end}
-\\\textcolor{blue}{end}
-\end{docspec}
-Follow this through to satisfy yourself that for each and every value of \texttt{m} from \texttt{1} to \texttt{8}, \texttt{n} loops from \texttt{1} to \texttt{8}, and hence visits every point in turn of a  \(8\times8\) (\texttt{n,m}) grid.
-
-Actually, now we have got this far, it is good practice to consider how we'd define the black and white squares. We'll assume that black is represented by '\texttt{1}' (\textit{true}) and white by \texttt{'0'} (\textit{false}) and create a board (array) of all white squares to start with, i.e.
-\begin{docspec}
-board = zeros(8);
-\end{docspec}
-\noindent(Refer to \textbf{help} or earlier for the syntax for help on the function \texttt{zeros}.\sidenote[][-1.5in]{You could alternatively write this:
-\begin{docspecmargin}board = zeros(8,8);\end{docspecmargin}})
-
-\marginnote[-1.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-\docenvdef{mod}
-\\Not ... the opposite of \docenvdef{rocker} (which doesn't exist in \textbf{MATLAB} anyway) but short for \textit{modulo}. Wikipedia helpfully tells us:
-\\"\textit{In computing, the modulo operation finds the remainder after division of one number by another (sometimes called modulus).}"
-\\Or in \textbf{MATLAB}-speak:
-\begin{docspecmargin}
-b = mod(a,m) 
-\end{docspecmargin}
-"\textit{returns the remainder after division of \texttt{a} by \texttt{m}, where \texttt{a} is the dividend and \texttt{m} is the divisor}".
-\\It turns out that as long as a is positive, you can use to test for whether an integer \texttt{a} is \textit{even} or \textit{odd} by:
-\begin{docspecmargin}
-b = mod(a,2) 
-\end{docspecmargin}
-When the returned value \texttt{b} is \texttt{0}, \texttt{a} is \textit{even}, and when \texttt{b} is \texttt{1}, \texttt{a} is \textit{odd}.
-\end{mdframed}}
-
-If we start with a black square ('\texttt{1}') at the bottom left, we could define an \textit{algorithm} for creating the grid as: odd column number squares are black, as long as the row number is odd, otherwise they are white.\sidenote{Look up a picture of a chess board to convince yourself that this works.} So to implement this in code -- as we loop through both column (\texttt{m}) and row (\texttt{n}) on the board, we test for  the column number being odd and row number odd, OR, the column number being even and row number being even. If \textit{true}, the square is defined as black. The only tricky bit is to determine whether the row or column number is even or odd. We do this by testing whether there is any remainder after dividing by 2, using the function \docenv{mod}.
-
-The complete code looks like:
-\begin{docspecmargin}
-board = zeros(8);
-\\\textcolor{blue}{for} m=1:8
-\\ \ \ \ \ \textcolor{blue}{for} n=1:8
-\\ \ \ \ \ \ \ \ \ \textcolor{blue}{if} ((mod(m,2)>0 \&\& mod(n,2)>0) || (mod(m,2)==0 \&\& mod(n,2)==0))
-\\ \ \ \ \ \ \ \ \ \ \ \ \ board(n,m) = 1;
-\\ \ \ \ \ \ \ \ \ \textcolor{blue}{end}
-\\ \ \ \ \ \textcolor{blue}{end}
-\\\textcolor{blue}{end}
-\end{docspecmargin}
-Spend a little time decoding the \texttt{if} statement for practice ...
-If you want to see that it works -- code it in a new \textbf{m-file}, run it, and then plot up \texttt{board} by e.g. using \texttt{imagesc} (cf. Figure \ref{fig:ch8-chess}). Beautiful.
-
-\begin{marginfigure}[0.0in]
-\includegraphics[width=\linewidth]{ch8-chess.png}
-\caption{Chess board grid pattern.}
-\label{fig:ch8-chess}
-\end{marginfigure}
-
-OK -- that was easily the greatest and least interesting diversion in pedagogical history, but nested loops should now come almost as second nature to you :o) So how about coding up the nested loop for the question we were meant to be addressing -- carrying out a 2D sensitivity test of the parameters \(S_{0}\) and \(\alpha\). See if you can create this.
-
-Start with a new (script) \textbf{m-file} ('\texttt{scr\_3}'). For constructing the loop -- you have already seen the 1D example of parameter sensitivity code, and also an example of creating a nested loop for a 2D grid. Your chess board columns (\texttt{m}) become \(S_{0}\), and rows (\texttt{n}) become \(\alpha\). You don't need to do anything so awful as that \texttt{if \ldots} statement -- instead just call your function (\texttt{fun\_1}) for solving the global surface temperature (passing it the values of \(S_{0}\) and \(\alpha\) generated in the loop). A schematic of the program structure is shown in Figure \ref{fig:ch8-schematic-scr3fun1}.
+Start with a new (script) \textbf{m-file} ('\texttt{scr\_3}'). For constructing the loop -- you have already seen the 1D example of parameter sensitivity code, and also an example of creating a nested loop for a 2D grid. Your chess board columns (\texttt{m}) become \(S\), and rows (\texttt{n}) become \(\alpha\). You don't need to do anything so awful as that \texttt{if \ldots} statement -- instead just call your function (\texttt{fun\_1}) for solving the global surface temperature (passing it the values of \(S\) and \(\alpha\) generated in the loop). A schematic of the program structure is shown in Figure \ref{fig:ch8-schematic-scr3fun1}.
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch8-schematic-scr3fun1.eps}
@@ -8042,11 +8160,11 @@ Start with a new (script) \textbf{m-file} ('\texttt{scr\_3}'). For constructing 
 \label{fig:ch8-schematic-scr3fun1}
 \end{marginfigure}
 
-For saving the data (within the loop), you cannot  simply index the locations you want in a 2D array (matrix) that did not previously exist and expect it to 'grow' as before, because a matrix must have all complete rows and columns and you are generating the results (value of \(T\)), one cell at a time, while you'd need a complete row or column of results in order to append to the results array. Instead, near the start of the code (before the loop), create a matrix of the size of the parameter grid. For example, if you were going to loop through 10 different values of \(S_{0}\) and 10 of \(\alpha\), you could write:
+For saving the data (within the loop), you cannot  simply index the locations you want in a 2D array (matrix) that did not previously exist and expect it to 'grow' as before, because a matrix must have all complete rows and columns and you are generating the results (value of \(T\)), one cell at a time, while you'd need a complete row or column of results in order to append to the results array. Instead, near the start of the code (before the loop), create a matrix of the size of the parameter grid. For example, if you were going to loop through 10 different values of \(S\) and 10 of \(\alpha\), you could write:
 \begin{docspec}
 data\_output = zeros(10);
 \end{docspec}
-(creating a \(10\times10\) array of zeros). Or if for example, you had 20 different  values of \(S_{0}\), and 10 of \(\alpha\):
+(creating a \(10\times10\) array of zeros). Or if for example, you had 20 different  values of \(S\), and 10 of \(\alpha\):
 \begin{docspec}
 data\_output = zeros(10,20);
 \end{docspec}
@@ -8056,9 +8174,9 @@ Within an (\texttt{n,m}) loop you then assign your calculated value of \(T\) to 
 \begin{docspec}
 \ \ \ \ \ \ data\_output(n,m) = T;
 \end{docspec}
-Don't forget that you'll also need to know the values of \(S_{0}\) and \(\alpha\) that correspond to the column and row numbers. Perhaps save these as 2 individual vector (as per before) or ignore them for now.
+Don't forget that you'll also need to know the values of \(S\) and \(\alpha\) that correspond to the column and row numbers. Perhaps save these as 2 individual vector (as per before) or ignore them for now.
 
-\begin{marginfigure}[-0.0in]
+\begin{marginfigure}[-3.0in]
 \includegraphics[width=\linewidth]{ch8-sens2D1.eps}
 \caption{Global mean surface temperature (\degree C) as a function of solar constant and surface albedo grid point number.}
 \label{fig:ch8-sens2D2}
@@ -8090,92 +8208,11 @@ When you *think* you have this working and have generated a matrix of \(T\) valu
 
 %------------------------------------------------
 
-\subsection{Creating a function for the evolution of solar constant through geological time}
-
-In this  Subsubsection, you are going to leave the 2D-ness aside and consider how Earths surface temperature may have changed through geological time.
-
-So far you only have a function equating solar constant (\(S_{0}\)) to temperature (\(T\)). What you need is some way of equating time (\(t\)) to the value of the solar constant at that time \(S_{0(t)}\) (which you can then turn into temperature). We'll remedy this toot sweet.
-
-Start by creating a new  (blank) \textsf{m-file} and define it as a \textit{function} that takes in a variable for time, \(t\) (in units of \(Ga\)) and spits out  (aka, returns) the calculated value of \(S_{0(t)}\) (\(Wm^{-2}\)) (this will be '\texttt{fun\_2}' in the on-going notation).
-
-The background to the equation that will go into your function is given in the Solar constant Box. In this, you'll first need to substitute the modern value of the solar constant (\(S_{0(t=0)}\)) into the equation to leave it in terms of \(S_{0(t)}\) (the solar constant value at time \(t\)).
- 
-Your function, aside from the all-important 1st line (and \textcolor{blue}{\texttt{end}} at the end) and appropriate \textcolor[rgb]{0,0.501961,0.25098}{\texttt{\% comments}}, need have little more in than a definition for any constant you might want to use, such as the modern value of \(S_{0(t=0)}\) and perhaps the reference time\sidenote[][2.0in]{Which is also equal to the current time (since the formation of the Sun).} (\(t_{0}\)) (4.57 Ga) ... and a single line for the equation giving the value of \(S_{0(t)}\). 
-
-When you think you have done this -- check it -- plug in values of time into your function, i.e.
-\begin{docspec}
->> fun\_S(4.57)
-\end{docspec}
-for passing the time now into a \textit{function} called '\texttt{fun\_2}' in the on-going notation (which in this example should return a value of \(1368\) (\(Wm^{-2}\))).
-
-As a little test -- see if you can adjust your \uline{function} so that rather than passing in time, measured since the formation of the Sun, you pass in time relative to now (i.e. \texttt{>> fun\_S(0.0)} would then give you a value of \(1368\)).
-
-\marginnote[-1.5in]{\begin{mdframed}[backgroundcolor=light-blue, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-\textbf{Solar constant}
-\\The long-term evolution of solar luminosity \(L_{t}\) as a function of time \(t\) can be approximated [\textit{Gough} [1981]; \textit{Feulner} [2012]) by:
-\begin{docspeclarge}
-\(\frac{L_{t}}{L_{0}} = \frac{1}{1+\frac{2}{5}\cdot (1-\frac{t}{t_{0}})}\)
-\end{docspeclarge}
-where \(t_{0}\) is the age of the sun -- 4.57 Gyr (4.57\(\times\)10\(^{9}\) yr) and \(L_{0}\) is the present-day solar luminosity (3.85\(\times\)10\(^{26}\) W).
-\\The value of \(L_{0}\) is equivalent to a flux (\(Wm^{-2}\)) of 1368 Wm\(^{-2}\) incident at the top of the atmosphere at Earth. In the equation, \(L\) can hence be substituted for \(S\) to give the value of \(S_{0}\) (\(Wm^{-2}\)) at any time, i.e. \(S_{0(t)}\), i.e.
-\begin{docspeclarge}
-\(\frac{S_{0(t)}}{S_{0(t=0)}} = \frac{1}{1+\frac{2}{5}\cdot (1-\frac{t}{t_{0}})}\)
-\end{docspeclarge}
-or, in terms of the value of \(S_{0}\) at time \(t\):
-\begin{docspeclarge}
-\(S_{0(t)} = \frac{S_{0(t=0)}}{1+\frac{2}{5}\cdot (1-\frac{t}{t_{0}})}\)
-\end{docspeclarge}
-Note that in the formula, \(t\) is counted (in Gyr) relative to the formation of the Sun (i.e. present-day would be: \(t=4.57\)). 
-\\The reference value of \(t\): \(t_{0}\), is \(t_{0}=4.57\) Gyr.
-\\The reference value of \(S_{0}\): \(S_{0(t=0)}=1368\) Wm\(^{-2}\).
-\end{mdframed}}
-
-%------------------------------------------------
-
-\subsection{Using multiple functions and calculating global surface temperature as a function of geological time}
-
-\begin{marginfigure}[-0.0in]
-\includegraphics[width=\linewidth]{ch8-schematic-fun2.eps}
-\caption{Schematic structure of code for calculating the solar constant (output) as a function of time (input).}
-\label{fig:ch8-schematic-fun2}
-\end{marginfigure}
-
-Finally ... you are going to bring it all together and calculate and then plot  the surface temperature of the Earth, at 100 Myr intervals, from 4.0 Gyr (4 billion years) in the past, to 4.0 Gry in the future -- spanning approximately the age of the Earth and much of its potential long-term future. (Remember, if you did not attempt the previous mini exercise to convert the function for \(S_{0(t)}\) so that it worked with time relative to present-day, you are going to need to convert the range, of \(-4 \rightarrow\ +4\) Gyr relative to present, to time relative to the formation of the Sun.) 
-
-Start by creating one final new (yet another blank \textsf{m-file}) script ('\texttt{scr\_4}').. You are going to need a loop in time, perhaps looping from 4.0 to -4.0 Ga relative to now (but you can chose what limits you like ... except remembering the Sun is only 4.57 Ga old ...). Within the loop, you will:
-
-\begin{enumerate}[noitemsep]
-\setlength{\itemindent}{.2in}
-\item Pass to your solar constant function your time variable, and obtain the corresponding value of  the \(S_{0(t)}\).
-\item  Call your zeroD EBM function to calculate the corresponding surface temperature, passing it the value of \(S_{0(t)}\) that you have just calculated.
-\item Store in an array, or pairs of vectors, time and the corresponding value of \(T\).
-\end{enumerate}
-
-Likely bug possibilities include the units of time (Gyr), and that time in the equation for \(S_{0(t)}\) is counted forwards from the formation of the Sun. Also be careful with nested parentheses (()). A schematic of the program structure is shown in Figure \ref{fig:ch8-schematic-scr4fun1fun2}.
-
-\begin{marginfigure}[0.0in]
-\includegraphics[width=\linewidth]{ch8-schematic-scr4fun1fun2.eps}
-\caption{Schematic of the evolution of surface temperature over geological time program, and relationship between main program script, and solar constant and EBM functions.}
-\label{fig:ch8-schematic-scr4fun1fun2}
-\end{marginfigure}
-
-\begin{marginfigure}[-0.0in]
-\includegraphics[width=\linewidth]{ch8-ebm-solarconst.eps}
-\caption{Simple EBM projection of the evolution of Earth surface temperature with time. Time at the present-day is highlighted by a vertical line (drawn using the \textbf{MATLAB} \docenv{line} function).}
-\label{fig:ch8-ebm-solarconst}
-\end{marginfigure}
-
-Assuming that you have managed something like Figure \ref{fig:ch8-ebm-solarconst}\sidenote[][0.25in]{Note that a line has been added to highlight \(t=0\) (i.e. the present-day) -- see \docenv{line} (see earlier).} -- what strikes you, in light of (hopefully) what you know about the past history of climate and evolution of life on this planet, about your model projection (for the past)? What is 'missing'?
-
-
-%------------------------------------------------
-
 \newpage
 
 %------------------------------------------------
 
 \section{'Daisy World'}
-
 
 \begin{marginfigure}[0.5in]
 \includegraphics[width=\linewidth]{ch8-daisyworld.png}
@@ -8475,7 +8512,31 @@ You could code this modification in -- adjusting the (local) value of \(T\) that
 
 \subsection{Efficient and 'clever daisy' daisy-world}
 
-The purpose of the inner loop is to calculate the equilibrium planetary temperature for each value of \(S_{0}\). It may be that an equilibrium is reached much sooner than the \(100\) loop iterations that are allowed. So rather than running the inner loop for the fixed number of iterations each time, you could make the overall calculation more efficient by testing whether the change in global temperature between one iteration and the next, is lower than some small threshold value -- indicating that the iterative calculation has converged.\sidenote{Remember, the command \texttt{break} will exit the current loop you are in.}
+The purpose of the inner loop is to calculate the equilibrium planetary temperature for each value of \(S_{0}\). It may be that an equilibrium is reached much sooner than the \(100\) loop iterations that are allowed. So rather than running the inner loop for the fixed number of iterations each time, you could make the overall calculation more efficient by testing whether the change in global temperature between one iteration and the next, is lower than some small threshold value -- indicating that the iterative calculation has converged.\sidenote[][-1.0in]{Remember, the command \texttt{break} will exit the current loop you are in.}
+
+\noindent\rule[0.0ex]{0.5\linewidth}{0.5pt}
+
+\newthought{Note} that while the Daisy World equations can be written in terms of the population (or area fraction) at the \(n\)th generation, strictly, they are formulated in terms of the population (area fraction) at time \(t\).
+
+\marginnote[-1.5in]{\begin{mdframed}[backgroundcolor=light-blue, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\textbf{Daisy population dynamics}
+\\In the published Daisy World paper, the population dynamics are written in terms of time:
+\begin{docspec}
+\(dF_{w}/dt = F_{w}\cdot(x\cdot\beta_{w}-\gamma)\)
+\\\(dF_{b}/dt = F_{b}\cdot(x\cdot\beta_{b}-\gamma)\)
+\end{docspec}
+and hence in the form:
+\begin{docspec}
+\(\frac{dx}{dt}=f(x)\)
+\end{docspec}
+Hence we can construct the model via:
+\begin{docspec}
+\(
+F_{(t+\Delta t)} \approx\ F_{(t)} + \Delta t \cdot F_{(t)}\cdot(x\cdot\beta-\gamma)
+\)
+\end{docspec}
+i.e. at each successive time-step, we take the previous fraction (\(F_{(t)}\)) and add to this, our approximated (forward in time differencing) change in fractional area value.
+\end{mdframed}}
 
 %----------------------------------------------------------------------------------------
 % CHAPTER 7
@@ -8500,7 +8561,7 @@ The purpose of the inner loop is to calculate the equilibrium planetary temperat
 \(\frac{dx}{dt}=f(x)\)
 \vspace{2mm}
 
-i.e. the rate of change of some variable \(x\), is some function of itself (\(x\)).\sidenote{The equations need not be a function of time.}
+\noindent i.e. the rate of change of some variable \(x\), is some function of itself (\(x\)).\sidenote{The equations need not be a function of time.}
 
 Invariably, we wish to make a projection of the state of the system (value of \(x\) in this example), forward in time. If the increment in time is \(\Delta t\), then we wish to know the value of \(x\) at time \(t+\Delta t\), i.e. \(x_{(t=\Delta t)}\).
 
@@ -8510,7 +8571,7 @@ There is a Taylor expansion for this ... and switching to partial derivative not
 x_{(t+\Delta t)}=x_{(t)} + \Delta t\cdot\frac{\partial x}{\partial t}\ + \frac{\Delta t^{2}}{2}\cdot\frac{\partial x^{2}}{\partial t^{2}}\ + \frac{\Delta t^{3}}{6}\cdot\frac{\partial x^{3}}{\partial t^{3}}\ + O(\Delta t^{4})
 \)\vspace{2mm}
 
-\noindent where \(O(\Delta t^{4})\) represents 4th order (and smaller) terms (or an 'error', if not accounted for), that will be smaller in magnitude than \(\frac{\Delta t^{3}}{6}\cdot\frac{\partial x^{3}}{\partial t^{3}}\).
+\noindent where \(O(\Delta t^{4})\) represents 4th order (and smaller) terms (which can be considered as an 'error' term (if not accounted for explicitly)), that will be smaller in magnitude than \(\frac{\Delta t^{3}}{6}\cdot\frac{\partial x^{3}}{\partial t^{3}}\).
 
 If we drop all the higher order terms, and solve for \(\frac{dx}{dt}\), we get:
 
@@ -8532,7 +8593,7 @@ x(t+\Delta t) \approx\ x(t) + \Delta t\cdot\frac{dx}{dt}
 
 How to implement this in code?
 
-Consider the radioactive decay of an amount of radioactive substance. Assume an initial activity \(A\) (don't worry about what the units of this activity are), and the substance decays such that after 1 day, the activity is half the original activity. We could write (or you might see given to you):
+Consider the radioactive decay of an amount of radioactive substance. Assume an initial activity \(A\) (don't worry about what the units of this activity are), and the substance decays such that after 1 day, the new activity is equal to half the original activity. We could write (or you might see given to you):
 
 \vspace{2mm}
 \(\frac{dA}{dt}=-0.5\cdot A\)
@@ -8540,7 +8601,7 @@ Consider the radioactive decay of an amount of radioactive substance. Assume an 
 
 \noindent where \(t\) is time in days. 
 
-This simply says: the rate of change in \(A\) with time (days), is equal to minus (because it is decaying rather than growing) its value.
+This simply says: the rate of change in \(A\) with time (days), is equal to minus (because it is decaying rather than growing) \(0.5\) times its value.
 
 We could also write this:
 
@@ -8609,28 +8670,6 @@ n = 1;\\
 \end{docspec}
 where the first column of \texttt{data} is time, and the second is the activity.
 
-Note that while the Daisy World equations can be written in terms of the population (or area fraction) at the \(n\)th generation, strictly, they are formulated in terms of the population (area fraction) at time \(t\).
-
-\marginnote[-0.75in]{\begin{mdframed}[backgroundcolor=light-blue, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-\textbf{Daisy population dynamics}
-\\In the published Daisy World paper, the population dynamics are written in terms of time:
-\begin{docspec}
-\(dF_{w}/dt = F_{w}\cdot(x\cdot\beta_{w}-\gamma)\)
-\\\(dF_{b}/dt = F_{b}\cdot(x\cdot\beta_{b}-\gamma)\)
-\end{docspec}
-and hence in the form:
-\begin{docspec}
-\(\frac{dx}{dt}=f(x)\)
-\end{docspec}
-Hence we can construct the model via:
-\begin{docspec}
-\(
-F_{(t+\Delta t)} \approx\ F_{(t)} + \Delta t \cdot F_{(t)}\cdot(x\cdot\beta-\gamma)
-\)
-\end{docspec}
-i.e. at each successive time-step, we take the previous fraction (\(F_{(t)}\)) and add to this, our approximated (forward in time differencing) change in fractional area value.
-\end{mdframed}}
-
 %------------------------------------------------
 
 \subsection*{Other simple finite differencing schemes}
@@ -8671,14 +8710,14 @@ In considering dynamic, time-stepping representations of physical (/biogeochemic
 \label{fig:ch9-ball}
 \end{marginfigure}
 
-The system we'll consider is shown schematically in Figure \ref{fig:ch9-ball}. In essence: we want to determine \(d\) -- the horizontal distance (\(m\)) that the ball travels before it hits the ground. The initial conditions are:
+The system we'll consider is shown schematically in Figure \ref{fig:ch9-ball}. In essence: we want to determine \(d\) -- the horizontal distance (in \(m\)) that the ball travels before it hits the ground. The initial conditions are:
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item The ball is thrown from an initial height \(h\) (\(m\)).
 \item The ball is thrown with an initial speed \(s_{0}\) (\(ms^{-1}\)).
-\item The ball is thrown at an initial angle \(\theta\) with the horizontal.
+\item The ball is thrown at an initial angle \(\phi\) with respect to the horizontal.
 \end{enumerate}
-We'll neglect any air desistence or spin imparted to the ball, and for the purpose of calculating its height, we'll ignore its diameter, i.e. we'll consider that the ball is level with the ground when its centre is at height zero. Over and above this, you'll only need to know the gravitational constant (i.e. gravitational acceleration) -- \(g=9.81 ms^{-1}\) (i.e. the ball is being thrown on an Earth-like planet close to sealevel).
+We'll neglect any air desistence or spin imparted to the ball, and for the purpose of calculating its height, we'll ignore its diameter, i.e. we'll consider that the ball is level with the ground when its centre is at height zero. Over and above this, you'll only need to know the gravitational constant (i.e. gravitational acceleration): \(g=9.81 ms^{-1}\) (i.e. the ball is being thrown on an Earth-like planet close to sealevel).
 
 To simply things and the construction of the code and encapsulation of the physics of the model, we'll break it down into 4 steps:
 
@@ -8717,13 +8756,13 @@ with time \texttt{t} starting at zero, and progressing to \texttt{max\_t} in ste
 
 What else do you need? You need a variable to represent the horizontal position of the ball (delineated here in the text as \(p\), with units of \(m\)). This will start at zero and be updated within the loop. So also in the parameter section, why not define your horizontal position variable \(p\) and assign it a (initial) value of zero.
 
-Lastly, you need to know the horizontal component of the balls velocity.\sidenote{In the absence of air resistance, horizontal velocity does not actually change throughout the simulation (i.e. in each iteration of the loop, it will have the same value).}  You can calculate the (initial) horizontal component of velocity from the given initial conditions of initial speed (\(s_{0})\) and initial angle of trajectory (\(\theta\))\sidenote{Just as long as you can remember how to calculate the sides of a right angled triangle given the length of the hypotenuse, which here is the speed. \\REMEMBER that \textbf{MATLAB} uses \textit{radians} for calculating with angles, not \textit{degrees}.}. For now, pick any 'reasonable' values for \(s_{0}\) \sidenote[][0.25in]{On September 24, 2010, against the San Diego Padres, Chapman was clocked at 105.1 mph (169.1 km/h) -- the fastest pitch ever recorded in Major League Baseball. If you convert 169.1 km/h into units of \(ms^{-1}\), this will give you some reasonable upper limit for your initial  thrown velocity.} and \(\theta\) \sidenote{Obviously, the angle should lie between zero and 90 \degree  (or else the throw is going backwards and/or into the ground). BE CAREFUL as \textbf{MATLAB} assumes that angles are in units of \uline{radians}, so either work in units of radians throughout, or convert from degrees into radians when you calculate the velocity component based on the angle.}. In the figure, the velocity component is designated \(u\).
+Lastly, you need to know the horizontal component of the balls velocity.\sidenote{In the absence of air resistance, horizontal velocity does not actually change throughout the simulation (i.e. in each iteration of the loop, it will have the same value).}  You can calculate the (initial) horizontal component of velocity from the given initial conditions of initial speed (\(s_{0})\) and initial angle of trajectory (\(\phi\))\sidenote{Just as long as you can remember how to calculate the sides of a right angled triangle given the length of the hypotenuse, which here is the speed. \\REMEMBER that \textbf{MATLAB} uses \textit{radians} for calculating with angles, not \textit{degrees}.}. For now, pick any 'reasonable' values for \(s_{0}\) \sidenote[][0.25in]{On September 24, 2010, against the San Diego Padres, Chapman was clocked at 105.1 mph (169.1 km/h) -- the fastest pitch ever recorded in Major League Baseball. If you convert 169.1 km/h into units of \(ms^{-1}\), this will give you some reasonable upper limit for your initial  thrown velocity.} and \(\phi\) \sidenote{Obviously, the angle should lie between zero and 90 \degree  (or else the throw is going backwards and/or into the ground). BE CAREFUL as \textbf{MATLAB} assumes that angles are in units of \uline{radians}, so either work in units of radians throughout, or convert from degrees into radians when you calculate the velocity component based on the angle.}. In the figure, the horizontal velocity component is designated \(u\).
 
-Along with the schematic of the code structure, this should be all you need to create a basic code (but one at this point that does not actually 'do' anything). You should have a constant defined, and then 5 \textit{parameters} --  3 representing the initial conditions of the model (the parts  Figure \ref{fig:ch9-ball} colored in red), plus 2 parameters for the maximum time and time step length. You have 3 \textit{variables} in the code so far -- time \(t\), which is part of the loop, (horizontal) position \(p\), which you should have initialized to zero before the loop starts, and  (horizontal) velocity component \(u\), which you should have initialized calculated from \(s_{0}\) and \(\theta\). There should be nothing in the loop so far.
+Along with the schematic of the code structure, this should be all you need to create a basic code (but one at this point that does not actually 'do' anything). You should have a constant defined, and then 5 \textit{parameters} --  3 representing the initial conditions of the model (the parts  Figure \ref{fig:ch9-ball} colored in red), plus 2 parameters for the maximum time and time step length. You also have 3 \textit{variables} in the code so far -- time \(t\), which is part of the loop, (horizontal) position \(p\), which you should have initialized to zero before the loop starts, and  (horizontal) velocity component \(u\), which you should have initialized calculated from \(s_{0}\) and \(\phi\). There should be nothing in the loop so far.
 
 Check that it runs without error even though it is doing nothing useful! Maybe add some debug (e.g. a line in the loop using \texttt{disp}) to check that the loop really does loop from zero to \texttt{max\_t} in steps of \texttt{dt}.\sidenote{Note that depending on whether or not \texttt{max\_t} is divisible by \texttt{dt} with no remainder, your loop might not exactly finish at a value for \texttt{a} of \texttt{dt}.}
 
-Now to add some code to the loop. In each time-step, i.e. each time around the loop, \(dt\) time (\(s\)) passes. In time \(dt\), if the horizontal velocity of the ball is \(u\), you should be able to calculate how far it moves, right?\sidenote{Distance = velocity times time: \\\(dp=u\times dt\)} You need to add this increment in distance travelled to the current value of the position variable \(p\)\sidenote{i.e. with code like 
+Now to add some code to the loop. During each time-step, i.e. each time around the loop, \(dt\) time (\(s\)) passes. In time \(dt\), if the horizontal velocity of the ball is \(u\), you should be able to calculate how far it moves, right?\sidenote{Distance = velocity times time: \\\(dp=u\times dt\)} You need to add this increment in distance travelled to the current value of the position variable \(p\)\sidenote{i.e. with code like 
 \begin{docspecmargin}
 p = p + delta\_p;
 \end{docspecmargin} which you have seen endless times before now and should becoming wearily familiar ...}. Do this. 
@@ -8774,7 +8813,7 @@ Re-run the model ... what happens? Does this seem 'reasonable' ... ? At this poi
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\newthought{\textit{\textbf{Part III }}} You should now have 2 working models (sperate \textbf{m-files}) -- one for the horizontal position of the ball, and one for the vertical position (and vertical velocity) of the ball. You now want to combine the 2 sperate parts of the model.\sidenote{I suggest basing the combined model on the vertical model (as it is the more complicated of the 2) and hence copying-and-renaming the 2nd script.}
+\newthought{\textit{\textbf{Part III }}} You should now have 2 working models (sperate \textbf{m-files}) -- one for the horizontal position of the ball, and one for the vertical position (and vertical velocity) of the ball. You now want to combine the 2 sperate parts of the model.\sidenote{I suggest basing the combined model on the vertical model (as it is the more complicated of the 2) and hence copying-and-renaming the 2nd script (i.e. so you end up with 3 different \textbf{m-files} in the end).}
 
 How to merge? Mostly, the code content of the 2 individual models was  identical. What you do need to copy across from the horizontal model and add in is:
 \begin{itemize}[noitemsep]
@@ -8785,7 +8824,7 @@ How to merge? Mostly, the code content of the 2 individual models was  identical
 \item The updating of the new horizontal position.
 \end{itemize}
 
-By now, you should have noted a slight problem -- in both previous (sperate) models, the variable \(h\) was used to represent both horizontal AND vertical velocity. \docenvdef{D'uh!}\marginnote{
+By now, you should have noted a slight problem -- in both previous (sperate) models, the variable \(p\) was used to represent both the horizontal AND vertical position of the ball. \docenvdef{D'uh!}\marginnote{
 \docenvdef{duh}
 \\\textit{exclamation informal}
 \\used to comment on an action perceived as foolish or stupid, or a statement perceived as obvious. As in:
@@ -8847,11 +8886,13 @@ which is far far far from exciting ... but does at least confirm a constant chan
 The very least we could do at this point is to detect when the ball has reached the ground and terminate the loop. I'll leave this code for you to devise, but you'll need:
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
-\item A conditional to test whether the vertical position has dropped below zero. This would go in the loop just after the position of the ball has been updated, And ...
-\item The \textbf{MATLAB} command to exit a loop, which you have seen before.
+\item A conditional statement (\texttt{if ...}) to test whether the vertical position has dropped below zero. This would go in the loop just after the position of the ball has been updated, And ...
+\item The \textbf{MATLAB} command to exit a loop, which you have seen before (look it up if you have forgotten).
 \end{enumerate}
 
 Now you might note that when the ball reaches the ground (technically: its height falls below zero) and the loop exists, you may already be way below zero. In fact, if you are even the least little bit observant, you might note that the change in height per time-step at the end of the simulation is quite large (order meters) and hence it is unlikely you'll ever capture the moment that the ball is very close to the ground. Unless you shorten the time-step, that is. So play about with a shorter time-step (you only need change the value you assigned to the parameter representing \(\Delta t\) in the code). How short does it have to be in order to catch the moment the ball reaches the ground (passes zero) to within e.g. \(10 cm\)?\sidenote{i.e. to have the loop terminate when the height is no more than \(-10.0 cm\).} What about \(1 cm\)?
+
+Finally -- as an alternative to creating a \texttt{for} loop, pre-defining a maximum number of time-steps (or maximum time) and then  having to exit the loop once the ball reaches zero height about the ground, try re-writing the loop as a \texttt{while} loop, with the condition (for the loop to continue looping) that the ball has a height above the ground that is greater than zero. (This makes for a neater solution to the problem.)
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
@@ -8859,11 +8900,11 @@ Now you might note that when the ball reaches the ground (technically: its heigh
 
 \newthought{\textit{\textbf{Part IV }}} Some graphics fun.
 
-It would be kinda fun (really) to show the ball flying through the air. There are a variety of ways of doing this. We'll start with the simplest first and use \texttt{scatter}.
+It would be kinda fun (really) to show the ball 'flying through the air'. There are a variety of ways of doing this. We'll start with the simplest first and use \texttt{scatter}.
 
 As a departure from previous plotting, we don't want to plot at the very end (after the loop)\sidenote{Although if you stored the position of the ball at each time-step, you could re-play the trajectory afterwards.} but rather, plot each position as it is calculated, within the loop.
 
-Open a new graphics figure window, before the loop starts and set \texttt{hold} on by adding the lines
+In the code -- open a new graphics figure window, before the loop starts, and set \texttt{hold on}, by adding the lines
 \begin{docspec}
 figure;
 \\hold on;
@@ -8877,18 +8918,18 @@ Within the loop, you want to plot each \((x,y)\) position as it is calculated (\
 
 Well, not so exciting. The plots sort of appears all at once and there is no sense of animation or of the ball moving. \textbf{MATLAB} is just way too fast for its own good\sidenote{This is a Trump-ism. In truth, \textbf{MATLAB} is about the slowest piece of *\$\&\% about.}.
 
+You can make the loop proceed slower, by adding a time delay -- i.e. each time around the loop, \textbf{MATLAB} will take whatever time it needs to carry out the calculation and plot the current position PLUS whatever additional time you tell it to chill out for. The command is \docenvdef{pause} and you might initially try e.g.
+\begin{docspec}
+\ \ \ \ pause(0.05);
+\end{docspec}
+which should insert a \(50 ms\) delay into the loop. Run it.
+
 \marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{pause}
 \\\textbf{MATLAB} says: "\textit{\texttt{pause(mjs)} pauses the MATLAB job scheduler's queue so that jobs waiting in the queued state will not run.}"
 \\Garbage.
 \\\texttt{pause(n)} will pause the execution of the code by \texttt{n} seconds.
 \end{mdframed}}
-
-You can make the loop proceed slower, by adding a time delay -- i.e. each time around the loop, \textbf{MATLAB} will take whatever time it needs to carry out the calculation and plot the current position PLUS whatever additional time you tell it to chill out for. The command is \docenvdef{pause} and you might initially try e.g.
-\begin{docspec}
-\ \ \ \ pause(0.05);
-\end{docspec}
-which should insert a \(50 ms\) delay into the loop. Run it.
 
 Now it has all got really trippy. If you tell it no different, \texttt{MATLAB} insists on auto-scaling the (\(x\) and \(y\) limits of the) plot. As the position of the ball increases (initially) in \textit{y}-axis direction, and (constantly) along the \textit{x-axis} direction, \textbf{MATLAB} periodically re-scales the axes. Annoying. So before the loop starts and after you create the figure window, why not prescribe axes limits(?) Having played with the model you should have a reasonable idea for what the maximum vertical and horizontal distances are associated with 'reasonable' choices for the initial conditions (\(s_{0}\) and \(\theta\)). Don't forget the command for specifying a scale for the axis limits is \texttt{axis}. (Figure \ref{fig:ch9-ball_uv}-esk maybe?)
 
@@ -8899,6 +8940,26 @@ Now it has all got really trippy. If you tell it no different, \texttt{MATLAB} i
 \end{marginfigure}
 
 You can have all the trajectories appearing on the same plot if you comment out the \texttt{figure} command in your script, and open a single new figure window at the command line (\texttt{>> figure}). Then each and every time you run the script, the new trajectory will be added on top. You could also try turning your script into a function so that you do not need to edit the values of \(s_{0}\) and \(\theta\) in the code, but pass them into the program as parameters instead (the function needs not return anything however). 
+
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
+
+\noindent Having developed some visualization for the trajectory of the ball, this is a good point to experiment with the length of the time-step and determine at what point (time-step duration) the numerical approximation starts to break down -- i.e. as compared to a simulation with a very short time-step (or an analytical solution), when (what longer time-step duration) does the trajectory start to visually differ (and the distance travelled before the ball hits the ground, change)?
+
+e.g. Figure \ref{fig:ch9-ball_uv2} illustrates a \(0.1s\) time-step and Figure \ref{fig:ch9-ball_uv3} a \(0.2s\) time-step (contrast with Figure \ref{fig:ch9-ball_uv}).
+
+\begin{marginfigure}[-0.0in]
+\includegraphics[width=\linewidth]{ch9-ball_uv2.eps}
+\caption{Trajectory of a ball (with a poor time-step choice).}
+\label{fig:ch9-ball_uv2}
+\end{marginfigure}
+
+\begin{marginfigure}[-0.0in]
+\includegraphics[width=\linewidth]{ch9-ball_uv3.eps}
+\caption{Trajectory of a ball (even poorer time-step choice).}
+\label{fig:ch9-ball_uv3}
+\end{marginfigure}
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
@@ -8923,9 +8984,9 @@ If, in your loop, after updating the position of the ball, you have:
 \ \ \ h=scatter(p(1),p(2),50,\textcolor[rgb]{1,0,1}{'filled'}, ...\\
 \ \ \ \ \ \ \textcolor[rgb]{1,0,1}{'MarkerFaceColor'},[1 0 0],\textcolor[rgb]{1,0,1}{'MarkerEdgeColor'},[0 0 0]);
 \end{docspec}
-you should see a red ball (with a black outline) smoothly sailing across the screen.\sidenote[][-2.0in]{You could make the animation a little smoother by decreasing the time-step and also playing about with the delay (\texttt{pause}).}
-\sidenote[][-1.0in]{
-A slight complication here as that as it stands, the code will not work because in the first time around the loop, when you get to \texttt{delete(h)}, \textbf{MATLAB} is unhappy becasue the \textit{handle} \texttt{h} has not yet been defined anywhere.
+you should see a red ball (with a black outline) smoothly sailing across the screen.\sidenote[][-1.0in]{You could make the animation a little smoother by decreasing the time-step and also playing about with the delay (\texttt{pause}).}
+\sidenote[][-0.0in]{
+A slight complication here as that as it stands, the code will not work because in the first time around the loop, when you get to \texttt{delete(h)}, \textbf{MATLAB} is unhappy because the \textit{handle} \texttt{h} has not yet been defined anywhere.
 The easiest way to fix this is outside the loop, to plot the initial position of the ball (and obtain its \textit{handle}). e.g.:
 \begin{docspecmargin}
 figure;\\
@@ -10223,6 +10284,8 @@ There is quite a lot of coding to be done and the risk of a huge mess ensuing. S
 
 \setlength{\itemindent}{-0.2in}
 
+\item [Part \(0\)] (Some graphics tricks.)
+
 \item [Part I] Create a basic GUI interface using \textbf{MATLAB} \texttt{guide}.
 
 \item [Part II] Load in and display the graphics needed for the game.
@@ -10247,7 +10310,7 @@ If you run into unexpected and apparently nonsensical issues when you make chang
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\newthought{But before anything ...} -- we'll go through a few of the graphics procedures you will need to grasp and implement.
+\newthought{\textit{\textbf{Part \(0\)}}} -- A few of the graphics procedures you will need to grasp and implement.
 
 Firstly, at the command line, open a \textsf{Figure window} (\texttt{>> figure}).
 Download any (legal/moral) image you care from the internet\sidenote{With the  raster graphics format being one of: \textsf{.jpg}, \textsf{.png}, \textsf{.tif}.} You can load this image into the \textbf{MATLAB} workspace with \docenvdef{imread}, and display it in the \textsf{Figure window} with \docenvdef{imshow}. (Try it.)
@@ -10269,7 +10332,7 @@ This fills up the screen, which is OK for a background image, but not for much e
 \begin{docspec}
 axes('pos',[x,y,dx,dy])
 \end{docspec}
-where (\texttt{x},y) are the coorindates in the window, which by default are from \(0-1\) in both \textit{x} and \textit{y} directions. \texttt{dx} and \texttt{dy} are the width and height, respectively, of the axes (in the same window coordinate system).
+where (\texttt{x},y) are the co-ordinates in the window, which by default are from \(0-1\) in both \textit{x} and \textit{y} directions. \texttt{dx} and \texttt{dy} are the width and height, respectively, of the axes (in the same window coordinate system).
 
 For instance, to create a set of axes starting at the origin, but only 25\% of the full width and height of the window:
 \begin{docspec}
@@ -10293,7 +10356,7 @@ OK -- now dig up the \textit{script} for your ball-throwing animation -- the one
 \setlength{\itemindent}{.2in}
 
 \item Define an \texttt{axes} object, either centered (harder)  on the position of the ball that \texttt{scatter} plotted, or taking as its origin (easier), the position of the ball. The width and height of the axis ... you can play about with, but it should be a relatively small proportion of the total size of the main axes.
-\\Note ... that axes uses relative coordinates (i.e. \(0-1\) in both dimensions) and not your actual ball position (in \(m\)). So you'll need to determine the horizontal and vertical position of the ball, \uline{as a fraction}, of the total size of your domain.\sidenote{e.g. you might have considered a maximum horizontal distance of \(10m\) and a maximum vertical distance of \(7.5m\) and specified:
+\\Note ... that axes uses relative coordinates (i.e. \(0-1\) in both dimensions) and not your actual ball position (in units of \(m\)). So you'll need to determine the horizontal and vertical position of the ball, \uline{as a fraction}, of the total size of your domain.\sidenote{e.g. you might have considered a maximum horizontal distance of \(10m\) and a maximum vertical distance of \(7.5m\) and specified:
 \begin{docspecmargin}
 axis([0 10 0 7.5]);
 \end{docspecmargin}
@@ -10307,7 +10370,7 @@ you then specified what (\textit{x,y}) limits the axes represented, e.g.:
 axis([0 x\_max 0 y\_max]);
 \end{docspec}
 (here, use parameters containing the maximum \textit{x} and \textit{y} limits).
-\\Whereas, within the loop, you are defining a small axes region to contain the image. (And whose location and width/height are given in relative (\(0-1\) scale) units, rather than \(0-x_{max}\) and \(0-y_{max}\).)
+\\In contrast -- within the loop, you are defining a small axes region to contain the image. (And whose location and width/height are given in relative (\(0-1\) scale) units, rather than \(0-x_{max}\) and \(0-y_{max}\).)
 
 \item Plot the ball image (\texttt{imshow}). Assign the graphics \textit{handle} returned by the function to a variable.
 
