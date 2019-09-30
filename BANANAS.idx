@@ -1,508 +1,508 @@
 \indexentry{license|hyperpage}{2}
-\indexentry{help environment@\texttt  {help} environment|hyperpage}{17}
-\indexentry{environments!help@\texttt  {help}|hyperpage}{17}
-\indexentry{FUNCTION environment@\texttt  {FUNCTION} environment|hyperpage}{17}
-\indexentry{environments!FUNCTION@\texttt  {FUNCTION}|hyperpage}{17}
-\indexentry{The command line|hyperpage}{22}
-\indexentry{Command Window|hyperpage}{22}
-\indexentry{help environment@\texttt  {help} environment|hyperpage}{23}
-\indexentry{environments!help@\texttt  {help}|hyperpage}{23}
-\indexentry{help environment@\texttt  {help} environment|hyperpage}{23}
-\indexentry{environments!help@\texttt  {help}|hyperpage}{23}
-\indexentry{variable|hyperpage}{24}
-\indexentry{= environment@\texttt  {=} environment|hyperpage}{25}
-\indexentry{environments!=@\texttt  {=}|hyperpage}{25}
-\indexentry{= environment@\texttt  {=} environment|hyperpage}{25}
-\indexentry{environments!=@\texttt  {=}|hyperpage}{25}
-\indexentry{= environment@\texttt  {=} environment|hyperpage}{25}
-\indexentry{environments!=@\texttt  {=}|hyperpage}{25}
-\indexentry{; environment@\texttt  {;} environment|hyperpage}{27}
-\indexentry{environments!;@\texttt  {;}|hyperpage}{27}
-\indexentry{exponentiation environment@\texttt  {exponentiation} environment|hyperpage}{27}
-\indexentry{environments!exponentiation@\texttt  {exponentiation}|hyperpage}{27}
-\indexentry{multiplication environment@\texttt  {multiplication} environment|hyperpage}{27}
-\indexentry{environments!multiplication@\texttt  {multiplication}|hyperpage}{27}
-\indexentry{division environment@\texttt  {division} environment|hyperpage}{27}
-\indexentry{environments!division@\texttt  {division}|hyperpage}{27}
-\indexentry{addition environment@\texttt  {addition} environment|hyperpage}{27}
-\indexentry{environments!addition@\texttt  {addition}|hyperpage}{27}
-\indexentry{subtraction environment@\texttt  {subtraction} environment|hyperpage}{27}
-\indexentry{environments!subtraction@\texttt  {subtraction}|hyperpage}{27}
-\indexentry{= environment@\texttt  {=} environment|hyperpage}{27}
-\indexentry{environments!=@\texttt  {=}|hyperpage}{27}
-\indexentry{greater than environment@\texttt  {greater than} environment|hyperpage}{28}
-\indexentry{environments!greater than@\texttt  {greater than}|hyperpage}{28}
-\indexentry{less than environment@\texttt  {less than} environment|hyperpage}{28}
-\indexentry{environments!less than@\texttt  {less than}|hyperpage}{28}
-\indexentry{greater than or equal to environment@\texttt  {greater than or equal to} environment|hyperpage}{28}
-\indexentry{environments!greater than or equal to@\texttt  {greater than or equal to}|hyperpage}{28}
-\indexentry{less than or equal to environment@\texttt  {less than or equal to} environment|hyperpage}{28}
-\indexentry{environments!less than or equal to@\texttt  {less than or equal to}|hyperpage}{28}
-\indexentry{equality environment@\texttt  {equality} environment|hyperpage}{28}
-\indexentry{environments!equality@\texttt  {equality}|hyperpage}{28}
-\indexentry{inequality environment@\texttt  {inequality} environment|hyperpage}{28}
-\indexentry{environments!inequality@\texttt  {inequality}|hyperpage}{28}
-\indexentry{equality environment@\texttt  {equality} environment|hyperpage}{28}
-\indexentry{environments!equality@\texttt  {equality}|hyperpage}{28}
-\indexentry{assignment operator environment@\texttt  {assignment operator} environment|hyperpage}{28}
-\indexentry{environments!assignment operator@\texttt  {assignment operator}|hyperpage}{28}
-\indexentry{or environment@\texttt  {or} environment|hyperpage}{28}
-\indexentry{environments!or@\texttt  {or}|hyperpage}{28}
-\indexentry{and environment@\texttt  {and} environment|hyperpage}{28}
-\indexentry{environments!and@\texttt  {and}|hyperpage}{28}
-\indexentry{not environment@\texttt  {not} environment|hyperpage}{28}
-\indexentry{environments!not@\texttt  {not}|hyperpage}{28}
-\indexentry{pi environment@\texttt  {pi} environment|hyperpage}{29}
-\indexentry{environments!pi@\texttt  {pi}|hyperpage}{29}
-\indexentry{pi environment@\texttt  {pi} environment|hyperpage}{29}
-\indexentry{environments!pi@\texttt  {pi}|hyperpage}{29}
-\indexentry{clear environment@\texttt  {clear} environment|hyperpage}{29}
-\indexentry{environments!clear@\texttt  {clear}|hyperpage}{29}
-\indexentry{clear all environment@\texttt  {clear all} environment|hyperpage}{29}
-\indexentry{environments!clear all@\texttt  {clear all}|hyperpage}{29}
-\indexentry{close environment@\texttt  {close} environment|hyperpage}{29}
-\indexentry{environments!close@\texttt  {close}|hyperpage}{29}
-\indexentry{clear all environment@\texttt  {clear all} environment|hyperpage}{29}
-\indexentry{environments!clear all@\texttt  {clear all}|hyperpage}{29}
-\indexentry{exit environment@\texttt  {exit} environment|hyperpage}{29}
-\indexentry{environments!exit@\texttt  {exit}|hyperpage}{29}
+\indexentry{help environment@\texttt  {help} environment|hyperpage}{9}
+\indexentry{environments!help@\texttt  {help}|hyperpage}{9}
+\indexentry{FUNCTION environment@\texttt  {FUNCTION} environment|hyperpage}{9}
+\indexentry{environments!FUNCTION@\texttt  {FUNCTION}|hyperpage}{9}
+\indexentry{The command line|hyperpage}{14}
+\indexentry{Command Window|hyperpage}{14}
+\indexentry{help environment@\texttt  {help} environment|hyperpage}{15}
+\indexentry{environments!help@\texttt  {help}|hyperpage}{15}
+\indexentry{help environment@\texttt  {help} environment|hyperpage}{15}
+\indexentry{environments!help@\texttt  {help}|hyperpage}{15}
+\indexentry{variable|hyperpage}{16}
+\indexentry{= environment@\texttt  {=} environment|hyperpage}{17}
+\indexentry{environments!=@\texttt  {=}|hyperpage}{17}
+\indexentry{= environment@\texttt  {=} environment|hyperpage}{17}
+\indexentry{environments!=@\texttt  {=}|hyperpage}{17}
+\indexentry{= environment@\texttt  {=} environment|hyperpage}{17}
+\indexentry{environments!=@\texttt  {=}|hyperpage}{17}
+\indexentry{; environment@\texttt  {;} environment|hyperpage}{19}
+\indexentry{environments!;@\texttt  {;}|hyperpage}{19}
+\indexentry{exponentiation environment@\texttt  {exponentiation} environment|hyperpage}{19}
+\indexentry{environments!exponentiation@\texttt  {exponentiation}|hyperpage}{19}
+\indexentry{multiplication environment@\texttt  {multiplication} environment|hyperpage}{19}
+\indexentry{environments!multiplication@\texttt  {multiplication}|hyperpage}{19}
+\indexentry{division environment@\texttt  {division} environment|hyperpage}{19}
+\indexentry{environments!division@\texttt  {division}|hyperpage}{19}
+\indexentry{addition environment@\texttt  {addition} environment|hyperpage}{19}
+\indexentry{environments!addition@\texttt  {addition}|hyperpage}{19}
+\indexentry{subtraction environment@\texttt  {subtraction} environment|hyperpage}{19}
+\indexentry{environments!subtraction@\texttt  {subtraction}|hyperpage}{19}
+\indexentry{= environment@\texttt  {=} environment|hyperpage}{19}
+\indexentry{environments!=@\texttt  {=}|hyperpage}{19}
+\indexentry{greater than environment@\texttt  {greater than} environment|hyperpage}{20}
+\indexentry{environments!greater than@\texttt  {greater than}|hyperpage}{20}
+\indexentry{less than environment@\texttt  {less than} environment|hyperpage}{20}
+\indexentry{environments!less than@\texttt  {less than}|hyperpage}{20}
+\indexentry{greater than or equal to environment@\texttt  {greater than or equal to} environment|hyperpage}{20}
+\indexentry{environments!greater than or equal to@\texttt  {greater than or equal to}|hyperpage}{20}
+\indexentry{less than or equal to environment@\texttt  {less than or equal to} environment|hyperpage}{20}
+\indexentry{environments!less than or equal to@\texttt  {less than or equal to}|hyperpage}{20}
+\indexentry{equality environment@\texttt  {equality} environment|hyperpage}{20}
+\indexentry{environments!equality@\texttt  {equality}|hyperpage}{20}
+\indexentry{inequality environment@\texttt  {inequality} environment|hyperpage}{20}
+\indexentry{environments!inequality@\texttt  {inequality}|hyperpage}{20}
+\indexentry{equality environment@\texttt  {equality} environment|hyperpage}{20}
+\indexentry{environments!equality@\texttt  {equality}|hyperpage}{20}
+\indexentry{assignment operator environment@\texttt  {assignment operator} environment|hyperpage}{20}
+\indexentry{environments!assignment operator@\texttt  {assignment operator}|hyperpage}{20}
+\indexentry{or environment@\texttt  {or} environment|hyperpage}{20}
+\indexentry{environments!or@\texttt  {or}|hyperpage}{20}
+\indexentry{and environment@\texttt  {and} environment|hyperpage}{20}
+\indexentry{environments!and@\texttt  {and}|hyperpage}{20}
+\indexentry{not environment@\texttt  {not} environment|hyperpage}{20}
+\indexentry{environments!not@\texttt  {not}|hyperpage}{20}
+\indexentry{pi environment@\texttt  {pi} environment|hyperpage}{21}
+\indexentry{environments!pi@\texttt  {pi}|hyperpage}{21}
+\indexentry{pi environment@\texttt  {pi} environment|hyperpage}{21}
+\indexentry{environments!pi@\texttt  {pi}|hyperpage}{21}
+\indexentry{clear environment@\texttt  {clear} environment|hyperpage}{21}
+\indexentry{environments!clear@\texttt  {clear}|hyperpage}{21}
+\indexentry{clear all environment@\texttt  {clear all} environment|hyperpage}{21}
+\indexentry{environments!clear all@\texttt  {clear all}|hyperpage}{21}
+\indexentry{close environment@\texttt  {close} environment|hyperpage}{21}
+\indexentry{environments!close@\texttt  {close}|hyperpage}{21}
+\indexentry{clear all environment@\texttt  {clear all} environment|hyperpage}{21}
+\indexentry{environments!clear all@\texttt  {clear all}|hyperpage}{21}
+\indexentry{exit environment@\texttt  {exit} environment|hyperpage}{21}
+\indexentry{environments!exit@\texttt  {exit}|hyperpage}{21}
+\indexentry{colon operator environment@\texttt  {colon operator} environment|hyperpage}{22}
+\indexentry{environments!colon operator@\texttt  {colon operator}|hyperpage}{22}
+\indexentry{length environment@\texttt  {length} environment|hyperpage}{23}
+\indexentry{environments!length@\texttt  {length}|hyperpage}{23}
+\indexentry{size environment@\texttt  {size} environment|hyperpage}{23}
+\indexentry{environments!size@\texttt  {size}|hyperpage}{23}
+\indexentry{length environment@\texttt  {length} environment|hyperpage}{23}
+\indexentry{environments!length@\texttt  {length}|hyperpage}{23}
+\indexentry{length environment@\texttt  {length} environment|hyperpage}{23}
+\indexentry{environments!length@\texttt  {length}|hyperpage}{23}
+\indexentry{size environment@\texttt  {size} environment|hyperpage}{23}
+\indexentry{environments!size@\texttt  {size}|hyperpage}{23}
+\indexentry{transpose environment@\texttt  {transpose} environment|hyperpage}{23}
+\indexentry{environments!transpose@\texttt  {transpose}|hyperpage}{23}
+\indexentry{flipud environment@\texttt  {flipud} environment|hyperpage}{23}
+\indexentry{environments!flipud@\texttt  {flipud}|hyperpage}{23}
+\indexentry{fliplr environment@\texttt  {fliplr} environment|hyperpage}{23}
+\indexentry{environments!fliplr@\texttt  {fliplr}|hyperpage}{23}
+\indexentry{flipud environment@\texttt  {flipud} environment|hyperpage}{23}
+\indexentry{environments!flipud@\texttt  {flipud}|hyperpage}{23}
+\indexentry{fliplr environment@\texttt  {fliplr} environment|hyperpage}{23}
+\indexentry{environments!fliplr@\texttt  {fliplr}|hyperpage}{23}
+\indexentry{transpose operator environment@\texttt  {transpose operator} environment|hyperpage}{24}
+\indexentry{environments!transpose operator@\texttt  {transpose operator}|hyperpage}{24}
+\indexentry{end environment@\texttt  {end} environment|hyperpage}{24}
+\indexentry{environments!end@\texttt  {end}|hyperpage}{24}
+\indexentry{colon operator environment@\texttt  {colon operator} environment|hyperpage}{24}
+\indexentry{environments!colon operator@\texttt  {colon operator}|hyperpage}{24}
+\indexentry{colon operator environment@\texttt  {colon operator} environment|hyperpage}{24}
+\indexentry{environments!colon operator@\texttt  {colon operator}|hyperpage}{24}
+\indexentry{end environment@\texttt  {end} environment|hyperpage}{24}
+\indexentry{environments!end@\texttt  {end}|hyperpage}{24}
+\indexentry{figure environment@\texttt  {figure} environment|hyperpage}{25}
+\indexentry{environments!figure@\texttt  {figure}|hyperpage}{25}
+\indexentry{plot environment@\texttt  {plot} environment|hyperpage}{25}
+\indexentry{environments!plot@\texttt  {plot}|hyperpage}{25}
+\indexentry{plot environment@\texttt  {plot} environment|hyperpage}{25}
+\indexentry{environments!plot@\texttt  {plot}|hyperpage}{25}
+\indexentry{plot environment@\texttt  {plot} environment|hyperpage}{25}
+\indexentry{environments!plot@\texttt  {plot}|hyperpage}{25}
+\indexentry{scatter environment@\texttt  {scatter} environment|hyperpage}{25}
+\indexentry{environments!scatter@\texttt  {scatter}|hyperpage}{25}
+\indexentry{m-files environment@\texttt  {m-files} environment|hyperpage}{26}
+\indexentry{environments!m-files@\texttt  {m-files}|hyperpage}{26}
+\indexentry{xlabel environment@\texttt  {xlabel} environment|hyperpage}{26}
+\indexentry{environments!xlabel@\texttt  {xlabel}|hyperpage}{26}
+\indexentry{ylabel environment@\texttt  {ylabel} environment|hyperpage}{26}
+\indexentry{environments!ylabel@\texttt  {ylabel}|hyperpage}{26}
+\indexentry{title environment@\texttt  {title} environment|hyperpage}{26}
+\indexentry{environments!title@\texttt  {title}|hyperpage}{26}
+\indexentry{axis environment@\texttt  {axis} environment|hyperpage}{26}
+\indexentry{environments!axis@\texttt  {axis}|hyperpage}{26}
+\indexentry{title environment@\texttt  {title} environment|hyperpage}{27}
+\indexentry{environments!title@\texttt  {title}|hyperpage}{27}
+\indexentry{sin environment@\texttt  {sin} environment|hyperpage}{27}
+\indexentry{environments!sin@\texttt  {sin}|hyperpage}{27}
+\indexentry{axis environment@\texttt  {axis} environment|hyperpage}{27}
+\indexentry{environments!axis@\texttt  {axis}|hyperpage}{27}
+\indexentry{subplot environment@\texttt  {subplot} environment|hyperpage}{27}
+\indexentry{environments!subplot@\texttt  {subplot}|hyperpage}{27}
+\indexentry{subplot environment@\texttt  {subplot} environment|hyperpage}{27}
+\indexentry{environments!subplot@\texttt  {subplot}|hyperpage}{27}
+\indexentry{print environment@\texttt  {print} environment|hyperpage}{27}
+\indexentry{environments!print@\texttt  {print}|hyperpage}{27}
 \indexentry{colon operator environment@\texttt  {colon operator} environment|hyperpage}{30}
 \indexentry{environments!colon operator@\texttt  {colon operator}|hyperpage}{30}
-\indexentry{length environment@\texttt  {length} environment|hyperpage}{31}
-\indexentry{environments!length@\texttt  {length}|hyperpage}{31}
-\indexentry{size environment@\texttt  {size} environment|hyperpage}{31}
-\indexentry{environments!size@\texttt  {size}|hyperpage}{31}
-\indexentry{length environment@\texttt  {length} environment|hyperpage}{31}
-\indexentry{environments!length@\texttt  {length}|hyperpage}{31}
-\indexentry{length environment@\texttt  {length} environment|hyperpage}{31}
-\indexentry{environments!length@\texttt  {length}|hyperpage}{31}
-\indexentry{size environment@\texttt  {size} environment|hyperpage}{31}
-\indexentry{environments!size@\texttt  {size}|hyperpage}{31}
+\indexentry{size environment@\texttt  {size} environment|hyperpage}{30}
+\indexentry{environments!size@\texttt  {size}|hyperpage}{30}
+\indexentry{sum environment@\texttt  {sum} environment|hyperpage}{31}
+\indexentry{environments!sum@\texttt  {sum}|hyperpage}{31}
+\indexentry{sum environment@\texttt  {sum} environment|hyperpage}{31}
+\indexentry{environments!sum@\texttt  {sum}|hyperpage}{31}
+\indexentry{sum environment@\texttt  {sum} environment|hyperpage}{31}
+\indexentry{environments!sum@\texttt  {sum}|hyperpage}{31}
 \indexentry{transpose environment@\texttt  {transpose} environment|hyperpage}{31}
 \indexentry{environments!transpose@\texttt  {transpose}|hyperpage}{31}
-\indexentry{flipud environment@\texttt  {flipud} environment|hyperpage}{31}
-\indexentry{environments!flipud@\texttt  {flipud}|hyperpage}{31}
+\indexentry{transpose environment@\texttt  {transpose} environment|hyperpage}{31}
+\indexentry{environments!transpose@\texttt  {transpose}|hyperpage}{31}
+\indexentry{flipup environment@\texttt  {flipup} environment|hyperpage}{31}
+\indexentry{environments!flipup@\texttt  {flipup}|hyperpage}{31}
 \indexentry{fliplr environment@\texttt  {fliplr} environment|hyperpage}{31}
 \indexentry{environments!fliplr@\texttt  {fliplr}|hyperpage}{31}
-\indexentry{flipud environment@\texttt  {flipud} environment|hyperpage}{31}
-\indexentry{environments!flipud@\texttt  {flipud}|hyperpage}{31}
-\indexentry{fliplr environment@\texttt  {fliplr} environment|hyperpage}{31}
-\indexentry{environments!fliplr@\texttt  {fliplr}|hyperpage}{31}
-\indexentry{transpose operator environment@\texttt  {transpose operator} environment|hyperpage}{32}
-\indexentry{environments!transpose operator@\texttt  {transpose operator}|hyperpage}{32}
-\indexentry{end environment@\texttt  {end} environment|hyperpage}{32}
-\indexentry{environments!end@\texttt  {end}|hyperpage}{32}
-\indexentry{colon operator environment@\texttt  {colon operator} environment|hyperpage}{32}
-\indexentry{environments!colon operator@\texttt  {colon operator}|hyperpage}{32}
-\indexentry{colon operator environment@\texttt  {colon operator} environment|hyperpage}{32}
-\indexentry{environments!colon operator@\texttt  {colon operator}|hyperpage}{32}
-\indexentry{end environment@\texttt  {end} environment|hyperpage}{32}
-\indexentry{environments!end@\texttt  {end}|hyperpage}{32}
-\indexentry{figure environment@\texttt  {figure} environment|hyperpage}{33}
-\indexentry{environments!figure@\texttt  {figure}|hyperpage}{33}
-\indexentry{plot environment@\texttt  {plot} environment|hyperpage}{33}
-\indexentry{environments!plot@\texttt  {plot}|hyperpage}{33}
-\indexentry{plot environment@\texttt  {plot} environment|hyperpage}{33}
-\indexentry{environments!plot@\texttt  {plot}|hyperpage}{33}
-\indexentry{plot environment@\texttt  {plot} environment|hyperpage}{33}
-\indexentry{environments!plot@\texttt  {plot}|hyperpage}{33}
-\indexentry{scatter environment@\texttt  {scatter} environment|hyperpage}{33}
-\indexentry{environments!scatter@\texttt  {scatter}|hyperpage}{33}
-\indexentry{m-files environment@\texttt  {m-files} environment|hyperpage}{34}
-\indexentry{environments!m-files@\texttt  {m-files}|hyperpage}{34}
-\indexentry{xlabel environment@\texttt  {xlabel} environment|hyperpage}{34}
-\indexentry{environments!xlabel@\texttt  {xlabel}|hyperpage}{34}
-\indexentry{ylabel environment@\texttt  {ylabel} environment|hyperpage}{34}
-\indexentry{environments!ylabel@\texttt  {ylabel}|hyperpage}{34}
-\indexentry{title environment@\texttt  {title} environment|hyperpage}{34}
-\indexentry{environments!title@\texttt  {title}|hyperpage}{34}
-\indexentry{axis environment@\texttt  {axis} environment|hyperpage}{34}
-\indexentry{environments!axis@\texttt  {axis}|hyperpage}{34}
-\indexentry{title environment@\texttt  {title} environment|hyperpage}{35}
-\indexentry{environments!title@\texttt  {title}|hyperpage}{35}
-\indexentry{sin environment@\texttt  {sin} environment|hyperpage}{35}
-\indexentry{environments!sin@\texttt  {sin}|hyperpage}{35}
-\indexentry{axis environment@\texttt  {axis} environment|hyperpage}{35}
-\indexentry{environments!axis@\texttt  {axis}|hyperpage}{35}
-\indexentry{subplot environment@\texttt  {subplot} environment|hyperpage}{35}
-\indexentry{environments!subplot@\texttt  {subplot}|hyperpage}{35}
-\indexentry{subplot environment@\texttt  {subplot} environment|hyperpage}{35}
-\indexentry{environments!subplot@\texttt  {subplot}|hyperpage}{35}
-\indexentry{print environment@\texttt  {print} environment|hyperpage}{35}
-\indexentry{environments!print@\texttt  {print}|hyperpage}{35}
-\indexentry{colon operator environment@\texttt  {colon operator} environment|hyperpage}{38}
-\indexentry{environments!colon operator@\texttt  {colon operator}|hyperpage}{38}
-\indexentry{size environment@\texttt  {size} environment|hyperpage}{38}
-\indexentry{environments!size@\texttt  {size}|hyperpage}{38}
-\indexentry{sum environment@\texttt  {sum} environment|hyperpage}{39}
-\indexentry{environments!sum@\texttt  {sum}|hyperpage}{39}
-\indexentry{sum environment@\texttt  {sum} environment|hyperpage}{39}
-\indexentry{environments!sum@\texttt  {sum}|hyperpage}{39}
-\indexentry{sum environment@\texttt  {sum} environment|hyperpage}{39}
-\indexentry{environments!sum@\texttt  {sum}|hyperpage}{39}
-\indexentry{transpose environment@\texttt  {transpose} environment|hyperpage}{39}
-\indexentry{environments!transpose@\texttt  {transpose}|hyperpage}{39}
-\indexentry{transpose environment@\texttt  {transpose} environment|hyperpage}{39}
-\indexentry{environments!transpose@\texttt  {transpose}|hyperpage}{39}
-\indexentry{flipup environment@\texttt  {flipup} environment|hyperpage}{39}
-\indexentry{environments!flipup@\texttt  {flipup}|hyperpage}{39}
-\indexentry{fliplr environment@\texttt  {fliplr} environment|hyperpage}{39}
-\indexentry{environments!fliplr@\texttt  {fliplr}|hyperpage}{39}
-\indexentry{rotate environment@\texttt  {rotate} environment|hyperpage}{39}
-\indexentry{environments!rotate@\texttt  {rotate}|hyperpage}{39}
-\indexentry{load environment@\texttt  {load} environment|hyperpage}{42}
-\indexentry{environments!load@\texttt  {load}|hyperpage}{42}
-\indexentry{load environment@\texttt  {load} environment|hyperpage}{42}
-\indexentry{environments!load@\texttt  {load}|hyperpage}{42}
-\indexentry{addpath environment@\texttt  {addpath} environment|hyperpage}{42}
-\indexentry{environments!addpath@\texttt  {addpath}|hyperpage}{42}
-\indexentry{load environment@\texttt  {load} environment|hyperpage}{42}
-\indexentry{environments!load@\texttt  {load}|hyperpage}{42}
-\indexentry{load environment@\texttt  {load} environment|hyperpage}{43}
-\indexentry{environments!load@\texttt  {load}|hyperpage}{43}
-\indexentry{fprintf environment@\texttt  {fprintf} environment|hyperpage}{43}
-\indexentry{environments!fprintf@\texttt  {fprintf}|hyperpage}{43}
-\indexentry{save environment@\texttt  {save} environment|hyperpage}{44}
-\indexentry{environments!save@\texttt  {save}|hyperpage}{44}
-\indexentry{load environment@\texttt  {load} environment|hyperpage}{44}
-\indexentry{environments!load@\texttt  {load}|hyperpage}{44}
-\indexentry{save environment@\texttt  {save} environment|hyperpage}{44}
-\indexentry{environments!save@\texttt  {save}|hyperpage}{44}
-\indexentry{.mat environment@\texttt  {.mat} environment|hyperpage}{44}
-\indexentry{environments!.mat@\texttt  {.mat}|hyperpage}{44}
-\indexentry{.mat environment@\texttt  {.mat} environment|hyperpage}{44}
-\indexentry{environments!.mat@\texttt  {.mat}|hyperpage}{44}
-\indexentry{load environment@\texttt  {load} environment|hyperpage}{45}
-\indexentry{environments!load@\texttt  {load}|hyperpage}{45}
-\indexentry{sort environment@\texttt  {sort} environment|hyperpage}{45}
-\indexentry{environments!sort@\texttt  {sort}|hyperpage}{45}
-\indexentry{sortrows environment@\texttt  {sortrows} environment|hyperpage}{46}
-\indexentry{environments!sortrows@\texttt  {sortrows}|hyperpage}{46}
-\indexentry{plot environment@\texttt  {plot} environment|hyperpage}{46}
-\indexentry{environments!plot@\texttt  {plot}|hyperpage}{46}
-\indexentry{axis environment@\texttt  {axis} environment|hyperpage}{47}
-\indexentry{environments!axis@\texttt  {axis}|hyperpage}{47}
-\indexentry{hold on environment@\texttt  {hold on} environment|hyperpage}{48}
-\indexentry{environments!hold on@\texttt  {hold on}|hyperpage}{48}
-\indexentry{plot environment@\texttt  {plot} environment|hyperpage}{50}
-\indexentry{environments!plot@\texttt  {plot}|hyperpage}{50}
-\indexentry{hold environment@\texttt  {hold} environment|hyperpage}{50}
-\indexentry{environments!hold@\texttt  {hold}|hyperpage}{50}
-\indexentry{legend environment@\texttt  {legend} environment|hyperpage}{51}
-\indexentry{environments!legend@\texttt  {legend}|hyperpage}{51}
-\indexentry{scatter environment@\texttt  {scatter} environment|hyperpage}{52}
-\indexentry{environments!scatter@\texttt  {scatter}|hyperpage}{52}
-\indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{52}
-\indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{52}
-\indexentry{image environment@\texttt  {image} environment|hyperpage}{53}
-\indexentry{environments!image@\texttt  {image}|hyperpage}{53}
-\indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{53}
-\indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{53}
-\indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{53}
-\indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{53}
-\indexentry{image environment@\texttt  {image} environment|hyperpage}{53}
-\indexentry{environments!image@\texttt  {image}|hyperpage}{53}
-\indexentry{imread environment@\texttt  {imread} environment|hyperpage}{53}
-\indexentry{environments!imread@\texttt  {imread}|hyperpage}{53}
-\indexentry{imread environment@\texttt  {imread} environment|hyperpage}{53}
-\indexentry{environments!imread@\texttt  {imread}|hyperpage}{53}
-\indexentry{typefaces!sizes|hyperpage}{54}
-\indexentry{disp environment@\texttt  {disp} environment|hyperpage}{58}
-\indexentry{environments!disp@\texttt  {disp}|hyperpage}{58}
-\indexentry{disp environment@\texttt  {disp} environment|hyperpage}{58}
-\indexentry{environments!disp@\texttt  {disp}|hyperpage}{58}
-\indexentry{disp environment@\texttt  {disp} environment|hyperpage}{58}
-\indexentry{environments!disp@\texttt  {disp}|hyperpage}{58}
-\indexentry{if ... end environment@\texttt  {if ... end} environment|hyperpage}{67}
-\indexentry{environments!if ... end@\texttt  {if ... end}|hyperpage}{67}
-\indexentry{else environment@\texttt  {else} environment|hyperpage}{67}
-\indexentry{environments!else@\texttt  {else}|hyperpage}{67}
-\indexentry{elseif environment@\texttt  {elseif} environment|hyperpage}{67}
-\indexentry{environments!elseif@\texttt  {elseif}|hyperpage}{67}
-\indexentry{if ... end environment@\texttt  {if ... end} environment|hyperpage}{67}
-\indexentry{environments!if ... end@\texttt  {if ... end}|hyperpage}{67}
-\indexentry{input environment@\texttt  {input} environment|hyperpage}{67}
-\indexentry{environments!input@\texttt  {input}|hyperpage}{67}
-\indexentry{input environment@\texttt  {input} environment|hyperpage}{68}
-\indexentry{environments!input@\texttt  {input}|hyperpage}{68}
-\indexentry{strcmp environment@\texttt  {strcmp} environment|hyperpage}{69}
-\indexentry{environments!strcmp@\texttt  {strcmp}|hyperpage}{69}
-\indexentry{strcmp environment@\texttt  {strcmp} environment|hyperpage}{69}
-\indexentry{environments!strcmp@\texttt  {strcmp}|hyperpage}{69}
-\indexentry{strcmp environment@\texttt  {strcmp} environment|hyperpage}{69}
-\indexentry{environments!strcmp@\texttt  {strcmp}|hyperpage}{69}
-\indexentry{switch ... case ... end environment@\texttt  {switch ... case ... end} environment|hyperpage}{72}
-\indexentry{environments!switch ... case ... end@\texttt  {switch ... case ... end}|hyperpage}{72}
-\indexentry{for environment@\texttt  {for} environment|hyperpage}{74}
-\indexentry{environments!for@\texttt  {for}|hyperpage}{74}
-\indexentry{while environment@\texttt  {while} environment|hyperpage}{74}
-\indexentry{environments!while@\texttt  {while}|hyperpage}{74}
-\indexentry{disp environment@\texttt  {disp} environment|hyperpage}{81}
-\indexentry{environments!disp@\texttt  {disp}|hyperpage}{81}
-\indexentry{num2str environment@\texttt  {num2str} environment|hyperpage}{81}
-\indexentry{environments!num2str@\texttt  {num2str}|hyperpage}{81}
-\indexentry{getframe environment@\texttt  {getframe} environment|hyperpage}{83}
-\indexentry{environments!getframe@\texttt  {getframe}|hyperpage}{83}
-\indexentry{movie2avi environment@\texttt  {movie2avi} environment|hyperpage}{83}
-\indexentry{environments!movie2avi@\texttt  {movie2avi}|hyperpage}{83}
-\indexentry{movie2avi environment@\texttt  {movie2avi} environment|hyperpage}{83}
-\indexentry{environments!movie2avi@\texttt  {movie2avi}|hyperpage}{83}
-\indexentry{movie2avi environment@\texttt  {movie2avi} environment|hyperpage}{83}
-\indexentry{environments!movie2avi@\texttt  {movie2avi}|hyperpage}{83}
-\indexentry{VideoWriter, environment@\texttt  {VideoWriter,} environment|hyperpage}{83}
-\indexentry{environments!VideoWriter,@\texttt  {VideoWriter,}|hyperpage}{83}
-\indexentry{movie2avi environment@\texttt  {movie2avi} environment|hyperpage}{83}
-\indexentry{environments!movie2avi@\texttt  {movie2avi}|hyperpage}{83}
-\indexentry{VideoWriter environment@\texttt  {VideoWriter} environment|hyperpage}{83}
-\indexentry{environments!VideoWriter@\texttt  {VideoWriter}|hyperpage}{83}
-\indexentry{break environment@\texttt  {break} environment|hyperpage}{85}
-\indexentry{environments!break@\texttt  {break}|hyperpage}{85}
-\indexentry{break environment@\texttt  {break} environment|hyperpage}{85}
-\indexentry{environments!break@\texttt  {break}|hyperpage}{85}
-\indexentry{break environment@\texttt  {break} environment|hyperpage}{85}
-\indexentry{environments!break@\texttt  {break}|hyperpage}{85}
-\indexentry{exist environment@\texttt  {exist} environment|hyperpage}{86}
-\indexentry{environments!exist@\texttt  {exist}|hyperpage}{86}
-\indexentry{exist environment@\texttt  {exist} environment|hyperpage}{86}
-\indexentry{environments!exist@\texttt  {exist}|hyperpage}{86}
-\indexentry{input environment@\texttt  {input} environment|hyperpage}{89}
-\indexentry{environments!input@\texttt  {input}|hyperpage}{89}
-\indexentry{exist environment@\texttt  {exist} environment|hyperpage}{89}
-\indexentry{environments!exist@\texttt  {exist}|hyperpage}{89}
-\indexentry{exist environment@\texttt  {exist} environment|hyperpage}{89}
-\indexentry{environments!exist@\texttt  {exist}|hyperpage}{89}
-\indexentry{exist environment@\texttt  {exist} environment|hyperpage}{89}
-\indexentry{environments!exist@\texttt  {exist}|hyperpage}{89}
-\indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{90}
-\indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{90}
-\indexentry{length environment@\texttt  {length} environment|hyperpage}{91}
-\indexentry{environments!length@\texttt  {length}|hyperpage}{91}
-\indexentry{fopen environment@\texttt  {fopen} environment|hyperpage}{94}
-\indexentry{environments!fopen@\texttt  {fopen}|hyperpage}{94}
-\indexentry{fclose environment@\texttt  {fclose} environment|hyperpage}{94}
-\indexentry{environments!fclose@\texttt  {fclose}|hyperpage}{94}
-\indexentry{textscan environment@\texttt  {textscan} environment|hyperpage}{94}
-\indexentry{environments!textscan@\texttt  {textscan}|hyperpage}{94}
-\indexentry{fopen environment@\texttt  {fopen} environment|hyperpage}{94}
-\indexentry{environments!fopen@\texttt  {fopen}|hyperpage}{94}
-\indexentry{fclose environment@\texttt  {fclose} environment|hyperpage}{94}
-\indexentry{environments!fclose@\texttt  {fclose}|hyperpage}{94}
-\indexentry{fopen environment@\texttt  {fopen} environment|hyperpage}{95}
-\indexentry{environments!fopen@\texttt  {fopen}|hyperpage}{95}
-\indexentry{fopen environment@\texttt  {fopen} environment|hyperpage}{95}
-\indexentry{environments!fopen@\texttt  {fopen}|hyperpage}{95}
-\indexentry{textscan environment@\texttt  {textscan} environment|hyperpage}{95}
-\indexentry{environments!textscan@\texttt  {textscan}|hyperpage}{95}
-\indexentry{textscan environment@\texttt  {textscan} environment|hyperpage}{95}
-\indexentry{environments!textscan@\texttt  {textscan}|hyperpage}{95}
-\indexentry{textscan environment@\texttt  {textscan} environment|hyperpage}{95}
-\indexentry{environments!textscan@\texttt  {textscan}|hyperpage}{95}
-\indexentry{textscan environment@\texttt  {textscan} environment|hyperpage}{95}
-\indexentry{environments!textscan@\texttt  {textscan}|hyperpage}{95}
-\indexentry{cell2mat environment@\texttt  {cell2mat} environment|hyperpage}{95}
-\indexentry{environments!cell2mat@\texttt  {cell2mat}|hyperpage}{95}
-\indexentry{cell array environment@\texttt  {cell array} environment|hyperpage}{96}
-\indexentry{environments!cell array@\texttt  {cell array}|hyperpage}{96}
-\indexentry{cell2mat environment@\texttt  {cell2mat} environment|hyperpage}{96}
-\indexentry{environments!cell2mat@\texttt  {cell2mat}|hyperpage}{96}
-\indexentry{cell array environment@\texttt  {cell array} environment|hyperpage}{96}
-\indexentry{environments!cell array@\texttt  {cell array}|hyperpage}{96}
-\indexentry{cell2mat environment@\texttt  {cell2mat} environment|hyperpage}{96}
-\indexentry{environments!cell2mat@\texttt  {cell2mat}|hyperpage}{96}
-\indexentry{comments environment@\texttt  {comments} environment|hyperpage}{96}
-\indexentry{environments!comments@\texttt  {comments}|hyperpage}{96}
-\indexentry{fopen environment@\texttt  {fopen} environment|hyperpage}{96}
-\indexentry{environments!fopen@\texttt  {fopen}|hyperpage}{96}
-\indexentry{textscan environment@\texttt  {textscan} environment|hyperpage}{96}
-\indexentry{environments!textscan@\texttt  {textscan}|hyperpage}{96}
-\indexentry{xlsread environment@\texttt  {xlsread} environment|hyperpage}{98}
-\indexentry{environments!xlsread@\texttt  {xlsread}|hyperpage}{98}
-\indexentry{xlsread environment@\texttt  {xlsread} environment|hyperpage}{98}
-\indexentry{environments!xlsread@\texttt  {xlsread}|hyperpage}{98}
-\indexentry{xlsread environment@\texttt  {xlsread} environment|hyperpage}{98}
-\indexentry{environments!xlsread@\texttt  {xlsread}|hyperpage}{98}
-\indexentry{ncread environment@\texttt  {ncread} environment|hyperpage}{99}
-\indexentry{environments!ncread@\texttt  {ncread}|hyperpage}{99}
-\indexentry{ncread environment@\texttt  {ncread} environment|hyperpage}{99}
-\indexentry{environments!ncread@\texttt  {ncread}|hyperpage}{99}
-\indexentry{ncread environment@\texttt  {ncread} environment|hyperpage}{99}
-\indexentry{environments!ncread@\texttt  {ncread}|hyperpage}{99}
-\indexentry{image environment@\texttt  {image} environment|hyperpage}{103}
-\indexentry{environments!image@\texttt  {image}|hyperpage}{103}
-\indexentry{contour environment@\texttt  {contour} environment|hyperpage}{103}
-\indexentry{environments!contour@\texttt  {contour}|hyperpage}{103}
-\indexentry{contourf environment@\texttt  {contourf} environment|hyperpage}{103}
-\indexentry{environments!contourf@\texttt  {contourf}|hyperpage}{103}
-\indexentry{contour environment@\texttt  {contour} environment|hyperpage}{103}
-\indexentry{environments!contour@\texttt  {contour}|hyperpage}{103}
-\indexentry{imagesc environment@\texttt  {imagesc} environment|hyperpage}{103}
-\indexentry{environments!imagesc@\texttt  {imagesc}|hyperpage}{103}
-\indexentry{transpose environment@\texttt  {transpose} environment|hyperpage}{104}
-\indexentry{environments!transpose@\texttt  {transpose}|hyperpage}{104}
-\indexentry{imagesc environment@\texttt  {imagesc} environment|hyperpage}{104}
-\indexentry{environments!imagesc@\texttt  {imagesc}|hyperpage}{104}
-\indexentry{colormap environment@\texttt  {colormap} environment|hyperpage}{104}
-\indexentry{environments!colormap@\texttt  {colormap}|hyperpage}{104}
-\indexentry{colormap environment@\texttt  {colormap} environment|hyperpage}{104}
-\indexentry{environments!colormap@\texttt  {colormap}|hyperpage}{104}
-\indexentry{contour environment@\texttt  {contour} environment|hyperpage}{105}
-\indexentry{environments!contour@\texttt  {contour}|hyperpage}{105}
-\indexentry{clabel environment@\texttt  {clabel} environment|hyperpage}{105}
-\indexentry{environments!clabel@\texttt  {clabel}|hyperpage}{105}
-\indexentry{clabel environment@\texttt  {clabel} environment|hyperpage}{106}
-\indexentry{environments!clabel@\texttt  {clabel}|hyperpage}{106}
-\indexentry{colorbar environment@\texttt  {colorbar} environment|hyperpage}{107}
-\indexentry{environments!colorbar@\texttt  {colorbar}|hyperpage}{107}
-\indexentry{meshgrid environment@\texttt  {meshgrid} environment|hyperpage}{107}
-\indexentry{environments!meshgrid@\texttt  {meshgrid}|hyperpage}{107}
-\indexentry{meshgrid environment@\texttt  {meshgrid} environment|hyperpage}{107}
-\indexentry{environments!meshgrid@\texttt  {meshgrid}|hyperpage}{107}
-\indexentry{geoshow environment@\texttt  {geoshow} environment|hyperpage}{110}
-\indexentry{environments!geoshow@\texttt  {geoshow}|hyperpage}{110}
-\indexentry{find environment@\texttt  {find} environment|hyperpage}{112}
-\indexentry{environments!find@\texttt  {find}|hyperpage}{112}
-\indexentry{find environment@\texttt  {find} environment|hyperpage}{112}
-\indexentry{environments!find@\texttt  {find}|hyperpage}{112}
-\indexentry{find environment@\texttt  {find} environment|hyperpage}{112}
-\indexentry{environments!find@\texttt  {find}|hyperpage}{112}
-\indexentry{find environment@\texttt  {find} environment|hyperpage}{112}
-\indexentry{environments!find@\texttt  {find}|hyperpage}{112}
-\indexentry{find environment@\texttt  {find} environment|hyperpage}{112}
-\indexentry{environments!find@\texttt  {find}|hyperpage}{112}
-\indexentry{find environment@\texttt  {find} environment|hyperpage}{113}
-\indexentry{environments!find@\texttt  {find}|hyperpage}{113}
-\indexentry{NaN environment@\texttt  {NaN} environment|hyperpage}{114}
-\indexentry{environments!NaN@\texttt  {NaN}|hyperpage}{114}
-\indexentry{find environment@\texttt  {find} environment|hyperpage}{114}
-\indexentry{environments!find@\texttt  {find}|hyperpage}{114}
-\indexentry{NaN environment@\texttt  {NaN} environment|hyperpage}{114}
-\indexentry{environments!NaN@\texttt  {NaN}|hyperpage}{114}
-\indexentry{isnan environment@\texttt  {isnan} environment|hyperpage}{115}
-\indexentry{environments!isnan@\texttt  {isnan}|hyperpage}{115}
-\indexentry{isnana environment@\texttt  {isnana} environment|hyperpage}{115}
-\indexentry{environments!isnana@\texttt  {isnana}|hyperpage}{115}
-\indexentry{colorbar environment@\texttt  {colorbar} environment|hyperpage}{117}
-\indexentry{environments!colorbar@\texttt  {colorbar}|hyperpage}{117}
-\indexentry{find environment@\texttt  {find} environment|hyperpage}{117}
-\indexentry{environments!find@\texttt  {find}|hyperpage}{117}
-\indexentry{isnan environment@\texttt  {isnan} environment|hyperpage}{117}
-\indexentry{environments!isnan@\texttt  {isnan}|hyperpage}{117}
-\indexentry{rmmissing environment@\texttt  {rmmissing} environment|hyperpage}{118}
-\indexentry{environments!rmmissing@\texttt  {rmmissing}|hyperpage}{118}
-\indexentry{rmmissing environment@\texttt  {rmmissing} environment|hyperpage}{118}
-\indexentry{environments!rmmissing@\texttt  {rmmissing}|hyperpage}{118}
-\indexentry{isnan environment@\texttt  {isnan} environment|hyperpage}{119}
-\indexentry{environments!isnan@\texttt  {isnan}|hyperpage}{119}
-\indexentry{isnan environment@\texttt  {isnan} environment|hyperpage}{119}
-\indexentry{environments!isnan@\texttt  {isnan}|hyperpage}{119}
-\indexentry{reshape environment@\texttt  {reshape} environment|hyperpage}{120}
-\indexentry{environments!reshape@\texttt  {reshape}|hyperpage}{120}
-\indexentry{reshape environment@\texttt  {reshape} environment|hyperpage}{120}
-\indexentry{environments!reshape@\texttt  {reshape}|hyperpage}{120}
-\indexentry{reshape environment@\texttt  {reshape} environment|hyperpage}{120}
-\indexentry{environments!reshape@\texttt  {reshape}|hyperpage}{120}
-\indexentry{reshape environment@\texttt  {reshape} environment|hyperpage}{121}
-\indexentry{environments!reshape@\texttt  {reshape}|hyperpage}{121}
-\indexentry{interp1 environment@\texttt  {interp1} environment|hyperpage}{123}
-\indexentry{environments!interp1@\texttt  {interp1}|hyperpage}{123}
-\indexentry{interp1 environment@\texttt  {interp1} environment|hyperpage}{123}
-\indexentry{environments!interp1@\texttt  {interp1}|hyperpage}{123}
-\indexentry{interp1 environment@\texttt  {interp1} environment|hyperpage}{123}
-\indexentry{environments!interp1@\texttt  {interp1}|hyperpage}{123}
-\indexentry{interp1 environment@\texttt  {interp1} environment|hyperpage}{123}
-\indexentry{environments!interp1@\texttt  {interp1}|hyperpage}{123}
-\indexentry{line environment@\texttt  {line} environment|hyperpage}{127}
-\indexentry{environments!line@\texttt  {line}|hyperpage}{127}
-\indexentry{line environment@\texttt  {line} environment|hyperpage}{127}
-\indexentry{environments!line@\texttt  {line}|hyperpage}{127}
-\indexentry{gca environment@\texttt  {gca} environment|hyperpage}{128}
-\indexentry{environments!gca@\texttt  {gca}|hyperpage}{128}
-\indexentry{set environment@\texttt  {set} environment|hyperpage}{128}
-\indexentry{environments!set@\texttt  {set}|hyperpage}{128}
-\indexentry{set environment@\texttt  {set} environment|hyperpage}{129}
-\indexentry{environments!set@\texttt  {set}|hyperpage}{129}
-\indexentry{quiver environment@\texttt  {quiver} environment|hyperpage}{129}
-\indexentry{environments!quiver@\texttt  {quiver}|hyperpage}{129}
-\indexentry{patch environment@\texttt  {patch} environment|hyperpage}{130}
-\indexentry{environments!patch@\texttt  {patch}|hyperpage}{130}
-\indexentry{colormap environment@\texttt  {colormap} environment|hyperpage}{131}
-\indexentry{environments!colormap@\texttt  {colormap}|hyperpage}{131}
-\indexentry{text environment@\texttt  {text} environment|hyperpage}{133}
-\indexentry{environments!text@\texttt  {text}|hyperpage}{133}
-\indexentry{text environment@\texttt  {text} environment|hyperpage}{134}
-\indexentry{environments!text@\texttt  {text}|hyperpage}{134}
-\indexentry{mod environment@\texttt  {mod} environment|hyperpage}{141}
-\indexentry{environments!mod@\texttt  {mod}|hyperpage}{141}
-\indexentry{rocker environment@\texttt  {rocker} environment|hyperpage}{141}
-\indexentry{environments!rocker@\texttt  {rocker}|hyperpage}{141}
-\indexentry{mod environment@\texttt  {mod} environment|hyperpage}{141}
-\indexentry{environments!mod@\texttt  {mod}|hyperpage}{141}
-\indexentry{length environment@\texttt  {length} environment|hyperpage}{142}
-\indexentry{environments!length@\texttt  {length}|hyperpage}{142}
-\indexentry{size environment@\texttt  {size} environment|hyperpage}{153}
-\indexentry{environments!size@\texttt  {size}|hyperpage}{153}
-\indexentry{size environment@\texttt  {size} environment|hyperpage}{153}
-\indexentry{environments!size@\texttt  {size}|hyperpage}{153}
-\indexentry{size environment@\texttt  {size} environment|hyperpage}{153}
-\indexentry{environments!size@\texttt  {size}|hyperpage}{153}
-\indexentry{zeros environment@\texttt  {zeros} environment|hyperpage}{153}
-\indexentry{environments!zeros@\texttt  {zeros}|hyperpage}{153}
-\indexentry{zeros environment@\texttt  {zeros} environment|hyperpage}{153}
-\indexentry{environments!zeros@\texttt  {zeros}|hyperpage}{153}
-\indexentry{icecream environment@\texttt  {icecream} environment|hyperpage}{155}
-\indexentry{environments!icecream@\texttt  {icecream}|hyperpage}{155}
-\indexentry{save environment@\texttt  {save} environment|hyperpage}{163}
-\indexentry{environments!save@\texttt  {save}|hyperpage}{163}
-\indexentry{numel environment@\texttt  {numel} environment|hyperpage}{173}
-\indexentry{environments!numel@\texttt  {numel}|hyperpage}{173}
-\indexentry{ginput environment@\texttt  {ginput} environment|hyperpage}{181}
-\indexentry{environments!ginput@\texttt  {ginput}|hyperpage}{181}
-\indexentry{ginput environment@\texttt  {ginput} environment|hyperpage}{181}
-\indexentry{environments!ginput@\texttt  {ginput}|hyperpage}{181}
-\indexentry{ginput environment@\texttt  {ginput} environment|hyperpage}{181}
-\indexentry{environments!ginput@\texttt  {ginput}|hyperpage}{181}
-\indexentry{round environment@\texttt  {round} environment|hyperpage}{182}
-\indexentry{environments!round@\texttt  {round}|hyperpage}{182}
-\indexentry{isempty environment@\texttt  {isempty} environment|hyperpage}{185}
-\indexentry{environments!isempty@\texttt  {isempty}|hyperpage}{185}
-\indexentry{ismember environment@\texttt  {ismember} environment|hyperpage}{186}
-\indexentry{environments!ismember@\texttt  {ismember}|hyperpage}{186}
-\indexentry{ismember environment@\texttt  {ismember} environment|hyperpage}{187}
-\indexentry{environments!ismember@\texttt  {ismember}|hyperpage}{187}
-\indexentry{line environment@\texttt  {line} environment|hyperpage}{194}
-\indexentry{environments!line@\texttt  {line}|hyperpage}{194}
-\indexentry{line environment@\texttt  {line} environment|hyperpage}{194}
-\indexentry{environments!line@\texttt  {line}|hyperpage}{194}
-\indexentry{zeros environment@\texttt  {zeros} environment|hyperpage}{197}
-\indexentry{environments!zeros@\texttt  {zeros}|hyperpage}{197}
-\indexentry{exit environment@\texttt  {exit} environment|hyperpage}{202}
-\indexentry{environments!exit@\texttt  {exit}|hyperpage}{202}
-\indexentry{D'uh! environment@\texttt  {D'uh!} environment|hyperpage}{216}
-\indexentry{environments!D'uh!@\texttt  {D'uh!}|hyperpage}{216}
-\indexentry{duh environment@\texttt  {duh} environment|hyperpage}{216}
-\indexentry{environments!duh@\texttt  {duh}|hyperpage}{216}
-\indexentry{pause environment@\texttt  {pause} environment|hyperpage}{219}
-\indexentry{environments!pause@\texttt  {pause}|hyperpage}{219}
-\indexentry{pause environment@\texttt  {pause} environment|hyperpage}{219}
-\indexentry{environments!pause@\texttt  {pause}|hyperpage}{219}
-\indexentry{line environment@\texttt  {line} environment|hyperpage}{225}
-\indexentry{environments!line@\texttt  {line}|hyperpage}{225}
-\indexentry{mean environment@\texttt  {mean} environment|hyperpage}{231}
-\indexentry{environments!mean@\texttt  {mean}|hyperpage}{231}
-\indexentry{mean environment@\texttt  {mean} environment|hyperpage}{231}
-\indexentry{environments!mean@\texttt  {mean}|hyperpage}{231}
-\indexentry{set environment@\texttt  {set} environment|hyperpage}{253}
-\indexentry{environments!set@\texttt  {set}|hyperpage}{253}
-\indexentry{set environment@\texttt  {set} environment|hyperpage}{253}
-\indexentry{environments!set@\texttt  {set}|hyperpage}{253}
-\indexentry{imread environment@\texttt  {imread} environment|hyperpage}{261}
-\indexentry{environments!imread@\texttt  {imread}|hyperpage}{261}
-\indexentry{imshow environment@\texttt  {imshow} environment|hyperpage}{261}
-\indexentry{environments!imshow@\texttt  {imshow}|hyperpage}{261}
-\indexentry{imread environment@\texttt  {imread} environment|hyperpage}{261}
-\indexentry{environments!imread@\texttt  {imread}|hyperpage}{261}
-\indexentry{imshow environment@\texttt  {imshow} environment|hyperpage}{261}
-\indexentry{environments!imshow@\texttt  {imshow}|hyperpage}{261}
-\indexentry{rand environment@\texttt  {rand} environment|hyperpage}{275}
-\indexentry{environments!rand@\texttt  {rand}|hyperpage}{275}
+\indexentry{rotate environment@\texttt  {rotate} environment|hyperpage}{31}
+\indexentry{environments!rotate@\texttt  {rotate}|hyperpage}{31}
+\indexentry{load environment@\texttt  {load} environment|hyperpage}{34}
+\indexentry{environments!load@\texttt  {load}|hyperpage}{34}
+\indexentry{load environment@\texttt  {load} environment|hyperpage}{34}
+\indexentry{environments!load@\texttt  {load}|hyperpage}{34}
+\indexentry{addpath environment@\texttt  {addpath} environment|hyperpage}{34}
+\indexentry{environments!addpath@\texttt  {addpath}|hyperpage}{34}
+\indexentry{load environment@\texttt  {load} environment|hyperpage}{34}
+\indexentry{environments!load@\texttt  {load}|hyperpage}{34}
+\indexentry{load environment@\texttt  {load} environment|hyperpage}{35}
+\indexentry{environments!load@\texttt  {load}|hyperpage}{35}
+\indexentry{fprintf environment@\texttt  {fprintf} environment|hyperpage}{35}
+\indexentry{environments!fprintf@\texttt  {fprintf}|hyperpage}{35}
+\indexentry{save environment@\texttt  {save} environment|hyperpage}{36}
+\indexentry{environments!save@\texttt  {save}|hyperpage}{36}
+\indexentry{load environment@\texttt  {load} environment|hyperpage}{36}
+\indexentry{environments!load@\texttt  {load}|hyperpage}{36}
+\indexentry{save environment@\texttt  {save} environment|hyperpage}{36}
+\indexentry{environments!save@\texttt  {save}|hyperpage}{36}
+\indexentry{.mat environment@\texttt  {.mat} environment|hyperpage}{36}
+\indexentry{environments!.mat@\texttt  {.mat}|hyperpage}{36}
+\indexentry{.mat environment@\texttt  {.mat} environment|hyperpage}{36}
+\indexentry{environments!.mat@\texttt  {.mat}|hyperpage}{36}
+\indexentry{load environment@\texttt  {load} environment|hyperpage}{37}
+\indexentry{environments!load@\texttt  {load}|hyperpage}{37}
+\indexentry{sort environment@\texttt  {sort} environment|hyperpage}{37}
+\indexentry{environments!sort@\texttt  {sort}|hyperpage}{37}
+\indexentry{sortrows environment@\texttt  {sortrows} environment|hyperpage}{38}
+\indexentry{environments!sortrows@\texttt  {sortrows}|hyperpage}{38}
+\indexentry{plot environment@\texttt  {plot} environment|hyperpage}{38}
+\indexentry{environments!plot@\texttt  {plot}|hyperpage}{38}
+\indexentry{axis environment@\texttt  {axis} environment|hyperpage}{39}
+\indexentry{environments!axis@\texttt  {axis}|hyperpage}{39}
+\indexentry{hold on environment@\texttt  {hold on} environment|hyperpage}{40}
+\indexentry{environments!hold on@\texttt  {hold on}|hyperpage}{40}
+\indexentry{plot environment@\texttt  {plot} environment|hyperpage}{42}
+\indexentry{environments!plot@\texttt  {plot}|hyperpage}{42}
+\indexentry{hold environment@\texttt  {hold} environment|hyperpage}{42}
+\indexentry{environments!hold@\texttt  {hold}|hyperpage}{42}
+\indexentry{legend environment@\texttt  {legend} environment|hyperpage}{43}
+\indexentry{environments!legend@\texttt  {legend}|hyperpage}{43}
+\indexentry{scatter environment@\texttt  {scatter} environment|hyperpage}{44}
+\indexentry{environments!scatter@\texttt  {scatter}|hyperpage}{44}
+\indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{44}
+\indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{44}
+\indexentry{image environment@\texttt  {image} environment|hyperpage}{45}
+\indexentry{environments!image@\texttt  {image}|hyperpage}{45}
+\indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{45}
+\indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{45}
+\indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{45}
+\indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{45}
+\indexentry{image environment@\texttt  {image} environment|hyperpage}{45}
+\indexentry{environments!image@\texttt  {image}|hyperpage}{45}
+\indexentry{imread environment@\texttt  {imread} environment|hyperpage}{45}
+\indexentry{environments!imread@\texttt  {imread}|hyperpage}{45}
+\indexentry{imread environment@\texttt  {imread} environment|hyperpage}{45}
+\indexentry{environments!imread@\texttt  {imread}|hyperpage}{45}
+\indexentry{typefaces!sizes|hyperpage}{46}
+\indexentry{disp environment@\texttt  {disp} environment|hyperpage}{50}
+\indexentry{environments!disp@\texttt  {disp}|hyperpage}{50}
+\indexentry{disp environment@\texttt  {disp} environment|hyperpage}{50}
+\indexentry{environments!disp@\texttt  {disp}|hyperpage}{50}
+\indexentry{disp environment@\texttt  {disp} environment|hyperpage}{50}
+\indexentry{environments!disp@\texttt  {disp}|hyperpage}{50}
+\indexentry{if ... end environment@\texttt  {if ... end} environment|hyperpage}{59}
+\indexentry{environments!if ... end@\texttt  {if ... end}|hyperpage}{59}
+\indexentry{else environment@\texttt  {else} environment|hyperpage}{59}
+\indexentry{environments!else@\texttt  {else}|hyperpage}{59}
+\indexentry{elseif environment@\texttt  {elseif} environment|hyperpage}{59}
+\indexentry{environments!elseif@\texttt  {elseif}|hyperpage}{59}
+\indexentry{if ... end environment@\texttt  {if ... end} environment|hyperpage}{59}
+\indexentry{environments!if ... end@\texttt  {if ... end}|hyperpage}{59}
+\indexentry{input environment@\texttt  {input} environment|hyperpage}{59}
+\indexentry{environments!input@\texttt  {input}|hyperpage}{59}
+\indexentry{input environment@\texttt  {input} environment|hyperpage}{60}
+\indexentry{environments!input@\texttt  {input}|hyperpage}{60}
+\indexentry{strcmp environment@\texttt  {strcmp} environment|hyperpage}{61}
+\indexentry{environments!strcmp@\texttt  {strcmp}|hyperpage}{61}
+\indexentry{strcmp environment@\texttt  {strcmp} environment|hyperpage}{61}
+\indexentry{environments!strcmp@\texttt  {strcmp}|hyperpage}{61}
+\indexentry{strcmp environment@\texttt  {strcmp} environment|hyperpage}{61}
+\indexentry{environments!strcmp@\texttt  {strcmp}|hyperpage}{61}
+\indexentry{switch ... case ... end environment@\texttt  {switch ... case ... end} environment|hyperpage}{64}
+\indexentry{environments!switch ... case ... end@\texttt  {switch ... case ... end}|hyperpage}{64}
+\indexentry{for environment@\texttt  {for} environment|hyperpage}{66}
+\indexentry{environments!for@\texttt  {for}|hyperpage}{66}
+\indexentry{while environment@\texttt  {while} environment|hyperpage}{66}
+\indexentry{environments!while@\texttt  {while}|hyperpage}{66}
+\indexentry{disp environment@\texttt  {disp} environment|hyperpage}{73}
+\indexentry{environments!disp@\texttt  {disp}|hyperpage}{73}
+\indexentry{num2str environment@\texttt  {num2str} environment|hyperpage}{73}
+\indexentry{environments!num2str@\texttt  {num2str}|hyperpage}{73}
+\indexentry{getframe environment@\texttt  {getframe} environment|hyperpage}{75}
+\indexentry{environments!getframe@\texttt  {getframe}|hyperpage}{75}
+\indexentry{movie2avi environment@\texttt  {movie2avi} environment|hyperpage}{75}
+\indexentry{environments!movie2avi@\texttt  {movie2avi}|hyperpage}{75}
+\indexentry{movie2avi environment@\texttt  {movie2avi} environment|hyperpage}{75}
+\indexentry{environments!movie2avi@\texttt  {movie2avi}|hyperpage}{75}
+\indexentry{movie2avi environment@\texttt  {movie2avi} environment|hyperpage}{75}
+\indexentry{environments!movie2avi@\texttt  {movie2avi}|hyperpage}{75}
+\indexentry{VideoWriter, environment@\texttt  {VideoWriter,} environment|hyperpage}{75}
+\indexentry{environments!VideoWriter,@\texttt  {VideoWriter,}|hyperpage}{75}
+\indexentry{movie2avi environment@\texttt  {movie2avi} environment|hyperpage}{75}
+\indexentry{environments!movie2avi@\texttt  {movie2avi}|hyperpage}{75}
+\indexentry{VideoWriter environment@\texttt  {VideoWriter} environment|hyperpage}{75}
+\indexentry{environments!VideoWriter@\texttt  {VideoWriter}|hyperpage}{75}
+\indexentry{break environment@\texttt  {break} environment|hyperpage}{77}
+\indexentry{environments!break@\texttt  {break}|hyperpage}{77}
+\indexentry{break environment@\texttt  {break} environment|hyperpage}{77}
+\indexentry{environments!break@\texttt  {break}|hyperpage}{77}
+\indexentry{break environment@\texttt  {break} environment|hyperpage}{77}
+\indexentry{environments!break@\texttt  {break}|hyperpage}{77}
+\indexentry{exist environment@\texttt  {exist} environment|hyperpage}{78}
+\indexentry{environments!exist@\texttt  {exist}|hyperpage}{78}
+\indexentry{exist environment@\texttt  {exist} environment|hyperpage}{78}
+\indexentry{environments!exist@\texttt  {exist}|hyperpage}{78}
+\indexentry{input environment@\texttt  {input} environment|hyperpage}{81}
+\indexentry{environments!input@\texttt  {input}|hyperpage}{81}
+\indexentry{exist environment@\texttt  {exist} environment|hyperpage}{81}
+\indexentry{environments!exist@\texttt  {exist}|hyperpage}{81}
+\indexentry{exist environment@\texttt  {exist} environment|hyperpage}{81}
+\indexentry{environments!exist@\texttt  {exist}|hyperpage}{81}
+\indexentry{exist environment@\texttt  {exist} environment|hyperpage}{81}
+\indexentry{environments!exist@\texttt  {exist}|hyperpage}{81}
+\indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{82}
+\indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{82}
+\indexentry{length environment@\texttt  {length} environment|hyperpage}{83}
+\indexentry{environments!length@\texttt  {length}|hyperpage}{83}
+\indexentry{fopen environment@\texttt  {fopen} environment|hyperpage}{86}
+\indexentry{environments!fopen@\texttt  {fopen}|hyperpage}{86}
+\indexentry{fclose environment@\texttt  {fclose} environment|hyperpage}{86}
+\indexentry{environments!fclose@\texttt  {fclose}|hyperpage}{86}
+\indexentry{textscan environment@\texttt  {textscan} environment|hyperpage}{86}
+\indexentry{environments!textscan@\texttt  {textscan}|hyperpage}{86}
+\indexentry{fopen environment@\texttt  {fopen} environment|hyperpage}{86}
+\indexentry{environments!fopen@\texttt  {fopen}|hyperpage}{86}
+\indexentry{fclose environment@\texttt  {fclose} environment|hyperpage}{86}
+\indexentry{environments!fclose@\texttt  {fclose}|hyperpage}{86}
+\indexentry{fopen environment@\texttt  {fopen} environment|hyperpage}{87}
+\indexentry{environments!fopen@\texttt  {fopen}|hyperpage}{87}
+\indexentry{fopen environment@\texttt  {fopen} environment|hyperpage}{87}
+\indexentry{environments!fopen@\texttt  {fopen}|hyperpage}{87}
+\indexentry{textscan environment@\texttt  {textscan} environment|hyperpage}{87}
+\indexentry{environments!textscan@\texttt  {textscan}|hyperpage}{87}
+\indexentry{textscan environment@\texttt  {textscan} environment|hyperpage}{87}
+\indexentry{environments!textscan@\texttt  {textscan}|hyperpage}{87}
+\indexentry{textscan environment@\texttt  {textscan} environment|hyperpage}{87}
+\indexentry{environments!textscan@\texttt  {textscan}|hyperpage}{87}
+\indexentry{textscan environment@\texttt  {textscan} environment|hyperpage}{87}
+\indexentry{environments!textscan@\texttt  {textscan}|hyperpage}{87}
+\indexentry{cell2mat environment@\texttt  {cell2mat} environment|hyperpage}{87}
+\indexentry{environments!cell2mat@\texttt  {cell2mat}|hyperpage}{87}
+\indexentry{cell array environment@\texttt  {cell array} environment|hyperpage}{88}
+\indexentry{environments!cell array@\texttt  {cell array}|hyperpage}{88}
+\indexentry{cell2mat environment@\texttt  {cell2mat} environment|hyperpage}{88}
+\indexentry{environments!cell2mat@\texttt  {cell2mat}|hyperpage}{88}
+\indexentry{cell array environment@\texttt  {cell array} environment|hyperpage}{88}
+\indexentry{environments!cell array@\texttt  {cell array}|hyperpage}{88}
+\indexentry{cell2mat environment@\texttt  {cell2mat} environment|hyperpage}{88}
+\indexentry{environments!cell2mat@\texttt  {cell2mat}|hyperpage}{88}
+\indexentry{comments environment@\texttt  {comments} environment|hyperpage}{88}
+\indexentry{environments!comments@\texttt  {comments}|hyperpage}{88}
+\indexentry{fopen environment@\texttt  {fopen} environment|hyperpage}{88}
+\indexentry{environments!fopen@\texttt  {fopen}|hyperpage}{88}
+\indexentry{textscan environment@\texttt  {textscan} environment|hyperpage}{88}
+\indexentry{environments!textscan@\texttt  {textscan}|hyperpage}{88}
+\indexentry{xlsread environment@\texttt  {xlsread} environment|hyperpage}{90}
+\indexentry{environments!xlsread@\texttt  {xlsread}|hyperpage}{90}
+\indexentry{xlsread environment@\texttt  {xlsread} environment|hyperpage}{90}
+\indexentry{environments!xlsread@\texttt  {xlsread}|hyperpage}{90}
+\indexentry{xlsread environment@\texttt  {xlsread} environment|hyperpage}{90}
+\indexentry{environments!xlsread@\texttt  {xlsread}|hyperpage}{90}
+\indexentry{ncread environment@\texttt  {ncread} environment|hyperpage}{91}
+\indexentry{environments!ncread@\texttt  {ncread}|hyperpage}{91}
+\indexentry{ncread environment@\texttt  {ncread} environment|hyperpage}{91}
+\indexentry{environments!ncread@\texttt  {ncread}|hyperpage}{91}
+\indexentry{ncread environment@\texttt  {ncread} environment|hyperpage}{91}
+\indexentry{environments!ncread@\texttt  {ncread}|hyperpage}{91}
+\indexentry{image environment@\texttt  {image} environment|hyperpage}{95}
+\indexentry{environments!image@\texttt  {image}|hyperpage}{95}
+\indexentry{contour environment@\texttt  {contour} environment|hyperpage}{95}
+\indexentry{environments!contour@\texttt  {contour}|hyperpage}{95}
+\indexentry{contourf environment@\texttt  {contourf} environment|hyperpage}{95}
+\indexentry{environments!contourf@\texttt  {contourf}|hyperpage}{95}
+\indexentry{contour environment@\texttt  {contour} environment|hyperpage}{95}
+\indexentry{environments!contour@\texttt  {contour}|hyperpage}{95}
+\indexentry{imagesc environment@\texttt  {imagesc} environment|hyperpage}{95}
+\indexentry{environments!imagesc@\texttt  {imagesc}|hyperpage}{95}
+\indexentry{transpose environment@\texttt  {transpose} environment|hyperpage}{96}
+\indexentry{environments!transpose@\texttt  {transpose}|hyperpage}{96}
+\indexentry{imagesc environment@\texttt  {imagesc} environment|hyperpage}{96}
+\indexentry{environments!imagesc@\texttt  {imagesc}|hyperpage}{96}
+\indexentry{colormap environment@\texttt  {colormap} environment|hyperpage}{96}
+\indexentry{environments!colormap@\texttt  {colormap}|hyperpage}{96}
+\indexentry{colormap environment@\texttt  {colormap} environment|hyperpage}{96}
+\indexentry{environments!colormap@\texttt  {colormap}|hyperpage}{96}
+\indexentry{contour environment@\texttt  {contour} environment|hyperpage}{97}
+\indexentry{environments!contour@\texttt  {contour}|hyperpage}{97}
+\indexentry{clabel environment@\texttt  {clabel} environment|hyperpage}{97}
+\indexentry{environments!clabel@\texttt  {clabel}|hyperpage}{97}
+\indexentry{clabel environment@\texttt  {clabel} environment|hyperpage}{98}
+\indexentry{environments!clabel@\texttt  {clabel}|hyperpage}{98}
+\indexentry{colorbar environment@\texttt  {colorbar} environment|hyperpage}{99}
+\indexentry{environments!colorbar@\texttt  {colorbar}|hyperpage}{99}
+\indexentry{meshgrid environment@\texttt  {meshgrid} environment|hyperpage}{99}
+\indexentry{environments!meshgrid@\texttt  {meshgrid}|hyperpage}{99}
+\indexentry{meshgrid environment@\texttt  {meshgrid} environment|hyperpage}{99}
+\indexentry{environments!meshgrid@\texttt  {meshgrid}|hyperpage}{99}
+\indexentry{geoshow environment@\texttt  {geoshow} environment|hyperpage}{102}
+\indexentry{environments!geoshow@\texttt  {geoshow}|hyperpage}{102}
+\indexentry{find environment@\texttt  {find} environment|hyperpage}{104}
+\indexentry{environments!find@\texttt  {find}|hyperpage}{104}
+\indexentry{find environment@\texttt  {find} environment|hyperpage}{104}
+\indexentry{environments!find@\texttt  {find}|hyperpage}{104}
+\indexentry{find environment@\texttt  {find} environment|hyperpage}{104}
+\indexentry{environments!find@\texttt  {find}|hyperpage}{104}
+\indexentry{find environment@\texttt  {find} environment|hyperpage}{104}
+\indexentry{environments!find@\texttt  {find}|hyperpage}{104}
+\indexentry{find environment@\texttt  {find} environment|hyperpage}{104}
+\indexentry{environments!find@\texttt  {find}|hyperpage}{104}
+\indexentry{find environment@\texttt  {find} environment|hyperpage}{105}
+\indexentry{environments!find@\texttt  {find}|hyperpage}{105}
+\indexentry{NaN environment@\texttt  {NaN} environment|hyperpage}{106}
+\indexentry{environments!NaN@\texttt  {NaN}|hyperpage}{106}
+\indexentry{find environment@\texttt  {find} environment|hyperpage}{106}
+\indexentry{environments!find@\texttt  {find}|hyperpage}{106}
+\indexentry{NaN environment@\texttt  {NaN} environment|hyperpage}{106}
+\indexentry{environments!NaN@\texttt  {NaN}|hyperpage}{106}
+\indexentry{isnan environment@\texttt  {isnan} environment|hyperpage}{107}
+\indexentry{environments!isnan@\texttt  {isnan}|hyperpage}{107}
+\indexentry{isnana environment@\texttt  {isnana} environment|hyperpage}{107}
+\indexentry{environments!isnana@\texttt  {isnana}|hyperpage}{107}
+\indexentry{colorbar environment@\texttt  {colorbar} environment|hyperpage}{109}
+\indexentry{environments!colorbar@\texttt  {colorbar}|hyperpage}{109}
+\indexentry{find environment@\texttt  {find} environment|hyperpage}{109}
+\indexentry{environments!find@\texttt  {find}|hyperpage}{109}
+\indexentry{isnan environment@\texttt  {isnan} environment|hyperpage}{109}
+\indexentry{environments!isnan@\texttt  {isnan}|hyperpage}{109}
+\indexentry{rmmissing environment@\texttt  {rmmissing} environment|hyperpage}{110}
+\indexentry{environments!rmmissing@\texttt  {rmmissing}|hyperpage}{110}
+\indexentry{rmmissing environment@\texttt  {rmmissing} environment|hyperpage}{110}
+\indexentry{environments!rmmissing@\texttt  {rmmissing}|hyperpage}{110}
+\indexentry{isnan environment@\texttt  {isnan} environment|hyperpage}{111}
+\indexentry{environments!isnan@\texttt  {isnan}|hyperpage}{111}
+\indexentry{isnan environment@\texttt  {isnan} environment|hyperpage}{111}
+\indexentry{environments!isnan@\texttt  {isnan}|hyperpage}{111}
+\indexentry{reshape environment@\texttt  {reshape} environment|hyperpage}{112}
+\indexentry{environments!reshape@\texttt  {reshape}|hyperpage}{112}
+\indexentry{reshape environment@\texttt  {reshape} environment|hyperpage}{112}
+\indexentry{environments!reshape@\texttt  {reshape}|hyperpage}{112}
+\indexentry{reshape environment@\texttt  {reshape} environment|hyperpage}{112}
+\indexentry{environments!reshape@\texttt  {reshape}|hyperpage}{112}
+\indexentry{reshape environment@\texttt  {reshape} environment|hyperpage}{113}
+\indexentry{environments!reshape@\texttt  {reshape}|hyperpage}{113}
+\indexentry{interp1 environment@\texttt  {interp1} environment|hyperpage}{115}
+\indexentry{environments!interp1@\texttt  {interp1}|hyperpage}{115}
+\indexentry{interp1 environment@\texttt  {interp1} environment|hyperpage}{115}
+\indexentry{environments!interp1@\texttt  {interp1}|hyperpage}{115}
+\indexentry{interp1 environment@\texttt  {interp1} environment|hyperpage}{115}
+\indexentry{environments!interp1@\texttt  {interp1}|hyperpage}{115}
+\indexentry{interp1 environment@\texttt  {interp1} environment|hyperpage}{115}
+\indexentry{environments!interp1@\texttt  {interp1}|hyperpage}{115}
+\indexentry{line environment@\texttt  {line} environment|hyperpage}{119}
+\indexentry{environments!line@\texttt  {line}|hyperpage}{119}
+\indexentry{line environment@\texttt  {line} environment|hyperpage}{119}
+\indexentry{environments!line@\texttt  {line}|hyperpage}{119}
+\indexentry{gca environment@\texttt  {gca} environment|hyperpage}{120}
+\indexentry{environments!gca@\texttt  {gca}|hyperpage}{120}
+\indexentry{set environment@\texttt  {set} environment|hyperpage}{120}
+\indexentry{environments!set@\texttt  {set}|hyperpage}{120}
+\indexentry{set environment@\texttt  {set} environment|hyperpage}{121}
+\indexentry{environments!set@\texttt  {set}|hyperpage}{121}
+\indexentry{quiver environment@\texttt  {quiver} environment|hyperpage}{121}
+\indexentry{environments!quiver@\texttt  {quiver}|hyperpage}{121}
+\indexentry{patch environment@\texttt  {patch} environment|hyperpage}{122}
+\indexentry{environments!patch@\texttt  {patch}|hyperpage}{122}
+\indexentry{colormap environment@\texttt  {colormap} environment|hyperpage}{123}
+\indexentry{environments!colormap@\texttt  {colormap}|hyperpage}{123}
+\indexentry{text environment@\texttt  {text} environment|hyperpage}{125}
+\indexentry{environments!text@\texttt  {text}|hyperpage}{125}
+\indexentry{text environment@\texttt  {text} environment|hyperpage}{126}
+\indexentry{environments!text@\texttt  {text}|hyperpage}{126}
+\indexentry{mod environment@\texttt  {mod} environment|hyperpage}{133}
+\indexentry{environments!mod@\texttt  {mod}|hyperpage}{133}
+\indexentry{rocker environment@\texttt  {rocker} environment|hyperpage}{133}
+\indexentry{environments!rocker@\texttt  {rocker}|hyperpage}{133}
+\indexentry{mod environment@\texttt  {mod} environment|hyperpage}{133}
+\indexentry{environments!mod@\texttt  {mod}|hyperpage}{133}
+\indexentry{length environment@\texttt  {length} environment|hyperpage}{134}
+\indexentry{environments!length@\texttt  {length}|hyperpage}{134}
+\indexentry{size environment@\texttt  {size} environment|hyperpage}{145}
+\indexentry{environments!size@\texttt  {size}|hyperpage}{145}
+\indexentry{size environment@\texttt  {size} environment|hyperpage}{145}
+\indexentry{environments!size@\texttt  {size}|hyperpage}{145}
+\indexentry{size environment@\texttt  {size} environment|hyperpage}{145}
+\indexentry{environments!size@\texttt  {size}|hyperpage}{145}
+\indexentry{zeros environment@\texttt  {zeros} environment|hyperpage}{145}
+\indexentry{environments!zeros@\texttt  {zeros}|hyperpage}{145}
+\indexentry{zeros environment@\texttt  {zeros} environment|hyperpage}{145}
+\indexentry{environments!zeros@\texttt  {zeros}|hyperpage}{145}
+\indexentry{icecream environment@\texttt  {icecream} environment|hyperpage}{147}
+\indexentry{environments!icecream@\texttt  {icecream}|hyperpage}{147}
+\indexentry{save environment@\texttt  {save} environment|hyperpage}{155}
+\indexentry{environments!save@\texttt  {save}|hyperpage}{155}
+\indexentry{numel environment@\texttt  {numel} environment|hyperpage}{165}
+\indexentry{environments!numel@\texttt  {numel}|hyperpage}{165}
+\indexentry{ginput environment@\texttt  {ginput} environment|hyperpage}{173}
+\indexentry{environments!ginput@\texttt  {ginput}|hyperpage}{173}
+\indexentry{ginput environment@\texttt  {ginput} environment|hyperpage}{173}
+\indexentry{environments!ginput@\texttt  {ginput}|hyperpage}{173}
+\indexentry{ginput environment@\texttt  {ginput} environment|hyperpage}{173}
+\indexentry{environments!ginput@\texttt  {ginput}|hyperpage}{173}
+\indexentry{round environment@\texttt  {round} environment|hyperpage}{174}
+\indexentry{environments!round@\texttt  {round}|hyperpage}{174}
+\indexentry{isempty environment@\texttt  {isempty} environment|hyperpage}{177}
+\indexentry{environments!isempty@\texttt  {isempty}|hyperpage}{177}
+\indexentry{ismember environment@\texttt  {ismember} environment|hyperpage}{178}
+\indexentry{environments!ismember@\texttt  {ismember}|hyperpage}{178}
+\indexentry{ismember environment@\texttt  {ismember} environment|hyperpage}{179}
+\indexentry{environments!ismember@\texttt  {ismember}|hyperpage}{179}
+\indexentry{line environment@\texttt  {line} environment|hyperpage}{186}
+\indexentry{environments!line@\texttt  {line}|hyperpage}{186}
+\indexentry{line environment@\texttt  {line} environment|hyperpage}{186}
+\indexentry{environments!line@\texttt  {line}|hyperpage}{186}
+\indexentry{zeros environment@\texttt  {zeros} environment|hyperpage}{189}
+\indexentry{environments!zeros@\texttt  {zeros}|hyperpage}{189}
+\indexentry{exit environment@\texttt  {exit} environment|hyperpage}{194}
+\indexentry{environments!exit@\texttt  {exit}|hyperpage}{194}
+\indexentry{D'uh! environment@\texttt  {D'uh!} environment|hyperpage}{208}
+\indexentry{environments!D'uh!@\texttt  {D'uh!}|hyperpage}{208}
+\indexentry{duh environment@\texttt  {duh} environment|hyperpage}{208}
+\indexentry{environments!duh@\texttt  {duh}|hyperpage}{208}
+\indexentry{pause environment@\texttt  {pause} environment|hyperpage}{211}
+\indexentry{environments!pause@\texttt  {pause}|hyperpage}{211}
+\indexentry{pause environment@\texttt  {pause} environment|hyperpage}{211}
+\indexentry{environments!pause@\texttt  {pause}|hyperpage}{211}
+\indexentry{line environment@\texttt  {line} environment|hyperpage}{217}
+\indexentry{environments!line@\texttt  {line}|hyperpage}{217}
+\indexentry{mean environment@\texttt  {mean} environment|hyperpage}{223}
+\indexentry{environments!mean@\texttt  {mean}|hyperpage}{223}
+\indexentry{mean environment@\texttt  {mean} environment|hyperpage}{223}
+\indexentry{environments!mean@\texttt  {mean}|hyperpage}{223}
+\indexentry{set environment@\texttt  {set} environment|hyperpage}{245}
+\indexentry{environments!set@\texttt  {set}|hyperpage}{245}
+\indexentry{set environment@\texttt  {set} environment|hyperpage}{245}
+\indexentry{environments!set@\texttt  {set}|hyperpage}{245}
+\indexentry{imread environment@\texttt  {imread} environment|hyperpage}{253}
+\indexentry{environments!imread@\texttt  {imread}|hyperpage}{253}
+\indexentry{imshow environment@\texttt  {imshow} environment|hyperpage}{253}
+\indexentry{environments!imshow@\texttt  {imshow}|hyperpage}{253}
+\indexentry{imread environment@\texttt  {imread} environment|hyperpage}{253}
+\indexentry{environments!imread@\texttt  {imread}|hyperpage}{253}
+\indexentry{imshow environment@\texttt  {imshow} environment|hyperpage}{253}
+\indexentry{environments!imshow@\texttt  {imshow}|hyperpage}{253}
+\indexentry{rand environment@\texttt  {rand} environment|hyperpage}{267}
+\indexentry{environments!rand@\texttt  {rand}|hyperpage}{267}
 

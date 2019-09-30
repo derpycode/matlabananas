@@ -4,6 +4,6 @@ Scanning input file BANANAS.idx....
    -- Extra `!' at position 34 of first argument.
 done (506 entries accepted, 1 rejected).
 Sorting entries.......done (4910 comparisons).
-Generating output file BANANAS.ind....done (340 lines written, 0 warnings).
+Generating output file BANANAS.ind....done (339 lines written, 0 warnings).
 Output written in BANANAS.ind.
 Transcript written in BANANAS.ilg.
