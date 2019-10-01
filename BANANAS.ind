@@ -22,9 +22,11 @@
   \item \texttt  {clabel} environment, \hyperpage{107, 108}
   \item \texttt  {clear all} environment, \hyperpage{30}
   \item \texttt  {clear} environment, \hyperpage{30}
+  \item \texttt  {close all} environment, \hyperpage{30}
   \item \texttt  {close} environment, \hyperpage{30}
   \item \texttt  {colon operator} environment, \hyperpage{31}, 
 		\hyperpage{33}, \hyperpage{39}
+  \item \texttt  {color operator} environment, \hyperpage{32}
   \item \texttt  {colorbar} environment, \hyperpage{109}, 
 		\hyperpage{119}
   \item \texttt  {colormap} environment, \hyperpage{106}, 
@@ -64,8 +66,10 @@
     \subitem \texttt  {clear}, \hyperpage{30}
     \subitem \texttt  {clear all}, \hyperpage{30}
     \subitem \texttt  {close}, \hyperpage{30}
+    \subitem \texttt  {close all}, \hyperpage{30}
     \subitem \texttt  {colon operator}, \hyperpage{31}, \hyperpage{33}, 
 		\hyperpage{39}
+    \subitem \texttt  {color operator}, \hyperpage{32}
     \subitem \texttt  {colorbar}, \hyperpage{109}, \hyperpage{119}
     \subitem \texttt  {colormap}, \hyperpage{106}, \hyperpage{133}
     \subitem \texttt  {comments}, \hyperpage{98}

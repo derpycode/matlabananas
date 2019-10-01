@@ -708,7 +708,7 @@ Related to what you have seen so far and will see soon, some useful miscellaneou
 \setlength{\itemindent}{.2in}
 \item \docenvdef{clear} --- Removes all variables from the workspace.
 \item \docenvdef{clear all} --- (Removes all information from the workspace.) \item \docenvdef{close} --- Closes the current figure window.
-\item \docenvdef{clear all} --- (Closes all figure windows.)
+\item \docenvdef{close all} --- (Closes all figure windows.)
 \item \docenvdef{exit} --- Exits \textbf{MATLAB} and hence enables an additional trip to Starbucks to be made.
 \end{itemize}
 
@@ -806,7 +806,8 @@ There are several basic and very useful ways of manipulating \textit{vectors} (a
 
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
-\item Display the contents of the \textit{vector} in the command window by typing its name at the \textsf{command line}. Obviously, this will quickly become useless for very large \textit{vectors}\sidenote[][-0.0in]{Try creating a \textit{vector} from 1 to 100,000 and then displaying it ...}.
+\item Display the contents of the \textit{vector} in the command window by typing its name at the \textsf{command line}. Obviously, this will quickly become useless for very large \textit{vectors}\sidenote[][-1.0in]{Try creating a \textit{vector} from 1 to 100,000 and assign it to a \textit{variable}. Refer to the use of the \docenv{color operator} (see earlier).
+\\You will find that adding a semicolon to the end of the line to suppress output and instead viewing the vector in the \textsf{Workspace Window}.}.
 \item Refer to the \textsf{Workspace window}, -- initially, the contents of the vector are displayed (under column \textsf{Value}) and you have to count, but after a certain point, the size (and not contents) of the \textit{vector} is displayed.
 \item Use the \docenv{length} or \docenv{size} function (see Box). 
 \item Refer to the \textsf{Workspace window} ... but ... by default, the \textsf{Size} of variables is not one of the displayed columns (instead, it has to be added from \textsf{Choose Columns} right-mouse-button-click menu item)\sidenote[][-1.25in]{Although as per above -- the size is displayed under \textsf{Value} for a sufficiently large \textit{vector}.}. 
@@ -1351,8 +1352,8 @@ we would write:
 >> F = E*E
 \\
 F =\\
-\ \ \ \ 4     6\\
-\ \ \ \ 8    12
+\ \ \ \ 7    10\\
+\ \ \ \15    22
 \end{docspec}
 
 If your matrix math is rusty and you are not following this, maybe refresh it (your memory of basic matrix math).

@@ -60,12 +60,14 @@
 \indexentry{environments!clear all@\texttt  {clear all}|hyperpage}{30}
 \indexentry{close environment@\texttt  {close} environment|hyperpage}{30}
 \indexentry{environments!close@\texttt  {close}|hyperpage}{30}
-\indexentry{clear all environment@\texttt  {clear all} environment|hyperpage}{30}
-\indexentry{environments!clear all@\texttt  {clear all}|hyperpage}{30}
+\indexentry{close all environment@\texttt  {close all} environment|hyperpage}{30}
+\indexentry{environments!close all@\texttt  {close all}|hyperpage}{30}
 \indexentry{exit environment@\texttt  {exit} environment|hyperpage}{30}
 \indexentry{environments!exit@\texttt  {exit}|hyperpage}{30}
 \indexentry{colon operator environment@\texttt  {colon operator} environment|hyperpage}{31}
 \indexentry{environments!colon operator@\texttt  {colon operator}|hyperpage}{31}
+\indexentry{color operator environment@\texttt  {color operator} environment|hyperpage}{32}
+\indexentry{environments!color operator@\texttt  {color operator}|hyperpage}{32}
 \indexentry{length environment@\texttt  {length} environment|hyperpage}{32}
 \indexentry{environments!length@\texttt  {length}|hyperpage}{32}
 \indexentry{size environment@\texttt  {size} environment|hyperpage}{32}
