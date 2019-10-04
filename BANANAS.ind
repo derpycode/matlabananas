@@ -9,7 +9,7 @@
   \item \texttt  {addition} environment, \hyperpage{27}
   \item \texttt  {addpath} environment, \hyperpage{43}
   \item \texttt  {and} environment, \hyperpage{29}
-  \item \texttt  {axis} environment, \hyperpage{35, 36}, \hyperpage{48}
+  \item \texttt  {axis} environment, \hyperpage{35, 36}, \hyperpage{49}
 
   \indexspace
 
@@ -58,7 +58,7 @@
     \subitem \texttt  {addition}, \hyperpage{27}
     \subitem \texttt  {addpath}, \hyperpage{43}
     \subitem \texttt  {and}, \hyperpage{29}
-    \subitem \texttt  {axis}, \hyperpage{35, 36}, \hyperpage{48}
+    \subitem \texttt  {axis}, \hyperpage{35, 36}, \hyperpage{49}
     \subitem \texttt  {break}, \hyperpage{87}
     \subitem \texttt  {cell array}, \hyperpage{98}
     \subitem \texttt  {cell2mat}, \hyperpage{97, 98}

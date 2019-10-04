@@ -178,10 +178,12 @@
 \indexentry{environments!sort@\texttt  {sort}|hyperpage}{46}
 \indexentry{sortrows environment@\texttt  {sortrows} environment|hyperpage}{47}
 \indexentry{environments!sortrows@\texttt  {sortrows}|hyperpage}{47}
+\indexentry{sortrows environment@\texttt  {sortrows} environment|hyperpage}{47}
+\indexentry{environments!sortrows@\texttt  {sortrows}|hyperpage}{47}
 \indexentry{plot environment@\texttt  {plot} environment|hyperpage}{47}
 \indexentry{environments!plot@\texttt  {plot}|hyperpage}{47}
-\indexentry{axis environment@\texttt  {axis} environment|hyperpage}{48}
-\indexentry{environments!axis@\texttt  {axis}|hyperpage}{48}
+\indexentry{axis environment@\texttt  {axis} environment|hyperpage}{49}
+\indexentry{environments!axis@\texttt  {axis}|hyperpage}{49}
 \indexentry{hold on environment@\texttt  {hold on} environment|hyperpage}{49}
 \indexentry{environments!hold on@\texttt  {hold on}|hyperpage}{49}
 \indexentry{plot environment@\texttt  {plot} environment|hyperpage}{51}

@@ -948,7 +948,7 @@ To select all elements:
 
 \section{Basic graphing (aka. 'data visualization')}
 
-So far ... I suspect this is heavy-going and there is a lot to try and remember, such as command names, although knowing just that certain commands exist, is enough to start with and \textbf{MATLAB} Help can be used later to find out the exact name (and usage syntax). All this, and we have not  even  gotten on to \textit{matrices} (2-D arrays) yet ... So, we'll take a diversion to look at some basic plotting techniques that will  make sense now that you can create \textit{vectors} of numbers to plot (and later, important some 'real' data). Unless you have forgotten how to create \textit{vectors} already ... :(
+So far ... I suspect this is heavy-going and there is a lot to try and remember, such as command names, although knowing just that certain commands exist, is enough to start with and \textbf{MATLAB} \textsf{Help} can be used later to find out the exact name (and usage syntax). All this, and we have not  even  gotten on to \textit{matrices} (2-D arrays) yet ... So, we'll take a diversion to look at some basic plotting techniques that will  make sense now that you can create \textit{vectors} of numbers to plot (and later, important some 'real' data). Unless you have forgotten how to create \textit{vectors} already ... :(
 
 %------------------------------------------------
 
@@ -972,7 +972,7 @@ where \texttt{X} and \texttt{Y} are vectors -- of the same length (\uline{import
 \\There are many options that go with this function, some of which we'll see and use later. You can also input matrixes as \texttt{X} and \texttt{Y} apparently. But I have absolutely no clue as to what might happen. I suspect that the plot will end up looking like a bad acid trip. 
 \end{mdframed}}
 
-With any new \textbf{MATLAB} command (\textit{function}), get into the habit of looking up the \texttt{help} text  (also refer to alternative/simplified help provided in this text). The key information that will get you started appears at the very top of the text that \texttt{help} returns on \texttt{plot}:
+With any new \textbf{MATLAB} command (\textit{function}), get into the habit of looking up the \textsf{help} text  (also refer to alternative/simplified help provided in this text). The key information that will get you started appears at the very top of the text that \textsf{help} returns on \texttt{plot}:
 
 \begin{docspec}
 PLOT(X,Y) plots vector Y versus vector X.
@@ -980,7 +980,7 @@ PLOT(X,Y) plots vector Y versus vector X.
 
 \noindent This tells you that you need to pass to \texttt{plot}, your \textit{x}-axis data \textit{vector} (by its variable name), followed by your y-axis data \textit{vector} (by its variable name) -- comma separated. Do this, and depending on just what or how random your \textit{y}-axis data was, you should end up with something like Figure \ref{fig:plot-basic} in a window captioned "\texttt{Figure 1}".\sidenote{If you cannot see the figure window ... check that the window is not hidden behind the main \textbf{MATLAB} program window!} 
 
-This ... is easily the least professional plot ever (aside from anything at all created in \textbf{Excel}). And one that breaks all the most basic rules of scientific presentation, such as an absence of any labelling of axes. There is also no title, although here in the course text I have added a figure caption in the document so I can sort of get away with it. This is the default output of the basic \texttt{plot} function and you'll just have to deal with it (i.e. add a series of commands to add missing elements of the \texttt{plot}).
+This ... is easily the least professional plot ever (aside from anything created in \textbf{Excel}). And one that breaks all the most basic rules of scientific presentation, such as an absence of any labelling of axes. There is also no title, although here in the course text I have added a figure caption in the document so I can sort of get away with it. This is the default output of the basic \texttt{plot} function and you'll just have to deal with it (i.e. add a series of commands to add missing elements of the \texttt{plot}).
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch1-plot-basic1.eps}
@@ -1352,8 +1352,8 @@ we would write:
 >> F = E*E
 \\
 F =\\
-\ \ \ \ 7    10\\
-\ \ \ \15    22
+\ \ \ \  7    10\\
+\ \ \ \ 15    22
 \end{docspec}
 
 If your matrix math is rusty and you are not following this, maybe refresh it (your memory of basic matrix math).
@@ -1372,7 +1372,7 @@ There are a number of different ways to load/import data into the \textbf{MATLAB
 
 \subsection{Where am I?}
 
-Before anything -- you need to know 'where you are'. If the file you want to load in is not in the directory \textbf{MATLAB} us using, it will not find it. And if you save something and have no idea where it is being saved ... that can hardly go well.
+Before anything -- you need to know 'where you are'. If the file you want to load in is not in the directory \textbf{MATLAB} is using, it will not find it. And if you save something and have no idea where it is being saved ... that can hardly go well.
 
 \textbf{MATLAB} has a default directory that it starts up in and looks at first. For basic Windoz installations\sidenote[][-1.0in]{At installation, this directory can be specified and hence may not be this one. Also -- different operating systems will have different default locations.} of the software, this directory is:
 
@@ -1380,7 +1380,7 @@ Before anything -- you need to know 'where you are'. If the file you want to loa
 C:\textbackslash Users\textbackslash mushroom\textbackslash Documents\textbackslash MATLAB
 \end{docspec}
 
-\noindent So, where the \docenv{load} command requires a filename to be passed, you will need to enter either the full location of the file; i.e., starting with the drive letter (e.g. as per displayed in the \textsf{Windows Filemanger} address bar, or the relative path to where the file is located.
+\noindent So, where the \docenv{load} command requires a filename to be passed, you will need to enter either the full location of the file; i.e., starting with the drive letter (e.g. as per displayed in the \textsf{Windows Filemanger} address bar), or the relative path to where the file is located.
 
 \marginnote[-1.75in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{load}
@@ -1392,7 +1392,7 @@ where filename is the name of the file (remember: as a string, it needs to be en
 \\Note that in loading an ASCII data file, any line starting with a \texttt{\%} is ignored. Also note that the data \uline{must} be in a column format with no missing data.
 \\ For an ASCII file, the name of the variable created to hold the data being imported is automatically generated. So in the example of the data file being called \texttt{'twilight.txt'}, the variable generated will be called \texttt{twilight}. You can instead chose to assign the imported data to a variable name of your choice, by e.g.: 
 \begin{docspecmargin}
->> sparkle = load('twilight.txt');
+>> sparkle = load('twilight.txt','-ascii');
 \end{docspecmargin}
 \end{mdframed}}
 
@@ -1548,7 +1548,21 @@ Your options are then:
 \begin{docspec}
 >> help sort
 \end{docspec}
-Actually ... not quite. Reading the help text carefully (and you can always try it out and see what exactly it does if you are not sure), \docenv{sort} will sort all columns independently of each other, whereas we want the first column sorted and the remaining columns linked to this order. Under \texttt{see also}, \textbf{MATLAB}\ lists \docenvdef{sortrows} as a possibility. The help text on this looks a little more promising. It is still slightly opaque, so the best thing to do is to try it (and view the results)! This looks rather better. The resulting of \texttt{plot}-ting this is Figure \ref{fig:plot-CO2basic2}. (This is a good illustration of a guess of a function that was not quite what was needed, but following up on the \texttt{help} suggestions leads to a more appropriate function.) At least now the curve is reminiscent of past changes in global temperature and the geological Wilson cycle, with high values in the Cretaceous and Jurassic and then lower again in the Carboniferous (roughly matching the progression of ice and hot house (and then back to recent ice ages) climates).
+Actually ... not quite. Reading the help text carefully (and you can always try it out and see what exactly it does if you are not sure), \docenv{sort} will sort all columns independently of each other, whereas we want the first column sorted and the remaining columns linked to this order. 
+
+Under \texttt{see also}, \textbf{MATLAB}\ lists \docenvdef{sortrows} as a possibility. The \textsf{help} text on this looks a little more promising. It is still slightly opaque, so the best thing to do is to try it (and view the results)! 
+
+This looks rather better. The result of \texttt{plot}-ting this is Figure \ref{fig:plot-CO2basic2}. (This is a good illustration of a guess of a function that was not quite what was needed, but following up on the \texttt{help} suggestions leads to a more appropriate function.) At least now the curve is reminiscent of past changes in global temperature and the geological Wilson cycle, with high values in the Cretaceous and Jurassic and then lower again in the Carboniferous (roughly matching the progression of ice and hot house (and then back to recent ice ages) climates).
+
+\marginnote[-2.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\docenvdef{sortrows}
+\\In its simplest usage: 
+\begin{docspecmargin}
+>> B = sortrows(A)
+\end{docspecmargin}
+... "sorts the rows of a matrix in ascending order based on the elements in the first column. When the first column contains repeated elements, \texttt{sortrows} sorts according to the next column and repeats this behavior for succeeding equal values."
+\\So, if the first column of the matrix was time, the data would be sorted into ascending time.
+\end{mdframed}}
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{plot-CO2basic2.eps}
@@ -1558,7 +1572,7 @@ Actually ... not quite. Reading the help text carefully (and you can always try 
 
 \end{enumerate}
 
-Shortly, you will see an alternative plotting function that does not require the data to be sorted into any sort fo order. You can also use \docenv{plot}, and omit the line segments by specifying only a symbol, e.g.
+Shortly, you will see an alternative plotting function that does not require the data to be sorted into any sort of order. Note that you can also use \docenv{plot}, and omit the line segments by specifying only a symbol, e.g.
 
 \begin{docspec}
 plot(x,y,'ro');
@@ -1572,17 +1586,13 @@ plot(x,y,'ro');
 
 \noindent For an example practicing some basic data scaling: download the historical global temperature anomaly dataset:
 
-\noindent \texttt{temperature\_globalanom.txt}\sidenote[][-0.75in]{\href{https://www.ncdc.noaa.gov/cag/global/time-series/globe/land\_ocean/ytd/12/1880-2017/\#https://climate.nasa.gov/vital-signs/global-temperature/}{NOAA}}. 
-\\The columns are: (1) year , (2) annual mean ocean+land surface temperature. Plot the annual mean for the full range of years, as per Figure \ref{fig:ch1-plot-temperature1}. (plus labels, title, etc etc).
+\vspace{1mm}
+\noindent \texttt{temperature\_globalanom.txt}\sidenote[][-0.0in]{\href{https://www.ncdc.noaa.gov/cag/global/time-series/globe/land\_ocean/ytd/12/1880-2017/\#https://climate.nasa.gov/vital-signs/global-temperature/}{NOAA}}. \vspace{1mm}
 
-\begin{marginfigure}[-0.5in]
-\includegraphics[width=\linewidth]{ch1-plot-temperature1.eps}
-\caption{Observed annual global mean surface temperature anomaly (compared to year 1910 to 2000 average).}
-\label{fig:ch1-plot-temperature1}
-\end{marginfigure}
+The columns are: (1) year , (2) annual mean ocean+land surface temperature \uline{anomaly} (i.e. temperature change relate to some reference value, where here is the observed 1901-2000 mean). Plot the annual mean anomaly for the full range of years, as per Figure \ref{fig:ch1-plot-temperature1}. (plus labels, title, etc etc).
 
 The 20th century average global temperature across land and ocean surface areas is apparently 13.9\degree C. So firstly, try changing the temperature anomaly data into absolute temperatures (by adding the 20th century global average value to all the data values), and then re-plot.
-\sidenote{Remember -- you can increase the value of every element in an array, by simply adding that number, e.g. if \texttt{A} is you array of data, and \texttt{B} is a \textit{scalar} (the value you want to increase all array values by);
+\sidenote[][-0.5in]{Remember -- you can increase the value of every element in an array, by simply adding that number, e.g. if \texttt{A} is you array of data, and \texttt{B} is a \textit{scalar} (the value you want to increase all array values by);
 \begin{docspecmargin}
 >> C = A + B;
 \end{docspecmargin}
@@ -1592,16 +1602,30 @@ will have the effect of adding \texttt{B} to ever element in \texttt{A}, and ass
 \end{docspecmargin}
 }
 
-Next, convert the temperature units (of both annual mean and 5-year mean) -- from \degree C to \degree F. An approximate conversion is:
+Next, convert the temperature units from \degree C to \degree F. An approximate conversion is:
 
 \vspace{2mm}
 \(T_{(\degree F)} = 1.8\times T_{(\degree C)} + 32 \)
 \vspace{2mm}
 
-\noindent where \(T_{(\degree F)}\) is the (new) temperature in \degree F, and \(T_{(\degree C)}\) the (old) temperature in  \degree C.
+\noindent where \(T_{(\degree F)}\) is the (new) temperature in \degree F, and \(T_{(\degree C)}\) the (old) temperature in \degree C.
+
+For this, you will need to take your data (which is the 2nd column of the array), e.g. data(:,2), multiple by 1.8 as per the equation (\texttt{1.8*data(:,2)}) and then add 32 (\texttt{1.8*data(:,2) + 32})\footnote{If you have any doubts as to the order in which the operators are applied, add a set of parentheses, e.g. \\ \texttt{(1.8*data(:,2)) + 32}}. And ... assign the results of this to a new vector or array. Or you can replace the original column (if you are feeling confident), e.g.
+
+\begin{docspec}
+>> data(:,2) = 1.8*data(:,2) + 32;
+\end{docspec}
  
-Create a new data array in \textbf{MATLAB}, with year as the first column (year, as per the original data) and the 2nd  column as annual mean  temperature in units of \degree F.\sidenote{Remember -- \textbf{MATLAB} will happily do the same to all values in an array  in an equation, as for a single scalar value in the same equation. Start by creating a new array with a single column, copied form the 1st column of the original array.} If it helps -- play  the data conversion game in \textbf{Excel} first (e.g. creating new columns in a spreadsheet to firstly hold  absolute temperatures rather than anomalies, and then temperatures in \degree F rather than \degree C). Also if it helps -- create a new array with the modified temperature units data in (rather than replacing the 2nd column of data in the original array). You can also do the conversion in 2 stages -- multiplying the (absolute) temperature (\degree C) by \(1.8\) first (perhaps creating a new array to hold this in), then adding \(32\).
- 
+\noindent The aim is to obtain a data array in \textbf{MATLAB}, with year as the first column (year, as per the original data) and the 2nd  column as annual mean  temperature in units of \degree F.\sidenote[][-0.0in]{Remember -- \textbf{MATLAB} will happily do the same to all values in an array  in an equation, as for a single scalar value in the same equation. Start by creating a new array with a single column, copied form the 1st column of the original array.} 
+
+If it helps -- play  the data conversion game in \textbf{Excel} first (e.g. creating new columns in a spreadsheet to firstly hold  absolute temperatures rather than anomalies, and then temperatures in \degree F rather than \degree C). Also if it helps -- create a new array with the modified temperature units data in (rather than replacing the 2nd column of data in the original array). You can also do the conversion in 2 stages -- multiplying the (absolute) temperature (\degree C) by \(1.8\) first (perhaps creating a new array to hold this in), then adding \(32\).
+
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch1-plot-temperature1.eps}
+\caption{Observed annual global mean surface temperature anomaly (compared to year 1910 to 2000 average).}
+\label{fig:ch1-plot-temperature1}
+\end{marginfigure}
+
 Re-plot (in \textbf{MATLAB}) once again the final temperature trends in \degree F. This should look like Figure \ref{fig:ch1-plot-temperature3}.
 
 %------------------------------------------------
@@ -1610,10 +1634,12 @@ Re-plot (in \textbf{MATLAB}) once again the final temperature trends in \degree 
 
 \noindent For some practice in data filtering (row deletion) and a little further data manipulation and graphing: download the historical temperature dataset for Riverside:
 
-\noindent \texttt{temperature\_riverside.txt}\sidenote[][-0.75in]{\href{https://www.ncdc.noaa.gov/cag/global/time-series/globe/land\_ocean/ytd/12/1880-2017/\#https://climate.nasa.gov/vital-signs/global-temperature/}{NOAA}}. 
-\\If you view the data file in a text editor or import into \textbf{Excel}, you can read the column headers and find out what the different columns of data are (I am not telling you!). Note that the (1st) line of the file containing the column header labels starts with a \% symbol (telling \textbf{MATLAB} to ignore this line and not attempt to read in the 'data' on it).
+\vspace{1mm}
+\noindent \texttt{temperature\_riverside.txt}\sidenote[][-0.0in]{\href{https://www.ncdc.noaa.gov/cag/global/time-series/globe/land\_ocean/ytd/12/1880-2017/\#https://climate.nasa.gov/vital-signs/global-temperature/}{NOAA}}. \vspace{1mm}
 
-\begin{marginfigure}[-0.5in]
+If you view the data file in a text editor or import into \textbf{Excel}, you can read the column headers and find out what the different columns of data are (I am not telling you!). Note that the (1st) line of the file containing the column header labels starts with a \% symbol (telling \textbf{MATLAB} to ignore this line and not attempt to read in the 'data' on it).
+
+\begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch1-plot-temperature3.eps}
 \caption{Observed annual global mean surface temperature.}
 \label{fig:ch1-plot-temperature3}
@@ -1625,7 +1651,7 @@ Re-plot (in \textbf{MATLAB}) once again the final temperature trends in \degree 
 \\Equivalently, when \textbf{MATLAB} loads in a ASCII data file, any line in which the \% symbol appears, \textbf{MATLAB} ignores and does not load in. Hence, column header descriptions *or any other file description information) can be included in the file as long as the line starts with a \%.
 \end{mdframed}}
 
-First create a plot (with appropriate labels) of this data.
+First create a plot (with appropriate labels) of this data. You want the annual mean temperature -- the last column, plotted vs. year (the first column).
 
 It would be 'nice' ... to make some direct comparison between the observed global temperature increase and that occurring in Riverside, e.g. to help answer questions such as 'Are temperatures increasing faster in Riverside than the global mean?', and hence 'Will global warming impacts likely be worse or less severe in the Riverside area as compared globally?'. To do this, we need both data sets -- global and for the Riverside area -- to be on a comparable scale.
 
@@ -1635,14 +1661,18 @@ There are two main problems \sidenote{Plus artifacts in the raw data.} in making
 
 The limits can be specified and made common between the 2 plots using the \docenv{axis} command that you saw earlier. You could,  for instance, not worry about truncating the spurious spikes in the Riverside temperature data and set the y-axis limits for both plots to e.g. 55 to 70\degree F. (You are still left with comparing across 2 different plots, which we will fix in a subsequent section by means of the command \docenv{hold on}.) However, there is still an inconvenient offset between the global mean temperature and that at Riverside.
 
-\begin{marginfigure}[0.0in]
+\begin{marginfigure}[-1.0in]
 \includegraphics[width=\linewidth]{ch1-plot-temperature4.eps}
 \caption{Observed annual mean surface temperature in Riverside.}
 \label{fig:ch1-plot-temperature4}
 \end{marginfigure}
 
 Recall that the original global temperature data was given as an anomaly compared to the average over some baseline (or reference) period -- in this case, year 1910 to 2000. If we treated both data sets the same, and transformed the Riverside temperature data into a comparable anomaly, direct comparison could be made. To create an anomaly of the Riverside temperature data, relative to the mean of the data for years 1910 to 2000, requires the mean of the years 1910 to 2000 ... this is not difficult to do, but it better left for another time ... For now, take it as having a value of 64.2\degree F. So to create an anomaly for the Riverside temperature data, simply subtract 64.2 from the values in the annual mean data column. Finally, go back to the original global mean anomaly values (re-load the data set if necessary) and convert from the anomaly in \degree C to \degree F (i.e. simply multiply by \(1.8\) -- no offset (32\degree F) is required in this particular case). If you additionally, chose and set a sensible common y-axis scale for both plots, you might end up with a pair of graphs looking like Figures \ref{fig:ch1-plot-temperature5} and \ref{fig:ch1-plot-temperature6}.
-\sidenote[][-2.0in]{There are all sorts of likely reasons for the differences. Firstly, the global mean surface temperature rise includes both ocean surface and land surface. Because of the higher heat capacity of the ocean, the ocean surface warms slower than the land, and the ocean accounts for ca. 70\% of the total global surface area. So it is somewhat inevitable that the warming trend will be stronger in Riverside. It may also be that the Riverside data is influenced by the 'urban heat island' effect, in which long0-term measured trends can be affected by increasing urbanization of the area surrounding the weather station. It may also be that the latitude and specific location of Riverside, sees much more warming that the global mean.}
+\sidenote[][-2.5in]{There are all sorts of likely reasons for the differences. Firstly, the global mean surface temperature rise includes both ocean surface and land surface. Because of the higher heat capacity of the ocean, the ocean surface warms slower than the land, and the ocean accounts for ca. 70\% of the total global surface area. So it is somewhat inevitable that the warming trend will be stronger in Riverside. It may also be that the Riverside data is influenced by the 'urban heat island' effect, in which long0-term measured trends can be affected by increasing urbanization of the area surrounding the weather station. It may also be that the latitude and specific location of Riverside, sees much more warming that the global mean.}
+
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch1-plot-temperature5.eps}
@@ -1650,19 +1680,21 @@ Recall that the original global temperature data was given as an anomaly compare
 \label{fig:ch1-plot-temperature5}
 \end{marginfigure}
 
+\noindent Finally to some data filtering (row deletion) -- it was mentioned earlier that there were potential 'artifacts' in the Riverside mean annual temperature data. If you view the loaded in data array in the \textsf{Variable viewing window} (double-click on the \texttt{temperature\_riverside} variable name in the \textsf{Workspace window}), you can see for a number of years and months, rather than numbers, '\texttt{NaN}'s in the cells. \texttt{NaN} stands for 'Not a Number' and indicates that there is no (valid) numerical value for that array position (cell). The impact of there being a number of months of data missing, is that the annual mean is no longer a true annual mean but rather simply the mean of whatever monthly data exists for any particular year. For example, year 2008 has no data other than during the summer and the annual mean is hence simply equal to the July temperatures!
+
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch1-plot-temperature6.eps}
 \caption{Observed annual mean surface temperature anomaly, relative to the mean of 1910 through 2000, at Riverside.}
 \label{fig:ch1-plot-temperature6}
 \end{marginfigure}
 
-\vspace{1mm}
-\noindent\rule{4cm}{0.5pt}
-\vspace{2mm}
+\begin{marginfigure}[0.0in]
+\includegraphics[width=\linewidth]{ch1-plot-temperature7.eps}
+\caption{Observed annual mean surface temperature anomaly, relative to the mean of 1910 through 2000, at Riverside, filtered to remove years with missing monthly data.}
+\label{fig:ch1-plot-temperature7}
+\end{marginfigure}
 
-\noindent Finally to some data filtering (row deletion) -- it was mentioned earlier that there were potential 'artifacts' in the Riverside mean annual temperature data. If you view the loaded in data array in the \textsf{Variable viewing window} (double-click on the \texttt{temperature\_riverside} variable name in the \textsf{Workspace window}), you can see for a number of years and months, rather than numbers, '\texttt{NaN}'s in the cells. \texttt{NaN} stands for 'Not a Number' and indicates that there is no (valid) numerical value for that array position (cell). The impact of there being a number of months of data missing, is that the annual mean is no longer a true annual mean but rather simply the mean of whatever monthly data exists for any particular year. For example, year 2008 has no data other than during the summer and the annual mean is hence simply equal to the July temperatures!
-
-One could address this by removing the years with (substantially) incomplete monthly data from the data file\sidenote{i.e. simply deleting the line in the file.} and prior to loading into \textbf{MATLAB}. Or would could process the data once in MATLAB. This can be done by assigning to particular row (vector) of data, an empty vector (\texttt{[]}). 
+One could address this by removing the years with (substantially) incomplete monthly data from the data file\sidenote{i.e. simply deleting the line in the file.} and prior to loading into \textbf{MATLAB}. Or would could process the data once in \textbf{MATLAB}. This can be done by assigning to particular row (vector) of data, an empty vector (\texttt{[]}). 
 
 Taking first a simple example of a column vector:
 
@@ -1673,7 +1705,7 @@ Taking first a simple example of a column vector:
 \end{pmatrix}\)
 \vspace{2mm}
 
-\noindent from which we wish to remove the 2nd row. In MATLAB we would create the vector by:
+\noindent from which we wish to remove the 2nd row. In \textbf{MATLAB} we would create the vector by:
 
 \begin{docspec}
 >> A = [1; 2; 3];
@@ -1710,12 +1742,6 @@ So back to the temperature data -- to for example remove the row containing the 
 Play this 'game' -- deleting as many row as you think result in biased means (because of missing monthly data)\sidenote[][-0.5in]{(being aware that as you delete rows, the numbering of the subsequent rows changes as the array size shrinks ...)}, with the Riverside temperature data, and re-plot the results.
 For example, the result of removing ALL the rows with missing monthly data\sidenote{(There are simple and quick ways of doing this in \textbf{MATLAB} that we will see later.)}, results in Figure \ref{fig:ch1-plot-temperature7}.
 
-\begin{marginfigure}[0.0in]
-\includegraphics[width=\linewidth]{ch1-plot-temperature7.eps}
-\caption{Observed annual mean surface temperature anomaly, relative to the mean of 1910 through 2000, at Riverside, filtered to remove years with missing monthly data.}
-\label{fig:ch1-plot-temperature7}
-\end{marginfigure}
-
 %------------------------------------------------
 
 \newpage
@@ -1730,7 +1756,7 @@ This section covers how to create slightly fancier plots in \textbf{MATLAB} and 
 
 \subsection{Modifying lines/symbols in \texttt{plot}}
 
-The first deviant activity you can engage in with \texttt{plot}, it to graph the data without the line joining the points. Scrolling a little the way down \texttt{>> help plot}, it turns out that there are a number of options for color, line style, and marker symbol that you list together as a single parameter, straight after the parameters for \textit{x} and \textit{y} vectors. By default, \textbf{MATLAB} plots a solid line in blue with no marker points. Obviously, we could forego the sorting and plot a sane graphic (hopefully) by plotting just points and having no line between them. Hell, you could even be radical and use a different color ... Or, you could specify a symbol and no line.  The choice of colors is your oyster, as they (almost don't) say. e.g. Figure \ref{fig:plot-CO2basic3}.
+The first deviant activity you can engage in with \texttt{plot}, is to graph the data without the line joining the points. Scrolling a little the way down \texttt{>> help plot}, it turns out that there are a number of options for color, line style, and marker symbol that you list together as a single parameter, straight after the parameters for \textit{x} and \textit{y} vectors. By default, \textbf{MATLAB} plots a solid line in blue with no marker points. Obviously, we could forego the sorting and plot a sane graphic (hopefully) by plotting just points and having no line between them. Hell, you could even be radical and use a different color ... Or, you could specify a symbol and no line.  The choice of colors is your oyster, as they (almost don't) say. e.g. Figure \ref{fig:plot-CO2basic3}. A summary of a few of the more common plotting options is provided in the Box. 
 
 \marginnote[-2.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 The main (i.e. not an exhaustive list) data display options for the \texttt{plot} function are:
@@ -1766,12 +1792,14 @@ plot(x,y,'bo');
 
 So far, so good. But so boring, although simple marker-only and joined-by-line plots have their place. For a start, the original data-set included an estimate of the uncertainty in the CO\(_{2}\) reconstructions in the form of the min and max plausible value for each 'central' (best guess?) estimate. \textbf{Excel} can make plots incorporating errors, including non-symmetric errors, relatively easily. What about in \textbf{MATLAB}? Actually, I have absolutely no idea. (This would make such a good exercise for the reader, as they (do) say.)
 
-Personally, I might have been tempted to draw vertical bars alongside the data (most likely). Or plotted in different symbols, the min and max values as points. Or plotted min and max lines as a bounding envelope. All of these require sone further little trick in \textbf{MATLAB}, which involves the command \docenvdef{hold}. This is nice and simple and can be \texttt{on}, or \texttt{off}.
+Personally, I might have been tempted to draw vertical bars alongside the data (most likely). Or plot with different symbols, with the min and max values as points. Or plotted min and max lines as a bounding envelope (lines). All of these require sone further little trick in \textbf{MATLAB}, which involves the command \docenvdef{hold}. This is nice and simple and takes the additional (2nd) word: \texttt{on}, or \texttt{off}.
 \\ \texttt{>> hold on} -- will enable you to add additional elements to a graphic,
 \\ \texttt{>> hold off} -- returns to the default in which a new graphic replaces the current on in a Figure window. 
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
+
+\newpage
 
 \newthought{As an example} -- set:
 
@@ -1779,7 +1807,7 @@ Personally, I might have been tempted to draw vertical bars alongside the data (
 >> hold on
 \end{docspec}
 
-\noindent and then plot the minimum and maximum CO\(_{2}\) values (columns \#3 and \#4) in different symbols and different colors, on top of your existing plot. If you want to then label what different lines or sets of points are, you can add a legend with the \docenvdef{legend} command. For instance you have managed to successfully plot the mean CO\(_{2}\) values as discrete black circles, and the minimum and maximum uncertainty limits as blue and red lines, respectively, you could call:
+\noindent and then plot the minimum and maximum CO\(_{2}\) values (columns \#3 and \#4) in different symbols and different colors, on top of your existing plot. If you want to then label what the different lines or sets of points are, you can add a legend with the \docenvdef{legend} command. For instance, if you have managed to successfully plot the mean CO\(_{2}\) values as discrete black circles, and the minimum and maximum uncertainty limits as blue and red lines, respectively, you could type:
 \begin{docspec}
 >> legend('Mean CO\_2','Lower uncertainty limit','Upper uncertainty limit');
 \end{docspec}
@@ -1795,13 +1823,13 @@ and it should end up looking like Figure \ref{fig:plot-CO2basic4}.
 \noindent\rule{4cm}{0.5pt}
 \vspace{2mm}
 
-\noindent Returning to the previous plotting Example of the observed historical trend in global mean temperature vs. the temperature recorded in Riverside -- you now know how to plot BOTH temperature anomaly trends in the same \textsf{figure window} (and the same panel), so try it!
+\noindent Returning to the previous plotting Example, of the observed historical trend in global mean temperature vs. the temperature recorded in Riverside -- you now know how to plot BOTH temperature anomaly trends in the same \textsf{figure window} (and the same panel), so try it!
 
 %------------------------------------------------
 
 \subsection{Changing label font size (and type)}
 
-The axis and title labels, by default, can be difficult to read when the graphics are saved and then imported into a document/paper. You can change the size of text as you create axis captions and figure titles etc., by specifying the value of an additional (text size) parameter in the function. For example, to increase the size of the xaxis label to a 14pt font:
+The axis and title labels, by default, can be difficult to read when the graphics are saved and then imported into a document/paper. You can change the size of text as you create axis captions and figure titles etc., by specifying the value of an additional (text size) parameter in the function. For example, to increase the size of the x-axis label to a 14pt font:
 
 \begin{docspec}
 >> xlabel('Year','FontSize',14);
@@ -1827,7 +1855,7 @@ Other property parameters\sidenote{Again -- refer to \textbf{MATLAB} help.} that
 
 \subsection{Scatter plots}
 
-We'll stay with the Phanerozoic proxy (CO\(_{2}\)) data, but put a different (graphical) spin on it.
+Returning back to the Phanerozoic proxy (CO\(_{2}\)) data, we can now put a different (graphical) spin on it.
 
 \begin{marginfigure}[0.25in]
 \includegraphics[width=\linewidth]{plot-CO2scatter.eps}
@@ -1835,7 +1863,7 @@ We'll stay with the Phanerozoic proxy (CO\(_{2}\)) data, but put a different (gr
 \label{fig:plot-CO2scatter}
 \end{marginfigure} 
 
-Consider ... \docenvdef{scatter}. In fact, don't just considered it, \texttt{help} on it. The simplest possible usage is, apparently:
+Consider ... \docenvdef{scatter}. In fact, don't just considered it, \texttt{help} on it (\texttt{\textgreater\textgreater\ help scatter}). The simplest possible usage is, apparently:
 \begin{docspec}
 SCATTER(X,Y) draws the markers in the default size and color.
 \end{docspec}
@@ -1864,27 +1892,27 @@ resulting in Figure \ref{fig:plot-CO2scatter2}.
 
 \subsection{Simple 2D data and bitmap visualization}
 
-There are 2 different simple \textbf{MATLAB} commands for visualizing a 2D dataset (i.e. a matrix) as a bitmap image (and via a 3rd command, viewing various bitmap photo and image format files too). As something (2D data) to play with -- load in the matrix \texttt{model\_grid.txt}.
+There are 2 different simple \textbf{MATLAB} commands for visualizing a 2D dataset (i.e. a matrix) as a bitmap image (and via a 3rd command, viewing various bitmap photo and image format files too).
 
-\begin{marginfigure}[0.25in]
+As something (2D data) to play with -- \texttt{load} in the data matrix: \texttt{model\_grid.txt}. Then, view the data in the array viewer, just to get a feel for what you are dealing with here (although you are unlikely to be much wiser after doing so). Lastly,  go ahead and employ the \docenv{pcolor} function in its simplest possible usage (see Box) to visualize the data. You can see (Figure \ref{fig:ch1-plot-pcolor1} ) that it is ... something. Maybe a little like the continents, but up-side-down at the very least. What to do?
+
+\begin{marginfigure}[-2.0in]
 \includegraphics[width=\linewidth]{ch1-plot-pcolor1.eps}
 \caption{A 2D plot of some random gridded model data.}
 \label{fig:ch1-plot-pcolor1}
 \end{marginfigure}
 
-First off -- as before, view the data in the array viewer, just to get a feel for what you are dealing with here (although you are unlikely to be much wiser after doing so). So go ahead and employ the \docenv{pcolor} function in its simplest possible usage (see Box). You can see (Figure \ref{fig:ch1-plot-pcolor1} ) that it is ... something. Maybe a little like the continents, but up-side-down at the very least. What to do?
+Well, it is a good job that you remember how to re-orientate arrays, right?\sidenote[][0.0in]{You don't? See earlier in the Chapter ...} If you guess right first time (three different basic transformations of a matrix were described), you will get Figure \ref{fig:ch1-plot-pcolor2}.
 
-Well, it is a good job that you remember how to re-orientate arrays, right?\sidenote[][0.0in]{You don't? See earlier in the Chapter ...} If you guess right first time (three different basic transformations of a matrix were described), you get Figure \ref{fig:ch1-plot-pcolor2}.
-
-\begin{marginfigure}[-0.25in]
+\begin{marginfigure}[0.75in]
 \includegraphics[width=\linewidth]{ch1-plot-pcolor2.eps}
 \caption{A 2D plot of some random gridded model data ... but with the underlying data matrix re-orientated before plotting.}
 \label{fig:ch1-plot-pcolor2}
 \end{marginfigure}
 
-Next try something very similar. but using the \docenv{image} function. Now the model grid is the correct way around! I have absolutely no idea why and why it is reading the matrix dimensions differently from \docenv{pcolor}. I am sure you could Google and find out. But you would have to actually care first.
+Next try something very similar. but using the \docenv{image} function.\footnote{Now the model grid is the correct way around! I have absolutely no idea why and why it is reading the matrix dimensions differently from \docenv{pcolor}. I am sure you could \textbf{Google} and find out. But you would have to actually care first.} 
 
-\marginnote[1.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[0.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{pcolor}
 \\MATLAB claims that pcolor(C) plots; "a rectangular array of cells with colors determined by C. Actually, I believe \textbf{MATLAB} on this.
 So if you have a matrix, \textbf{MATLAB} will plot a regular arrays of cells, with each cell representing one of the elements in the matrix, and will color that cell according to the value. (\texttt{pcolor} will by default, autoscale how the color scale maps onto the data in the matrix such that both extreme ends of the color scale are used.)
@@ -1896,7 +1924,7 @@ So if you have a matrix, \textbf{MATLAB} will plot a regular arrays of cells, wi
 You can import an image, such as in \texttt{.jpg}, \texttt{.tiff}, or \texttt{.png} format, using \docenvdef{imread} -- simply pass it the name of an image file (as a string, this variable name needs to be encased in inverted commas) and assign the results to a variable name of your choice. Then plot (using \texttt{image}) that variable.
 \end{mdframed}}
 
-What is the point of this? So you have the ability to simply visualise a gridded dataset. Later, we'll be doing it properly and it gets rather more involved when you have to create matrixes to describe the grid dimensions (e.g. lon and lat) for yourself.
+What is the point of this? You now have the ability to simply visualise a gridded dataset. Later, we'll be doing it more formally  and it gets rather more involved when you have to create matrixes to describe the grid dimensions (e.g. lon and lat) for yourself.
 
 As your very last exercise -- find an image on the internet that amuses you, download it, load it into \textbf{MATLAB} (using \docenv{imread}), visualize it using \texttt{image}, and then ... well, that depends on how amusing it is. Maybe try plotting something on top of it (using \texttt{hold on}) or simply go home.
 
