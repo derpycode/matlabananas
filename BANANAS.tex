@@ -845,9 +845,9 @@ If you find that you want a different orientation (row vs. column) of the a \tex
 D = B.'
 \end{docspec}
 
-\noindent will turn the vector \texttt{B} into one (assigned to the \textit{variable} \texttt{D}) with he same orientation as \texttt{C}. \sidenote{Note ... \textbf{MATLAB} gives the syntax as \texttt{.'}, whereas I always only ever added the \texttt{'} bit ... which works ...} You can also use the \docenvdef{transpose} \textit{function}.
+\noindent will turn the vector \texttt{B} into one (assigned to the \textit{variable} \texttt{D}) with he same orientation as \texttt{C}. \sidenote{Note ... \textbf{MATLAB} gives the syntax as \texttt{.'}, whereas I always only ever added the \texttt{'} bit ... which works ...} You can also use the \docenv{transpose operator} (see Box).
 
-You can also re-order the values in a \textit{vector} (hence addressing the restriction in using the \textit{colon operator} to create a \textit{vector} that the values must be monotonically increasing rather than decreasing). Depending on the orientation of the \textit{vector}, you can use either the \docenvdef{flipud} (for column \textit{vectors}), or \docenvdef{fliplr} (for row \textit{vectors}) \textit{functions} to re-order the elements.
+You can also re-order the values in a \textit{vector} (hence addressing the restriction in using the \textit{colon operator} to create a \textit{vector} that the values must be monotonically increasing rather than decreasing). Depending on the orientation of the \textit{vector}, you can use either the \docenv{flipud} (for column \textit{vectors}), or \docenv{fliplr} (for row \textit{vectors}) \textit{functions} to re-order the elements.
 
 \marginnote[-0.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{flipud}, \docenvdef{fliplr}
@@ -915,7 +915,7 @@ B(1) = 0.0
 \noindent (Here, you are saying that you would like to assign the value of \texttt{0.5} to the element in the \textit{vector} given by the index \texttt{1}. The previous content of the array at \textit{index} position \texttt{1} is simply over-written.)
 
 \marginnote[-0.50in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-You can access more than a single element of a vector at a time, by means of the \docenvdef{colon operator}, \texttt{:} to define a min, max range of indices. For example:  
+You can access more than a single element of a vector at a time, by means of the \docenv{colon operator}, \texttt{:} to define a min, max range of indices. For example:  
 \begin{docspecmargin}
 >> B(2:4)
 \\ans =
@@ -959,7 +959,7 @@ First -- create yourself a dummy dataset to plot. You are going to need to creat
 >> Y = X.\(^{\wedge}\)2  
 \end{docspecmargin}
 (The \texttt{.\(^{\wedge}\)} bit says to square the value of each and every  element in the \textit{vector}.)}
-The command \docenvdef{figure} creates a \textsf{figure window}, which is where \textbf{MATLAB} displays its graphical output ... but on its own, without anything in it ... useless. So, lets put something in it, with the simplest possible graphical way of displaying data called \docenvdef{plot}. 
+The command \docenvdef{figure} creates a \textsf{figure window}, which is where \textbf{MATLAB} displays its graphical output ... but on its own, without anything in it ... useless. So, lets put something in it, with the simplest possible graphical way of displaying data called \docenv{plot}. 
 
 \marginnote[-2.25in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{plot}
@@ -1015,7 +1015,7 @@ You have two options for editing the figure and e.g. adding axis labels. Firstly
 \item The first, obvious thing to do is to add axis labels. The commands are simple -- \docenvdef{xlabel} and \docenvdef{ylabel}. They each take a string as an input, which is the text you would like to appear on the axis.
 If you change your mind, simply re-issue the command with the text you would like instead.
 \item The command for title, perhaps unsurprisingly, is \docenvdef{title}. Again, pass the test you would like to appear as a string (in inverted commas \texttt{''}), or pass a the name of variable that contains a string (no \texttt{'}' then needed).
-\item You might want to specify the axis limits. The command is \docenvdef{axis} and it takes a vector of 4 values as its input -- in order: minimum x, maximum x, minimum y, and maximum y value. e.g. \texttt{axis([0 10 -100 100])} would specify an \textit{x}-axis running from 0 to 10, and a \textit{y}-axis from -100 to 100.
+\item You might want to specify the axis limits. The command is \docenv{axis} and it takes a vector of 4 values as its input -- in order: minimum x, maximum x, minimum y, and maximum y value. e.g. \texttt{axis([0 10 -100 100])} would specify an \textit{x}-axis running from 0 to 10, and a \textit{y}-axis from -100 to 100.
 \end{enumerate}
 
 Information as to how to use all of these commands can be found via \textbf{MATLAB} \texttt{help}. But a typical sequence, that gives rise to the improved plot shown in Figure \ref{fig:ch1-plot-basic2}, is given in the margin.
@@ -1212,10 +1212,10 @@ The \textit{function} \docenvdef{sum} ... sums things. The \textbf{MATLAB} Help 
 \\'\texttt{If A is a vector, sum(A) returns the sum of the elements.}'
 \\'\texttt{If A is a matrix, sum(A) treats the columns of A as vectors, returning a row vector of the sums of each column.}'
 \end{mdframed}}
-? (Sure -- you also do it by using a calculator, but you will not always have such a small data-set as here. Perhaps you'll get a much larger data-set in the assessed exercise ;) So, practice doing it properly.) The \textbf{MATLAB} function for this is \docenvdef{sum}.
+? (Sure -- you also do it by using a calculator, but you will not always have such a small data-set as here. Perhaps you'll get a much larger data-set in the assessed exercise ;) So, practice doing it properly.) The \textbf{MATLAB} function for this is \docenv{sum}.
 
 \newthought{Question:} What is the sum of the 2nd row of \texttt{C}?
- For a \textit{matrix} (rather than a \textit{vector}) as input, \docenvdef{sum}  returns the individual sums of each column, and so on its own;
+ For a \textit{matrix} (rather than a \textit{vector}) as input, \docenv{sum}  returns the individual sums of each column, and so on its own;
 \begin{docspec}
 >> C\\
 C =\\
@@ -1231,11 +1231,11 @@ ans =\\
 \end{docspec}
 \noindent gives you a row \textit{vector} consisting of the sums of the individual columns of the \textit{matrix} \texttt{C} above.
 
-This is where the \docenvdef{transpose} function (\texttt{'}) comes in handy (see earlier). In this case, it flips a (2D) \textit{matrix} around its leading diagonal (columns become rows, and rows, columns)\sidenote[][-1.0in]{This is almost true. Technically the function you want is \texttt{.'}, as \texttt{'} will change the sign of any imaginary components. For real numbers, they are the same.}
+This is where the \docenv{transpose} function (\texttt{'}) comes in handy (see earlier). In this case, it flips a (2D) \textit{matrix} around its leading diagonal (columns become rows, and rows, columns)\sidenote[][-1.0in]{This is almost true. Technically the function you want is \texttt{.'}, as \texttt{'} will change the sign of any imaginary components. For real numbers, they are the same.}
 \marginnote{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 In addition to \docenv{transpose}, other useful array manipulation functions include:
-\\\noindent \docenvdef{flipup} -- flips the matrix in the up/down direction
-\\\noindent \docenvdef{fliplr} -- flips the matrix in the left/right direction
+\\\noindent \docenv{flipup} -- flips the matrix in the up/down direction
+\\\noindent \docenv{fliplr} -- flips the matrix in the left/right direction
 \\\noindent \docenvdef{rotate} -- rotates the matrix
 \\\noindent(As always, refer to the \texttt{help} on specific functions.)
 \end{mdframed}}.
@@ -2182,23 +2182,23 @@ Your wish is granted! In \textbf{MATLAB}, it is possible to store all of your co
  
 You can execute an \textit{m-file} by typing its name into the \textsf{Command window} (omitting the \textsf{.m} file extension). Ensure that \textbf{MATLAB} is operating in the same directory as the directory that you have saved your \textit{m-file}. You can also run the \textit{script} (\textit{m-file}) by hitting the big bright green Run icon button at the top of the \textit{m-file} editor\sidenote[][-0.25in]{In older versions of \textbf{MATLAB} -- select: \textsf{Debug}/\textsf{Run} from the 'debug' menu of the \textsf{Editor window}.}. The short-cut for running it is to whack your paw down on the Function Key \textsf{F5}.
 
-OK -- you are now ready for your very first program ... inevitably ... this has to be to print 'Hello World' to the screen. No, really. (Google it.) 
+OK -- you are now ready for your very first program ... inevitably ... this has to be to print 'Hello World' to the screen. No, really. (\textbf{Google} it.) 
 
-Create a new \textit{m-file}, calling it e.g. \textsf{hello\_world.m} (remembering that spaces are NOT allowed in filenames). You are going to use the function \docenvdef{disp} (see margin help box and/or type \texttt{>> help disp}  to find out the \textbf{MATLAB} \textit{function} syntax and usage). This command (/\textit{function})  will print to the screen, either any text you specify (in inverted commas), or the contents of a \textit{string} \textit{variable} (you pass the variable name to \texttt{disp}). For now, simply pass the text directly.
+Create a new \textit{m-file}, calling it e.g. \textsf{hello\_world.m} (remembering that spaces are NOT allowed in filenames). You are going to use the function \docenv{disp} (see margin help box and/or type \texttt{>> help disp}  to find out the \textbf{MATLAB} \textit{function} syntax and usage). This command (/\textit{function})  will print to the screen, either any text you specify (in inverted commas), or the contents of any\textit{} \textit{variable} (you pass the variable name to \texttt{disp}). For now, simply pass the text directly.
 
 \marginnote[-2.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{disp}
 \\... displays something (the contents of a variable) to the screen.
 \\In the example of:
 \begin{docspecmargin}
-disp('STRING')
+disp(STRING)
 \end{docspecmargin}
-where \texttt{STRING} is a .... \textit{string}, get the \textit{string} displayed as text at the command line.
-\\You can also pass the name of a variable that contains a string, e.g.
+where \texttt{STRING} is a .... \textit{string}, you get the \textit{string} displayed as text at the command line.
+\\You can also pass the name of any variable
 \begin{docspecmargin}
 disp(VARIABLE)
 \end{docspecmargin}
-where the contents of \texttt{VARIABLE} is a string.
+and get the contents of \texttt{VARIABLE} displayed.
 \\Note that the difference between using \docenv{disp} and simply typing the variable name:
 \begin{docspecmargin}
 disp(X)
@@ -2221,7 +2221,7 @@ message = 'hello, world';
 
 \noindent (Try this out.)\sidenote[][0.25in]{Remember that when a \textit{function} requires a \textit{string} input, you can either pass the string directly (encased in inverted commas), or assigned the string to a variable, and pass the name of the variable (no inverted commas).}
 
-For further practice -- pick one of any of the previous exercises in which multiple lines of code were required, place them into a new \textit{m-file }(either by re-typing them in or copying them out of the \textsf{Command History window}), save the file (to the same directory that you are working from), and run it my typing its name at the command line (omitting the \textsf{.m} extension).
+For further practice -- pick one of any of the previous exercises in which multiple lines of code were required, such as loading and then plotting a data set, place these lines into a new \textit{m-file }(either by re-typing them in or copying them out of the \textsf{Command History window}), save the file (to the same directory that you are working from), and run it my typing its name at the command line (omitting the \textsf{.m} extension).
 
 
 %------------------------------------------------
@@ -2258,11 +2258,15 @@ A typical basic format is:
 \item If using the \textit{script} to do some plotting, sometimes (but not always) it is convenient to add at the top of the \textit{m-file}, \begin{docspec}
 close all;
 \end{docspec}
-This command close all currently open figures, plots, images, etc.
+This command close all currently open figures, plots, images, etc. so that if you repeatedly run the script such as you might in developing and debuggin it, you don't end up with 1000000000s of \textsf{Figure windows} open ...
 
 \end{itemize}
 
-An illustration (and a far from perfect illustration) of a short \textit{function} (\textit{m-file}) exhibiting at least a few examples of good practice, is:
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}\
+
+\noindent An illustration (and a far from perfect illustration) of a short \textit{function} (\textit{m-file}) exhibiting at least a few examples of good practice, is:
 
 \begin{docspec}
 \textcolor{blue}{function} [dum\_temp] = ebm\_basic(dum\_S0)
@@ -2317,7 +2321,7 @@ In the file, you can create as much 'ASCII art' as you like if it helps to make 
 
 \noindent at the end of a partial line (that is to be treated by \textbf{MATLAB} as joined continuously to the next line).
 
-Your Hello World program might look like the following once it has had a little tune-up (although in this example this is pretty much over-kill):
+Your \textsf{Hello World} program might look like the following once it has had a little tune-up (although in this example this is pretty much over-kill):
 \begin{docspec}
 \textcolor[rgb]{0,0.501961,0}{\\\% program to print 'Hello World' to the screen
 \\\% *** START ***
@@ -2344,7 +2348,7 @@ Finally, and related to the next subsection -- code in stages, testing the (part
 
 What programming is mostly about is not writing new code so much as debugging\sidenote{The art of fault-finding in computer code.} what you have already written. Key then, is to reduce the incidence of bugs occurring in the first place, and when they do occur, firstly to have code that lends itself to debugging and secondly, knowing how to go about the debugging. The first two facets are at least partly addressed through good programming practice (see earlier)\sidenote{And by the discipline of software engineering, which is way out of scope of this course.}.
 
-Here's an example to try out to start to see what might be involved in debugging,  loosely based on a previous plotting example -- go create a new \textit{m-file} called: \textsf{plot\_some\_dull\_stuff.m}\sidenote{Remember -- you are advised to name your \textit{m-files} as something vaguely descriptive of what the script actually does (and you do ont have to go with this choice, although it might turn out to be perfectly descriptive ;) (i.e. you do not have to call it this!)}. Then add the following lines to the file:
+Here is an example to try out to start to see what might be involved in debugging,  loosely based on a previous plotting example -- go create a new \textit{m-file} called: \textsf{plot\_some\_dull\_stuff.m}\sidenote{Remember -- you are advised to name your \textit{m-files} as something vaguely descriptive of what the script actually does (and you do ont have to go with this choice, although it might turn out to be perfectly descriptive ;) (i.e. you do not have to call it this!)}. Then add the following lines to the file:
 
 \begin{docspec}
 \textcolor[rgb]{0,0.501961,0}{\% my dull plotting program
@@ -2421,7 +2425,7 @@ Once you have fixed this, re-run the program. Ha ha -- it still does not work. (
 \\ plot(x,y2,k);?}
 \end{docspec}
 
-\noindent Now \textbf{MATLAB} does not like \texttt{function or variable 'k'} because it cannot find that it has ever been defined. Is \texttt{k} meant to be a function or variable? Look up \texttt{help plot} to remind yourself of the correct syntax if the problem is not immediately obvious.
+\noindent Now \textbf{MATLAB} does not like \texttt{function or variable 'k'} because it cannot find that it has ever been defined. Is \texttt{k} meant to be a \textit{function} or \textit{variable}, or something else? Look up \texttt{help plot} to remind yourself of the correct syntax if the problem is not immediately obvious.
 
 Once you have fixed the second bug; saved, and re-run the script, you should see Figure \ref{fig:ch2-debug1}. (unless there were further bugs to find ...)
 
@@ -2441,7 +2445,7 @@ Once you have fixed the second bug; saved, and re-run the script, you should see
 
 \textit{Functions} in \textbf{MATLAB}, are really just fancy \textit{scripts}. Again -- just plain old lines of code in a text file that is given a \textsf{.m} extension (making it an \textit{m-file}). The big difference from a \textit{script} in MATLAB is that a \textit{function} can take variables as input and/or return variables (or variable values) as an output. (In contrast, a \textit{script} takes no input and returns no outputs, other than plots or data files that might be saved.) 
 
-A \textit{function} is defined (and differentiated from a \textit{script}) by a special line at the \uline{very start}\sidenote{Literally: line 1. Not even a comment line is allowed to appear before the \textit{function} definition line.} of the \textit{m-file} (see Box).
+A \textit{function} is defined (and differentiated from a \textit{script}) by a special line at the \uline{very start}\sidenote{Literally: line 1. Not even a comment line is allowed to appear before the \textit{function} definition line.} of the \textit{m-file} (see Box). \uline{You must follow the \textbf{MATLAB} syntax exactly in defining a function.}
 
 \marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \textit{\textbf{Functions}}
@@ -2521,7 +2525,7 @@ with the \texttt{handle}, \texttt{H}, being an identifier of the graphic which c
 \\\textit{Functions} are a prime example of the importance of being able to pause code part the way through (e.g. by setting a \textit{breakpoint}) because when a \textit{function} terminates, or crashes, you get to see none of the values of any variables created within the \textit{function}, unless they have been returned as output (and assuming here that the code did not crash and managed to get to the end). Setting a \textit{breakpoint} allows you to interrogate the values of any internal \textit{variables}.
 \end{mdframed}}
 
-Finally, it is important to note that by default, any variables created within a \textit{function} are TOP SECRET, and by that, I mean that they are not accessible to the main \textbf{MATLAB} workspace and do not appear listed in the \textsf{Workspace window}. To see that this is a non-Trump \uline{true fact}, create the following \textit{function} (basically, the first example but split into 2 steps):
+Finally, it is important to note that by default, any variables created within a \textit{function} are TOP SECRET, and by that, I mean that they are not accessible to the main \textbf{MATLAB} workspace and do not appear listed in the \textsf{Workspace window}. To see that this is a non-Trumpian \uline{true fact}, create the following \textit{function} (basically, the first example but split into 2 steps):
 \begin{docspec}
 function [Y] = sin2new(X)
 \\tmp = sin(X);
@@ -2662,7 +2666,7 @@ Run the program thus far. You should see the question displayed, and when you ty
 \noindent OK -- aside from the use of \texttt{input}, there is nothing new here. Yet. The ultimate purpose of the program is to give a reply that depends on the answer given. This is where we are going -- to utilize a \textit{conditional statement} -- depending on whether the answer is 'yes' or not, we are going to display a different message. This is a fundamental programming element -- different code (the \textit{statements} in the \textit{conditional} definition) will execute depending on the value of a \textit{variable} -- in this example, the 'different code' is a different message and the value of the variable is 'yes' or 'no' (or other answer).
 
 You are going to add an '\texttt{if ...}' statement to the code (starting on line 4) to test whether the answer, held in the variable \texttt{MY\_ANSWER}, is equal to '\texttt{yes}'.
-In the language of \textbf{MATLAB} syntax (see Box), the EXPRESSION is  whether the string contained in \texttt{MY\_ANSWER} is '\texttt{yes}'. How do we ask \textbf{MATLAB} to compare the value of \texttt{MY\_ANSWER} with '\texttt{yes}'?
+In the language of \textbf{MATLAB} syntax (see Box), the \textit{expression} is  whether the string contained in \texttt{MY\_ANSWER} is '\texttt{yes}'. How do we ask \textbf{MATLAB} to compare the value of \texttt{MY\_ANSWER} with '\texttt{yes}'?
 
 Once upon a time, long long ago, \textbf{MATLAB} was simple and helpful and you could write:
 \begin{docspec}
@@ -2672,18 +2676,19 @@ if (my\_answer == 'yes')
 \end{docspec}
 
 \noindent where \texttt{[MESSAGE]} you will later replace by a message that you will display using the \texttt{disp} command that you saw before. (In this stupid example it might be: 'Correct -- they are a great fruit!').
+In this (now illegal!) usage, we are trying to ask whether the contents of the \textit{variable} \texttt{my\_answer}, are equivalent (the \texttt{==}) to the string \texttt{'yes'}.
 
 \marginnote[-1.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{strcmp}
 \\For once, the \textbf{MATLAB} help explanation is relatively simple and straightforward:
-\begin{docspecmargin}
-tf = strcmp(s1,s2) compares s1 and s2 and returns 1 (true) if the two are identical. Otherwise, strcmp returns 0 (false).
-\end{docspecmargin}
+
+\textsf{tf = strcmp(s1,s2) compares s1 and s2 and returns 1 (true) if the two are identical. Otherwise, strcmp returns 0 (false).}
+
 Which is pretty well much how we expected asking: \texttt{s1 == s2} to pan out.
 \\(In \textbf{MATLAB} \textbf{help} -- \texttt{tf}, the variable name used in the example, is short for 'true-false'.)
 \end{mdframed}}
 
-However ... life is no longer this simple. \textbf{MATLAB} is going to make us use the function \docenv{strcmp} (see Box). In using \docenv{strcmp} we might break things down into 2 steps -- the first comparing the 2 strings (\texttt{MY\_ANSWER} and '\texttt{yes}') and returning to us a value of \textit{true} or \textit{false} that we will store in a new variable. In the second step, we'll ask the conditional to act on the value of the variable. The code will now look like this:
+Life is no longer this simple. \textbf{MATLAB} is going to make us use the function \docenv{strcmp} (see Box). In using \docenv{strcmp} we might break things down into 2 steps -- the first comparing the 2 strings (\texttt{MY\_ANSWER} and '\texttt{yes}') and returning to us a value of \textit{true} or \textit{false} that we will store in a new variable. In the second step, we'll ask the conditional to act on the value of the variable. The code will now look like this:
 \begin{docspec}
 COMPARISON\_RESULT = strcmp(MY\_ANSWER, 'yes');
 \\if COMPARISON\_RESULT
@@ -2729,7 +2734,17 @@ Your code should now comprise something like the 3 lines from before (comment, d
 
 \noindent(Please -- do not just copy-paste the code ... write your own code and only use, if you really need it, this code as a guide.)
 
-Re-run (after saving) the program and confirm that it works (asking whether you like bananas and if you answer 'yes', tells you 'Correct -- they are a great fruit!'). If not -- time to de-bug! Note that if you tested the code in two stages, any bug at this point is only in the conditional structure. Start by double-checking the syntax required for the \texttt{if ...} structure. You could also try commenting out the message line and re-running. 
+Re-run (after saving) the program and confirm that it works (asking whether you like bananas and if you answer 'yes', tells you 'Correct -- they are a great fruit!'). If not -- time to de-bug! Note that if you tested the code in two stages, any bug at this point is only in the conditional structure. Start by double-checking the syntax required for the \texttt{if ...} structure. You could also try commenting out the message line and re-running.
+
+You can also turn this around, and test for an answer that is not 'no' (the \(\sim\) is making the test, not 'no'), i.e.
+
+\begin{docspec}
+if \(\sim\)strcmp(MY\_ANSWER, 'no')
+\\ \ \ [MESSAGE]
+\\end
+\end{docspec}
+
+\noindent Now you are asking whether the answer is something other than 'no' (which might be 'yes', but not necessarily so) -- in the logical construct -- whether the (string) contents of \texttt{answer} are not equivalent to 'no'.
 
 \vspace{1mm}
 \noindent\rule{2cm}{0.5pt}
@@ -2737,7 +2752,15 @@ Re-run (after saving) the program and confirm that it works (asking whether you 
 
 \noindent Next, you might display an alternative message is the answer is not 'yes'. Refer to \textbf{help} / the margin Box on if ... and note that you can extent the structure with an \texttt{else} which would be followed by a line displaying the alternative message (e.g. 'Then you need to get a life, apple-lover.')\sidenote{And then the line with \texttt{end} after that -- follow the prescribed structure *exactly*.}.
 
-Try this first -- extend you program with an \texttt{else} line and then a an alternative message. The structure should now look like Figure \ref{fig:ch2-bananas4}.
+Try this first -- extend you program with an \texttt{else} line and then a an alternative message. The structure should now look like Figure \ref{fig:ch2-bananas4} and the code like:
+
+\begin{docspec}
+if strcmp(MY\_ANSWER, 'yes')
+\\ \ \ [MESSAGE1]
+\\else
+\\ \ \ [MESSAGE2]
+\\end
+\end{docspec}
 
 \begin{marginfigure}[+0.0in]
 \includegraphics[width=\linewidth]{ch2-bananas4.eps}
@@ -2745,26 +2768,15 @@ Try this first -- extend you program with an \texttt{else} line and then a an al
 \label{fig:ch2-bananas4}
 \end{marginfigure}
 
-You could also turn this around, and test for any answer except 'no' (the \(\sim\) is making the test, not 'no'), i.e.
-\begin{docspec}
-if \(\sim\)strcmp(MY\_ANSWER, 'no')
-\\ \ \ [MESSAGE 1]
-\\else
-\\ \ \ [MESSAGE 2]
-\\end
-\end{docspec}
-
-\noindent Now you are asking whether the answer is something other than 'no' (which might be 'yes', but not necessarily so) -- in the logical construct -- whether the (string) contents of \texttt{answer} are not equivalent to 'no'.
-
 Finally -- you could extend this example further and tackle the situation of their being 3 possible answers -- 'yes', 'no', and ... 'I don't know' (or any other answer).
 Now the basic structure becomes
 \begin{docspec}
 if strcmp(MY\_ANSWER, 'yes')
-\\ \ \ [MESSAGE 1]
+\\ \ \ [MESSAGE1]
 \\elseif strcmp(MY\_ANSWER, 'no')
-\\ \ \ [MESSAGE 3]
+\\ \ \ [MESSAGE2]
 \\else
-\\ \ \ [MESSAGE 2]
+\\ \ \ [MESSAGE3]
 \\end
 \end{docspec}
 \noindent Here -- we are now adding an \texttt{elseif ... }line (followed by its specific message) (and see Box/\textbf{help}). Maybe try this and test it fully -- inputting a 'yes', a 'no', and some other answer, and confirming that you get the correct message displayed.
@@ -2783,6 +2795,7 @@ if strcmp(MY\_ANSWER, 'yes')
 This will work, but you might note that you have had to exactly duplicate the MESSAGE line. If instead of displaying a simple message, a complex calculation was carried out -- all the lines of the code following the \texttt{if ...} would have to be exactly duplicated after the \texttt{elseif ...} . While it might seem trivial to simply copy-paste the required lines, this is\sidenote{Note quite in the same way that driving down a mountain highway with your eyes shut or hungry sharks are dangerous.} dangerous -- if the first set of lines are ever changed (due to a bug-fix or simple further development of the code), the same changes MUST\ then be exactly duplicated in each and every instance, or the code will not longer work correctly. This is *very* easy to forget to do, particularly for extensive code or code that you have not looked at for ... years. Code duplication also makes the overall code unnecessarily long (and hence harder to look through).
 
 Instead, we can nest statements containing relational operators. What does this mean? Well, in the example of the answer being 'yes' or 'YES', logically, what we want is:
+
 \begin{itemize}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item[] (1) the contents of \texttt{answer} is equivalent to 'yes'
@@ -2793,18 +2806,23 @@ In code, this is written:
 \begin{docspec}
 strcmp(answer, 'yes') || strcmp(answer, 'YES')
 \end{docspec}
+
 Make sure you are happy with what this means (it is pretty well much exactly as it looks == logic).
 
-So -- go modify your code to allow for a 'YES' or a 'yes'. Hell, try allowing for  a 'Y' or a 'y' as well.\sidenote{Sort of for this reason and that there are many different ways of writing 'yes', software often requires you to answer 'yes' in a restricted number of ways -- this restriction is made clear as part of the message that asks the question. Common is to restrict the answer to 'Y' or 'y'.} (You could extend it to 'no' also but I think you get the point ...)
+So -- go modify your code to allow for a 'YES' or a 'yes'. Hell, try allowing for  a 'Y' or a 'y' as well.\sidenote{Sort of for this reason and that there are many different ways of writing 'yes', software often requires you to answer 'yes' in a restricted number of ways -- this restriction is made clear as part of the message that asks the question. Common is to restrict the answer to 'Y' or 'y'.} (You could extend it to 'no' also but I think you get the point ...) Be careful with all the nested parentheses -- an source of mistakes/bugs. You might write it like this, for example: 
+
+\begin{docspec}
+if (strcmp(answer, 'yes') || strcmp(answer, 'YES'))
+\end{docspec}
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
 
 \newthought{A non-text and non fruit related example. Almost.}
 
-How many bananas could you eat in a day? I bet it is less than ten. We'll let the computer ask and if the answer is 10 or more, you (the computer) shouts: 'liar!'.\sidenote{This example is even more stupid than the last one. But no more stupid than in any computer programming textbook and it will at least demonstrate a subtly different usage of \texttt{if ...}.}
+How many bananas could you eat in a day? I bet it is less than ten. We'll let the computer ask and if the answer is 10 or more, you (the computer) replies: 'liar!'.\sidenote{This example is even more stupid than the last one. But no more stupid than in any computer programming textbook and it will at least demonstrate a subtly different usage of \texttt{if ...}.}
 
-The basic code is very similar to before. Create a new \textit{m-file}, add a comment line, define your question ('How many bananas do you think you could you eat in a single day?') and then get \textbf{MATLAB} to ask it and pass back whatever is entered in at the command line. The only difference at this point -- refer to the usage of \texttt{input} (see earlier Box) -- is that we want a number input rather than a string. You can call the \textit{variable} into which you assign the result of \texttt{input}, the same as before, or to make it distinct, e.g. \texttt{N\_BANANAS}, i.e.
+The basic code is very similar to before. Create a new \textit{m-file}, add a comment line, define your question ('How many bananas do you think you could you eat in a single day?') and then get \textbf{MATLAB} to ask it and pass back whatever is entered in at the command line. The only difference at this point -- refer to the usage of \texttt{input} (see earlier Box) -- is that we want a number input rather than a string. You can call the \textit{variable} into which you assign the result of \texttt{input}\footnote{Note that the usage of \texttt{input}, now does not include the parameter \texttt{'s'} being passed (which previously specified that a \textit{string} input is expected).}, the same as before, or to make it distinct, e.g. \texttt{N\_BANANAS}, i.e.
 \begin{docspec}
 N\_BANANAS = input(MY\_QUESTION)
 \end{docspec}
@@ -2812,17 +2830,17 @@ N\_BANANAS = input(MY\_QUESTION)
 In the if statement, we now want to test whether the value of \texttt{N\_BANANAS} is greater or equal to 10 (or equivalently, greater than 9), i.e.
 \begin{docspec}
 if (N\_BANANAS >= 10)
-\\ \ \ \ [MESSAGE 1]
+\\ \ \ \ [MESSAGE1]
 \\else
-\\ \ \ \ [MESSAGE 2]
+\\ \ \ \ [MESSAGE2]
 \\end
 \end{docspec}
 or equivalently:
 \begin{docspec}
 if (N\_BANANAS > 9)
-\\ \ \ \ [MESSAGE 1]
+\\ \ \ \ [MESSAGE1]
 \\else
-\\ \ \ \ [MESSAGE 2]
+\\ \ \ \ [MESSAGE2]
 \\end
 \end{docspec}
 
@@ -2832,9 +2850,13 @@ Write this code and get it going. Feel free to switch fruit / fruit consumption 
 
 \subsection{\texttt{switch ...}}
 
-A less commonly used alternative to \texttt{if ...} is \texttt{switch ... case ...} and is helpful in the case of multiple possible correct answers and/or multiple different answers.
+A slightly less commonly used alternative to \texttt{if ...} is:
 
-\marginnote[-2.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
+\texttt{switch ... case ...} 
+
+\noindent and is helpful in the case of multiple possible correct answers and/or multiple different answers.
+
+\marginnote[-4.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
 
 \textbf{Conditional Statements (2)}
 \\The other main \textit{conditional} statement is: \docenvdef{switch ... case ... end}
@@ -2871,7 +2893,10 @@ switch VARIABLE
 
 \end{mdframed}}
 
-For instance, and back to the ... fruit ... you might want the same answer for multiple different kinds of fruit. Trying coding up the program that would give you 'A great fruit!' for any of 'banana', 'kiwi', 'apple', 'pineapple', and 'cucumber' (yes they are technically fruit -- Google it). You will find either you have many lines of code and many duplicated lines of the same message, or a very long line after \texttt{if ...} with loads of \texttt{strcmp} and ORs (\texttt{||}). Using \texttt{switch ... case ...} the code instead might look like: 
+For instance, and back to the ... fruit ... Consider the situation in which you want the same answer for multiple different kinds of fruit. Trying to code up the program that would give you 'A great fruit!' for any of 'banana', 'kiwi', 'apple', 'pineapple', and 'cucumber' (yes they are technically fruit -- \textbf{Google} it), you will find either that you have many lines of code and many duplicated lines of the same message, or a very long line after \texttt{if ...} with loads of \texttt{strcmp} and ORs (\texttt{||}).
+
+Using \texttt{switch ... case ...} the code might instead look like:
+ 
 \begin{docspec}
 switch MY\_ANSWER
 \\ \ \ \ case \{'banana', 'kiwi', 'apple', 'pineapple', and 'cucumber'\}
@@ -2881,18 +2906,29 @@ switch MY\_ANSWER
 \\end
 \end{docspec}
 
-\noindent where \texttt{MY\_ANSWER} is the name of a fruit entered in, in response to input, e.g.
+\noindent where \texttt{MY\_ANSWER} is the variable containing the name of a fruit entered in, in response to input, e.g.
 \begin{docspec}
 MY\_ANSWER = input('What is your favourite fruit?,'s');
 \end{docspec}
 
-Note that for a list of multiple possible value, \textbf{MATLAB} requires the list after \texttt{case} to be encased in \{\}. For a single answer, it would just be:
+Note that for a list of multiple possible values, \textbf{MATLAB} requires the list after \texttt{case} to be encased in curly brackets: \texttt{\{\}}. For a single answer, it would just be:
 \begin{docspec}
 \ \ \ case 'banana'  
 \end{docspec}
 for a string, and for a number:
 \begin{docspec}
 \ \ \ case 10  
+\end{docspec}
+
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{1mm}
+
+\noindent Try re-formulating one of your earlier yes/no \texttt{if} questions in the form of a \texttt{switch ... case ...} code structure, with multiple possibilities for the form of e.g. a 'yes' dealt with by:
+
+\vspace{-4mm}
+\begin{docspec}
+\\ \ \ \ case \{'YES', 'yes', 'Y', 'y'\}
 \end{docspec}
 
 %================================================

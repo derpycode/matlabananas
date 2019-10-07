@@ -3,7 +3,7 @@ Scanning input file BANANAS.idx....
 !! Input index error (file = BANANAS.idx, line = 493):
    -- Extra `!' at position 34 of first argument.
 done (518 entries accepted, 1 rejected).
-Sorting entries.......done (5074 comparisons).
-Generating output file BANANAS.ind....done (347 lines written, 0 warnings).
+Sorting entries.......done (5073 comparisons).
+Generating output file BANANAS.ind....done (346 lines written, 0 warnings).
 Output written in BANANAS.ind.
 Transcript written in BANANAS.ilg.

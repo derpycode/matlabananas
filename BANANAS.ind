@@ -171,9 +171,8 @@
     \subitem \texttt  {text}, \hyperpage{137, 138}
     \subitem \texttt  {textscan}, \hyperpage{98--100}
     \subitem \texttt  {title}, \hyperpage{35, 36}
-    \subitem \texttt  {transpose}, \hyperpage{32}, \hyperpage{40}, 
-		\hyperpage{108}
-    \subitem \texttt  {transpose operator}, \hyperpage{33}
+    \subitem \texttt  {transpose}, \hyperpage{40}, \hyperpage{108}
+    \subitem \texttt  {transpose operator}, \hyperpage{32, 33}
     \subitem \texttt  {VideoWriter}, \hyperpage{87}
     \subitem \texttt  {VideoWriter,}, \hyperpage{87}
     \subitem \texttt  {while}, \hyperpage{78}
@@ -315,9 +314,9 @@
   \item \texttt  {textscan} environment, \hyperpage{98--100}
   \item The command line, \hyperpage{22}
   \item \texttt  {title} environment, \hyperpage{35, 36}
-  \item \texttt  {transpose} environment, \hyperpage{32}, 
-		\hyperpage{40}, \hyperpage{108}
-  \item \texttt  {transpose operator} environment, \hyperpage{33}
+  \item \texttt  {transpose} environment, \hyperpage{40}, 
+		\hyperpage{108}
+  \item \texttt  {transpose operator} environment, \hyperpage{32, 33}
   \item typefaces
     \subitem sizes, \hyperpage{57}
 

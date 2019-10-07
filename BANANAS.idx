@@ -78,8 +78,8 @@
 \indexentry{environments!length@\texttt  {length}|hyperpage}{32}
 \indexentry{size environment@\texttt  {size} environment|hyperpage}{32}
 \indexentry{environments!size@\texttt  {size}|hyperpage}{32}
-\indexentry{transpose environment@\texttt  {transpose} environment|hyperpage}{32}
-\indexentry{environments!transpose@\texttt  {transpose}|hyperpage}{32}
+\indexentry{transpose operator environment@\texttt  {transpose operator} environment|hyperpage}{32}
+\indexentry{environments!transpose operator@\texttt  {transpose operator}|hyperpage}{32}
 \indexentry{flipud environment@\texttt  {flipud} environment|hyperpage}{32}
 \indexentry{environments!flipud@\texttt  {flipud}|hyperpage}{32}
 \indexentry{fliplr environment@\texttt  {fliplr} environment|hyperpage}{32}
