@@ -92,6 +92,9 @@ HAT (POWER) SYMBOL
 PERMIL
 \textperthousand
 
+BACKSLASH
+\textbackslash
+
 \hfill \break
 
 \newlist{arrowlist}{itemize}{1}
