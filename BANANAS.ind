@@ -133,7 +133,7 @@
     \subitem \texttt  {mean}, \hyperpage{235}
     \subitem \texttt  {meshgrid}, \hyperpage{111}
     \subitem \texttt  {mod}, \hyperpage{145}
-    \subitem \texttt  {movie2avi}, \hyperpage{87}
+    \subitem \texttt  {movie2avi}, \hyperpage{87, 88}
     \subitem \texttt  {multiplication}, \hyperpage{27}
     \subitem \texttt  {NaN}, \hyperpage{118}
     \subitem \texttt  {ncread}, \hyperpage{103}
@@ -173,7 +173,7 @@
     \subitem \texttt  {title}, \hyperpage{35, 36}
     \subitem \texttt  {transpose}, \hyperpage{40}, \hyperpage{108}
     \subitem \texttt  {transpose operator}, \hyperpage{32, 33}
-    \subitem \texttt  {VideoWriter}, \hyperpage{87}
+    \subitem \texttt  {VideoWriter}, \hyperpage{88}
     \subitem \texttt  {VideoWriter,}, \hyperpage{87}
     \subitem \texttt  {while}, \hyperpage{78}
     \subitem \texttt  {xlabel}, \hyperpage{35}
@@ -251,7 +251,7 @@
   \item \texttt  {mean} environment, \hyperpage{235}
   \item \texttt  {meshgrid} environment, \hyperpage{111}
   \item \texttt  {mod} environment, \hyperpage{145}
-  \item \texttt  {movie2avi} environment, \hyperpage{87}
+  \item \texttt  {movie2avi} environment, \hyperpage{87, 88}
   \item \texttt  {multiplication} environment, \hyperpage{27}
 
   \indexspace
@@ -323,7 +323,7 @@
   \indexspace
 
   \item variable, \hyperpage{24}
-  \item \texttt  {VideoWriter} environment, \hyperpage{87}
+  \item \texttt  {VideoWriter} environment, \hyperpage{88}
   \item \texttt  {VideoWriter,} environment, \hyperpage{87}
 
   \indexspace

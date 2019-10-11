@@ -1,9 +1,9 @@
 This is C:\BaKoMa_TeX\bin\WIN32\makeindex.exe, version 2.15 [20-Nov-2007] (BaKoMa TNS + Thai support).
 Scanning input file BANANAS.idx....
-!! Input index error (file = BANANAS.idx, line = 493):
+!! Input index error (file = BANANAS.idx, line = 495):
    -- Extra `!' at position 34 of first argument.
-done (518 entries accepted, 1 rejected).
-Sorting entries.......done (5073 comparisons).
+done (520 entries accepted, 1 rejected).
+Sorting entries.......done (5133 comparisons).
 Generating output file BANANAS.ind....done (346 lines written, 0 warnings).
 Output written in BANANAS.ind.
 Transcript written in BANANAS.ilg.
