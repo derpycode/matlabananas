@@ -102,7 +102,7 @@
     \subitem \texttt  {FUNCTION}, \hyperpage{17}
     \subitem \texttt  {gca}, \hyperpage{133}
     \subitem \texttt  {geoshow}, \hyperpage{115}
-    \subitem \texttt  {getframe}, \hyperpage{87}
+    \subitem \texttt  {getframe}, \hyperpage{86}
     \subitem \texttt  {ginput}, \hyperpage{187}
     \subitem \texttt  {greater than}, \hyperpage{28}
     \subitem \texttt  {greater than or equal to}, \hyperpage{28}
@@ -124,7 +124,7 @@
 		\hyperpage{124}
     \subitem \texttt  {isnana}, \hyperpage{120}
     \subitem \texttt  {legend}, \hyperpage{54}
-    \subitem \texttt  {length}, \hyperpage{32}, \hyperpage{96}, 
+    \subitem \texttt  {length}, \hyperpage{32}, \hyperpage{97}, 
 		\hyperpage{148}
     \subitem \texttt  {less than}, \hyperpage{28}
     \subitem \texttt  {less than or equal to}, \hyperpage{28}
@@ -175,7 +175,7 @@
     \subitem \texttt  {title}, \hyperpage{35, 36}
     \subitem \texttt  {transpose}, \hyperpage{40}, \hyperpage{109}
     \subitem \texttt  {transpose operator}, \hyperpage{32, 33}
-    \subitem \texttt  {VideoWriter}, \hyperpage{88}
+    \subitem \texttt  {VideoWriter}, \hyperpage{87}
     \subitem \texttt  {VideoWriter,}, \hyperpage{87}
     \subitem \texttt  {while}, \hyperpage{78}
     \subitem \texttt  {xlabel}, \hyperpage{35}
@@ -206,7 +206,7 @@
 
   \item \texttt  {gca} environment, \hyperpage{133}
   \item \texttt  {geoshow} environment, \hyperpage{115}
-  \item \texttt  {getframe} environment, \hyperpage{87}
+  \item \texttt  {getframe} environment, \hyperpage{86}
   \item \texttt  {ginput} environment, \hyperpage{187}
   \item \texttt  {greater than} environment, \hyperpage{28}
   \item \texttt  {greater than or equal to} environment, \hyperpage{28}
@@ -237,7 +237,7 @@
   \indexspace
 
   \item \texttt  {legend} environment, \hyperpage{54}
-  \item \texttt  {length} environment, \hyperpage{32}, \hyperpage{96}, 
+  \item \texttt  {length} environment, \hyperpage{32}, \hyperpage{97}, 
 		\hyperpage{148}
   \item \texttt  {less than} environment, \hyperpage{28}
   \item \texttt  {less than or equal to} environment, \hyperpage{28}
@@ -324,7 +324,7 @@
   \indexspace
 
   \item variable, \hyperpage{24}
-  \item \texttt  {VideoWriter} environment, \hyperpage{88}
+  \item \texttt  {VideoWriter} environment, \hyperpage{87}
   \item \texttt  {VideoWriter,} environment, \hyperpage{87}
 
   \indexspace

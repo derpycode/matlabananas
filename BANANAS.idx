@@ -253,18 +253,20 @@
 \indexentry{environments!disp@\texttt  {disp}|hyperpage}{85}
 \indexentry{num2str environment@\texttt  {num2str} environment|hyperpage}{85}
 \indexentry{environments!num2str@\texttt  {num2str}|hyperpage}{85}
-\indexentry{getframe environment@\texttt  {getframe} environment|hyperpage}{87}
-\indexentry{environments!getframe@\texttt  {getframe}|hyperpage}{87}
+\indexentry{num2str environment@\texttt  {num2str} environment|hyperpage}{85}
+\indexentry{environments!num2str@\texttt  {num2str}|hyperpage}{85}
+\indexentry{getframe environment@\texttt  {getframe} environment|hyperpage}{86}
+\indexentry{environments!getframe@\texttt  {getframe}|hyperpage}{86}
 \indexentry{movie2avi environment@\texttt  {movie2avi} environment|hyperpage}{87}
 \indexentry{environments!movie2avi@\texttt  {movie2avi}|hyperpage}{87}
 \indexentry{VideoWriter, environment@\texttt  {VideoWriter,} environment|hyperpage}{87}
 \indexentry{environments!VideoWriter,@\texttt  {VideoWriter,}|hyperpage}{87}
 \indexentry{movie2avi environment@\texttt  {movie2avi} environment|hyperpage}{87}
 \indexentry{environments!movie2avi@\texttt  {movie2avi}|hyperpage}{87}
-\indexentry{VideoWriter environment@\texttt  {VideoWriter} environment|hyperpage}{88}
-\indexentry{environments!VideoWriter@\texttt  {VideoWriter}|hyperpage}{88}
-\indexentry{VideoWriter environment@\texttt  {VideoWriter} environment|hyperpage}{88}
-\indexentry{environments!VideoWriter@\texttt  {VideoWriter}|hyperpage}{88}
+\indexentry{VideoWriter environment@\texttt  {VideoWriter} environment|hyperpage}{87}
+\indexentry{environments!VideoWriter@\texttt  {VideoWriter}|hyperpage}{87}
+\indexentry{VideoWriter environment@\texttt  {VideoWriter} environment|hyperpage}{87}
+\indexentry{environments!VideoWriter@\texttt  {VideoWriter}|hyperpage}{87}
 \indexentry{movie2avi environment@\texttt  {movie2avi} environment|hyperpage}{88}
 \indexentry{environments!movie2avi@\texttt  {movie2avi}|hyperpage}{88}
 \indexentry{movie2avi environment@\texttt  {movie2avi} environment|hyperpage}{88}
@@ -285,8 +287,8 @@
 \indexentry{environments!exist@\texttt  {exist}|hyperpage}{94}
 \indexentry{pcolor environment@\texttt  {pcolor} environment|hyperpage}{95}
 \indexentry{environments!pcolor@\texttt  {pcolor}|hyperpage}{95}
-\indexentry{length environment@\texttt  {length} environment|hyperpage}{96}
-\indexentry{environments!length@\texttt  {length}|hyperpage}{96}
+\indexentry{length environment@\texttt  {length} environment|hyperpage}{97}
+\indexentry{environments!length@\texttt  {length}|hyperpage}{97}
 \indexentry{fopen environment@\texttt  {fopen} environment|hyperpage}{100}
 \indexentry{environments!fopen@\texttt  {fopen}|hyperpage}{100}
 \indexentry{fclose environment@\texttt  {fclose} environment|hyperpage}{100}

@@ -313,7 +313,31 @@ is then showing you what happens (you to type in \texttt{hello} at the command l
 \noindent\rule{4cm}{0.5pt}
 \vspace{2mm}
 
-\noindent When you see a string or variable name in all CAPITAL LETTERS -- this is a 'placeholder' and is indicating that you should substitute in an appropriate string or variable name in its place, e.g. 
+\noindent Lines of code that goes with the discussion in the text and which is not necessarily intended for you to type in (although you may still want to, simply to try it out), is given in a light Courier font:
+
+\begin{docspec}
+\% light font lines of code
+\end{docspec} 
+
+Lines of code that are intended for you to type in -- either at the command line ...
+
+\begin{docspecbold}
+>> disp(\textcolor[rgb]{1,0,1}{'hello'})
+\end{docspecbold}
+
+\noindent or place in an \textbf{m-file} ...
+
+\begin{docspecbold}
+\textcolor[rgb]{0,0.501961,0}{\% place in a file}
+\end{docspecbold} 
+
+\noindent are given in a \textbf{bold Courier font}. Additionally, code to type in, where possible/appropriate, will include the same context-colors as \textbf{MATLAB}.
+
+Instructions where you should do or try something out, rarher than read and digest, where possible are given in \textbf{bold}. (Note that you might want to try out other (light font) code to get a complete picture of the art of programming.)
+
+\vspace{2mm}
+
+When you see a string or variable name in all CAPITAL LETTERS -- this is a 'placeholder' and is indicating that you should substitute in an appropriate string or variable name in its place, e.g. 
 
 \begin{docspec}
 load('FILENAME','-ascii');
@@ -3253,77 +3277,101 @@ The value of  the loop counter \texttt{n} simply differs by a factor of 10 at ev
 
 First download all the monthly global surface temperature data-files on the  course webpage (there are 12 files to download)\sidenote{In scripting, it is also possible to automate downloading files from the internet.}. Then you are going to want to plot them all ... which would get desperately tedious if you had to do this at the command line 12 times. Think how much more of your life you would be wasting if the data were weekly. Or monthly data for 1972 through 2003, some 372 separate data-files ... You would never have time to go get a coffee ever again(?)
 
-Create a new \textit{script} \textsf{m-file}. Call it ... anything you like\sidenote{\texttt{bob\_the\_builder.m} counts as 'anything you like', but that looks pretty lame and it certainly won't help you remember what the script does if you came back to it sometime in the future.}. However, as well as appropriately naming your \textit{script} file, add a \textit{comment} on the first line of the file as a reminder to yourself of what it is going to do.
-
 To make an animation, we need to make a series of frames, with each one being a different monthly temperature plot (in sequence; Jan through Dec). The files are rather conveniently named: \texttt{temp1.tsv}, \texttt{temp2.tsv}, ... \texttt{temp12.tsv}\sidenote{Don't worry about the \texttt{.tsv} file extension -- the file format is plain old text (ASCII) and could have instead been \texttt{.txt}.}. We should start by loading this little lot in. For the first file we could write:
-\begin{docspec}
-temp = load('temp1.tsv');
-\end{docspec}
+
+\begin{docspecbold}
+>> temp = load('temp1.tsv','-ascii');
+\end{docspecbold}
+
 or equally:
-\begin{docspec}
-temp(:,:) = load('temp1.tsv');
-\end{docspec}
-and hence with a slight-of-hand, we could also write:
-\begin{docspec}
-temp(:,:,1) = load('temp1.tsv');
-\end{docspec}
-Can you see that these statements are identical? Run the script with one, then with the other, just to be sure. The last form is really useful, because we can now go on and write:
-\begin{docspec}
-temp(:,:,2) = load('temp2.tsv');
-\end{docspec}
+
+\begin{docspecbold}
+>> temp(:,:) = load('temp1.tsv','-ascii');
+\end{docspecbold}
+
+Or if we wanted to save all the data in a 3D array, we could also write:
+
+\begin{docspecbold}
+>> temp(:,:,1) = load('temp1.tsv','-ascii');
+\end{docspecbold}
+
+Can you see that these statements are identical? Try them all out, just to be sure. The last form is really useful, because we can now go on and write:
+
+\begin{docspecbold}
+>> temp(:,:,2) = load('temp2.tsv','-ascii');
+\end{docspecbold}
+
 What you have done here is to load the January 2D (lon-lat) temperature distribution into the 1st 2D layer of the \texttt{temp} array, and then we have gone and created a second 2D layer on top of the first with the February climate data in it. Look at the \textbf{Workspace window} (or type \texttt{size(temp)}) -- you now have a 3D (94\(\times\)192\(\times\)2) array. Fancy! This is your first 3D array -- there is nothing really conceptually different from the 2D arrays that you have already been using, we simply have a 3rd index for the third dimension -- if it helps, \uline{you can think of a 3D array as being indexed by: row, column, layer}. 
 
 You could go on and load in the March, April, etc data in a similar fashion, but you should be able to see a pattern forming here -- each filename differs only in the number at the end of its name and this number corresponds not only to the number of the month, but will also correspond to the layer index of the 3D array that you will create. This is something that a \textit{loop} could be used for while you go off for a coffee. So this is what we are going to do -- use a \textit{loop} to load in all of the files. So go back and delete the lines that load in the files, one-by-one.
 
+\textbf{Create a new \textit{script} \textsf{m-file}.} Call it ... anything you like\sidenote{\texttt{bob\_the\_builder.m} counts as 'anything you like', but that looks pretty lame and it certainly won't help you remember what the script does if you came back to it sometime in the future.}. However, as well as appropriately naming your \textit{script} file, add a \textit{comment} on the first line of the file as a reminder to yourself of what it is going to do.
+
 We first need to construct the \textit{loop} framework. We'll call the month number counter variable, \texttt{month}. Create a \texttt{for} \textit{loop} (with nothing in it yet) with \texttt{month} going from \texttt{1} to \texttt{12}.\sidenote{Don't forget to suitably comment what it is that the \textit{loop} does with a line (or even 2, but don't write a whole essay) beginning with a \%.} Refer to the course text (this document!), and/or the \textbf{MATLAB}  documentation, and/or the entirety of the internet, if necessary. The syntax (and examples) is described in full under \texttt{>> help for}. Save the script (\textsf{m-file}) and run it\sidenote{Typing: the \texttt{m-file} filename without the extension.}. What happens? Can you tell?
 
 One way of following what is going on as \textbf{MATLAB} executes the commands within a script is to explicitly request that it tells you how it is getting on. You can use the function \docenv{disp} to help you follow what the program is doing (this is Old School debugging\sidenote{You can also add a \textit{breakpoint} within the \textit{loop} and thus can cycle through the \textit{loops} one-by-one, thereby being able to check the status of the variables within the loop and how they change from iteration to iteration.}). Within the loop, add the following line:
-\begin{docspec}
+
+\begin{docspecbold}
 disp(month)
-\end{docspec}
-then save and re-run the \textit{script}.
-Now you can see how the loop progresses. This sort of thing can be useful in helping to \textit{debug} a program -- it allows you to follow a program's progress, and if the program (or \textbf{MATLAB} script) crashes, then at least you will know at what loop count this happened at, even if you are not given any more useful information by \textbf{MATLAB}. Only when you are happy that you have constructed a \textit{loop} that goes around and around 12 times with the variable \texttt{month} counting up from 1 to 12; comment out (\texttt{\%}) the printing (\texttt{disp}) line\sidenote{Note that by commenting out a line rather than completely deleting it, if you want to print out the loop count in the future, all you have to do is to un-comment the line, rather than type in the command all over again. This can be really useful if your debug command is long, or particularly if you have a whole series of lines that are required to report the information you want to know.} (unless you have grown rather attached to it) and move on.
+\end{docspecbold}
+
+\noindent and then save and re-run the \textit{script}. Now you can see how the loop progresses. This sort of thing can be useful in helping to \textit{debug} a program -- it allows you to follow a program's progress, and if the program (or \textbf{MATLAB} script) crashes, then at least you will know at what loop count this happened at, even if you are not given any more useful information by \textbf{MATLAB}. Only when you are happy that you have constructed a \textit{loop} that goes around and around 12 times with the variable \texttt{month} counting up from 1 to 12; comment out (\texttt{\textcolor[rgb]{0,0.501961,0}{\%}}) the printing (\texttt{disp}) line\sidenote{Note that by commenting out a line rather than completely deleting it, if you want to print out the loop count in the future, all you have to do is to un-comment the line, rather than type in the command all over again. This can be really useful if your debug command is long, or particularly if you have a whole series of lines that are required to report the information you want to know.} (unless you have grown rather attached to it) and move on.
 
 We can construct filenames to load in by:
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \vspace{1mm}
-\item Forming a complete filename by \textit{concatenating} sperate strings. For example: \begin{docspec}
+\item Forming a complete filename by \textit{concatenating} sperate strings. For example: 
+
+\begin{docspec}
 >> filename = ['temp' '1' '.tsv']
 \end{docspec}
+
 \noindent will create the filename  out of 3 components parts -- a common elements of all the filenames (\texttt{'temp'}), the number of the month (\texttt{'1'}), and the file extension (\texttt{'.tsv'}). 
 \vspace{1mm}
 \item Converting a number value of a (count) variable to a string (the \docenv{num2str} function), so instead of hard-coding in the string representing a number (\texttt{1} in this example), you convert from the value of a counter, e.g. \texttt{num2str(month)}.
 \end{enumerate}
 
+\marginnote[-0.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
+\docenvdef{num2str}
+\\Converts a number to a \textit{string} (\texttt{s}), e.g.
+\begin{docspecmargin}
+s = num2str(N)
+\end{docspecmargin}
+where \texttt{N} is any number type variable.
+\\\texttt{num2str} is useful in adding specific captions to plots (with caption text based on the value of a numerical variable) and in creating automated strings (e.g. filenames) within a loop.
+\end{mdframed}}
+
 This is where the role of the loop counter  (stored in the variable \texttt{month}) comes in. Each time around the loop,  the value of  variable \texttt{month} is the number of the month. All you have to do is to convert this value to a  \textit{string} and thereby automatically generate the correct month's filename each time (as per above).
 
 Now add the following within the \textit{loop} in your script;
-\begin{docspec}
+
+\begin{docspecbold}
 filename = ['temp' num2str(month) '.tsv'];
-\end{docspec}
+\end{docspecbold}
+
 and after it (still within the \textit{loop}) some debugging\sidenote{Or you can make use of a \textbf{breakpoint}.}:
-\begin{docspec}
+
+\begin{docspecbold}
 disp(filename)
-\end{docspec}
-just to confirm that appropriate filenames are being generated.
-\noindent Save and run the \textit{script}. Satisfy yourself that you know what it is doing. Can you see that you are now automatically generating all the 12 filenames in sequence? And this only takes 3 lines of code total (not including the debugging line), compared with 12 lines if you had to write down all the 12 file names long-hand.
+\end{docspecbold}
+
+\noindent just to confirm that appropriate filenames are being generated.
+
+Save and run the \textit{script}. Satisfy yourself that you know what it is doing. Can you see that you are now automatically generating all the 12 filenames in sequence? And this only takes 3 lines of code total (not including the debugging line), compared with 12 lines if you had to write down all the 12 file names long-hand.
  
-Now \textit{comment out} (or delete) the \texttt{disp(filename)} line, and add a new line to load in each dataset from the filename that is constructed each time the loop goes around.\sidenote[][-1.0in]{Remember that the load line goes inside the loop. (Why? Try writing it outside the loop (at the end) and see what happens if you like.)} This is almost identical to the use of the load command earlier in the example:
-\begin{docspec}
-temp(:,:,month) = load(filename);
-\end{docspec}
-\noindent but ... with 2 important differences. Firstly, rather than specifying the 1st, then 2nd, etc layer of the 3D array, here we are specifying the layer with an index equal to  the contents (or value) of \texttt{month}, which, if you remember, counts up from 1 to 12 in the \textit{loop}. Secondly, rather than specifying the filename explicitly in the load command, we are passing the string contained in the variable \texttt{filename}. Hopefully on the previous line of code within the loop, you have created the string value of \texttt{filename} ...
+Now \textit{comment out} (or delete) the \texttt{disp(filename)} line, and add a new line to load in each dataset from the filename that is constructed each time the loop goes around.\sidenote[][-1.0in]{Remember that the load line goes inside the loop. (Why? Try writing it outside the loop (at the end) and see what happens if you like.)} e.g.\footnote{Alternatively, you could store all the data slices as you load them in and  rather than specifying the 1st, then 2nd, etc layer of the 3D array, here we are specifying the layer with an index equal to the contents (or value) of \texttt{month}, which, if you remember, counts up from 1 to 12 in the \textit{loop}.
+\begin{docspecmargin}
+temp(:,:,month) = ... load(filename,'-ascii');
+\end{docspecmargin}
+If youn run this coding variant and take a look at the \textsf{Workspace window} -- note that you have an array (\texttt{temp}) that has size 94\(\times\)192\(\times\)12.
+}:
 
-Assign the  2D data array that is loaded in, to the \texttt{temp} array variable, specifying the layer number equal to the month number, i.e.
+\begin{docspecbold}
+temp(:,:) = load(filename,'-ascii');
+\end{docspecbold}
 
-\begin{docspec}
-temp(:,:,month) = load(filename);
-\end{docspec}
-
-Run this and take a look at the \textsf{Workspace window} -- note that you have an array (\texttt{temp}) that has size 94\(\times\)192\(\times\)12. If temp is 94\(\times\)192\(\times\)1 then go back a page or so and go through the bit about loading data into a 3D array. You want to avoid over-writing the information that is already there, so the line;
-\texttt{temp = load(filename)};
-will not work (and you will only get a 94\(\times\)92 array after going 12 times around the \textit{loop}). Why? (Again, look back a page-ish.)\sidenote[][-1.0in]{If you are still stuck, then stick up a paw.}
+\noindent Note that rather than specifying the filename explicitly in the load command, you are now passing the string contained in the variable \texttt{filename}. (Hopefully on the previous line of code within the loop, you have created the string value of \texttt{filename} ...) 
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
@@ -3337,13 +3385,16 @@ will not work (and you will only get a 94\(\times\)92 array after going 12 times
 \label{fig:ch3-pcolortemp}
 \end{marginfigure}
 
-At the end of (but still within) the \textit{loop} (i.e., before the \textit{loop} has completely finished), create a new \textsf{figure window} and then plot (using \texttt{pcolor}) the monthly temperature data. On the subsequent lines, add the essential labelling stuff (lines after that). All within the loop still. This line should look something like:
-\begin{docspec}
-pcolor(temp(:,:,month));
-\end{docspec}
-and should produce extremely exciting graphics as in Figure \ref{fig:ch3-pcolortemp}\sidenote[][0.0in]{The 2D graphics will get *much* better later -- one thing at a time!}. (\uline{Don't} just type this line in blindly (maybe it doesn't work anyway). Make sure that you understand what you are doing (otherwise why take the class at all?).)
+At the end of (but still within) the \textit{loop} (i.e., before the \textit{loop} has completely finished), create a new \textsf{figure window} and then plot (using \texttt{pcolor}) the monthly temperature data. On the subsequent lines, add the essential labelling stuff (lines after that). All within the loop still. These lines should look something like:
 
-Save and run the \textit{script}. Do you have 12 different temperature plots on the computer screen?\sidenote[][1.75in]{If not, stick you paw up in the air for help ...} Note that if you keep running the program, you'll get 12 more figure windows each time. This is where the \texttt{close all} command comes in useful, and you could add this at the start (or end) of your \textit{script}. Because if you re-run the \textit{script}, you wont then end up with 24 figure windows. And then 36 the time after that, and ... 
+\begin{docspecbold}
+figure;
+\\pcolor(temp(:,:));
+\end{docspecbold}
+
+\noindent (or could be simply written \texttt{pcolor(temp);}) and should produce extremely exciting graphics as in Figure \ref{fig:ch3-pcolortemp}\sidenote[][0.25in]{The 2D graphics will get *much* better later -- one thing at a time!}.
+
+Save and run the \textit{script}. Do you have 12 different temperature plots on the computer screen?\sidenote[][0.0in]{If not, stick you paw up in the air for help ...} Note that if you keep running the program, you'll get 12 more figure windows each time. This is where the \texttt{close all} command comes in useful, and you could add this at the start (or end) of your \textit{script}. Because if you re-run the \textit{script}, you wont then end up with 24 figure windows. And then 36 the time after that, and ... 
 
 Actually, there is  no need to create a new \textsf{figure window} each time -- comment out the command that creates a new \textsf{figure window} (\texttt{figure}). Save and re-run and note the difference. 
 
@@ -3351,22 +3402,29 @@ Actually, there is  no need to create a new \textsf{figure window} each time -- 
 \noindent\rule{4cm}{0.5pt}
 \vspace{2mm}
 
-\noindent Finally ... look up \textbf{MATLAB} \texttt{help} on \docenvdef{getframe}. Then go back to your global temperature loading/plotting script and add the following line\sidenote{Where to put the line? See the \texttt{Example} given in the \texttt{help} on this function. It is exactly what you are doing here.}:
-\begin{docspec}
-M(month)=getframe;
-\end{docspec}
+\noindent Finally ... look up \textbf{MATLAB} \texttt{help} on \docenvdef{getframe}. Then go back to your global temperature loading/plotting script and add the following line to your program\sidenote{Where to put the line? Within the loop and after you have plotted the plot.}:
 
-Save and run. When \textbf{MATLAB} is all done, at the commend line type in:
-\begin{docspec}
+\begin{docspecbold}
+M(month) = getframe;
+\end{docspecbold}
+
+Save and run. When \textbf{MATLAB} is all done, at the command line, type:
+
+\begin{docspecbold}
 >> movie(M,5,2)
-\end{docspec}
+\end{docspecbold}
+
 \noindent and hopefully ... an animation of the progression of monthly surface air temperatures globally, should appear\sidenote{Note that the active Figure window may have disappeared behind some other windows so go rescue it to see what is happening.}.
 
 If you want to play some more, just type \texttt{help movie} -- there are controls for not only the number of times you loop through the complete animation, but also for the numbers of frames per second. But we will revisit this later -- the 2D plotting you have done so far is *very* basic and there is no scale or sane x/y axes. Later we can also add the continental outlines that will help orient you and improve the quality of the graphical output. 
 
 \uline{Before} you move -- go look at your \textit{script} -- is it well commented? Would you be able to tell exactly what it does it by the end of the course? What about next year? Are the \textit{loop} contents indented? It is important that it is commented and laid out adequately.
 
-Finally -- there is not longer a convenient \textbf{MATLAB} command to turn the \textbf{MATLAB} format movie (\texttt{M}) into a format you can use elsewhere (there used to be a command called\docenv{movie2avi} (see Box), but it has been ... retired (curse you, Mathworks)). The new/replacement command is \docenvdef{VideoWriter,} which differs mostly in that the animation is now created within the program and the  \textsf{.avi} format animation has its frames added (within the loop) as the graphics are created (rather than converting the frames afterwards as in \docenv{movie2avi}).
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
+
+\noindent Creating a portable animation format would be useful (i.e. that you could play on a different computer or upload to the www). There is no longer a convenient \textbf{MATLAB} command to turn the \textbf{MATLAB} format movie (\texttt{M}) into a format you can use elsewhere (there used to be a command called \docenv{movie2avi} (see Box), but it has been ... retired (curse you, Mathworks)). The new/replacement command is \docenvdef{VideoWriter,} which differs mostly in that the animation is now created within the program and the  \textsf{.avi} format animation has its frames added (within the loop) as the graphics are created (rather than converting the frames afterwards as in \docenv{movie2avi}).
 
 To use the \textbf{MATLAB} \docenv{VideoWriter} \textit{function}, you will need to adjust your code along the following lines   (and as per the \textbf{MATLAB} \textsf{help} on \docenv{VideoWriter})\footnote{Do not overly worry about the exact usage/syntax of \texttt{VideoWriter}.}:
 
@@ -3377,7 +3435,7 @@ open(vidObj);\\
 \textcolor[rgb]{0,0.501961,0}{\% Create an animation.}\\
 for month=1:12\\
 \ \ \ filename = [\textcolor[rgb]{1,0,1}{'temp'} num2str(month) \textcolor[rgb]{1,0,1}{'.tsv'}];\\
-\ \ \ temp = load(filename);\\
+\ \ \ temp = load(filename\textcolor[rgb]{1,0,1}{,'-}ascii');\\
 \ \ \ pcolor(temp);\\
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% Write each frame to the file.}\\
 \ \ \ currFrame = getframe;\\
@@ -3387,9 +3445,9 @@ end\\
 close(vidObj);  
 \end{docspecbold}
 
-Note that the code above also simplifies things by not bothering to create a 3D array, but rather over-writing a 2D array (\texttt{temp}) each time around the loop (having first created the animation frame).
+Note that the code above does not bother to create a 3D array of all the data loaded in, but rather, over-writes a 2D array (\texttt{temp}) each time around the loop (having first created the animation frame).
 An animation is created at the end, but there is no record of all the 12 monthly datasets that were loaded in (and this may well be correct/the point).
-\marginnote{\begin{mdframed}[backgroundcolor=gray!5, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!5]
+(See the previous margin comment on how to modify things to create a 3D array of all the data.))\marginnote{\begin{mdframed}[backgroundcolor=gray!5, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!5]
 \textbf{\docenvdef{movie2avi}}
 \\The function \docenv{movie2avi} converts an animation encoded in \textbf{MATLAB}'s \texttt{movie} format to an \textbf{avi} file, which is a common film format that can then be played in \textbf{Windows} (or other operating systems) without having to use \textbf{MATLAB} to display it. It is also a format that could e.g. be embedded in a \textbf{Powerpoint} presentation. A typical basic usage is:
 \begin{docspecmargin}
@@ -3708,9 +3766,9 @@ my\_question = 'Enter a filename: ';
 
 %------------------------------------------------
 
-\newthought{Looping through arrays.} In plotting e.g. global temperature distributions, it would be nice to add on the continental outline. Currently, and particularly with the very  basic 2D plotting you have seen so far (\docenv{pcolor}), you are left to some extent guessing where the land and where the ocean is.
+\newthought{Looping through arrays.} In plotting e.g. global temperature distributions, it would be nice to add on the continental outline on top. Currently, and particularly with the very  basic 2D plotting you have seen so far (\docenv{pcolor}), you are to some extent left guessing where the land and where the ocean is. We are going to work through using a loop to process data that define series of line segments that make up the outlines of the continents.\footnote{\textcolor{red}{\textbf{Example codes provided}}}
 
-A pair of files are provided (from the website), comprising a series of pairs of lon-lat values that delineate the outline of the continents and all but the smallest of islands:
+A pair of files are provided (from the website) that comprise a series of pairs of lon-lat values that delineate the outline of the continents and all but the smallest of islands:
 
 \begin{itemize}[noitemsep]
 \setlength{\itemindent}{.2in}
@@ -3720,13 +3778,27 @@ A pair of files are provided (from the website), comprising a series of pairs of
 
 Download, and then load these into the \textbf{MATLAB} \textsf{workspace} (in the 'usual way'). You should now have 2 vectors. Maybe view them in the \textsf{Variable Window} to get a better idea of what you are dealing with. Also keep an eye on the entries in the \textsf{Workspace Window} and perhaps the \textsf{Min} and \textsf{Max} values to give you an idea of the range (here: of longitude an latitude values).
 
-Try plotting these lon/lat locations. Use the \texttt{scatter} plotting function (which makes it all the easier as your data is in the form of 2 vectors already). You might need to reduce the size of the plotted points (refer to the earlier exercises, or \texttt{help}) and additionally, you might want to fill the points (up to you). Remember you can set the axis limits, which presumably should be 0 to 360 or -180 to 180, on the \textit{x}-axis (longitude), and -90 to +90 on the \textit{y}-axis (latitude). Font sizes of labels can also be increased if necessary. You might end up with something like Figure \ref{fig:ch3-continentaloutline}.
+Try plotting these lon/lat locations. Use the \texttt{scatter} plotting function (which makes it all the easier as your data is in the form of 2 vectors already). You might need to reduce the size of the plotted points (refer to the earlier exercises, or \textsf{help}) and additionally, you might want to fill the points (up to you). Remember you can set the axis limits, which presumably should be 0 to 360 or -180 to 180, on the \textit{x}-axis (longitude), and -90 to +90 on the \textit{y}-axis (latitude). Font sizes of labels can also be increased if necessary. You might end up with something like Figure \ref{fig:ch3-continentaloutline}.
  
-\begin{marginfigure}[0.5in]
+\begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch3-continentaloutline.eps}
 \caption{Continental outline (of sorts).}
 \label{fig:ch3-continentaloutline}
 \end{marginfigure}
+
+\textbf{You can try this at the command line} (no need at this point to put everything in a \textit{script} \textbf{m-file}):
+
+\begin{docspecbold}
+>> lon = load('continental\_outline\_lon.dat','-ascii');
+\\>> lat = load('continental\_outline\_lat.dat','-ascii');
+\\>> scatter(lon,lat);
+\\>> axis([-180 +180 -090 +090]);
+\\>> xlabel('longitude','fontsize',15);
+\\>> ylabel('latitude','fontsize',15);
+\\>> title('Continental outline','fontsize',18);
+\end{docspecbold}
+
+\noindent (but with lots of comment lines!).
 
 By plotting dots (points), the coastal outline at higher latitudes gets increasingly pixelated (why?). So, we might instead plot as lines between the lon-lat pairs. For this, you could simply use \texttt{plot}. Do this, and see if you get something like Figure \ref{fig:ch3-continentaloutline2}.. 
 \begin{marginfigure}[0.0in]
@@ -3745,35 +3817,50 @@ The continental outline dataset is not actually that useless. There are  additio
 \item \textsf{continental\_outline\_end.dat}
 \end{itemize}
 
+i.e.:
+
+\begin{docspecbold}
+>> lstart = load('continental\_outline\_start.dat','-ascii');
+\\>> lend = load('continental\_outline\_end.dat','-ascii');
+\end{docspecbold}
+
+\noindent(Note that you cannot simply call the second variable \texttt{end}.)
+
 These vectors hold information regarding the start row and end row, of each shape. Again, view the contents of these vectors to get an idea of what is going on. For example, you'll see that the first entry is that the first shape starts on row \texttt{1} 
-(\texttt{continental\_outline\_start}), and ends on row \texttt{100} (\texttt{continental\_outline\_end}). The 2nd shape starts on row \texttt{101}, and ends on row \texttt{200}. etc etc
+(\texttt{lstart}), and ends on row \texttt{100} (\texttt{lend}). The 2nd shape starts on row \texttt{101}, and ends on row \texttt{200}. etc etc
 
 The simplest way too start dealing with all this, is to just plot the very first shape, defined by rows \texttt{1-100} of the lon and lat vectors. By now, you hopefully will be able to see that to plot rows \texttt{1-100} of  lon and lat data, you are going to do:
-\begin{docspec}
-plot(lon(1:100),lat(1:100));
-\end{docspec}
-(here I have named the arrays \texttt{lon} and \texttt{lat} for added convenience rather than the long-winded default file-name based versions
+ 
+\begin{docspecbold}
+>> plot(lon(1:100),lat(1:100));
+\end{docspecbold}
 
-\noindent (\texttt{continental\_outline\_lat}, \texttt{continental\_outline\_lon})).
-
-Well ... this is probably about as unexciting as it gets -- a small piece of the Antarctic coastline. If you do a \texttt{hold on} and plot the next block (rows \texttt{101-200}), you'll get the next chunk of coastline. (Try this and see.) You could keep going this -- manually adding additional sections of the global continental outline. This could get tedious ... and it turns out that there are 283 different fragments to plot, all one after another. (This number comes from asking \textbf{MATLAB} the \texttt{length} of \texttt{continental\_outline\_start} or \texttt{continental\_outline\_end}.) This is, of course, why we need to get clever with a \textit{loop} and automatically go through all 283 fragments, plotting them on on top of another in the same figure.
+Well ... this is probably about as unexciting as it gets -- a small piece of the Antarctic coastline. If you do a \texttt{hold on} and plot the next block (rows \texttt{101-200}), you'll get the next chunk of coastline. (Try this and see.) You could keep going this -- manually adding additional sections of the global continental outline. This could get tedious ... and it turns out that there are 283 different fragments to plot, all one after another. (This number comes from asking \textbf{MATLAB} the \texttt{length} of \texttt{lstart} or \texttt{lend}.) This is, of course, why we need to get clever with a \textit{loop} and automatically go through all 283 fragments, plotting them on on top of another in the same figure.
 
 \marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
 \docenvdef{length}
 \\This function could almost not be simpler -- just pass the name of a vector, and it returns its length (i.e. the number of rows, or columns, depending on the shape of the vector).
 \end{mdframed}}
 
-How? First you need to write the \texttt{plot} command in a more general form -- you do not want to have to read the values out of the \texttt{continental\_outline\_start} and \texttt{continental\_outline\_end} files manually. Hopefully, it should be apparent that you can re-write the plot statement for the first fragment, as:
+How? First you need to write the \texttt{plot} command in a more general form -- you do not want to have to read the values out of the \texttt{lstart} and \texttt{lend} files manually. Hopefully, it should be apparent that you can re-write the plot statement for the first fragment, as:
+
 \begin{docspec}
-plot(lon(line\_start:line\_end),lat(line\_start:line\_end));
+plot(lon(LINE\_START:LINE\_END),lat(LINE\_START:LINE\_END));
 \end{docspec}
-where for the first fragment, the values of \texttt{line\_start} and \texttt{line\_end} are given by \texttt{lstart(1)} and \texttt{lend(1)}, respectively (renaming the original vectors to shorten the variable name)\sidenote{You cannot use the obvious variable name \texttt{end} -- why not?}. Re-writing again:
-\begin{docspec}
-plot(lon(lstart(1):lend(1)),lat(lstart(1):lend(1)));
-\end{docspec}
+
+where for the first fragment, the values of \texttt{LINE\_START} and \texttt{LINE\_END} are given by \texttt{lstart(1)} and \texttt{lend(1)}, respectively (renaming the original vectors to shorten the variable name)\sidenote{You cannot use the obvious variable name \texttt{end} -- why not?}. Re-writing again:
+
+\begin{docspecbold}
+>> plot(lon(lstart(1):lend(1)),lat(lstart(1):lend(1)));
+\end{docspecbold}
+
 Try this and check you still get the single piece of the Antarctic coastline.
 
 Really, you should hopefully be making the mental leap to looking at \texttt{(1)} and thinking that it could be: \texttt{(n)}, where \texttt{n} is a loop counter which can go from 1 to 283\sidenote[][-0,0in]{This number comes from a 5th file -- \texttt{continental\_outline\_k.dat}, that numbers the continents/islands from 1 to 283. You don't need it, although downloading it, loading it, and determining the length f the vector gives you the loop limit and you would not have to go trusting me to write down 283 correctly without making a mistake ... } and hence loop through all the line fragments. Yes? For instance, setting \texttt{n=1}, and plot (with \texttt{n} replacing \texttt{1} in the code fragment above) -- you should again get that very  first fragment. Try setting \texttt{n=283} and plot. Do you get the last fragment (what is it of\sidenote[][1.0 in]{An island at about 20N and -150E if you have done it correctly.})?
+
+So ...\textbf{ create yourself a new m-file}. Load in the lon-lat pairs as vectors (renaming then to something more manageable if you wish). Load in the vectors containing the start and end information. Create a \texttt{do ... end} loop. Maybe print (\texttt{disp}) the loop count and run the program (after saving), just to check first that the loop is functioning correctly. Before the loop, create a \textsf{Figure window}. and set \texttt{hold on}. You now have a basic shall of a program -- loading in the data, initializing a figure, and appropriate looping, but not yet actually doing anything within the loop.
+
+In the \textit{loop} all you need is the \texttt{plot} command, but with the start and end rows being a function of \texttt{n} (or whatever you call the loop counter). Set axis dimensions and label nicely (after the loop ends). Run it. Hopefully ... something like Figure \ref{fig:ch3-continentaloutline3} appears(?)
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch3-continentaloutline3.eps}
@@ -3781,9 +3868,7 @@ Really, you should hopefully be making the mental leap to looking at \texttt{(1)
 \label{fig:ch3-continentaloutline3}
 \end{marginfigure}
 
-So ... create yourself an \textsf{m-file}. Load in the lon-lat pairs as vectors (renaming then to something more manageable if you wish). Load in the vectors continuing the start and end information. Create a \texttt{do ... end} loop. Maybe print (\texttt{disp}) the loop count and run the program (after saving), just to check first that the loop is functioning correctly. Before the loop, create a \textsf{Figure window}. and set \texttt{hold on}. You now have a basic shall of a program -- loading in the data, initializing a figure, and appropriate looping, but not yet actually doing anything within the loop.
-
-In the \textit{loop} all you need is the \texttt{plot} command, but with the start and end rows being a function of \texttt{n} (or whatever you call the loop counter). Set axis dimensions and label nicely (after the loop ends). Run it. Hopefully ... something like Figure \ref{fig:ch3-continentaloutline3} appears(?)
+An example code is given at the end of the text should you need any guidance as to e.g. in what order or where certain lines should go.
 
 %----------------------------------------------------------------------------------------
 % CHAPTER 3
@@ -11308,7 +11393,7 @@ Various refinements that come to mind and that you might try and implement:
 
 \subsection*{Code for creating an animation}
 
-\begin{docspec}
+\begin{docspecbold}
 \textcolor[rgb]{0,0.501961,0}{\% Prepare the new file.}\\
 vidObj = VideoWriter(\textcolor[rgb]{1,0,1}{'my\_animation.avi'});\\
 open(vidObj);\\
@@ -11323,7 +11408,56 @@ for month=1:12\\
 end\\
 \textcolor[rgb]{0,0.501961,0}{\% Close the file.}\\
 close(vidObj);  
-\end{docspec}
+\end{docspecbold}
+
+%------------------------------------------------
+%
+\newpage
+
+\subsection*{\textbf{Section 2.4}}
+
+\subsection*{Code for loading and plotting the continental outline}
+
+\begin{docspecbold}
+\textcolor[rgb]{0,0.501961,0}{\%\%\% code to plot the continental outline \%\%\%}
+\\\textcolor[rgb]{0,0.501961,0}{\% load data files}
+\\co\_k = load('continental\_outline\_k.dat','-ascii');
+\\co\_start = load('continental\_outline\_start.dat','-ascii');
+\\co\_end = load('continental\_outline\_end.dat','-ascii');
+\\co\_lat = load('continental\_outline\_lat.dat','-ascii');
+\\co\_lon = load('continental\_outline\_lon.dat','-ascii');
+\\\textcolor[rgb]{0,0.501961,0}{\% determine number of line segments}
+\\n\_lines = length(co\_k);
+\\\textcolor[rgb]{0,0.501961,0}{\% create new figure window and set axes}
+\\figure;
+\\axis([-180 +180 -090 +090]);
+\\\textcolor[rgb]{0,0.501961,0}{\% 'hold on' ...}
+\\hold on;
+\\\textcolor[rgb]{0,0.501961,0}{\% LOOP ... and draw thin line segments}
+\\\textcolor{blue}{for} k = 1:n\_lines
+\\ \ \ \ plot(co\_lon(co\_start(k):co\_end(k)), ...
+\\ \ \ \ \ \ \ \ \ co\_lat(co\_start(k):co\_end(k)),'k-','LineWidth',0.25);
+\\\textcolor{blue}{end}
+\\\textcolor[rgb]{0,0.501961,0}{\% adjust the plot aspect ratio}
+\\set(gca,'PlotBoxAspectRatio',[1.0 0.5 1.0]);
+\\\textcolor[rgb]{0,0.501961,0}{\% draw a nice boundary to the map}
+\\h = plot([-180 +180],[-90 -90],'k-');
+\\set(h,'LineWidth',1.0);
+\\h = plot([-180 +180],[+90 +90],'k-');
+\\set(h,'LineWidth',1.0);
+\\h = plot([-180 -180],[-90 +90],'k-');
+\\set(h,'LineWidth',1.0);
+\\h = plot([+180 +180],[-90 +90],'k-');
+\\set(h,'LineWidth',1.0);
+\\\textcolor[rgb]{0,0.501961,0}{\% 'hold off' (not strictly necessary)}
+\\hold off;
+\\\textcolor[rgb]{0,0.501961,0}{\% label plot}
+\\xlabel('longitude','fontsize',15);
+\\ylabel('latitude','fontsize',15);
+\\title('Continental outline','fontsize',18);
+\\\textcolor[rgb]{0,0.501961,0}{\% export graphics (as postscript)}
+\\print -dpsc2 ch3p2p6.ps;
+\end{docspecbold}
 
 %----------------------------------------------------------------------------------------
 
