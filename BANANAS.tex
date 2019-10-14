@@ -131,9 +131,13 @@
 \usepackage{xcolor} %custom colours
 \usepackage{mdframed} %nice frames
 \usepackage{gensymb} %helpful symbols!
+%\usepackage[T1]{fontenc}
+%\usepackage{lmodern} % to get bold tt font
 \definecolor{light-gray}{gray}{0.95} %the shade of grey that stack exchange uses
 \definecolor{orange}{RGB}{255,127,0}
 \definecolor{light-blue}{RGB}{223,223,255}
+
+\renewcommand{\ttdefault}{pcr}
 %%%\usepackage{hyperref} %improved referencing 
 % EXAMPLE
 %\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=12.5, innerrightmargin=12.5, innertopmargin=10,innerbottommargin=10, outerlinewidth=1, linecolor=light-gray]
@@ -142,6 +146,7 @@
 \newenvironment{docspecmargin}{\begin{quotation}\ttfamily\footnotesize\parskip0pt\parindent0pt\ignorespaces}{\end{quotation}}
 \newenvironment{docspeclarge}{\begin{quotation}\ttfamily\large\parskip0pt\parindent0pt\ignorespaces}{\end{quotation}}
 \newenvironment{docspecnormal}{\begin{quotation}\ttfamily\normalsize\parskip0pt\parindent0pt\ignorespaces}{\end{quotation}}
+\newenvironment{docspecbold}{\begin{quotation}\ttfamily\bfseries\parskip0pt\parindent0pt\ignorespaces}{\end{quotation}}
 %%%\usepackage{rotating} % to rotate tables ...
 
 % create new list with arrows rather than bullet points
@@ -3361,11 +3366,11 @@ If you want to play some more, just type \texttt{help movie} -- there are contro
 
 \uline{Before} you move -- go look at your \textit{script} -- is it well commented? Would you be able to tell exactly what it does it by the end of the course? What about next year? Are the \textit{loop} contents indented? It is important that it is commented and laid out adequately.
 
-Finally -- there are \textbf{MATLAB} commands to turn your \textbf{MATLAB} format movie into a format you can use elsewhere. Previously ... there was a command was \docenv{movie2avi} (see Box). But it has been ... retired (curse you, Mathworks). The new/replacement command is \docenvdef{VideoWriter,} which differs mostly in that the animation is now created within the program and the  \textsf{.avi} format animation has its frames added (within the loop) as the graphics are created (rather than converting the frames afterwards as in \docenv{movie2avi}).
+Finally -- there is not longer a convenient \textbf{MATLAB} command to turn the \textbf{MATLAB} format movie (\texttt{M}) into a format you can use elsewhere (there used to be a command called\docenv{movie2avi} (see Box), but it has been ... retired (curse you, Mathworks)). The new/replacement command is \docenvdef{VideoWriter,} which differs mostly in that the animation is now created within the program and the  \textsf{.avi} format animation has its frames added (within the loop) as the graphics are created (rather than converting the frames afterwards as in \docenv{movie2avi}).
 
-To use the \textbf{MATLAB} \docenv{VideoWriter} \textit{function}, adjust your code as follows (and as per the \textbf{MATLAB} \textsf{help} on \docenv{VideoWriter}):
+To use the \textbf{MATLAB} \docenv{VideoWriter} \textit{function}, you will need to adjust your code along the following lines   (and as per the \textbf{MATLAB} \textsf{help} on \docenv{VideoWriter})\footnote{Do not overly worry about the exact usage/syntax of \texttt{VideoWriter}.}:
 
-\begin{docspecmargin}
+\begin{docspecbold}
 \textcolor[rgb]{0,0.501961,0}{\% Prepare the new file.}\\
 vidObj = VideoWriter(\textcolor[rgb]{1,0,1}{'my\_animation.avi'});\\
 open(vidObj);\\
@@ -3380,10 +3385,10 @@ for month=1:12\\
 end\\
 \textcolor[rgb]{0,0.501961,0}{\% Close the file.}\\
 close(vidObj);  
-\end{docspecmargin}
+\end{docspecbold}
 
-The code above also simplifies things by not bothering to create a 3D array, but rather over-writing a 2D array (\texttt{temp}) each time around the loop (having first created the animation frame).
-
+Note that the code above also simplifies things by not bothering to create a 3D array, but rather over-writing a 2D array (\texttt{temp}) each time around the loop (having first created the animation frame).
+An animation is created at the end, but there is no record of all the 12 monthly datasets that were loaded in (and this may well be correct/the point).
 \marginnote{\begin{mdframed}[backgroundcolor=gray!5, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!5]
 \textbf{\docenvdef{movie2avi}}
 \\The function \docenv{movie2avi} converts an animation encoded in \textbf{MATLAB}'s \texttt{movie} format to an \textbf{avi} file, which is a common film format that can then be played in \textbf{Windows} (or other operating systems) without having to use \textbf{MATLAB} to display it. It is also a format that could e.g. be embedded in a \textbf{Powerpoint} presentation. A typical basic usage is:
@@ -3403,43 +3408,91 @@ The code above also simplifies things by not bothering to create a 3D array, but
 
 %------------------------------------------------
 
-No surprise that you might combine both \textit{loops} and \textit{conditionals} in the same programming structure. In fact, this becomes very powerful and is an extremely common device in programming. 
+No surprise that you might combine both \textit{loops} and \textit{conditionals} in the same programming structure. In fact, this becomes very powerful and is an extremely common device in programming. But this can all also become confusing ... remember to \uline{indent} your code.
+
+\marginnote[-0.5in]{
+\textbf{Indenting code}
+\\Just do it (or let \textbf{MATLAB} do it).
+Even for a single \textit{loop} or \textit{conditional}, it is way easier to see what code is within the \textit{loop} and what outside it, when the code inside starts several spaces in from the margin.
+\\For nested \textit{loops} and \textit{conditionals}, it is even more important to keep (visual) track on what is going on.
+\\Note that the indention (or lack of) does not affect the execution of the code (unlike in e.g. \textbf{Python}).
+}
 
 %------------------------------------------------
 
 \subsection{\texttt{for ...} and conditionals}
 
-\marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+Firstly, one might (rather trivially) use a conditional to decide whether to execute a loop 10 or 100 times, e.g.
+
+\begin{docspec}
+my\_string = input('Loop only 10 times (y or n)','s');
+\\ if strcmp(my\_string,'y')
+\\ \ \ \ for n = 1:10
+\\ \ \ \ \ \ \ SOME CODE
+\\ \ \ \ end
+\\ else
+\\ \ \ \ for n = 1:100
+\\ \ \ \ \ \ \ SOME CODE
+\\ \ \ \ end
+\\ end
+\end{docspec}
+
+Here, we have a \textit{conditional} structure testing whether the string entered in response to the questions is 'y'. \texttt{If} 'y', then a loop of maximum count 10 executes, if not ('y') (\texttt{else}), then a loop of maximum count 100 executes.
+
+This is a little messy and could be cleaned up and simplified somewhat. For instance -- by replacing the maximum loop count as a variable, whose value is set by the (\textit{conditional}) answer. e.g.
+
+\begin{docspecbold}
+my\_string = input('Loop only 10 times (y or n)','s');
+\\ \textcolor{blue}{if} strcmp(my\_string,'y')
+\\ \ \ \ n\_max = 10;
+\\ \textcolor{blue}{else}
+\\ \ \ \ n\_max = 100;
+\\ \textcolor{blue}{end}
+\\ \textcolor{blue}{for} n = 1:n\_max
+\\ \ \ \ \textcolor[rgb]{0,0.501961,0}{\%}
+\\ \textcolor{blue}{end}
+\end{docspecbold}
+
+\textbf{Enter in the second code (or some variant of it) into a new \textit{script} m-file, and explore how it works -- try changing the alternative loop limits, add a line within the loop to \texttt{disp} the value of \texttt{n} and hence confirm that the correct number of iterations of the loop occurs.} Note that you will need to replace \texttt{\textbf{\textcolor[rgb]{0,0.501961,0}{\%}}} with your own line (e.g. using \texttt{disp}) or you could have nothing and leave the comment \textcolor[rgb]{0,0.501961,0}{\%} line in. Remember to add comment lines.
+
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
+
+\noindent Returning to the previous loop example concerning summing a series of numbers entered --  an alternative to (or as well as) a fixed \textit{loop}, or variable and (\textit{function}) parameter passed controlled \textit{loop}, we could specify a near infinite \textit{loop}, but provide a get out of jail free. For example, within the \textit{loop}, we could add a line that asks an additional question: 'Another input (y/n)?' We would test the answer and if no ('n'), exit the \textit{loop} (and report the sum as before). This would look like:
+\begin{docspecbold}
+\textcolor[rgb]{0,0.501961,0}{\% set up some strings for the 2 questions}
+\\my\_question1 = 'Please enter a number: ';
+\\my\_question2 = 'Another input (y/n)? ';
+\\\textcolor[rgb]{0,0.501961,0}{\% initialize running sum}
+\\running\_sum = 0.0;
+\\\textcolor[rgb]{0,0.501961,0}{\% START OF LOOP}
+\\\textcolor{blue}{for} n = 1:1000000
+\\ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% ask for a number}
+\\ \ \ \ my\_number = input(my\_question1);
+\\ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% update running sum}
+\\ \ \ \ running\_sum = running\_sum + my\_number;
+\\ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% display running sum}
+\\ \ \ \ disp(['sum so far = ' running\_sum])
+\\ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% ask whether to keep going}
+\\ \ \ \ my\_string = input(my\_question2,'s');
+\\ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% exit loop if answer is no}
+\\ \ \ \ \textcolor{blue}{if} strcmp(my\_string,'n')
+\\ \ \ \ \ \ \ \ break
+\\ \ \ \ \textcolor{blue}{end}
+\\\textcolor{blue}{end}
+\\\textcolor[rgb]{0,0.501961,0}{\% END OF LOOP}
+\end{docspecbold}
+
+\noindent where \texttt{1000000} in the code is simply chosen as a 'very large number' and one rather larger than the maximum number of numbers you could ever imagine entering\sidenote{There us a better way of doing this, with the \texttt{while} construct, that we'll see shortly.}.
+
+\marginnote[-0.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{break}
 \\Simply -- \docenv{break} terminates the execution of a for or while loop'. And from \textbf{help} a further clarification: 'Statements in the loop after the break statement do not execute.'
 \\Slightly more complicated (but not much) in the case of nested loops -- in this case, \texttt{break} exits only the loop in which it occurs.
 \end{mdframed}}
 
-\marginnote{
-\textbf{Indenting code}
-\\Just do it (or let MATLAB do it).
-Even for a single loop or conditional, it is way easier to see what code is within the loop and what outside it, when the code inside starts several spaces in from the margin.
-\\For nested loops and conditionals, it is even more important to keep (visual) track on what is going on.
-\\Note that the indention (or lack of) does not affect the execution of the code (unlike in e.g. Python).
-}
-
-As an alternative to (or as well as) a fixed \textit{loop}, or variable and (\textit{function}) parameter passed controlled \textit{loop}, we could specify a near infinite \textit{loop}, but provide a get out of jail free. For example, within the \textit{loop}, we could add a line that asks an additional question: 'Another input (y/n)?' We would test the answer and if no ('n'), exit the \textit{loop} (and report the sum as before). This would look like:
-\begin{docspec}
-my\_question1 = 'Please enter a number: ';
-\\my\_question2 = 'Another input (y/n)? ';
-\\for n = 1:1000000
-\\ \ \ \ my\_number = input(my\_question1);
-\\ \ \ \ my\_string = input(my\_question2,'s');
-\\ \ \ \ if strcmp(my\_string,'n')
-\\ \ \ \ \ \ \ \ break
-\\ \ \ \ end
-\\end
-\end{docspec}
-where\texttt{1000000} is simply chosen as a 'very large number' and one rather larger than the maximum number of numbers you could ever imagine entering\sidenote{There us a better way of doing this, with the \texttt{while} construct, that we'll see shortly.}.
-
-The key new command here is \docenv{break}. The way the code works (hopefully!) is that at the start of a new iteration of the \textit{loop}, the 'another input' question is asked -- if no further input is required, the loop exits via the \texttt{break} command. Otherwise (the \texttt{else}), the user is prompted for another input. Note that now we have loops and conditionals nested together, it helps even more to \textit{indent} the code\sidenote{\textbf{MATLAB} will do this for you if you click on the Indent icon. It will also indent the code as far as it reasonably can, as you type.}. Also note that here -- the two different questions (demands) outputted to the screen -- 'Another input (y/n)?' and 'Please enter a number' -- are pre-defined before the loop starts. These same lines could be placed within the loop, but re-defining the variable e.g. \texttt{my\_question1} as 'Another input (y/n)?', each and every time, is redundant (i.e. it could instead simply be defined once at the start of the program). Also also note that in this code, the number entered in is assigned to the variable \texttt{my\_number} rather than \texttt{n} as was used before -- simply to help distinguish the number input from the string input (assigned to my\_string).
-
-It is up to you to 'do' (i.e. add or modify the code) something with the number entered in an stored in the variable \texttt{my\_number}, as each time around the loop, the previous value is over-written by the new input.
+The key new command here is \docenv{break}. The way the code works (hopefully!) is that towards the end of the \textit{loop}, the 'another input' question is asked -- if no further input is required, the loop exits via the \texttt{break} command. Remember  that now we have \textit{loops} and \textit{conditionals} nested together, it helps even more to \textit{indent} the code\sidenote{\textbf{MATLAB} will do this for you if you click on the Indent icon. It will also indent the code as far as it reasonably can, as you type.}. Also note that here -- the two different questions (demands) outputted to the screen -- 'Another input (y/n)?' and 'Please enter a number' -- are pre-defined before the \textit{loop} starts. These same text could equally  be placed directly within the \textit{loop} within the call to the \texttt{input} \textit{function}.
 
 Currently, the program only exits upon entering 'n' to the question. Instead, we could have it exiting for any answer other than 'y':
 \begin{docspec}
@@ -3455,6 +3508,8 @@ my\_question1 = 'Please enter a number: ';
 \end{docspec}
 which compares \texttt{my\_answer} and 'y', if this is not true (that they are the same), \texttt{break} is executed.
 
+\textbf{Enter in the (highlighted) code into a new \textit{script} m-file and modify as per above, such that break is executed if any answer other than 'y' is entered.}
+
 %------------------------------------------------
 
 \vspace{1mm}
@@ -3463,10 +3518,9 @@ which compares \texttt{my\_answer} and 'y', if this is not true (that they are t
 
 %------------------------------------------------
 
-\newthought{A more practical example} would be when saving a data file, to test for a filename already that already exists and if so, automatically modify the new file name so as not to over-write the file.\sidenote{Note that while in the \texttt{m-file} Editor, \textbf{MATLAB} asks you if you want to over-write an existing file, when saving a file directly from a program, no such dialogue box or warning is given.} The relevant function is \docenv{exist}, and in the case of a test for a file, returns either \texttt{0} (the file does not exist in the \textbf{MATLAB} search path, although that does not rule out it existing somewhere else entirely{}), or \texttt{2} (the file exists).
+\newthought{A practical example} of testing the value of a \textit{variable} and \texttt{break}-ing out of a \textit{loop} depending on the result of the test, would be when saving a data file. You might test for a filename  that already exists and if so, automatically modify the new file name so as not to over-write the existing file.\sidenote{Note that while in the \texttt{m-file} Editor, \textbf{MATLAB} asks you if you want to over-write an existing file, when saving a file directly from a program, no such dialogue box or warning is given.} The relevant function is \docenv{exist}, and in the case of a test for a file, the function returns either \texttt{0} (the file does not exist in the \textbf{MATLAB} search path, although that does not rule out it existing somewhere else entirely{}), or \texttt{2} (the file exists).
 
-Clearly(?), in the example of saving the movie file, you might well want to test whether the filename that you have chosen already exists (i.e. the value returned by \texttt{exist} is \texttt{2}). If so (i.e. the file exists), you need to modify the filename  by means of a new concatenation, perhaps appending something like '\texttt{\_NEW}' to the end of the string\sidenote[][-0.75in]{Recall that in using the \texttt{movie2avi} command, you pass a filename -- simply modify the filename passed, in a similar way to in which you modified the filename for loading the temperature data.}. If not, and the filename has not already been used, you can proceed as before -- the equivalent of 'doing nothing'. Go ahead -- try it (i.e. modify your code to avoid over-writing an existing filename).
-
+Clearly(?), in the example of saving the movie file, you might well want to test whether the filename that you have chosen already exists (i.e. the value returned by \texttt{exist} is \texttt{2}). If so (i.e. the file exists), you need to modify the filename  by means of a new concatenation, perhaps appending something like '\texttt{\_NEW}' to the end of the string\sidenote[][-0.75in]{Recall that in using the \texttt{movie2avi} command, you pass a filename -- simply modify the filename passed, in a similar way to in which you modified the filename for loading the temperature data.}. If not, and the filename has not already been used, you can proceed as before -- the equivalent of 'doing nothing'.
 \marginnote[-0.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
 \docenvdef{exist}
 \\Tests for whether a specified variable, function, file, or directory exists, and in generally, which is these it is.
@@ -3493,72 +3547,101 @@ Now test whether this filename already exists:
 \begin{docspec}
 filename\_check = exist(my\_filename,'file')
 \end{docspec}
-Finally, using an \texttt{if} statement, test whether the value of \texttt{filename\_check} is equal to 2. If so, you are going to need to modify the filename string (\texttt{my\_filename}). If not, you can let the \textit{conditional} just \texttt{end} and proceed to saving. Modifying the filename is just as per for the example of loading global temperature distributions, e.g.
+Finally, using an \texttt{if} statement you are going to test whether the value of \texttt{filename\_check} is equal to 2. If so, you are going to need to modify the filename string (\texttt{my\_filename}). If not, you can let the \textit{conditional} just \texttt{end} and proceed to saving. Modifying the filename is just as per for the example of loading global temperature distributions, e.g.
 \begin{docspec}
 my\_filename = ['NEW\_' my\_filename];
 \end{docspec}
-where here, we take the string contained in \texttt{my\_filename}, we append a 'NEW\_' to the start\sidenote{Note that because the filename already has its \textsf{.avi} extension attached, you'll have to modify the start of the string.}, and assign the new (longer) string back into the variable \texttt{my\_filename}.
+where here, we take the string contained in \texttt{my\_filename}, we append a 'NEW\_' to the start\sidenote{Note that because the filename already has its \textsf{.avi} extension attached, you'll have to modify the start of the string.}, and assign the new (longer) string back into the variable \texttt{my\_filename}, like this:
 
-The file naming becomes a little awkward, so rather than the entire filename + extension, you might just store just the filename in the (\texttt{my\_filename}) variable. i.e.
 \begin{docspec}
-my\_filename = 'GEO111\_movie'
+if filename\_check == 2
+\\ \ \ \ my\_filename = ['NEW\_' my\_filename];
+\\else
+\\ \ \ \ \% DO NOTHING
+\\end
 \end{docspec}
-but the remembering when you test fo rthe existence of a particular file, you must add the extension, i.e.
+
+\textbf{See if you can modify the \textsf{.avi} video creating code. An example code for the basic (non filename-checking) program is given at the end of the text. Create a new \textit{script} m-file with this code (or your own),  test whether it creates an animation successfully in the first place, and then try and modify it as per above with the filename check.} Hints: all the new code needs to go before the line:
+
 \begin{docspec}
-filename\_check = exist([my\_filename '.avi'],'file')
+vidObj = VideoWriter('my\_animation.avi');
 \end{docspec}
-(here we create a new string \texttt{[my\_filename '.avi']} by concatenating my\_filename with the extension '.avi'). If the filename exists, the new filename we generate can then be:
-\begin{docspec}
-my\_filename = [my\_filename '\_NEW'];
-\end{docspec}
-(adding the '\_NEW' after, rather than before the existing filename string).
+
+In this line,  the variable \texttt{my\_filename} that you have defined a default name in, will be passed instead of \texttt{'my\_animation.avi'}\footnote{Remember, you can pass a string directly, in which case \uline{it must be in inverted commas}, or you can pass the variable name. Do not place a variable name in inverted commas (or else the variable name itself will be interpreted as a string, when it is the contents of the variable you want).}, and the testing of whether your default filename already exists and whether to create a new(modified) filename, all comes before this. The order of the required lines of new of code is:
+
+\begin{enumerate}[noitemsep]
+\setlength{\itemindent}{.2in}
+\item Set default filename.
+\item Test whether this filename already exists and assign to the variable \texttt{filename\_check}.
+\item Test whether the value of \texttt{filename\_check} is \texttt{2} and if so, modify the filename.
+\end{enumerate}
 
 %------------------------------------------------
 
 \subsection{\texttt{while ...}}
 
-We can re-frame the earlier example programs using the \texttt{while} construct rather than the \texttt{for} loop. But now ... you need to specify under what conditions the loop continues as the basic syntax (see earlier or \textbf{help}) is:
+We can re-frame the earlier example programs using the \texttt{while} construct rather than the \texttt{for} loop. But now ... you need to specify under what conditions the loop continues as the basic syntax (see earlier margin text on \textit{loops}, or \textbf{help}) is:
+
 \begin{docspec}
 while STATEMENT (IS TRUE)
 \\ \ \ \ CODE
 \\end
 \end{docspec}
-Here -- \texttt{STATEMENT (IS TRUE)} is the conditional. For instance and rather trivially, create the following as a program and run it\sidenote{You ... are going to need a \textbf{Ctrl-C} on this one ...}:
-\begin{docspec}
-while true
-\\ \ \ \ disp('sucker')
-\\end
-\end{docspec}
-What has happened is that true is always ... true. Hence the condition is always met and the while loop loops forever. Conversely, \texttt{while false} would never loop, not even once. more interesting and useful is when the statement might change in value as the loop progresses.
 
-Consider (and type up in a script): 
-\begin{docspec}
-n = 0;
-\\while (n < 10)
+Here -- \texttt{STATEMENT (IS TRUE)} is the conditional. For instance and rather trivially, \textbf{create the following as a new \textit{script} m-file and run it}\sidenote{You ... are going to need a \textbf{Ctrl-C} on this one ...}:
+
+\begin{docspecbold}
+\textcolor{blue}{while} true
 \\ \ \ \ disp('sucker')
-\\end
-\end{docspec}
-This also will loop for ever as \texttt{n} is initialized to \texttt{0} and hence the statement \texttt{(n < 10)} is always true. But if we increment the value of \texttt{n} each time around the loop: 
-\begin{docspec}
+\\\textcolor{blue}{end}
+\end{docspecbold}
+
+What has happened is that true is always ... true. Hence the condition is always met and the \texttt{while} \textit{loop}, loops forever. Conversely, \texttt{while false} would never \textit{loop}, not even once -- try it:
+
+\begin{docspecbold}
+\textcolor{blue}{while} false
+\\ \ \ \ disp('sucker')
+\\\textcolor{blue}{end}
+\end{docspecbold}
+
+More interesting and useful is when the statement might change in value as the loop progresses.
+
+Think about the following code (and \textbf{type up in a new \textit{script} m-file and run it}):
+
+\begin{docspecbold}
 n = 0;
-\\while (n < 10)
+\\\textcolor{blue}{while} (n < 10)
+\\ \ \ \ disp('sucker')
+\\\textcolor{blue}{end}
+\end{docspecbold}
+
+This also will loop for ever as \texttt{n} is initialized to \texttt{0} and hence the statement \texttt{(n < 10)} is always true. But if we increment the value of \texttt{n} each time around the \textit{loop}: 
+
+\begin{docspecbold}
+n = 0;
+\\\textcolor{blue}{while} (n < 10)
 \\ \ \ \ disp('not a sucker')
 \\ \ \ \ n = n + 1;
-\\end
-\end{docspec}
-then the loop will execute exactly 10 times (just as per \texttt{for n = 1:10}). You could also do this in reverse: 
-\begin{docspec}
+\\\textcolor{blue}{end}
+\end{docspecbold}
+
+\noindent then the \textit{loop} will execute exactly 10 times (just as per \texttt{for n = 1:10}) (\textbf{try this}).
+
+You could also do the counting in reverse: 
+
+\begin{docspecbold}
 n = 10;
-\\while (n > 0)
+\\\textcolor{blue}{while} (n > 0)
 \\ \ \ \ disp('not a sucker')
 \\ \ \ \ n = n - 1;
-\\end
-\end{docspec}
-Now, \texttt{n} counts down from \texttt{10} and when it reaches a value of \texttt{0}, it is no longer greater than zero and the statement (\texttt{n > 0}) is false (and the loop terminates).
+\\\textcolor{blue}{end}
+\end{docspecbold}
 
-It is not always completely obvious whether even simple while loops like this execute 9 or 10 (or 11) times particularly when often you might come across \texttt{while (n >= 0)} that allows the loop to continue when when \texttt{n} has reached z value of zero (but not below). So -- spend a little while playing about with different \texttt{while} configurations and loop criteria.
+Now, \texttt{n} counts down from \texttt{10} and when it reaches a value of \texttt{0}, it is no longer greater than zero and the statement (\texttt{n > 0}) is false (and the loop terminates). \textbf{Also thy this modification, where the value of \texttt{n} counts down.}
 
-Finally, note that the conditional statement in the while loop need not test for an integer being larger or smaller than some threshold. One could equally loop on the basis of a string equality/inequality. For example, taking the previous example using \texttt{break} could be re-coded with a \texttt{while} loop:
+It is not always completely obvious whether even simple while loops like this execute 9 or 10 (or 11) times particularly when often you might come across \texttt{while (n >= 0)} that allows the loop to continue when when \texttt{n} has reached z value of zero (but not below). \textbf{Spend a little while playing about with different \texttt{while} configurations and \textit{loop} criteria, adding \texttt{disp} lines or \textit{breakpoints} to find out how many times the \textit{loop} executes in total.}
+
+Finally, note that the conditional statement in the \texttt{while} \textit{loop} need not test for an integer being larger or smaller than some threshold. One could equally loop on the basis of a string equality/inequality. For example, taking the previous example using \texttt{break}, the program could be re-coded using a \texttt{while} loop:
 \begin{docspec}
 my\_question1 = 'Please enter a number: ';
 \\my\_question2 = 'Another input (y/n)? ';
@@ -3568,8 +3651,8 @@ my\_question1 = 'Please enter a number: ';
 \\ \ \ \ my\_string = input(my\_question2,'s');
 \\end
 \end{docspec}
-and ends up a slightly shorter and more compact piece of code, omitting the need for a \texttt{break} or a nested structure. However, in this example, we do need to initialize the value of \texttt{my\_string} (to 'y' -- assuming that we want at least one number). Try it and then adjust it so that the loop proceeds as long as the answer is not 'n' (rather than as long as it is 'y')\sidenote{See earlier Example.}. Note that as before -- it is up to you to 'do' (i.e. add or modify the code) something with the number entered in an stored in the variable \texttt{my\_number}, as each time around the loop, the previous value is over-written by the new input.
-
+and ends up a slightly shorter and more compact piece of code, omitting the need for a \texttt{break} or a nested structure. Here, the 2 lines of \texttt{input} code will keep being executed, as long as the value of \texttt{my\_string} is \texttt{'y'}. Note that in this example, we  need to initialize the value of \texttt{my\_string} (to 'y' -- assuming that we want at least one number). \textbf{Try modifying (along the lines of the above) your previous code which was based on a \texttt{for} \textit{loop}, now using \texttt{while}.
+}
 %------------------------------------------------
 
 \vspace{1mm}
@@ -3578,34 +3661,38 @@ and ends up a slightly shorter and more compact piece of code, omitting the need
 
 %------------------------------------------------
 
-\newthought{Extending the filename checking example ....}\sidenote{Which first time around did not actually combine loops and conditionals in the same structure. Rather, a loop came first in the program (loading in and plotting the temperature data), ended, and only then a conditional checking the filename.} to fully integrate a \textit{loop} and \textit{conditional}. The problem with the previous code is that you checked for the existence only a default filename (and appended '\textsf{\_NEW}' if a file already existed).
+\newthought{Finally ... we could update the filename checking example ... using while.} The problem with the previous code is that you checked for the existence only a default filename (and appended '\textsf{\_NEW}' if a file already existed).
 
-One (partial) solution would have been, rather than append a pre-defined string ('\textsf{\_NEW}') to the filename, would be to request that the user provide either a string to append, or a completely new filename. You have already see the \docenv{input} command in action, so you should be in a good position to code this modification up.\sidenote{Effectively, all you have to do, if \docenv{exist} returns a \texttt{2} and the file already exists, is to ask for an alternative filename, and use the string entered in as the new filename (and don't forget to add the '.avi' extension to the end when saving)}
+One (partial) solution would have been to, rather than append a pre-defined string ('\textsf{\_NEW}') to the filename,  request that the user provide  a completely new filename.
 
-A better solution (because even when asking for an alternative filename -- what if that file exists too?) would be to keep checking for a filename clash and keep asking for a new filename, until a unique one is found. Who knows how many attempts this might take (to find an unused filename), so \texttt{while ...} would be a better choice of loop than \texttt{for ...}. Becasue \docenv{exist} returns a \texttt{2} if the file already exists, a logical condition for \texttt{while} would be while \docenv{exist} is returning \texttt{2}:
+A complete solution would be to address the situation when asking for an alternative filename ... if that file existed too. We could keep checking for a filename clash and keep asking for a new filename, until a unique (unused) filename was provided by the user. Who knows how many attempts this might take (to find an unused filename), so \texttt{while ...} would be a better choice of loop than \texttt{for ...}. Because \docenv{exist} returns a \texttt{2} if the file already exists, a logical condition for \texttt{while}, would be that a filename determining \textit{loop} continues while \docenv{exist} is returning a value of \texttt{2}. e.g.
+
 \begin{docspec}
-my\_question = 'Please enter an alternative filename (without the extension): ';
+my\_question = 'Enter a filename: ';
 \\while (filename\_check == 2)
 \\ \ \ \ my\_filename = input(my\_question,'s');
-\\ \ \ \ filename\_check = exist([my\_filename '.avi'],'file')
+\\ \ \ \ filename\_check = exist([my\_filename],'file')
 \\end
 \end{docspec}
 
-Within the loop, a new filename is requested and then checked against the directory contents. What is missing is the initial value of \texttt{filename\_check}. In a previous example, we simply set a value at the start. If we did that here, the first line of this code would look like: 
+Within the \textit{loop}, a (new) filename is requested and then this string is checked against the directory contents. What is missing is the initial value of \texttt{filename\_check}. In a previous example, we simply set a value at the start. If we did that here, the first line of this code would look like: 
+
 \begin{docspec}
 filename\_check = 2
 \end{docspec}
-In this case, we do not need a default filename as the user provides the very first filename that is tested. Alternatively, we could perform a single check before the \textit{loop} starts:
-\begin{docspec}
-my\_question = 'Please enter an alternative filename ...
-\\ \ \ \ (without the extension): ';
-\\my\_filename = 'GEO111\_movie';
-\\filename\_check = exist([my\_filename '.avi'],'file')
-\\while (filename\_check == 2)
+
+In this case, we do not need a default filename as the user provides a filename on the very first iteration of the loop.
+
+\textbf{Try it out -- add the following code to the start of your basic avi file format saving movie program (e.g. as per at the end of the text), and use the value of the variable \texttt{my\_filename} as the name for saving the avi animation file and test it.}
+
+\begin{docspecbold}
+my\_question = 'Enter a filename: ';
+\\filename\_check == 2;
+\\\textcolor{blue}{while} (filename\_check == 2)
 \\ \ \ \ my\_filename = input(my\_question,'s');
-\\ \ \ \ filename\_check = exist([my\_filename '.avi'],'file')
-\\end
-\end{docspec} 
+\\ \ \ \ filename\_check = exist([my\_filename],'file')
+\\\textcolor{blue}{end}
+\end{docspecbold}
 
 %------------------------------------------------
 
@@ -3717,7 +3804,9 @@ This chapter is something of a potpourri of \textbf{MATLAB} data and visualizati
 
 \section{Further data input}
 
-Previously, you imported ASCII data into \textbf{MATLAB} using the \texttt{load} command\sidenote{Or maybe 'cheated' and used the \textbf{MATLAB} GUI ...}. You might not have realized it at the time, but the use of \texttt{load} requires that your data is in a fairly precise format. \textbf{MATLAB} says "\textit{ASCII files must contain a rectangular table of numbers, with an equal number of elements in each row. The file delimiter (the character between elements in each row) can be a blank, comma, semicolon, or tab character. The file can contain MATLAB comments (lines that begin with a percent sign, \%).}" Firstly, your data may not be in a simple format and often may contain both numerical values and string values. Secondly, your data may not even be in a text/ASCII format. For instance, you data maybe be in an \textbf{Excel} spreadsheet, or for spatial scientific data, an increasingly common format is called 'netCDF' (Network Common Data Form). In this section, we'll go through the basics and some examples of each. 
+Previously, you imported ASCII data into \textbf{MATLAB} using the \texttt{load} command\sidenote{Or maybe 'cheated' and used the \textbf{MATLAB} GUI ...}. You might not have realized it at the time, but the use of \texttt{load} requires that your data is in a fairly precise format. \textbf{MATLAB} says "\textit{ASCII files must contain a rectangular table of numbers, with an equal number of elements in each row. The file delimiter (the character between elements in each row) can be a blank, comma, semicolon, or tab character. The file can contain MATLAB comments (lines that begin with a percent sign, \%).}" Firstly, your data may not be in a simple format and often may contain both numerical values and string values. Secondly, your data may not even be in a text/ASCII format. For instance, you data maybe be in an \textbf{Excel} spreadsheet, or for spatial scientific data, an increasingly common format is called '\textbf{netCDF}' (Network Common Data Form). In this section, we'll go through the basics and some examples of each.
+
+Please regard this section as a simple overview on some of the different \textbf{MATLAB} file loading/input options (so that you know that they exist). For many one-off data loading problems, it can be easier to use the \textbf{MATLAB} GUI and the \textsf{Import Data} wizard. 
 
 %------------------------------------------------
 
@@ -3725,7 +3814,7 @@ Previously, you imported ASCII data into \textbf{MATLAB} using the \texttt{load}
 
 The general procedure that you need to follow to input formatted text data is as follows:
 
-\marginnote[-2.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-2.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \textbf{opening and closing files}
 \\\textbf{MATLAB} has a pair of commands for opening and closing files for read/write:
 \begin{itemize}[noitemsep]
@@ -3749,13 +3838,13 @@ C = textscan(ID,format)
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 
-\item First, you need to 'open' the file -- the command (function) for this is called \docenv{fopen} (see Box). You need to assign the results of this function to a variable for later use.
+\item First, you need to 'open' the file -- the command (function) for this is called \docenv{fopen} (see Box). You need to assign the results of this \textit{function} to a \textit{variable} for later use.
 
-What is going on and why this all differs so much form using \texttt{load}, where you only had to use a single command, is that you first have to open a connection to the file ... before you even read any of the contents in(!)\sidenote{This is very common across all(?) programming languages.}.
+What is going on and why this all differs so much form using \texttt{load}, where you only had to use a single command, is that you first have to open a connection to the file ... before you even read any of the contents in(!!!)\sidenote{This is very common across all(?) programming languages.}.
 
-\item Secondly ... you can read the content in (finally!). The complications here include specifying the format of the data you are going to read in. You also need to tell \textbf{MATLAB} the ID of the file that you have opened (so it knows which one to read from). The function you are going to use to do this is called \texttt{textscan}.
+\item Secondly ... you can read the content in (finally!). The complications here include specifying the format of the data you are going to read in. You also need to tell \textbf{MATLAB} the ID of the file that you have opened (so it knows which one to read from) -- this is the value returned by the \textit{function} \texttt{fopen}. The \textit{function} you are going to use to actually read the data (having opened the file) is called \texttt{textscan}.
 
-\item Close the file using \docenv{fclose} (see Box). You are going to have to pass the ID of the open file again when you call this function (so \textbf{MATLAB} knows which file to close).
+\item Once the data has been read it -- close the file using \docenv{fclose} (see Box). You are going to have to pass the ID of the  file again when you call this \textit{function} (so \textbf{MATLAB} knows which file to close).
 
 \item Lastly, you are going to have to deal with the special data structure that \textbf{MATLAB} has created for you ...
 
@@ -3767,26 +3856,42 @@ If you are interested (probably not) -- the connection made to an open file is c
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\newthought{As an initial Example} to illustrate this alternative (and more flexible) means of importing of ASCII data, we are going to return to the paleo atmospheric CO\(_{2}\) proxy dataset file -- \texttt{paleo\_CO2\_data.txt}\sidenote{The version that you have used before -- not to be confused with a version ending in \texttt{.dat} that we will look at shortly ...}. Assuming that you have already (previously) downloaded it,  open it up in a text editor and view it -- you should see 4 neatly (ish) aligned columns of numeric values ... and nothing else\sidenote{This 'nothing else' is important as it is the reason why you were previously able just to \texttt{load} the data.}.
+\newthought{As an initial Example} to illustrate this alternative (and more flexible) means of importing of ASCII (text) data, we are going to return to the paleo atmospheric CO\(_{2}\) proxy dataset file -- \textsf{paleo\_CO2\_data.txt}. Assuming that you have already (previously) downloaded it,  open it up in a text editor and view it -- you should see 4 neatly (ish) aligned columns of numeric values ... and 'nothing else'.
 
-OK -- so having seen the format of the  data in the ASCII file, you are going to work through the following steps\sidenote{You can start off working at the command line if you wish, but ultimately, you are going to need to put everything into an \textbf{m-file}.}:
+OK -- so having seen the format of the  data in the ASCII file, you are going to work through the following steps (you can do all this at the command line, or add the lines one-by-one to a \textit{script} m-file if you prefer)\sidenote{You can start off working at the command line if you wish, but ultimately, you are going to need to put everything into an \textbf{m-file}.}:
 
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 
-\item First 'open' the file -- you will be using the function command \docenvdef{fopen}, and passing it the filename\sidenote[][-0.0in]{For convenience, you could assign the filename (+ its path) to a (string) variable and then simply pass the variable name -- remember, no \texttt{' '} needed for a variable naming containing a string (whereas \texttt{' '} is needed for the string itself).} (including the path to the file if necessary). So that you can easily refer to the file that you have opened later, assign the output of \docenv{fopen}\sidenote[][-0.0in]{The output is a simple integer index, whose value is specific to the file that you have opened.} to a variable, e.g.
-\begin{docspec}
->> openfile\_id = fopen('paleo\_CO2\_data.txt');
-\end{docspec}
+\item First 'open' the file -- you will be using the \textit{function}  \docenvdef{fopen}, and passing it the filename\sidenote[][-0.0in]{For convenience, you could assign the filename (+ its path) to a (string) variable and then simply pass the variable name -- remember, no \texttt{' '} needed for a variable naming containing a string (whereas \texttt{' '} is needed for the string itself).} (including the path to the file if necessary, i.e. if the \textbf{MATLAB} working directory does not also contain the file). So that you can easily refer to the file that you have opened later, assign the output of \docenv{fopen}\sidenote[][-0.0in]{The output is a simple integer index, whose value is specific to the file that you have opened.} to a variable, e.g.
 
-\item Now ... this is where it gets a  trickier -- the function you are going to use now is called \docenv{textscan}. Refer to \textbf{help} on \docenv{textscan}, but as a useful minimum, you need to pass 3 pieces of information:
+\begin{docspecbold}
+>> openfile\_id = fopen('paleo\_CO2\_data.txt');
+\end{docspecbold}
+
+\item Now ... this is where it gets a  trickier -- the \textit{function} you are going to use now is called \docenv{textscan}. Refer to \textsf{help} on \docenv{textscan}, but as a useful minimum, you need to pass 3 pieces of information:
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item The ID of the open file (you have assigned this to a handy variable (\texttt{openfile\_id}) already.)
-\item The \textit{format} of the file (see margin note).
-\marginnote[-0.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-According to \textbf{MATLAB help}:
-\\"\textit{the \texttt{format} is a string of conversion specifiers enclosed in single quotation marks. The number of specifiers determines the number of cells in the cell array C.}" Take this to mean that you need one format specifier, per column of data. The specifier will differ whether the data element is a number or character (and MATLAB will further enable you to create specific numerical types).
+\item The \textit{format} of the file (see margin note).(This is where it gets much less fun, but hang in there!) You simply list, space-separated, and between a single set of quotation marks, one format specifier per element of data.
+\\In this particular Example, there are 4 items of data (per row) -- each of them is either an integer or a floating point number\sidenote{At least, none of them are clearly strings, right?}, depending on how you want to look at it. Assuming that the data is a floating point number, the \textit{format} for the input of each number item, is \texttt{\%f}.
+\end{enumerate}
+The result of \docenv{textscan} is then assigned to a parameter, e.g.
+
+\begin{docspecbold}
+my\_data = textscan(openfile\_id,'\%f \%f \%f \%f');
+\end{docspecbold}
+
+Here, the \texttt{'\%f \%f \%f \%f'} bit specifies that the data format consists of 4 floating point (real) numbers.
+
+\item So far, so good! And you can now close the file:
+\begin{docspecbold}
+>> fclose(openfile\_id);
+\end{docspecbold}
+
+\marginnote[-1.0in]{\begin{mdframed}[backgroundcolor=light-gray, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+According to \textbf{MATLAB} \textsf{help}:
+\\"\textit{the \texttt{format} is a string of conversion specifiers enclosed in single quotation marks. The number of specifiers determines the number of cells in the cell array C.}" Take this to mean that you need one format specifier, per column of data. The specifier will differ whether the data element is a number or character (and \textbf{MATLAB} will further enable you to create specific numerical types).
 \\The format specifiers are all listed under \texttt{help textscan}. However, your Dummies Guide to \texttt{textscan} (and good for most common applications) is that the following options exist:
 \texttt{
 \\\%d -- (signed)integer
@@ -3794,47 +3899,28 @@ According to \textbf{MATLAB help}:
 \\\%s -- string
 }
 \\\textbf{MATLAB} will automatically repeat the format for as many lines as there are of data. Alternatively you can specify precisely how many times you would like the format repeated (and hence data read in).
-\end{mdframed}}(This is where it gets much less fun, but hang in there!) You simply list, space-separated, and between a single set of quotation marks, one format option per element of data.
-\\In this particular Example, there are 4 items of data (per row) -- each of them is an integer or a floating point number\sidenote{At least, none of them are clearly strings, right?}, depending on how you want to look at it. Assuming that the data is a floating point number, the \textit{format} for the input of each number item, is \texttt{\%f}.
-\end{enumerate}
-The result of \docenv{textscan} is then assigned to a parameter, e.g.
-\begin{docspec}
-my\_data = textscan(openfile\_id,'\%f \%f \%f \%f');
-\end{docspec}
+\end{mdframed}}
 
-\item So far, so good! And you can now close the file:
-\begin{docspec}
->> fclose(openfile\_id);
-\end{docspec}
+\item Actually, it does get darker before the light at end of the tunnel ... what \docenv{textscan} actually returns -- the data that was read in, is placed into an odd structure called a \textit{cell array}. It is not worth our while worrying about just what the heck this is, and if you view it in the \textsf{Variables} window (i.e. double click on the \texttt{cell array} name in the \textsf{Workspace} window), it does not display the simple table of 4 columns of data that maybe you were expecting. For now, we can transform this format into something that we are more familiar with using the \docenv{cell2mat} function, e.g.
 
-\item Actually, it does get darker before the light at end of the tunnel ... what \docenv{textscan} actually returns, i.e. your  read-in data, is placed into an odd structure call a \textit{cell array}. It is not worth our while worrying about just what the heck this is, and if you view it in the \textsf{Variables} window (i.e. double click on the \texttt{cell array} name in the \textsf{Workspace} window), it does not display the simple table of 4 columns of data that maybe you were expecting. For now, we can transform this format into something that we are more familiar with using the \docenvdef{cell2mat} function, e.g.
-\begin{docspec}
+\begin{docspecbold}
 my\_data\_array = cell2mat(my\_data);
-\end{docspec}
-And now ... it is done, i.e. there  exists a simple array, of 4 columns, the first being the age (Ma), the second being the CO\(_{2}\) concentration value (units of ppm), and the 3rd and 4th; minimum ad maximum error estimates in the proxy reconstructed value. :)
+\end{docspecbold}
 
 \end{enumerate}
+
+And now ... it is done, i.e. there  exists a simple array, of 4 columns, the first being the age (Ma), the second being the CO\(_{2}\) concentration value (units of ppm), and the 3rd and 4th; minimum ad maximum error estimates in the proxy reconstructed value. :)
 
 \marginnote[-1.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 MATLAB claims that a \docenvdef{cell array} is "\textit{A cell array is a data type with indexed data containers called cells. Each cell can contain any type of data. Cell arrays commonly contain pieces of text, combinations of text and numbers from spreadsheets or text files, or numeric arrays of different sizes.}" I am sort of prepared to believe this.
-\\Basically, in object-oriented speak, a cell array is an object, or rather, an array of objects. As MATLAB hints -- the cells can contain *anything*. Your limitation previously is that an array had to be all floating point numbers, all integers, or all strings, and if strings, all the strings had to be the same size. For strings in particular, it is obvious that a more flexible format where a vector could contain both 'banana' and 'kiwi' is needed (try creating a 2-element vector with these 2 words and see what happens). You clearly might also want to link a number with a string (e.g. number of bananas) in the same array, rather than have to create 2 sperate arrays.
-\end{mdframed}}
-
-\marginnote[-0.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-\docenvdef{cell2mat}
-\\Having created this weird format (\docenv{cell array}), now MATLAB has to give you a way of converting the data inside into something more usable. The function is \docenv{cell2mat}, which for a cell array C:
-\begin{docspecmargin}
-A = cell2mat(C);
-\end{docspecmargin}
-will return the corresponding ('normal') array A.
-\\Now this is only true if all the data in \texttt{C} is of the same tpye (e.g. all floating point numbers). If the data types are mixed or you only wish for a sub-set of the data to be extracted and converted, simply index the required part of the cell array (Examples on this later).
+\\Basically, in object-oriented speak, a cell array is an object, or rather, an array of objects. As \textbf{MATLAB} hints -- the cells can contain *anything*. Your limitation previously is that an array had to be all floating point numbers, all integers, or all strings, and if strings, all the strings had to be the same size. For strings in particular, it is obvious that a more flexible format where a vector could contain both 'banana' and 'kiwi' is needed (try creating a 2-element vector with these 2 words and see what happens). You clearly might also want to link a number with a string (e.g. number of bananas) in the same array, rather than have to create 2 sperate arrays.
 \end{mdframed}}
 
 \vspace{-1mm}
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\newthought{As a further example},  we are going to process a more complicated version of the paleo atmospheric CO\(_{2}\) proxy dataset. The file is called \texttt{paleo\_CO2\_data.dat} and is available from the course webpage. An initial problem here is even opening up the file to view it -- if you use standard \textbf{Windows} editors such as \textbf{Notepad} it fails to format it properly when displaying its contents\sidenote{If you use a \textbf{Mac} (or \textbf{linux}) however, all text editors should display the content jus fine.}. The first lesson then in scientific computing then is to have access to a more powerful/flexible editor than default/built-in programs such as \textbf{Notepad}. One good (\textbf{Windows}) alternative is \textbf{Notepad++}\sidenote{Conveniently installed on the Watkins computer lab computers.}. So go open the file with this instead\sidenote{Right-mouse-button-click over the file, then select \textbf{Open with} and then click on \textbf{Notepadd++}.}. Note the format -- there are a bunch of header lines and moreover, some of the columns are not numbers (but rather strings). So even if you were to manually edit out the headers with \docenv{comments} (\texttt{\%})\sidenote{Recall that \textbf{MATLAB} ignore lines starting with a \texttt{\%} and this includes loading in data lines using \texttt{load}.}, you are still left with the problem of mis-matched columns. You could edit the file in \textbf{Excel} to remove the problematic columns as well ... but now this seems like a real waste of time to be editing data formats with one software package just to get it into a second! (Again, you could use the \textbf{MATLAB} GUI import functionality
+\newthought{As a further example},  we are going to process a more complicated version of the paleo atmospheric CO\(_{2}\) proxy dataset. The file is called \textsf{paleo\_CO2\_data.dat} (rather than \textsf{.txt}) and is available from the course webpage. An initial problem here is even opening up the file to view it -- if you use standard \textbf{Windows} editors such as \textbf{Notepad} it fails to format it properly when displaying its contents\sidenote{If you use a \textbf{Mac} (or \textbf{linux}) however, all text editors should display the content jus fine.}. The first lesson then in scientific computing then is to have access to a more powerful/flexible editor than default/built-in programs such as \textbf{Notepad}. One good (\textbf{Windows}) alternative is \textbf{Notepad++}\sidenote{Conveniently installed on the Watkins computer lab computers.}. So go open the file with this instead\sidenote{Right-mouse-button-click over the file, then select \textbf{Open with} and then click on \textbf{Notepadd++}.}. Note the format -- there are a bunch of header lines and moreover, some of the columns are not numbers (but rather strings). So even if you were to manually edit out the headers with \docenv{comments} (\texttt{\%})\sidenote{Recall that \textbf{MATLAB} ignore lines starting with a \texttt{\%} and this includes loading in data lines using \texttt{load}.}, you are still left with the problem of mis-matched columns. You could edit the file in \textbf{Excel} to remove the problematic columns as well ... but now this seems like a real waste of time to be editing data formats with one software package just to get it into a second! (Again, you could use the \textbf{MATLAB} GUI import functionality
 ... but it will be a healthy life experience for you to do it at the command line :o) )
 
 OK -- so having gotten an idea of the format of the ASCII data file, you are going to work again through the 4 steps:
@@ -3842,7 +3928,7 @@ OK -- so having gotten an idea of the format of the ASCII data file, you are goi
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 
-\item First 'open' the file as before (\docenv{fopen}) and assigned the ID returned by the function to a variable \texttt{openfile\_id2}.
+\item First 'open' the file as you did before (using \docenv{fopen}) and assigned the ID returned by the function to a variable \texttt{openfile\_id2}.
 
 \item Call \texttt{textscan}. However, we now want to pass 3 pieces of information (compared to 2 before):
 \begin{enumerate}[noitemsep]
@@ -3854,30 +3940,41 @@ OK -- so having gotten an idea of the format of the ASCII data file, you are goi
 
 (Again -- the result of \docenv{textscan} is then assigned to a variable which will represent a \textit{cell array}.)
 
-Lets do the easy bit first -- to tell \textbf{MATLAB} to skip \textit{n} lines of a file, you add the parameter \texttt{'HeaderLines'} to the list of parameters passed to \texttt{textscan}, and then simply tell it how many lines to skip. In this Example, you'd add:
+Lets do the easy bit first -- to tell \textbf{MATLAB} to skip \textit{n} lines of a file, you add the parameter \texttt{'HeaderLines'} to the list of parameters passed to \texttt{textscan}, and then simply tell it how many lines to skip. In this example:
+
 \begin{docspec}
-my\_data = textscan(openfile\_id2, ... ,'HeaderLines',3);
+my\_data = textscan( ...
+\\ \ \ \ \ \ openfile\_id2, ... ,'HeaderLines',3);
 \end{docspec}
+
 OK -- now to dive back into the \textbf{MATLAB} syntax mire ... Lets just load in just the first 2 columns of data, and assume that they are both integers (and skipping the first 3 lines of the file as per above). We might guess that we could simply write:
+
 \begin{docspec}
-my\_data = textscan(openfile\_id2,'\%d \%d','HeaderLines',3);
+my\_data = textscan( ...
+\\ \ \ \ \ \ openfile\_id2,'\%d \%d','HeaderLines',3);
 \end{docspec}
+
 Try it (including closing the file, and a call to \texttt{cell2mat}, as before). What has happened?
 
 It seems that \textbf{MATLAB} translates your format (\texttt{'\%d,\%d'}) into: 'read in a pair of integers, and keep automatically repeating this, until something else is encountered'. That something else is sequence of characters at the end of the first data line (line \#4, because we skipped the first 3), that makes \textbf{MATLAB} think that it has finished (or rather, that it cannot reading in 2 pairs of integers any longer). This leaves you with 2 pairs of integers -- i.e. a 2\(\times\)2 matrix (as you'll see if you look at \texttt{my\_data\_array}).
 
-Here is a solution -- we could omit all the information following the first 2 elements (something for Google to help with).\sidenote{This turns out to be specifying \texttt{'\%*[\(^{\wedge}\)$\backslash$n]'}, which in effects sort of says:\\'skip everything (all the fields) (\texttt{\%*}) up until the end of the line is found (\texttt{[\(^{\wedge}\)$\backslash$n]}).}: 
+Here is a solution -- we could omit all the information following the first 2 elements (something for \textbf{Google} to help with).\sidenote{This turns out to be specifying \texttt{'\%*[\(^{\wedge}\)$\backslash$n]'}, which in effects sort of says:\\'skip everything (all the fields) (\texttt{\%*}) up until the end of the line is found (\texttt{[\(^{\wedge}\)$\backslash$n]}).}: 
 \begin{docspec}
-my\_data = ...
-\\ \ \ \ \ \ textscan(openfile\_id2,'\%d \%d \%*[\(^{\wedge}\)$\backslash$n]','Headerlines',3)
+my\_data = textscan( ...
+\\ \ \ \ \ \ openfile\_id2,'\%d \%d \%*[\(^{\wedge}\)$\backslash$n]','Headerlines',3)
 \end{docspec}
 
-\item Now close the file:
+The weird bit translates to ... \texttt{\%*} == ignore field ... until the line end == \texttt{[\(^{\wedge}\)$\backslash$n]}, and then read repeat for the next line.
+
+(You are not expected to know or remember this nor be tested on it ... just to park at the back of your mind, that there are flexible ways of dealing with data input, including not reading everything in!)
+
+\item Now you can close the file:
 \begin{docspec}
 fclose(openfile\_id);
 \end{docspec}
 
-\item And now convert the results to something more human-readable:
+\item ... and convert the results to something  human-readable:
+
 \begin{docspec}
 my\_data\_array = cell2mat(my\_data);
 \end{docspec}
@@ -3885,6 +3982,26 @@ my\_data\_array = cell2mat(my\_data);
 \end{enumerate}
 
 This should do it -- a simple array, of 2 columns, the first being the age (Ma) and the second the CO\(_{2}\) concentration value (units of ppm). :)
+
+\marginnote[-8.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\docenvdef{cell2mat}
+\\Having created this weird format (\docenv{cell array}), now MATLAB has to give you a way of converting the data inside into something more usable. The function is \docenv{cell2mat}, which for a cell array C:
+\begin{docspecmargin}
+A = cell2mat(C);
+\end{docspecmargin}
+will return the corresponding ('normal') array A.
+\\Now this is only true if all the data in \texttt{C} is of the same tpye (e.g. all floating point numbers). If the data types are mixed or you only wish for a sub-set of the data to be extracted and converted, simply index the required part of the cell array (Examples on this later).
+\end{mdframed}}
+
+The complete code (\textbf{enter into a new \textit{script} m-file and try it out}) looks like:
+
+\begin{docspecbold}
+openfile\_id2 = fopen('paleo\_CO2\_data.dat');
+\\my\_data = textscan( ...
+\\ \ \ \ \ \ openfile\_id2,'\%d \%d \%*[\(^{\wedge}\)$\backslash$n]','Headerlines',3);
+\\fclose(openfile\_id);
+\\my\_data\_array = cell2mat(my\_data);
+\end{docspecbold}
 
 There must be some sort of important life lesson hidden here. Perhaps about only working with well-behaved data files, or using the GUI import functionality? But hopefully it does illustrate that messy files can be dealt with, without the need for laborious editing or processing in \textbf{Excel}.
 
@@ -3897,10 +4014,10 @@ If your data is contained in an Excel spreadsheet, and you want it in \textbf{MA
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item Select some, or all, of the columns and rows in a specific worksheet, and either copy-paste this into a text file (but taking care that the worksheet column widths are formatted such that they are wider than the widest data element), or save in an ASCII format, with comma or tab delineations between columns. In either case, then load in the data using \texttt{load}, or if consisting of mixed numbers/text, go through the Hell that is \texttt{textscan} ....
-\item Use \textbf{MATLAB} function \docenv{xlsread}.
+\item Use \textbf{MATLAB} \textit{function} \docenv{xlsread}.
 \end{enumerate}
 
-\marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-2.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{xlsread}
 \\There are various uses (i.e. alternative allowed syntax) for \docenv{xlsread} for an \textbf{Excel} file with name \texttt{filename}. The 2 relevant and more useful ones look to be:
 \begin{enumerate}[noitemsep]
@@ -3925,25 +4042,31 @@ So ... option \#2 looks ... is looking the easiest ... :)
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\newthought{As an example}, lets return to the paleo proxy CO\(_{2}\) data again, but this time, as an \textbf{Excel} sheet. The data file you need is:
-\\\noindent \textbf{paleo\_CO2\_data.xlsx}
+\newthought{Returning to the paleo proxy CO\(_{2}\) data ...} but this time, as an \textbf{Excel} sheet. The data file you need is: \textsf{paleo\_CO2\_data.xlsx}
 \\\noindent (You may as well go load this into \textbf{Excel} just to take a look at the format and so subsequently, you'll know if you have imported it faithfully or not.)
 
-From the help box on \texttt{xlsread}, it should be pretty apparent what you do. And in fact, I am going to leave you to work it out -- try and import the age and CO\(_{2}\) data (the numeric part of the data) from \textbf{paleo\_CO2\_data.xlsx}.
+From the help box on \texttt{xlsread}, it should be pretty apparent what you do. And in fact, I am going to leave you to work it out -- try and import the age and CO\(_{2}\) data from \textsf{paleo\_CO2\_data.xlsx}.
 
-If you need to, you index a cell array, pretty well much like a normal array, except it has an alternative syntax. For a normal, numeric array \texttt{A}, you might write:
-\begin{docspec}
+Note that the simple usage of the \texttt{xlsread} \textit{function} gives you an \textit{array} containing just the numeric data. If you were to type:
+
+\begin{docspecbold}
+>> [num,txt,raw]=xlsread('paleo\_CO2\_data.xlsx');
+\end{docspecbold}
+
+\noindent then you sill get the numeric data returned in the array \texttt{num}, but you also get 2 cell arrays\footnote{
+If you need to index a cell array, you do so pretty well much like a normal array, except it has an alternative syntax. For a normal, numeric array \texttt{A}, you might write:
+\begin{docspecmargin}
 >> A(4,3)
-\end{docspec}
+\end{docspecmargin}
 to reference the value in the 4th row, 3rd column. For a \textit{cell array }\texttt{C}, to index the cell in the 4th row, 3rd column, you'd also write:
-\begin{docspec}
+\begin{docspecmargin}
 >> C(4,3)
-\end{docspec}
+\end{docspecmargin}
 but you'd get a cell returned, not the value in the cell. If you want the value in the cell located at \texttt{(4,3)}, you'd put the index in curly brackets:
-\begin{docspec}
+\begin{docspecmargin}
 >> C\{4,3\}
-\end{docspec}
-and you'd get a value of \texttt{3000} returned in this example.
+\end{docspecmargin}
+and you'd get a value of \texttt{3000} returned in this example.} -- \texttt{txt} and \texttt{raw}. \texttt{txt} contains just the text data, and \texttt{raw}, 'everything'. View these in the \textsf{Variable window} (by double-clicking on the variable names in the \textbf{MATLAB} \textsf{Workspace window}).
 
 If you happen to have an \textbf{Excel} file with data (of any sort) in it from another class, practice loading in its contents into \textbf{MATLAB}. Note that if the \textbf{Excel} file contains cells with text in, you'll need to use the more advanced format of \texttt{xlsread} (see Box or \texttt{help}). Also try loading into only a single sheet of an \textbf{Excel} file (assuming the file has multiple sheets). 
 
@@ -3953,20 +4076,7 @@ If you happen to have an \textbf{Excel} file with data (of any sort) in it from 
 
 Much of spatial, and particularly model-generated, scientific output, is in the form of \textit{netCDF} files. This is a format designed as a common standard to facilitate sharing and transfer of spatial data, but in a way that enables e.g. a 'complete' description of dimensions and various types of meta-data to be incorporated along with the data. The format is platform independent and a variety of graphical viewers exist for viewing and interrogating the data. Most programming languages support the reading and writing of \textit{netCDF} format data. \textbf{MATLAB} is no exception here.
 
-\textbf{MATLAB} actually has a quick and simple, and ... a long-winded formal way of accessing data in a \textit{netCDF} file:
-
-\begin{enumerate}
-\item Using \docenv{ncread}, which reads data directly from the file.
-\item Via a series of function calls to the netCDF library.
-\end{enumerate}
-
-\vspace{2mm}
-\noindent \LARGE\textbf{1.}\normalsize
-\vspace{1mm}
-
-\noindent \docenv{ncread} is by far the simplest way, although it lacks in flexibility and deviates from standard practices used across other programming languages.
-
-\marginnote[-0.625in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[0.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{ncread}
 \\In its simplest incarnation:
 \begin{docspecmargin}
@@ -3981,9 +4091,15 @@ would read the values in the \textit{netCDF} file variable \texttt{rain} and ass
 \\\textbf{MATLAB} provides a couple of further tricks, allowing you to read sections of the full \textit{netCDF} variable data array, or sample the data array -- see \textbf{help}.
 \end{mdframed}}
 
-\vspace{2mm}
-\noindent \LARGE\textbf{2.}\normalsize
-\vspace{1mm}
+\textbf{MATLAB} actually has a quick and simple, and ... a long-winded formal way of accessing data in a \textit{netCDF} file:
+
+\begin{enumerate}
+
+\item Using \docenv{ncread}, which reads data directly from the file.
+
+\noindent \docenv{ncread} is by far the simplest way, although it lacks in flexibility and deviates from standard practices used across other programming languages.
+
+\item Via a series of function calls to the netCDF library.
 
 \noindent In the formal and more long-winded approach, you open the file and receive an ID for that file. The file can then be written to or read (including just interrogating its properties rather than necessarily extracting spatial data) using this ID. And of course, closed (using the same ID). The \textit{netCDF} standard is also little odd in how reading/writing is implemented and everything has to be done by determining the ID of a particular data variable or property of the file. 
 The general approach is as follows:
@@ -4013,18 +4129,23 @@ netcdf.close(\textcolor{blue}{ncid});
 
 Note that you need to pass the ID of the \textit{netCDF} file for each and every command (after \texttt{netcdf.open}) so that \textbf{MATLAB} knows which \textit{netCDF} object you are referring to (you are allowed to have multiple \textit{netCDF} files open simultaneously).
 
+\end{enumerate}
+
 \vspace{-1mm}
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\newthought{For a \textit{netCDF} Example}, we'll take the output of a low resolution Earth system model (\href{http://www.seao2.info/mycgenie.html}{GENIE}). To start off, download the '2D marine sediment results' \textit{netCDF} file -- \textbf{fields\_sedgem\_2d.nc}. The data here is relatively simple -- a 2D distribution of bottom-water and surface sediment properties, saved at a single point in time. In other words, there are only 2 (spatial) dimensions to the data\sidenote{Adding time would make it 3 dimensions (2 spatial + 1 of time). Adding height or depth in the ocean would also make it 3 (3 spatial). 3 spatial + time would make for a 4-dimensional dataset ...}.
+\newthought{For a \textit{netCDF} Example}, we'll take the output of a low resolution climate model. To start off, download the '2D marine sediment results' \textit{netCDF} file -- \textsf{fields\_sedgem\_2d.nc}. The data here is relatively simple -- a 2D distribution of bottom-water and surface sediment properties, saved at a single point in time. In other words, there are only 2 (spatial) dimensions to the data\sidenote{Adding time would make it 3 dimensions (2 spatial + 1 of time). Adding height or depth in the ocean would also make it 3 (3 spatial). 3 spatial + time would make for a 4-dimensional dataset ...}.
 
-OK -- we'll start by opening the file (assuming that you have downloaded it!), remembering to assign its unique ID to some variable.
-Then, you'll want to get hold of (and assign to another variable), the ID\ of the variable we want to extract and plot -- in this Example, it is called \textsf{'grid\_topo'}. Having obtained the ID for this variable, you can then fetch it -- assign it to a variable \texttt{data}. Then close the file.\sidenote{You should be able to do all of this without further hints -- the sequence of commands and how they are used, is given in the introduction to this subsection.}
+OK -- we'll start by opening the file. The ID\ of the variable we want to extract and plot  is called \textsf{'grid\_topo'}. To load/extract the 2D field and assign it to a variable \texttt{data}:
 
-You should now have an array called \texttt{data}. It should be 36\(\times\)36 in size. Why not plot it\sidenote{Your choice of 2D plotting function.}. Can you guess what it might be? Is it in the correct orientation? (If not -- correct it.)
+\begin{docspecbold}
+>> data2d = ncread('fields\_biogem\_2d.nc','grid\_topo');
+\end{docspecbold}
 
-Clearly what is missing are the x and y axis values, which you should have correctly deduced are longitude and latitude, respectively, with latitude presumably going from -90 to 90N, and longitude ... well, maybe it is not completely obvious exactly what the value of longitude is at the original.
+You should now have an array called \texttt{data}. It should be 36\(\times\)36 in size. \textbf{Plot it}\sidenote{Your choice of 2D plotting function that you have already come across, e.g. \texttt{pcolor} or \texttt{image}, although not all work as well on this particular dataset (e.g. the auto scaling in \texttt{image} causes issues).}. Can you deduce what it might be of? Is it in the correct orientation? (If not -- correct it, by rotating the array, and/or flipping the rows or column.)
+
+(There are more appropriate ways of plotting this, which we will encounter later.)\footnote{Missing here are the x and y axis values, which you should have correctly deduced are longitude and latitude, respectively, with latitude presumably going from -90 to 90N, and longitude ... well, maybe it is not completely obvious exactly what the value of longitude is at the original.
 
 A great strength of \textit{netCDF} its the ability of this file format to also contain the grid (axis) details that the data is on. There are ways of finding out the names of the axis variables (dimensions), but for now, I'll give you them:
 \begin{itemize}[noitemsep]
@@ -4034,15 +4155,15 @@ A great strength of \textit{netCDF} its the ability of this file format to also 
 \end{itemize}
 
 The axes are held in the \textit{netCDF} file as vectors and we can retrieve this (1D) data in a similar way to the 2D data:
-\begin{docspec}
+\begin{docspecmargin}
 varid  = netcdf.inqVarID(ncid,'lat');
 \\lat \ \ = netcdf.getVar(ncid,varid);
 \\varid  = netcdf.inqVarID(ncid,'lon');
 \\lon \ \ = netcdf.getVar(ncid,varid);
-\end{docspec}
+\end{docspecmargin}
 in which we obtain the ID of the axis variable \texttt{'lat'}, then retrieve the axis data and assign it to a vector \texttt{lat} (and then likewise for longitude). Do this, and confirm that you get plausible vectors representing positions along a longitude and latitude axis.
 
-The final task would then be to take the 2 axis vectors, and create a pair of matrices -- one containing longitude values associated with the 2D data points, and one containing latitude values  associated with the 2D data points. For this, you would need to use the function \texttt{meshgrid}\sidenote{See subsequent section.}. (We'll re-visit this example once you have seen \texttt{meshgrid} in action.)
+The final task would then be to take the 2 axis vectors, and create a pair of matrices -- one containing longitude values associated with the 2D data points, and one containing latitude values  associated with the 2D data points. For this, you would need to use the function \texttt{meshgrid}. (We'll re-visit this example once you have seen \texttt{meshgrid} in action.)}
 
 The variable names of other data-sets that you might load and experiment with in terms of plotting function, color scale, and any other refinements that help visualise the data, include:
 
@@ -4057,30 +4178,19 @@ The variable names of other data-sets that you might load and experiment with in
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\newthought{In a related \textit{netCDF} Example}, we'll extend the problem to 3D -- 2 spatial dimensions (longitude and latitude) and one of time. The file you will need to download to experience these wonders, is called \textbf{fields\_biogem\_2d.nc}\sidenote{The back-story is that this contains the 2D surface ocean and atmosphere fields form a model experiment in which the climate system was spun-up from rest and uniform values of everything, so as time progresses, the spatial patterns of the climate system start to evolve and stabilize.}. You are going to go through the same basic procedures of:
+\newthought{In a related \textit{netCDF} Example}, we'll extend the problem to 3D -- 2 spatial dimensions (longitude and latitude) and one of time. The file you will need to download to experience these wonders, is called \textsf{fields\_biogem\_2d.nc}\sidenote{The back-story is that this contains the 2D surface ocean and atmosphere fields form a model experiment in which the climate system was spun-up from rest and uniform values of everything, so as time progresses, the spatial patterns of the climate system start to evolve and stabilize.}.
 
-\begin{enumerate}[noitemsep]
-\setlength{\itemindent}{.2in}
-\item Opening the file.
-\item Obtaining the ID of the variable (the name of the variable we will use is called \textsf{'atm\_temp'}).
-\item Accessing the data using that ID, i.e.:
-\begin{docspec}
-data = netcdf.getVar(ncid,varid);
-\end{docspec}
-\item And closing the file.
-\end{enumerate}
+To load the variable \textsf{'atm\_temp'}:
 
-How many dimensions does this array have?\sidenote{e.g. use \texttt{size}, or ensure that the \textsf{Size} column in the\textsf{ Workspace window} is selected.} What are the lengths along each dimension? Can you guess which dimension of the 3 time might be?
+\begin{docspecbold}
+>> data3d = ncread('fields\_biogem\_2d.nc','atm\_temp');
+\end{docspecbold}
 
-The name of the time axis variable is \textsf{'time'}, and you can extract all the values (different years, in this case) along this axis by:
-\begin{docspec}
-varid  = netcdf.inqVarID(ncid,'time');
-\\times = netcdf.getVar(ncid,varid);
-\end{docspec}
+How many dimensions does this array have?\sidenote{e.g. use \texttt{size}, or ensure that the \textsf{Size} column in the\textsf{ Workspace window} is selected.} What are the lengths along each dimension? Can you deduce which of the dimensions, time might be?
 
-Ideally, you should be able, given the 3D array that you have obtained (from the data variable \textsf{atm\_temp}), to specify and plot, the 1st model-projected surface air temperature distribution, as well as the last distribution. And given that the variables for latitude and longitude are also \texttt{'lat'} and \texttt{'lon'}, you should be able to plot the temperature distribution with appropriate axes (and contoured).
+\textbf{Plot a lon-lat slice.} Note that you need to select all longitudes and all latitudes in the array, but only one time index.
 
-Finally, test your understanding to date, by creating an animation of how the surface air temperature in the model evolves over time.\sidenote{You have everything you need -- the \textit{vector} of years, and from this you can determine how many different time points (and 2D data slices) there are, and hence the number of iterations of a \textit{loop}.}
+\textbf{Finally -- to test your understanding to date, create an animation of how the surface air temperature in the model evolves over time.}\sidenote{You have everything you need -- the \textit{vector} of years, and from this you can determine how many different time points (and 2D data slices) there are, and hence the number of iterations of a \textit{loop}.}
 
 %------------------------------------------------
 
@@ -11172,7 +11282,7 @@ Various refinements that come to mind and that you might try and implement:
 
 \subsection*{Code for loading, storing, and plotting, monthly global temperatures}
 
-\begin{docspec}
+\begin{docspecbold}
 \textcolor[rgb]{0,0.501961,0}{\% ****************************************************************** 
 \\\% Program to load in 12 monthly temperature data-sets,
 \\\% store the data in a 3D array,
@@ -11194,7 +11304,7 @@ Various refinements that come to mind and that you might try and implement:
 \\close(vidObj);
 \textcolor[rgb]{0,0.501961,0}{\\\% END OF MONTHLY LOOP
 \\\% ****************************************************************** }
-\end{docspec}
+\end{docspecbold}
 
 \subsection*{Code for creating an animation}
 
