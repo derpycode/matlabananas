@@ -4754,13 +4754,24 @@ k = find(X)
 \end{docspecmargin}
 as '\textit{return[ing] a vector containing the linear indices of each nonzero element in array X}'.
 \\That means ... nothing to me. This is going to have to be a job for some Examples ... (in order to see what \docenv{find} is all about).
-\\ Actually, \texttt{find} returns the indices of the non-zero elements in the array and if the array is a vector, what is does is simple. For a matrix, \texttt{MATLAB} counts the elements sequentially, starting at the 1st row and 1st column, and working down the first column, rather than provide the (row,column) for indexing format you are used to. Hence where the '\textit{linear indices}' bit comes in.
+\\ Actually, \texttt{find} returns the indices of the non-zero elements in the array and if the array is a vector, what is does is simple. For a matrix, \textbf{MATLAB} counts the elements sequentially, starting at the 1st row and 1st column, and working down the first column, rather than provide the (row,column) for indexing format you are used to. Hence where the '\textit{linear indices}' bit comes in.
 \\ Furthermore, 'non-zero' indices is really just code-word for 'true'. So you are asking where the true values occur in \texttt{X}. If \texttt{X} is the answer to a \textit{logical} or \textit{relational} operation, then find tells you the indices of the elements that are true.
 \\ For example, \texttt{3 > [5 3 1]} equates to \texttt{[0 0 1]}, i.e. only the first element in the vector \texttt{[5 3 1]} is less than \texttt{3}. Hence:
 \begin{docspecmargin}
 find(3 > [5 3 1])
 \end{docspecmargin}
 first evaluates the relational operation and generates a vector of true and false values, and then \texttt{find} tells you the index (or indices) where the true values occur (here, \texttt{ans = 3}).
+\end{mdframed}}
+
+MATLAB [grey]
+\marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\docenvdef{min}
+\\\noindent\docenvdef{max}
+\\Return the minimum and maximum, respectively, values in an array. e.g.
+\begin{docspecmargin}
+min([4 8 3 1])
+\end{docspecmargin}
+will return a value of \texttt{1}.
 \end{mdframed}}
 
 \docenv{find} ... finds where-ever in an \textit{array}, a specific condition is met. If the specific condition occurs once, a single \textit{array} location is returned. The specific condition could occur multiple times, in which case \texttt{find} will report back multiple positions in the \textit{array}.
@@ -4779,7 +4790,7 @@ But ... you want to find *where* in the vector the maximum value occurs. Why mig
 \begin{docspec}
 B = [0:7];
 \end{docspec}
-and is time in units of \(ms\)\sidenote[][0.25in]{Why? Why not.}. The question then becomes: at what time did the maximum value occur? Obviously, this is easy by eye with just 8 numbers, but if you had 1000s ...
+The question then becomes: at what time did the maximum value occur? Obviously, this is easy by eye with just 8 numbers, but if you had 1000s ...
 
 We can start by determining the maximum value (in the data array, \texttt{A}).
 \begin{docspec}
@@ -4818,7 +4829,7 @@ What has happened is that \docenv{find} has determined that there are 2 elements
 i.e. that the times at which the values of \texttt{9} occur are \texttt{1} and \texttt{4} (\(ms\)).
 
 Any of the \textit{relational operators} (that evaluate to \textit{true} or \textit{false}) can be used. In fact -- looking at it this way leads us to maybe understand the \textbf{MATLAB} \textbf{help} text, because \textit{true} and \textit{false} are equivalent to \texttt{1} and \texttt{0}, and \texttt{find} is defined as a function that returns the indices of the non-zero elements in a \textit{vector}. By writing \texttt{A(:)==c} we are in effect creating a vector of \texttt{1}s and \texttt{0}s depending on whether the equality is \textit{true} or not for each element. You can pick apart what is going on and see that this is the case, by typing:
-\begin{docspec}
+\begin{docspecbold}
 >> A(:)==c
 \\ans =
 \\ \ \ \ \ 0
@@ -4829,17 +4840,17 @@ Any of the \textit{relational operators} (that evaluate to \textit{true} or \tex
 \\ \ \ \ \ 0
 \\ \ \ \ \ 0
 \\ \ \ \ \ 0
-\end{docspec}
+\end{docspecbold}
 (the statement being \textit{true} at positions (index) \texttt{2} and \texttt{5}, which is exactly what \texttt{find} told you).
 
 For instance, we could ask \texttt{find} to tell us which elements of A have a value greater than 5:
-\begin{docspec}
+\begin{docspecbold}
 >> find(A(:)>5)
 \\ ans =
 \\ \ \ \ \ 2
 \\ \ \ \ \ 5
 \\ \ \ \ \ 6
-\end{docspec}
+\end{docspecbold}
 (Inspect the contents of vector \texttt{A} and satisfy yourself that this is the case.)
 
 We can also use \texttt{find} to filter data. Perhaps you do not want values over 5 in the dataset. Perhaps this is above the maximum reliable range of the instrument that generated them. Having obtained a vector of locations of these values, e.g.
@@ -4862,9 +4873,9 @@ Play about with some other relational operators and criteria, and make up some v
 %------------------------------------------------
 
 \newthought{For an Example of data-filtering} -- dig out the paleo-proxy (\texttt{paleo\_CO2\_data.txt}) atmospheric CO\(_{2}\) data you downloaded earlier. One further way of plotting with \texttt{scatter} is to scale the point size by a data value. We could do with by:
-\begin{docspec}
-SCATTER(data(:,1),data(:,2),data(:,2))
-\end{docspec}
+\begin{docspecbold}
+>> SCATTER(data(:,1),data(:,2),data(:,2))
+\end{docspecbold}
 ... except ... it turns out that there are atmospheric CO\(_{2}\) values of zero or less and you cannot have an area (size) value of zero or less ...
 
 \marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
@@ -4884,17 +4895,17 @@ So first, lets replace any zero in the CO\(_{2}\) column of the data with a \tex
 data(find(data(:,2)==0),2)=NaN;
 \end{docspec}
 But as ever -- perhaps break this down into separate steps and use additional arrays to store the results of intermediate steps, if it makes it easier to understand, e.g.
-\begin{docspec}
-list\_of\_zero\_locations = find(data(:,2)==0);
-\\data(list\_of\_zero\_locations,2) = NaN;
-\end{docspec}
+\begin{docspecbold}
+>> list\_of\_zero\_locations = find(data(:,2)==0);
+\\>> data(list\_of\_zero\_locations,2) = NaN;
+\end{docspecbold}
 What this is saying is: first find all the locations (row indices) in the 2nd column of \texttt{data} for which the value is equivalent (\texttt{==}) to zero. Replace the CO\(_{2}\) value in all these rows (which is originally zero) to a \texttt{NaN} (technically speaking: assign a value of \texttt{NaN} to these locations). You have now filtered out zeros, and replaced the offending values with a \texttt{NaN} and when \textbf{MATLAB} encounters \textit{NaNs} in plotting -- it ignores them and omits that row of data from the plot.
  
-Alternatively, we could have simply deleted the entire row containing each offending zero.  Breaking it down, this is similar to before in that you start by identifying the row numbers of were zeros appear in the 2nd column, but now we set the entire row to be 'empty', represented by \texttt{[]}:
-\begin{docspec}
-list\_of\_zero\_locations = find(data(:,2)==0);
-\\data(list\_of\_zero\_locations,:) = [];
-\end{docspec}
+Alternatively, we could have simply deleted the entire row containing each offending zero.\footnote{\uline{First}: Re-load  the paleo-proxy atmospheric CO\(_{2}\) data so that you can have another go at filtering it.} Breaking it down, this is similar to before in that you start by identifying the row numbers of were zeros appear in the 2nd column, but now we set the entire row to be 'empty', represented by \texttt{[]}:
+\begin{docspecbold}
+>> list\_of\_zero\_locations = find(data(:,2)==0);
+\\ >> data(list\_of\_zero\_locations,:) = [];
+\end{docspecbold}
 If you check the \textsf{Workspace window}\sidenote{Or: \\\texttt{>> size(data)}}, you should notice that the size of the array data has been reduced (by 4 rows, which was the number of times a zero appeared in the 2nd column).
 
 We are almost there with this example except it turns out that there is a CO\(_{2}\) proxy data value less than zero(!!!) We can filter this out, just as for zeros. I'll leave this as an exercise for you\sidenote{But you might e.g. use \texttt{<=}.} ... The plot should end up looking like Figure \ref{fig:plot-CO2scatter3}. As another lesson-ette, given that the circles are insanely large ... try plotting this with proportionally smaller circles\sidenote{HINT: you are going to want to apply a scaling factor to the vector you passed as the point size data.}.
@@ -4906,52 +4917,45 @@ We are almost there with this example except it turns out that there is a CO\(_{
 \end{marginfigure} 
 
 Conversely, having inserted \texttt{NaN}s into an array, or having ended up with \texttt{NaN}s in an array for other reasons, you can also search for (\texttt{find}) the \texttt{NaN}s.
-The first thing to note in looking for NaNs, is you cannot test for a NaN with a simple equality operator:
-
-\begin{docspec}
+The first thing to note in looking for \texttt{NaN}s, is you cannot test for a \texttt{NaN} with a simple equality operator:
+\begin{docspecbold}
 >> a=NaN;\\
 >> a==NaN\\
 ans =\\
 \ \ \ 0
-\end{docspec}
-
-\noindent which ... is odd. Having assigned a \texttt{NaN} to variable a, \textbf{MATLAB} apparently is telling you have a is not equivalent to \texttt{NaN}.
+\end{docspecbold}
+which ... is odd. Having assigned a \texttt{NaN} to variable \texttt{a}, \textbf{MATLAB}  is apparently telling you that the value of \texttt{a} is not equivalent to \texttt{NaN}.
 Really unhelpful.
-In fairness, a does not have a value and is Not A Number and hence \textbf{MATLAB} cannot determine whether or not it is equal to another Not A Number.
+In fairness, \texttt{a} does not have a value and is Not A Number and hence \textbf{MATLAB} cannot determine whether or not it is equal to another Not A Number.
  Better would have been for \textbf{MATLAB} to give you an error ... still, it is what it is.
 
-\marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+To try and make amends, \textbf{MATLAB} provides a \textit{function} to determine whether or not something is Not A Number -- \docenv{isnana}. This returns \textit{true} (\texttt{1}) is the passed variable is Not A Number, and \textit{false} (\texttt{0}) if not, e.g.
+
+\marginnote[-0.75in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{isnan}
 \\'\textit{\texttt{isnan(A)} returns an array the same size as \texttt{A} containing logical \texttt{1} (true) where the elements of \texttt{A} are \texttt{NaN}s and logical \texttt{0} (false) where they are not.}'
 \\Meaning that you can pass any dimension of array (e.g. vector or matrix or 3D), not just a scalar (a single value or \(1\times1\) matrix). 
 \end{mdframed}}
-
-To try and make amends, \textbf{MATLAB} provides a \textit{function} to determine whether or not something is Not A Number -- \docenvdef{isnana}. This returns \textit{true} (\texttt{1}) is the passed variable is Not A Number, and \textit{false} (\texttt{0}) if not, e.g.
-
-\begin{docspec}
+\begin{docspecbold}
 >> isnan(a)\\
 ans =\\
 \ \ \ 1
-\end{docspec}
-
+\end{docspecbold}
 \noindent whereas:
-
-\begin{docspec}
+\begin{docspecbold}
 >> isnan(99)\\
 ans =\\
 \ \ \ 0
-\end{docspec}
-
-\noindent because \texttt{99} is a number (integer) and not a Not A Number.
+\end{docspecbold}
+because \texttt{99} is a number (integer) and not a Not A Number.
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
-\vspace{2mm}
 
-\noindent In the CO\(_{2}\) data, there are min and max uncertainty limit values. One could color-code the points in a scatter-plot to represent either the min or the max (perhaps try this first), but one on its own is not necessarily much use. One could color-code by the difference, but this is a function of the absolute value and one would expect large uncertainty bars if the mean (central) estimate was high, and lower if it were low. Perhaps we need the \textit{relative} range in uncertainty? Can you do this? i.e., \texttt{scatter}-plot the mean CO\(_{2}\) estimate (as a function of time), but color-coding for the range in uncertainty as a proportion of the value?
+\newthought{Optional ...} \noindent In the CO\(_{2}\) data, there are min and max uncertainty limit values. One could color-code the points in a scatter-plot to represent either the min or the max (perhaps try this first), but one on its own is not necessarily much use. One could color-code by the difference, but this is a function of the absolute value and one would expect large uncertainty bars if the mean (central) estimate was high, and lower if it were low. Perhaps we need the \textit{relative} range in uncertainty? Can you do this? i.e., \texttt{scatter}-plot the mean CO\(_{2}\) estimate (as a function of time), but color-coding for the range in uncertainty as a proportion of the value?
 
 It turns out this is not entirely trivial because as you have seen, the data is not as well behaved as you might have hoped. In fact, it is just like real data you might encounter all the time! Before you do anything -- break down into small steps what you need to do with the data, as this will inform what (if any) additional processing you might have to carry out on the data. It should be obvious, that to create a CO\(_{2}\) difference, \textit{relative} to the mean, you are going to have to divide by the mean value (the values in column \#2 of the array).  So first off -- if any of the mean values are zero, it is all going to go pear-shaped (dividing by zero ...). Actually, equally unhelpful, or at least, lacking in any meaning, may be negative values. If you inspect the data (in the \textsf{Variable window}), there are both zeros and negative values for mean CO\(_{2}\) proxy estimates. We need to get rid of these. Follow the steps as before (i.e. identifying zero of negative values and either removing the corresponding rows in the array, or setting the values to a \texttt{NaN}). You may also have to process the min and max values should they turn out to be the same. Likely, you are going to have to delete all the rows in which: (1) column \#2 values are zero or below, and (2) column \#3 and \#4 values are equal (you could also try the \texttt{NaN} substitution and see if it works out).
-(If you need a slight hint ... one possible answer is here\sidenote[][-1.375in]{
+(If you need a slight hint ... one possible answer is here\sidenote[][-0.25in]{
 In this possible solution -- all rows in the array \texttt{data}, with mean CO2 values less than or equal to zero, are deleted. Also, all rows for which the max and min values are the same, are also deleted.
 \texttt{\scriptsize{
 \\>> data=load('paleo\_CO2\_data.txt',\\...'-ascii');
@@ -4963,20 +4967,6 @@ In this possible solution -- all rows in the array \texttt{data}, with mean CO2 
 \\>> title('Proxy atmospheric CO\_2')
 }}}
 , but try and work it out for yourself.)
-
-All that is missing now, is any indication of what the color scale actually means in terms of values (and of what). \textbf{MATLAB} will add a colorbar to a plot with the command ... \docenvdef{colorbar}. Although the color scale gets automatically plotted with labels for the values, looking at the plot, we still don't know what the values are of (e.g. units). We can label the colorbar, but \textbf{MATLAB} needs to know what we are labelling. Each graphic object is assigned a unique ID when you create them and which normally you know nothing about. We can create a variable to store the ID, and then pass this ID to \textbf{MATLAB} to tell it to create a title for the colorbar. To cut a long story short:
-\begin{docspec}
-colorbar\_id=colorbar;
-\\title(colorbar\_id,'Relative error (\%)';
-\end{docspec}
-
-It should end up looking something like Figure \ref{fig:plot-CO2scatter4} in which you can see the high relative uncertainty (bight colors) prevail at low CO\(_{2}\) values and 'deeper time' (ca. 200-300 Ma). The colorbar title (label) is maybe not ideal, nicer would be one aligned vertically rather than horizontally. We'll worry about that sort of refinement another time.
-
-\begin{marginfigure}[-3.75in]
-\includegraphics[width=\linewidth]{plot-CO2scatter4.eps}
-\caption{Proxy reconstructed past variability in atmospheric CO2 (scatter plot).}
-\label{fig:plot-CO2scatter4}
-\end{marginfigure} 
 
 \subsection{Other data filtering}
 
@@ -4994,10 +4984,10 @@ What you need, is a way of automatically removing each and every row in which on
 \textbf{1. use a loop}
 \vspace{2mm}
 
-We could go through the array, row by row, and for every row in which a \texttt{NaN} occurs, remove that row. The code would look something like:
+We could go through the array, row by row, and for every row in which a \texttt{NaN} occurs, remove that row. The code (in a new \textit{script} file) would look something like:
 
 \begin{docspec}
-\textcolor[rgb]{0,0.501961,0}{\%\%\% script to load in data and remove NaN-containing rows}\\
+\textcolor[rgb]{0,0.501961,0}{\%\%\% script to load data, remove NaN-containing rows}\\
 \textcolor[rgb]{0,0.501961,0}{\% load dataset}\\
 data=load(\textcolor[rgb]{1,0,1}{'temperature\_riverside.txt'},\textcolor[rgb]{1,0,1}{'ascii'});\\
 \textcolor[rgb]{0,0.501961,0}{\% determine number of rows of data}\\
@@ -5026,17 +5016,17 @@ n = 1;\\
 
 (not really)
 
-There is a relatively new \textbf{MATLAB} \textit{function} that achieves just this: \docenv{rmmissing}. Slightly simpler code to do the same job would then look like:
+There is a relatively new \textbf{MATLAB} \textit{function} that achieves just this: \docenv{rmmissing}. Slightly simpler  code that does the same job would then look like:
 
 \begin{docspec}
-\textcolor[rgb]{0,0.501961,0}{\%\%\% alt script to load in data and remove NaN-containing rows}\\
+\textcolor[rgb]{0,0.501961,0}{\%\%\% script to load data, remove NaN-containing rows}\\
 \textcolor[rgb]{0,0.501961,0}{\% load dataset}\\
 data=load(\textcolor[rgb]{1,0,1}{'temperature\_riverside.txt'},\textcolor[rgb]{1,0,1}{'ascii'});\\
 \textcolor[rgb]{0,0.501961,0}{\% remove problem rows!!!}\\
 data = rmmissing(data);
 \end{docspec}
 
-\marginnote[-2.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-2.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{rmmissing} -- 'Remove rows or columns with missing entries'.
 \\In the simplest usage:
 \begin{docspecmargin}
@@ -5057,22 +5047,15 @@ Removes rows containing missing data elements from array \texttt{A}, assigning t
 
 \subsection{Basic (pretend) 'stats'}
 
-We are not going to delve into complex stats here. A variety of stats related functions are included in the \textbf{MATLAB Statistics Toolbox}. We'' stick to some simply functions included as standard in the basic package.
-
+We are not going to delve into complex stats here. A variety of stats related functions are included in the \textbf{MATLAB Statistics Toolbox}. We'll stick to some simple functions included as standard in the basic package. 
 Useful basic stats-related functions include:
 
 \begin{itemize}[noitemsep]
 \setlength{\itemindent}{.2in}
-\item \texttt{sum} -- the sum of a vector of numbers.
-\item \texttt{mean} -- the mean of a vector of numbers.
 \item \texttt{min} -- the minimum value of ...
 \item \texttt{max} -- the maximum value of ...
-\end{itemize}
-
-In addition to which, basic \textbf{MATLAB} functions also include:
-
-\begin{itemize}[noitemsep]
-\setlength{\itemindent}{.2in}
+\item \texttt{sum} -- the sum of a vector of numbers.
+\item \texttt{mean} -- the mean of a vector of numbers.
 \item \texttt{std} -- the standard deviations of a vector of numbers.
 \item \texttt{var} -- the variance of a vector of numbers.
 \item \texttt{median} -- the median value of ...
@@ -5080,69 +5063,58 @@ In addition to which, basic \textbf{MATLAB} functions also include:
 \end{itemize}
 
 For instance, consider vector \texttt{A} (integers from 1 to 9, inclusive):
-
-\begin{docspec}
+\begin{docspecbold}
 >> A = [1:9];
-\end{docspec}
+\end{docspecbold}
 
 Try out all of the above functions on the vector. Most of the values you can pretty much guess. The \texttt{mode} of the vector is perhaps the only one where it comes up oddly, because the mode of a set of values is defined as the most popular value, yet you have created only one of each value in the vector. So all values are in theory equally the most frequent and \textbf{MATLAB} simply returns the first.
 
 So try adjusting the vector, adding an additional '7' at the end:
-
-\begin{docspec}
+\begin{docspecbold}
 >> B = [A 7];
-\end{docspec}
-
-\noindent Now what is the mode value of the vector \texttt{B}?
+\end{docspecbold}
+Now what is the mode value of the vector \texttt{B}?
 
 Sometimes you have have the situation where you have one or more \texttt{NaN}s in the data. For example:
-
-\begin{docspec}
+\begin{docspecbold}
 >> C = [A NaN];
-\end{docspec}
-
-\noindent Now try out some of the same functions on vector \texttt{C}. What happens? Why \textbf{MATLAB} does this and does not simply ignore \texttt{NaN}s, is anypony's guess. I mean, what application could you possibly have where when you ask for the mean of a vector, you are hoping to be told '\texttt{NaN}'? There are solutions.
+\end{docspecbold}
+Now try out some of the same functions on vector \texttt{C}. What happens? Why \textbf{MATLAB} does this and does not simply ignore \texttt{NaN}s, is anypony's guess. I mean, what application could you possibly have where when you ask for the mean of a vector, you are hoping to be told '\texttt{NaN}'? There are solutions.
 
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item Firstly -- you could use find, to find and remove \texttt{NaN}s from data. So if you have data that includes \texttt{NaN}s, you could simply filter them out prior to processing the data. The function for determining whether or not an array element is a \texttt{NaN}, is \docenv{isnan} )see earlier Box).
 \item Or you could create a loop and test each element in turn as to whether or not it is a \texttt{NaN} (again, using the \docenv{isnan} function).
-\item The MATLAB functions listed above, all (most?) have an additional optional parameter (see Box) that allows you to direct \textbf{MATLAB} to ignore \texttt{NaN}s in the data.
+\item The \textbf{MATLAB} functions listed above, all (most?) have an additional optional parameter (see Box) that allows you to direct \textbf{MATLAB} to ignore \texttt{NaN}s in the data.
 \item Lastly, in the \textbf{Statistics Toolbox}, there are variants of all (most?) of these functions that automatically ignore \texttt{NaN}s, such as \texttt{nanmean} (the \texttt{NaN}-ignoring variant of \texttt{mean})
 \end{enumerate}
 
 Try out each of these solutions, applying them to the vector \texttt{C} (or a \texttt{NaN}-containing vector of your choice).
 
 All of these functions can also be used on 2D arrays (matrices) ... with care. Consider the matrix:
-
-\begin{docspec}
+\begin{docspecbold}
 >> D = [1 2 3; 4 5 6; 7 8 9];
-\end{docspec}
-
-\noindent (which has the same elements as \texttt{A}, just in a different configuration). What happens when you ask for \texttt{mean(D)}? As per help (and the Box): '\textit{If A is a matrix, then mean(A) returns a row vector containing the mean of each column.}' So \texttt{mean(D)} is returning the mean of \texttt{[1 4 7]}, \texttt{[2 5 8]}, and \texttt{[3 6 9]}. Try \textit{transposing} the matrix and then using the \texttt{mean} \textit{function}. You should see that you now get the mean of the individual rows (rather than columns) of matrix \texttt{D}:
-
-\begin{docspec}
+\end{docspecbold}
+(which has the same elements as \texttt{A}, just in a different configuration). What happens when you ask for \texttt{mean(D)}? As per help (and the Box): '\textit{If A is a matrix, then mean(A) returns a row vector containing the mean of each column.}' So \texttt{mean(D)} is returning the mean of \texttt{[1 4 7]}, \texttt{[2 5 8]}, and \texttt{[3 6 9]}. Try \textit{transposing} the matrix and then using the \texttt{mean} \textit{function}. You should see that you now get the mean of the individual rows (rather than columns) of matrix \texttt{D}:
+\begin{docspecbold}
 >> mean(D')\\
 ans =\\
 \ \ \ 2     5     8
-\end{docspec}
+\end{docspecbold}
 
 This goes for \texttt{sum} and all (most?) the rest of the functions.
 
 If you need the total sum of all the elements in a matrix, or mean of all the elements in a matrix, you can simply \textit{nest} the \textit{functions}:
-
-\begin{docspec}
+\begin{docspecbold}
 >> sum(sum(D))
-\end{docspec}
-
-\noindent or if you prefer breaking things down into sperate steps:
-
-\begin{docspec}
+\end{docspecbold}
+or if you prefer breaking things down into sperate steps:
+\begin{docspecbold}
 >> E = sum(D);
 >> sum(E)
-\end{docspec}
+\end{docspecbold}
 
-\noindent However, note that \texttt{std(std(D))} is not the standard deviation of all elements in the matrix \texttt{D}. Why?
+However, note that \texttt{std(std(D))} is not the standard deviation of all elements in the matrix \texttt{D}. Why?
 
 %------------------------------------------------
 
@@ -5150,7 +5122,7 @@ If you need the total sum of all the elements in a matrix, or mean of all the el
 
 This (failure to directly obtain the standard deviation of all the elements in a matrix) brings us to array manipulation, which will prove useful in other contexts, such as graphing and particularly scatter plots. In the previous example, \texttt{std(std(D))} fails to give us what we want. Ideally, we would like to have all the elements of D reconfigured so that they were in a single vector format, and we could just write e.g. \texttt{std(D)} and get a single, complete answer.
 
-\marginnote[-4.00in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-1.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{reshape}
 \\Use \docenv{reshape} to transform data in an array of one shape (i.e. configurations of rows and columns), into another. \textbf{MATLAB} \texttt{help} is OK on this and for the main usage of the \textit{function}, says:
 \\\textit{'B = reshape(A,sz) reshapes A using the size vector, sz, to define size(B). For example, reshape(A,[2,3]) reshapes A into a 2-by-3 matrix.}'
@@ -5207,7 +5179,7 @@ You can use \docenv{reshape} in 2 different ways:
 \begin{docspec}
 Dvector = reshape(D,[9,1]);
 \end{docspec}
-\item Alternatively, if you know you want a single column vector and cannot be bothered to work out how many rows you need, MATLAB will kindly pick up the slack via a slightly different usage of \texttt{reshape}:
+\item Alternatively, if you know you want a single column vector and cannot be bothered to work out how many rows you need, \textbf{MATLAB} will kindly pick up the slack via a slightly different usage of \texttt{reshape}:
 \begin{docspec}
 Dvector = reshape(D,[],1);
 \end{docspec}
@@ -5217,12 +5189,11 @@ Here you are specifying one column, but 'whatever' (\texttt{[]}) rows.
 \noindent(Having created a vector containing all the numbers, you can now find the standard deviation: \texttt{std(Dvector)}.)
 
 Obviously, if you want a row, rather than a column vector -- either transpose the column vector to row vector shape, or specify the format of a row vector in the first place when using \texttt{reshape}:
-
 \begin{docspec}
 Dvector = reshape(D,[1,9]);
 \end{docspec}
 
-Lastly, you might notice how MATLAB reads the elements from D before creating the new array shape -- elements are read from the top of the first column downwards, before moving to column \#2. Hence why the order of numbers is 1  4  7  2  5  8 ... 
+Lastly, you might notice how \textbf{MATLAB} reads the elements from \texttt{D} before creating the new array shape -- elements are read from the top of the first column downwards, before moving to column \#2. Hence why the order of numbers is 1  4  7  2  5  8 ... 
 
 What, instead, if you wanted a vector with the ordering:
 
@@ -5243,12 +5214,10 @@ What, instead, if you wanted a vector with the ordering:
 ?
 
 ANS: simply \textit{transpose} the matrix before you reshape:
-
 \begin{docspec}
 Dvector = reshape(D',[1,9])
 \end{docspec}
-
-\noindent (or \texttt{Dvector = reshape(transpose(D),[1,9])}).
+(or \texttt{Dvector = reshape(transpose(D),[1,9])}).
 
 %------------------------------------------------
 
@@ -5260,19 +5229,15 @@ First download the ice-core dataset of atmospheric CO2 over the past ~800,000 ye
 
 So what if we wanted to know the average (mean) value of atmospheric \(CO_{2}\) over the last full glacial cycle, i.e. between now (age zero) and the end of the previous interglacial period, about 115,000 years ago.
 
-So firstly, you might use your most excellent MATLAB skills to extract all the data corresponding to this specific interval -- i.e. all the ages (and corresponding \(CO_{2}\) values, between zero and 115,000 years, or rather, \uline{less than or equal to} 115,000 years. You should know this requires the find function, and that the range of indices if given by (assuming the data array you loaded in is called \texttt{co2}):
-
-\begin{docspec}
-a=find(co2(:,1)<=115000)
-\end{docspec}
-
-\noindent which simply says: take all the elements in the 1st column of the array \texttt{co2} (\texttt{co2(:,1)}), and find the indices of all the elements with a value equal or less than 115,000. To select just the first 115000 years of data in \texttt{co2} is then just a matter of: 
-
-\begin{docspec}
-co22=co2(a,:)
-\end{docspec}
-
-\noindent and check that this does indeed give you the correct portion of data and has assigned it to the array \texttt{co2new}.
+So firstly, you might use your most excellent \textbf{MATLAB} skills to extract all the data corresponding to this specific interval -- i.e. all the ages (and corresponding \(CO_{2}\) values, between zero and 115,000 years, or rather, \uline{less than or equal to} 115,000 years. You should know this requires the find function, and that the range of indices if given by (assuming the data array you loaded in is called \texttt{co2}):
+\begin{docspecbold}
+>> a=find(co2(:,1)<=115000)
+\end{docspecbold}
+which simply says: take all the elements in the 1st column of the array \texttt{co2} (\texttt{co2(:,1)}), and find the indices of all the elements with a value equal or less than 115,000. To select just the first 115000 years of data in \texttt{co2} is then just a matter of: 
+\begin{docspecbold}
+>> co2new=co2(a,:)
+\end{docspecbold}
+and check that this does indeed give you the correct portion of data and has assigned it to the array \texttt{co2new}.
 (Maybe plot to confirm.)
 
 It is worth pausing at this point -- this is a common, and powerful, usage of \texttt{find}, and of \textit{indexing}, and you should be sure you understand it before moving on. What this line is saying is: take both columns of the array \texttt{co2} -- select all the elements (rows) defined by the vector \texttt{a}, and assign the result to \texttt{co2new}.
@@ -5281,9 +5246,9 @@ OK, so we are progressing well towards answering the question -- the mean \(CO_{
 
 To make the problem more obvious -- repeat the above exercise, but now consider only the past 40,000 years. From the plot, high, interglacial \(CO_{2}\) values characterise only the last 10,000 years or so, with a transition over 5,000 years or so before that. From 15,000 years and back to 40,000, \(CO_{2}\) is clearly bumping along its lowest values. What would you guess the mean \(CO_{2}\) value is? Now try it. I get \(249 ppm\) \(CO_{2}\). Does that look correct to you, across the past 40,000 years?
 
-If you were previously using \texttt{plot} to plot the data, now try \texttt{scatter}. It should be much more obvious what is going on now -- you have very uneven data sampling in time -- the bulk of the data is from the last 10,000 years or so, and there are very few data points older than about 22,000 years. When \textbf{MATLAB} calculates a mean, it is off the data points, and an uneven data sampling will give a biased, unrepresentative value. We need to \uline{interpolate} the data -- place it on an evenly sampled-in-time basis.
+If you were previously using \texttt{plot} to plot the data, now try \texttt{scatter}. It should be much more obvious what is going on now -- you have very uneven data sampling in time -- the bulk of the data is from the last 10,000 years or so, and there are very few data points older than about 22,000 years. When \textbf{MATLAB} calculates a mean, it is of the data points, and an uneven data sampling will give a biased, unrepresentative value.
 
-The \textbf{MATLAB} function to interpolate vector (1D) data is \docenvdef{interp1} (see \texttt{help}/Box).
+We need to \uline{interpolate} the data -- place it on an evenly sampled-in-time basis. The \textbf{MATLAB} function to interpolate vector (1D) data is \docenv{interp1} (see \texttt{help}/Box).
 
 \marginnote[-2.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{interp1}
@@ -5303,100 +5268,82 @@ yi = interp1(x,y,xi,method,'extrap')
 \end{mdframed}}
 
 The first thing we need, to use \docenv{interp1}, is a vector of points in time, that we are going to interpolate our data on to. As a rule, the vector should ideally not extend in value beyond the minimum and maximum values of the original axis, but we'll ignore this for now. We might pick ... 1,000 years as a simple sampling interval, and so to create this new axis vector, we would write:
+\begin{docspecbold}
+>> xi=[0:1000:40000];
+\end{docspecbold}
+assuming we stick with the 0-40,000 year interval. The \docenv{interp1} function requires that you pass this vector, along with the original time (x-axis) vector, and the original data (y-axis) vector, and will give you a new data vector, with values corresponding to the time points defined by \texttt{xi}. Like this:
+\begin{docspecbold}
+>> yi=interp1(co22(:,1),co22(:,2),xi);
+\end{docspecbold}
 
-\begin{docspec}
-xi=[0:1000:40000];
-\end{docspec}
-
-\noindent assuming we stick with the 0-40,000 year interval. The \docenv{interp1} function requires that you pass this vector, along with the original time (x-axis) vector, and the original data (y-axis) vector, and will give you a new data vector, with values corresponding to the time points defined by \texttt{xi}. Like this:
-
-\begin{docspec}
-yi=interp1(co22(:,1),co22(:,2),xi);
-\end{docspec}
-
-\noindent If you prefer to break things down\sidenote{And then you might also make the variable names REALLY explicit, and have \texttt{xold}, \texttt{yold}, \texttt{xnew}, \texttt{ynew} or something.} so as the process is clearer, maybe first extract and create the original data, x-axis (time) vector:
-
+If you prefer to break things down\sidenote{And then you might also make the variable names REALLY explicit, and have \texttt{xold}, \texttt{yold}, \texttt{xnew}, \texttt{ynew} or something.} so as the process is clearer, maybe first extract and create the original data, x-axis (time) vector:
 \begin{docspec}
 xold=co22(:,1);
 \end{docspec}
-
-\noindent and then the y-axis (data) vector:
-
+and then the y-axis (data) vector:
 \begin{docspec}
 yold=co22(:,2);
 \end{docspec}
-
-\noindent and then do the interpolation:
-
+and then do the interpolation:
 \begin{docspec}
 y1=interp1(xold,yold,x1);
 \end{docspec}
 
-\noindent Either way, now scatter-plotting the interpolated data:
-
-\begin{docspec}
-scatter(x,y);
-\end{docspec}
+Either way, now scatter-plotting the interpolated data:
+\begin{docspecbold}
+>> scatter(x1,y1);
+\end{docspecbold}
 
 \noindent should result in an obviously evenly-spaced data plot.
 
-We could now use mean, except if you were paying attention, because we extrapolated outside of the range of the extracted data into the array \texttt{co2new}. But you know how to handle this situation, i.e. removing the offending \texttt{NaN} rows, or use \texttt{nanmean} if you have access to the required \textbf{MATLAB} toolbox.
+We could now use \texttt{mean}, except if you were paying attention, because we extrapolated outside of the range of the extracted data into the array \texttt{co2new}. But you know how to handle this situation, i.e. removing the offending \texttt{NaN} rows, or use \texttt{nanmean} if you have access to the required \textbf{MATLAB} toolbox.
 
 Or, you could re-do the interpolation, but interpolate from the full, original data array, which you know extends way past 40,000 years. And ... specify the very first time point as 1,000 years rather than zero. e.g.
-
 \begin{docspec}
 x1=[1000:1000:40000];\\
 y1=interp1(co2(:,1),co2(:,2),x1); 
 \end{docspec}
 
 Well ... it doesn't work, which is sort of pretty 'real world' problem-esk. The issue is that there is a duplicate year -- i.e. 2 \(CO_{2}\) values with the same year.\sidenote{The \textbf{MATLAB} interpolation function requires a strictly monotonically increasing (with no duplicates) old and new x-axis vector.} How to find them? Well, you saw earlier the function \texttt{mode}, which return the most popular value in an array. If we do:
-
-\begin{docspec}
+\begin{docspecbold}
 >> mode(co2(:,1))\\
 ans =\\
 \ \ \ 409383
-\end{docspec}
+\end{docspecbold}
 
 Ha ha, so the year 409,383 is duplicated.\sidenote{The absence of duplicated year values, or rather, there only being one of each individual number, would result in \textbf{MATLAB} returning the very first value in the vector. The only confusion here would be if the very first value was itself duplicated ...} How to find this ...
-
-\begin{docspec}
-find(co2(:,1)==409383);
-\end{docspec}
+\begin{docspecbold}
+>> find(co2(:,1)==409383);
+\end{docspecbold}
 
 \noindent or if you prefer (and neater):
-\begin{docspec}
->> rows=find(co2(:,1)==mode(co2(:,1)))\\
+\begin{docspecbold}
+>> >> rows=find(co2(:,1)==mode(co2(:,1)))\\
 ans =\\
 \ \ \ 531\\
 \ \ \ 532\\
-\end{docspec}
+\end{docspecbold}
 
 \noindent giving us the row numbers. We could be cleaver, and create a single entry for this year, with the \(CO_{2}\) value formed of the mean of the duplicate entries:
-
-\begin{docspec}
-co2mean=mean(co2(rows,2));
-\end{docspec}
-
-\noindent replace the first \(CO_{2}\) value ...
-
-\begin{docspec}
-co2(rows(1),2)=co2mean;
-\end{docspec}
-
+\begin{docspecbold}
+>> co2mean=mean(co2(rows,2));
+\end{docspecbold}
+\noindent ... replacing the first \(CO_{2}\) value ...
+\begin{docspecbold}
+>> co2(rows(1),2)=co2mean;
+\end{docspecbold}
 \noindent ... and then delete the second.
-
-\begin{docspec}
-co2(rows(2),:)=[];
-\end{docspec}
+\begin{docspecbold}
+>> co2(rows(2),:)=[];
+\end{docspecbold}
 
 Phew! Now try the interpolation again. Plot (\texttt{scatter} and/or \texttt{plot}). Find the mean \(CO_{2}\) value over 0-40,000 (technically, now we have restricted the data to 1,000-40,000). Does this seem more reasonable? Repeat for 0-115,000 years (or 1,000-115,000 years). Also try out carrying out an interpolation with closer spacing, say 500 or 100 years.
 
-Finally, if you read the (Box or \texttt{help}) details about the function \texttt{interp1}, the more recent \textbf{MATLAB} version releases enable you to extrapolate outside of the data domain. SO instead of having to restrict the \texttt{xi} vector to starting at year 1,000, you can start at year zero:
-
-\begin{docspec}
-x1=[0:1000:40000];\\
-y1=interp1(co2(:,1),co2(:,2),x,'linear','extrap'); 
-\end{docspec}
+Finally, if you read the (Box or \texttt{help}) details about the function \texttt{interp1}, the more recent \textbf{MATLAB} version releases enable you to extrapolate outside of the data domain. So instead of having to restrict the \texttt{xi} vector to starting at year 1,000, you can start at year zero:
+\begin{docspecbold}
+>> x1=[0:1000:40000];\\
+>> y1=interp1(co2(:,1),co2(:,2),x,'linear','extrap'); 
+\end{docspecbold}
 
 %------------------------------------------------
 
@@ -5575,6 +5522,26 @@ you could store a copy of the \textit{handle} of that line segment -- here it is
 \end{itemize}
 
 \noindent Note that here, you are setting line properties \uline{after} you have created the graphics, whereas earlier in eg. using \texttt{plot} to graph data, you specified the properties as you draw the lines. Both ways are valid, but being able to change properties later and after plotting, gives you greater flexibility. Note that after plotting a graphic, you can also edit and adjust its properties in the \textsf{Figure window} itself (via its GUI)
+
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
+
+\noindent Using a handle also now enables you to complete an earlier plot. For the proxy \(CO_{2}\) data where you color-coded the points and added a \texttt{colorbar}, there was not actually any indication of what the color scale actually means in terms of values (and of what). \textbf{MATLAB} will add a colorbar to a plot with the command ... \docenv{colorbar}. Although the color scale gets automatically plotted with labels for the values, looking at the plot, we still don't know what the values are of (e.g. units). We can label the colorbar, but \textbf{MATLAB} needs to know what we are labelling. Each graphic object is assigned a unique ID when you create them and which normally you know nothing about. We can create a variable to store the ID, and then pass this ID to \textbf{MATLAB} to tell it to create a title for the colorbar. To cut a long story short, you would add to your script file (or type at the command line):
+\begin{docspec}
+colorbar\_id=colorbar;
+\\title(colorbar\_id,'Relative error (\%)';
+\end{docspec}
+
+The revised plot should then end up looking something like Figure \ref{fig:plot-CO2scatter4} in which you can see the high relative uncertainty (bight colors) prevail at low CO\(_{2}\) values and 'deeper time' (ca. 200-300 Ma). The colorbar title (label) is maybe not ideal, nicer would be one aligned vertically rather than horizontally. We'll worry about that sort of refinement another time.
+
+\begin{marginfigure}[-0.0in]
+\includegraphics[width=\linewidth]{plot-CO2scatter4.eps}
+\caption{Proxy reconstructed past variability in atmospheric CO2 (scatter plot).}
+\label{fig:plot-CO2scatter4}
+\end{marginfigure} 
+
+
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
