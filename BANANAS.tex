@@ -6447,7 +6447,7 @@ This (algorithms\footnote{\textit{algorithm} -- "a process or set of rules to be
 
 \subsection{Example \#1: max(!)}
 
-So yes, this is a built-in \textit{function} \texttt{max} in \textbf{MATLAB}, but suspend disbelief for a moment ... and pretend that there is not one. What if we wanted to create one, i.e. a \textit{function} that is passed a vector of numbers, and returns the maximum value on that vector?
+So yes, this is a built-in \textit{function} \texttt{max} in \textbf{MATLAB}, but suspend disbelief for a moment ... and pretend that there is not one. What if we wanted to create one, i.e. a \textit{function} that is passed a vector of numbers, and returns the maximum value on that vector? \footnote{\textcolor{red}{\textbf{Example codes provided}}}
 
 So already, from the definition of the problem, you know how to create a new \textbf{m-file} a define a \textit{function} -- one that takes as input a variable (a vector), and returns the largest value in that vector.\sidenote{Note that you do not need to specify that the input variable is a vector, just that there is a variable input.}\sidenote{Here, my personal naming convention has:\\
 \texttt{s\_out} -- the output variable, and \texttt{s} for scalar\\
@@ -6461,11 +6461,24 @@ So already, from the definition of the problem, you know how to create a new \te
 \textcolor{blue}{end}
 \end{docspecbold}
 
-You have hence created a (empty) shell for the program (\textit{function}). You could try calling it/running it at the command line ... to check there is no problem so far, although it is clearly not going to do anything. You could extend your basic testing by returning just the first element of the input vector, i.e., before \texttt{end}, add:
+You have hence created a (empty) shell for the program (\textit{function}). You could try calling it/running it at the command line, just to check there is no problem so far, although it is clearly not going to do anything. To call your \textit{function} at the command line -- remember that you have defined the \textit{function} to take 1 input -- you \uline{must} therefore give it an input ... First -- make a test input in the \textbf{MATLAB} workspace (not in the \textit{function}), e.g.
+\begin{docspecbold}
+>> A = [1:100];
+\end{docspecbold}
+which defines a vector of integers between 1 and 100. You can now call the \textit{function} at the command line, passing in this test vector to \texttt{maxxx}:
+\begin{docspecbold}
+>> maxxx(A)
+\end{docspecbold}
+Nothing gets returned yet, but equally, you should not be presented with pages of red \textbf{MATLAB} error text.
 
+You could extend your basic testing by returning just the first element of the input vector, i.e., before \texttt{end}, add:
 \begin{docspec}
 s\_out = v\_in(1);
 \end{docspec}
+and then re-try:
+\begin{docspecbold}
+>> maxxx(A)
+\end{docspecbold}
 
 You are still not solving the problem yet, but in this step, you have now demonstrated that your \textit{function} can take in a (\textit{vector}) input, do something with it, and now set the output variable (and return a scalar)\marginnote{Which in this example just happens to be the first element of the vector}.
 
@@ -6480,7 +6493,7 @@ A=[1:10]';\\
 length(A)
 \end{docspecmargin}}.
 
-So at the top of the \textit{function} (but below the comment lines), you could create a \textit{variable}, set equal to the number of elements in the \textit{vector} that you are going to have to process:
+So near the top of the \textit{function} (but below the function definition line and the following comment lines), you could create a \textit{variable}, set equal to the number of elements in the \textit{vector} that you are going to have to process:
 \begin{docspecbold}
 nmax = length(v\_in);
 \end{docspecbold}
@@ -6538,29 +6551,6 @@ You might also recognise that you need not test this against the first element, 
 
 Finally, remember to set the output variable equal to the maximum value that you find.\sidenote{After the loop ends.}
 
-The following is the complete working code of the problem\sidenote{Note the liberal use of comments, and also the indentation of the code within the \texttt{for} loop as well as within the \texttt{if} conditional.}:
-
-\begin{docspec}
-\textcolor{blue}{function} [s\_out] = maxxx(v\_in)\\
-\textcolor[rgb]{0,0.501961,0}{\% maxxx\\
-\%\\
-\% Takes a (single) vector as input, \\ \% returns the maximum value.}\\
-
-\textcolor[rgb]{0,0.501961,0}{\% Determine number of elements in vector}\\
-nmax = length(v\_in);
-\textcolor[rgb]{0,0.501961,0}{\% Seed temporary (running maximum) variable}\\
-temp\_max = v\_in(1);\\
-\textcolor[rgb]{0,0.501961,0}{\% Loop through all \\ \% but the first element in the vector}\\
-\textcolor{blue}{for} n = 2:nmax,\\
-\ \ \ \textcolor{blue}{if} (v\_in(n) > temp\_max),\\
-\ \ \ \ \ \ temp\_max = v\_in(n);\\
-\ \ \ \textcolor{blue}{end}\\
-\textcolor{blue}{end}\\
-\textcolor[rgb]{0,0.501961,0}{\% Set function (return) value}\\
-s\_out = temp\_max;\\
-\textcolor{blue}{end}
-\end{docspec}
-
 There are 2 further testing or debugging (if you have issues) steps:
 
 \begin{enumerate}[noitemsep]
@@ -6568,20 +6558,21 @@ There are 2 further testing or debugging (if you have issues) steps:
 \vspace{1mm}
 \item Firstly, simply go through in your mind, what you think happens on each iteration. Writing down how the values, e.g. of the temporary variable change on each iteration, is a good idea. Obviously you can do this prior to writing the code, to give you an idea of how it will work (or not).
 \vspace{1mm}
-\item Create a series of test arrays, or varying length, ordered, or random numbers, integers and/or reals, plug them in, and see if your function works each and every time.
+\item Create a series of test arrays (vectors), or varying length, ordered, or random numbers, integers and/or reals, whatever youn like ...  and see if your \textit{function} works each and every time.
 \end{enumerate}
 
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\newthought{If you are passably happy with that --} write a (new) \textit{function} that finds the \textit{minimum} element in a vector input.\sidenote[][-0.0in]{This is in fact employed a little later, where it is referred to as \texttt{minxx}.}
+\newthought{When you are passably happy with that --} write a (new) \textit{function} that finds the \textit{minimum} element in a vector input.\sidenote[][-0.0in]{Easiest is to copy the file, rename it \texttt{minxxx.m}, and edit the \textit{function} name on the first line of the file. Then ... edit the code to find the minimum rather than maximum value.} Call this function \texttt{minxxx}.
+\textbf{You will need this later on ...}
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
 
 \pagebreak 
 
-\newthought{Then ... as a 3rd function --} return a second variable from the function -- equal to the number of elements that are equal to the maximum.\sidenote[][-0.0in]{If we were cheating, and we \uline{are not} ... then one could use the built-in \textbf{MATLAB} functions as so:
+\newthought{Next ... as a 3rd function --} create a new \textit{function} that now returns a \uline{second} variable from the \textit{function} -- equal to the number of elements that are equal to the maximum.\sidenote[][-0.0in]{If we were cheating, and we \uline{are not} ... then one could use the built-in \textbf{MATLAB} functions as so:
 \begin{docspecmargin}length(find(A==max(A)));
 \end{docspecmargin}
 Which says ... find the elements in A, equal to \texttt{max(A)} and determine the \texttt{length} (number of elements) of this resulting vector (\texttt{find(A==max(A))}) ...} (i.e. if the maximum value appears 5 times in the input vector ... you additionally return the number '\texttt{5}'.)
@@ -6598,7 +6589,7 @@ The structure of  the (your new) \textit{function} will now look like:
 \end{docspecbold}
 which passes back two variables (rather than the single one you had before).
 
-You might try exploring what youn are doing to 'do' with 2 outputs ... e.g.. if you (temporarily) added the following lines to your \textit{function}:
+You might try exploring what you are doing to 'do' with 2 outputs ... e.g.. if you (temporarily) added the following lines to your \textit{function}:
 \begin{docspec}
 s\_out1=1.1;\\
 s\_out2=2.2;
@@ -6611,7 +6602,7 @@ here passing in an empty vector (as we are not yet doing anything with the input
 \begin{docspec}
 ans =\\
 \ \\
-\ \ \ \ 1
+\ \ \ \ 1.1
 \end{docspec}
 which ... is only 1 of the outputs!!! So you need to explicitly assign the result of your function to 2 variables, e.g.
 \begin{docspecbold}
@@ -6623,7 +6614,7 @@ Back to the construction of the algorithm and its coding ...
 
 The code to generate the first variable (\texttt{s\_out1}) -- the maximum value of the elements in the input vector -- is as before. You only them need to work out the code to determine the value of \texttt{s\_out2}. The key to this is recognising that previously, when the value of \texttt{temp\_max} was equal to \texttt{v\_in(n)}, you did nothing, as you were only interested in \texttt{v\_in(n) > temp\_max} and hence updating (replacing) the current value of \texttt{temp\_max}. What you need is an \texttt{elseif} statement, and test whether you have found a second value in the vector equal to \texttt{temp\_max}. If so, you need to somehow record this occurrence.
 
-A partial solution might look like:
+A partial solution (i.e. a first next step in the development of the code) might look like:
 \begin{docspec}
 \textcolor[rgb]{0,0.501961,0}{\% Loop through all \\ \% but the first element in the vector}\\
 \textcolor{blue}{for} n = 2:nmax,\\
@@ -6635,7 +6626,7 @@ A partial solution might look like:
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
 \end{docspec}
-where \texttt{temp\_n} is where we keep a track of the number of maximum elements -- setting this to a value of \texttt{1}, when we first find a new largest value in the vector.
+where \texttt{temp\_n} is where we keep a track of the number of maximum elements -- setting this to a value of \texttt{1}, when we first find a new largest value in the vector and then a value of \texttt{2} if we find a second occurrence of that value.
 
 But this does not quite work. Why? Try throwing some test vectors at it, e.g.
 \begin{docspec}
@@ -6645,9 +6636,8 @@ C = [1 5 7 3 8 2 4 3 5 8 7 7 8];
 \end{docspec}
 In particular -- is the answer to \texttt{C} ... right?
 
-So far, we have accounted for a duplicate (maximum) value, but the solution (and code algorithm) is not \textit{general}, i.e. we do not handle the general case of there being \(n\) duplicate maximum values in the vector.
-
-\begin{docspec}
+So far, we have accounted for a duplicate (maximum) value, but the solution (and code algorithm) is not \textit{general}, i.e. we do not handle the general case of there being \(n\) duplicate maximum values in the vector. A more general solution looks like:
+\begin{docspecbold}
 \textcolor[rgb]{0,0.501961,0}{\% Initialize duplicate counter}\\
 temp\_n = 1;\\
 \textcolor[rgb]{0,0.501961,0}{\% Loop through all \\ \% but the first element in the vector}\\
@@ -6659,7 +6649,7 @@ temp\_n = 1;\\
 \ \ \ \ \ \ temp\_n = n+1;\\
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
-\end{docspec}
+\end{docspecbold}
 Here we have to seed/initialize the value of \texttt{temp\_n} because we start by setting \texttt{temp\_max} as equal to \texttt{v\_in(1)}, i.e. we already have 1 instance of the value of \texttt{v\_in(1)} being the maximum, by the time the loop starts.
 
 Again -- a key to programming and developing algorithms, is to follow the behaviour of the code in your head (as well as adding break points and testing with a variety of inputs, including extreme assumptions). For instance -- assume that the 2nd element in the vector was equal to the first, and follow the code around -- check that the value of \texttt{temp\_n} is incremented appropriately and the output, if the vector was only 2 long, or there were no larger values in the remainder of the vector, is right. What if the 1st 3 elements were all equal? How does that pan out in terms of behaviour and output?
@@ -6670,7 +6660,7 @@ In general -- if the code works for a selection of extreme assumptions, it will 
 
 \subsection{Example \#2: sort(!!)}
 
-(And yes, \textbf{MATLAB} also has functions for sorting values in an array ...)
+(Yes, \textbf{MATLAB} also has functions for sorting values in an array ...)
 
 \vspace{-2mm}
 \newthought{In this second set of Examples --} imagine that you have a vector of numbers, and you wish to sort them into ascending order. The \textit{function} would take a vector as input, and return a vector of the same length as output, comprising all the values of the input vector, but now sorted in order.
@@ -11615,6 +11605,43 @@ close(vidObj);
 \\\textcolor[rgb]{0,0.501961,0}{\% export graphics (as postscript)}
 \\print -dpsc2 ch3p2p6.ps;
 \end{docspecbold}
+
+%------------------------------------------------
+%
+\newpage
+
+%------------------------------------------------
+
+\section{Chapter 4 codes}
+
+%------------------------------------------------
+
+\subsection*{\textbf{Section 4.2}}
+
+\subsection*{Code for the \texttt{maxxx} function}
+
+\begin{docspec}
+\textcolor{blue}{function} [s\_out] = maxxx(v\_in)\\
+\textcolor[rgb]{0,0.501961,0}{\% maxxx\\
+\%\\
+\% Takes a (single) vector as input, \\ \% returns the maximum value.}\\
+
+\textcolor[rgb]{0,0.501961,0}{\% Determine number of elements in vector}\\
+nmax = length(v\_in);
+\textcolor[rgb]{0,0.501961,0}{\% Seed temporary (running maximum) variable}\\
+temp\_max = v\_in(1);\\
+\textcolor[rgb]{0,0.501961,0}{\% Loop through all \\ \% but the first element in the vector}\\
+\textcolor{blue}{for} n = 2:nmax,\\
+\ \ \ \textcolor{blue}{if} (v\_in(n) > temp\_max),\\
+\ \ \ \ \ \ temp\_max = v\_in(n);\\
+\ \ \ \textcolor{blue}{end}\\
+\textcolor{blue}{end}\\
+\textcolor[rgb]{0,0.501961,0}{\% Set function (return) value}\\
+s\_out = temp\_max;\\
+\textcolor{blue}{end}
+\end{docspec}
+
+
 
 %----------------------------------------------------------------------------------------
 
