@@ -5992,7 +5992,7 @@ A helpful device, particularly when dealing with arrays of data in \textbf{MATLA
 \textcolor{blue}{for} n=1:10\\
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% loop 2 start\\}
 \ \ \ \textcolor{blue}{for} m=1:10\\
-\ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% CODE\\}
+\ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\%\%\%\ CODE\\}
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
 \end{docspecbold}
@@ -6048,7 +6048,7 @@ The idea then is to \textit{loop} through all the locations in the array in turn
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% loop 2 start\\}
 \ \ \ \textcolor{blue}{for} column=1:3\\
 \ \ \ \ \ \ \textcolor{blue}{if} (tokens(row,column) == 1),\\
-\ \ \ \ \ \ \ \ \ ...\\
+\ \ \ \ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\%\%\% CODE}\\
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
 \end{docspec}
@@ -6086,7 +6086,7 @@ You can also search in the opposite direction (sign), e.g.
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% loop 2 start\\}
 \ \ \ \textcolor{blue}{for} row=3:-1:1\\
 \ \ \ \ \ \ \textcolor{blue}{if} (tokens(row,column) == 1),\\
-\ \ \ \ \ \ \ \ \ ...\\
+\ \ \ \ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\%\%\% CODE}\\
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
 \end{docspec}
@@ -6109,11 +6109,12 @@ Nor, do the number of rows and columns have to be the same. For example you migh
 \ \ \ \textcolor{blue}{end}\\
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% day loop start\\}
 \ \ \ \textcolor{blue}{for} day=1:day\_max\\
-\ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% CODE\\}
+\ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\%\%\% CODE\\}
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
 \end{docspecbold}
 Here, the \texttt{switch ... case} structure is used to test for which month (number) it is, and set the day-of-the-month loop limit accordingly.
+Note the use of curly brackets \texttt{\{\}} in defining the list of elements in the \texttt{case} statement. (A single element does not require curly brackets.)
 
 Try this code (in a new \textit{script} file). Add a \texttt{disp} line within the day loop to confirm that the correct number of days is being counted up to each month.
 
@@ -6127,7 +6128,7 @@ if (month==1 || month==3 || month==5 ...)
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\vspace{30mm}
+\vspace{20mm}
 
 \pagebreak
 
@@ -6161,7 +6162,7 @@ Make  a new \textit{script} \textbf{m-file} for this. You'll need to create a ne
 \textcolor{blue}{for} row=1:6\\
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% column loop start\\}
 \ \ \ \textcolor{blue}{for} column=1:6\\
-\ \ \ \ \ \ \ \ \ ...\\
+\ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\%\%\% CODE}\\
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
 \end{docspec}
@@ -6174,7 +6175,7 @@ or you can be more clever/flexible and use the \texttt{size} function to determi
 \textcolor{blue}{for} row=1:nrows\\
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% column loop start\\}
 \ \ \ \textcolor{blue}{for} column=1:ncolumns\\
-\ \ \ \ \ \ \ \ \ ...\\
+\ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\%\%\% CODE}\\
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
 \end{docspec}
@@ -6220,13 +6221,13 @@ hold \textcolor[rgb]{1,0,1}{on};
 \item You know what \texttt{hold on} does, right ... ?
 \end{itemize}
 
-You can then add (after) the nested loop code framework:
+You can then add the nested loop code framework\footnote{To your \textbf{m-file}, after the \texttt{hold on} line.}:
 \begin{docspecbold}
 \textcolor[rgb]{0,0.501961,0}{\% loop 1 start\\}
 \textcolor{blue}{for} column=1:3\\
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% loop 2 start\\}
 \ \ \ \textcolor{blue}{for} row=1:3\\
-\ \ \ \ \ \ \ \ \ ...\\
+\ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\%\%\% CODE}\\
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
 \end{docspecbold}
@@ -6297,8 +6298,7 @@ You could also create distinct colors by using the \texttt{rand} function. e.g.
 \begin{docspec}
 color=[rand rand rand];
 \end{docspec} 
-where we are now specifying random values (in the range 0-1) for each of the three red, green, blue
-color intensity components (see earlier).
+where we are now specifying random values (in the range 0-1) for each of the three red, green, blue color intensity components (see earlier). (No figure example shown.)
 
 Maybe play about a little creating different patterns of colors.
 
@@ -6316,6 +6316,20 @@ Maybe play about a little creating different patterns of colors.
 \vspace{-2mm}
 
 \pagebreak
+
+\marginnote[0.25in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
+\docenvdef{zeros}
+\\\texttt{zeros} creates an array of dimension 2 or higher, consisting entirely of zeros! Actually, this is not as useless as it sounds, and represents a simple way to create a large array of a particular shape that can have then have (non zero) values set subsequently.
+To generate an \(n\times m\) matrix of zeros, you use:
+\begin{docspecmargin}
+A = zeros(n,m);
+\end{docspecmargin}
+There is a short-cut if the 2 dimensions are the same (i.e. \(n=m\)), and you can simply write:
+\begin{docspecmargin}
+A = zeros(n);
+\end{docspecmargin}
+Simply list additional comma-separated integers (or variables containing values), to extend to 3 (or more) dimensions.
+\end{mdframed}}
 
 \newthought{As a final example, consider the chess board.} A chess board consists of squares in a \(8\times8\) grid. The squares alternate black and white. To define 8 squares (points) along the \textit{x}-axis on the bottom row, you'd write something of the form:
 \begin{docspec}
@@ -6442,7 +6456,7 @@ So already, from the definition of the problem, you know how to create a new \te
 \textcolor{blue}{function} [s\_out] = maxxx(v\_in)\\
 \textcolor[rgb]{0,0.501961,0}{\% maxxx\\
 \%\\
-\% Takes a (single) vector as input, returns the maximum value.}\\
+\% Takes a (single) vector as input;\\ \%\ returns the maximum value.}\\
 \textcolor[rgb]{0,0.501961,0}{\%\%\% CODE} \\
 \textcolor{blue}{end}
 \end{docspecbold}
@@ -6530,13 +6544,13 @@ The following is the complete working code of the problem\sidenote{Note the libe
 \textcolor{blue}{function} [s\_out] = maxxx(v\_in)\\
 \textcolor[rgb]{0,0.501961,0}{\% maxxx\\
 \%\\
-\% Takes a (single) vector as input, returns the maximum value.}\\
+\% Takes a (single) vector as input, \\ \% returns the maximum value.}\\
 
 \textcolor[rgb]{0,0.501961,0}{\% Determine number of elements in vector}\\
 nmax = length(v\_in);
 \textcolor[rgb]{0,0.501961,0}{\% Seed temporary (running maximum) variable}\\
 temp\_max = v\_in(1);\\
-\textcolor[rgb]{0,0.501961,0}{\% Loop through all but the first element in the vector}\\
+\textcolor[rgb]{0,0.501961,0}{\% Loop through all \\ \% but the first element in the vector}\\
 \textcolor{blue}{for} n = 2:nmax,\\
 \ \ \ \textcolor{blue}{if} (v\_in(n) > temp\_max),\\
 \ \ \ \ \ \ temp\_max = v\_in(n);\\
@@ -6577,9 +6591,9 @@ The structure of  the (your new) \textit{function} will now look like:
 \textcolor{blue}{function} [s\_out1 s\_out2] = maxxxes(v\_in)\\
 \textcolor[rgb]{0,0.501961,0}{\% maxxxes\\
 \%\\
-\% Takes a (single) vector as input, returns the maximum value
-\\ and the number of elements equal to that value.}\\
-\ \\
+\% Takes a (single) vector as input, \\ \% returns the maximum value
+\\ \% PLUS the number of elements equal to that value.}\\
+\textcolor[rgb]{0,0.501961,0}{\%\%\% CODE} \\
 \textcolor{blue}{end}
 \end{docspecbold}
 which passes back two variables (rather than the single one you had before).
@@ -6611,7 +6625,7 @@ The code to generate the first variable (\texttt{s\_out1}) -- the maximum value 
 
 A partial solution might look like:
 \begin{docspec}
-\textcolor[rgb]{0,0.501961,0}{\% Loop through all but the first element in the vector}\\
+\textcolor[rgb]{0,0.501961,0}{\% Loop through all \\ \% but the first element in the vector}\\
 \textcolor{blue}{for} n = 2:nmax,\\
 \ \ \ \textcolor{blue}{if} (v\_in(n) > temp\_max),\\
 \ \ \ \ \ \ temp\_max = v\_in(n);\\
@@ -6636,7 +6650,7 @@ So far, we have accounted for a duplicate (maximum) value, but the solution (and
 \begin{docspec}
 \textcolor[rgb]{0,0.501961,0}{\% Initialize duplicate counter}\\
 temp\_n = 1;\\
-\textcolor[rgb]{0,0.501961,0}{\% Loop through all but the first element in the vector}\\
+\textcolor[rgb]{0,0.501961,0}{\% Loop through all \\ \% but the first element in the vector}\\
 \textcolor{blue}{for} n = 2:nmax,\\
 \ \ \ \textcolor{blue}{if} (v\_in(n) > temp\_max),\\
 \ \ \ \ \ \ temp\_max = v\_in(n);\\
@@ -6659,21 +6673,21 @@ In general -- if the code works for a selection of extreme assumptions, it will 
 (And yes, \textbf{MATLAB} also has functions for sorting values in an array ...)
 
 \vspace{-2mm}
-\newthought{In this second set of Examples --} imagine that you have a vector of numbers, and you wish to sort them into ascending order. The function would take a vector as input, and return a vector of the same length as output, comprising all the values of the input vector, but now sorted in order.
+\newthought{In this second set of Examples --} imagine that you have a vector of numbers, and you wish to sort them into ascending order. The \textit{function} would take a vector as input, and return a vector of the same length as output, comprising all the values of the input vector, but now sorted in order.
 
 How to go about this?
 
 Well -- first create the function framework, as before:
-\begin{docspec}
+\begin{docspecbold}
 \textcolor{blue}{function} [v\_out] = sortx(v\_in)\\
 \textcolor[rgb]{0,0.501961,0}{\% sortx\\
 \%\\
-\% Takes a (single) vector as input, returns a vector of the same length, with all the value sorted in ascending order.}\\
-\ \\
+\% Takes a (single) vector as input, \\ \% returns a vector of the same length, with \\ \% all the values sorted in ascending order.}\\
+\textcolor[rgb]{0,0.501961,0}{\%\%\% CODE} \\
 \textcolor{blue}{end}
-\end{docspec}
+\end{docspecbold}
 
-So far ... so good. What do we need to do within the function? Well, we could start by finding the minimum value in the array, and placing it at the start of a new array -- the one that will form the output.
+So far ... so good. What do we need to do within the \textit{function}? Well, we should start with a simple text of the \textit{function} structure. For instance, we could start by finding the minimum value in the array, and placing it at the start of a new array -- the one that will form the output. In this test, in place of \texttt{\textcolor[rgb]{0,0.501961,0}{\%\%\% CODE}} in the empty \textit{function} outlined above would go:
 \begin{docspec}
 \textcolor[rgb]{0,0.501961,0}{\% Initialize the output vector (as empty)}\\
 v\_out = [];\\
@@ -6682,11 +6696,22 @@ x = minxx(v\_in);\\
 \textcolor[rgb]{0,0.501961,0}{\% Update output vector}\\
 v\_out = [v\_out x];
 \end{docspec}
-Here -- one way to build up an array for the output, is to append to (concatenate) a value to an existing array. The array must start defined as something ... here, as empty\texttt{ ([]).}\sidenote{Also in this code fragment -- you need to have created that minimum finding function ...} 
+remembering that one way to build up a vector for output, is to append to (concatenate) a value to an existing vector. The vector must start defined as something ... here, as empty\texttt{ ([]).}\sidenote{Also in this code fragment -- you need to have created that minimum finding function ...}
 
-This will work, but only return the lowest (1st) value, rather than sorting them all. You might spot that the 3rd through 6th lines of code, need to be repeated -- i.e. you keep calling the find-the-minimum function, and adding this value to the output vector. But if this is all you did, the program would run forever and return an infinite number of repeats of the minimum value (or give you a vector the length of the input vector with identical (minimum) values in, depending on how you set up the loop (e.g. \texttt{for} or \texttt{while})) -- this is because once you have found the minimum value, and added it to the output array, the value still exists in the input array and will be found again (and again and again) if you create a loop around it.
+Try this out at the command line to check that it does indeed return the minimum value of the vector input:
+\begin{docspec}
+>> sortx([1 2 3 4 5 6 7 8 9])
+\end{docspec}
+Of course, you could create a more complicated and challenging vector to test it with and rather than pass the values directly, e.g. if your vector of numbers to sort was assigned to variable \texttt{testvec}, then you would type:
+\begin{docspec}
+>> sortx(testvec)
+\end{docspec}
 
-The key, at least, the key to creating the particular algorithm/solution I will outline next, is to remove the element from the input array, that you have just used. e.g. if we find a '\texttt{1}' and this is the lowest value, after it has been added to the output array, it needs to be deleted from the input array. This means that we need to know 'where' in the (input) array the minimum value was, so you next task is to \uline{modify your \texttt{minxx} function, to return the position in the vector that the minimum value occurred at} (in addition to the value of the minimum value itself).\sidenote{HINT: When you find a new minimum value in the loop, the index (the position of that minimum value) is \texttt{n}. So you need to create a temporary variable that you update with the value of \texttt{n}, only when a new minimum value is found in the loop. You will see this variable with '\texttt{1}', consistent with assigning the first minimum value from index \texttt{1} in the vector.} i.e. your \texttt{minxx} (or whatever you called it) function needs to look like:
+So far, your function returns the lowest (1st) value, rather than sorting them all. You might spot that the 3rd through 6th lines of code, need to be repeated -- i.e. you keep calling the find-the-minimum function, and adding this value to the output vector. But if this is all you did, the program would run forever and return an infinite number of repeats of the minimum value (or give you a vector the length of the input vector with identical (minimum) values in, depending on how you set up the loop (e.g. \texttt{for} or \texttt{while})) -- this is because once you have found the minimum value, and added it to the output array, the value still exists in the input array and will be found again (and again and again) if you create a loop around it.
+
+The key ... at least, the key to creating the particular algorithm ... is to \uline{remove the element that you have just used from the input array}. e.g. if we find a '\texttt{1}' and this is the lowest value, after it has been added to the output array, it needs to be deleted from the input array. This means that we need to know 'where' in the (input) array the minimum value was.
+
+So ... your next task is to \uline{modify your \texttt{minxx} function, to return the position in the vector that the minimum value occurred at} (in addition to the value of the minimum value itself).\sidenote{HINT: When you find a new minimum value in the loop, the index (the position of that minimum value) is \texttt{n}. So you need to create a temporary variable that you update with the value of \texttt{n}, only when a new minimum value is found in the loop. You will see this variable with '\texttt{1}', consistent with assigning the first minimum value from index \texttt{1} in the vector.} i.e. your \texttt{minxx} (or whatever you called it) function needs to look like:
 
 \begin{docspec}
 \textcolor{blue}{function} [s\_out1 s\_out2] = minxx(v\_in)
@@ -6694,16 +6719,25 @@ The key, at least, the key to creating the particular algorithm/solution I will 
 
 \noindent where \texttt{s\_out1} is the minimum found value, as before, and \texttt{s\_out2} is the index position of that number in the vector.
 
-Having obtained the index of the minimum value, you can delete this entry from the input array by:
-\begin{docspec}
+Having obtained the index of the minimum value -- assuming that you passed it into a variable m (and with \texttt{x}, as before, the minimum value), e.g.
+\begin{docspecbold}
+[x m] = minxx(v\_in);
+\end{docspecbold}
+you can now delete this entry from the input array by means of:
+\begin{docspecbold}
 v\_in(m) = [];
-\end{docspec}
+\end{docspecbold}
 where \texttt{m} is the index.
 
-The code within your modified sort (not \texttt{minxx}) function, might look like\sidenote{Note the notation for catching the 2 returned values from the \texttt{minxx} function:
+The code within your modified sort (not \texttt{minxx}) \textit{function}, would now look something like\sidenote{Note the notation for catching the 2 returned values from the \texttt{minxx} function:
 \begin{docspecmargin}[x m] = minxx(v\_in);
 \end{docspecmargin}}:
+\vspace{-1mm}
 \begin{docspec}
+\textcolor{blue}{function} [v\_out] = sortx(v\_in)\\
+\textcolor[rgb]{0,0.501961,0}{\% sortx\\
+\%\\
+\% Takes a (single) vector as input, \\ \% returns a vector of the same length, with \\ \% all the values sorted in ascending order.}\\
 \textcolor[rgb]{0,0.501961,0}{\% Determine number of elements in vector}\\
 nmax = length(v\_in);\\
 \textcolor[rgb]{0,0.501961,0}{\% Initialize the output vector (as empty)}\\
@@ -6716,26 +6750,26 @@ v\_out = [];\\
 \ \ \ v\_out = [v\_out x];\\
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% Remove used element}\\
 \ \ \ v\_in(m) = [];\\
+\textcolor{blue}{end}\\
+\textcolor[rgb]{0,0.501961,0}{\% function end} \\
 \textcolor{blue}{end}
 \end{docspec}
+\vspace{-1mm}
+
+\noindent\rule{4cm}{0.5pt}
+\vspace{-2mm}
+
+\newthought{For (easy) fun:} create a (new) \textit{function} that sorts in descending order.
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\newthought{For (easy) fun:} create a function that sorts in descending order.
-
-\vspace{1mm}
-\noindent\rule{4cm}{0.5pt}
-\vspace{-2mm}
-
-\newthought{For even more (but less easy) fun:} create a function that sorts in descending order ... but ... \uline{excludes duplicate values}, i.e. no 2 values should be the same in the output vector.\sidenote{HINT: modify the \texttt{maxxx} function to return the index of all the elements having a value equal to the maximum value. This will be a vector, which will be appended to as the loop progresses, with each value being assigned the current value of \texttt{n} (the position of the maximum value in the vector).}
-
-\vspace{1mm}
-\noindent\rule{4cm}{0.5pt}
-\vspace{-2mm}
+\newthought{For even more (but less easy) fun:} create a (new) \textit{function} that sorts in descending order ... but ... \uline{excludes duplicate values}, i.e. no 2 values should be the same in the output vector.\sidenote{HINT: modify the \texttt{maxxx} function to return the index of all the elements having a value equal to the maximum value. This will be a vector, which will be appended to as the loop progresses, with each value being assigned the current value of \texttt{n} (the position of the maximum value in the vector).}
 
 %------------------------------------------------
+
+\newpage
 
 \subsection{Example \#3: a gridded problem}
 
@@ -6743,7 +6777,7 @@ We are going to base this next example around the (modern) topography of a simpl
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch3-genietopo.eps}
-\caption{Ocean topography (blues through red) in the 'GENIE' Earth system model. Land is shown in brown.}
+\caption{Ocean topography (blues through red) in the 'GENIE' Earth system model. Land is shown marked in brown.}
 \label{fig:ch3-genietopo}
 \end{marginfigure}
 
@@ -6763,7 +6797,7 @@ You know that you will need to draw a row of 36, \(1\times1\) squares using \tex
 \ \ \ ...\\
 \textcolor{blue}{end}
 \end{docspec}
-(here: \texttt{i} for longitude). And then draw a series of squares, each with their right-hand edge corresponding to the value of \texttt{i} (so the left-hand edge is at \texttt{(i-1)}). For now, draw only a single row of cells, with the y/latitude-axis (which I will use index \texttt{j} for) from \texttt{0} (bottom edge) to \texttt{1} (upper edge).\sidenote{To make the individual cells more apparent, you can specify a different edge color, and also make the edges thicker, e.g.
+(here: \texttt{i} for longitude). And then draw a series of squares, each with their right-hand edge corresponding to the value of \texttt{i} (so the left-hand edge is at \texttt{(i-1)}). For now, draw only a single row of cells, with the y/latitude-axis (which I will use index \texttt{j} for) from \texttt{0} (bottom edge) to \texttt{1} (upper edge).\sidenote[][-1.0in]{To make the individual cells more apparent, you can specify a different edge color, and also make the edges thicker, e.g.
 \begin{docspecmargin}
 patch([0 0 1 1],[1 0 0 1],...\\
 'k', ...\\
@@ -6919,17 +6953,6 @@ A sensible start might be to loop through all the points in the grid. As you sho
 [n\_lat n\_lon] = size(model\_grid);
 \end{docspec}
 
-\marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
-\docenvdef{size}
-\\ \docenv{size} returns the size of an array, as a vector of length \textit{n}, where \textit{n} is the number of dimensions of the array.
-\\For a matrix, a 2-element vector is returned with the values corresponding to the number of rows and the number of columns (in that order). These values can be handily saved by assigning the result of size to a paid of (scalar) variables: 
-\begin{docspecmargin}
->> [n\_rows n\_cols] = ...
-\\ \ \ size(MATRIX)
-\end{docspecmargin}
-where \texttt{MATRIX} is the matrix array name, and \texttt{[n\_ronws n\_cols]} forms a 2-element vector to be assigned the result to.
-\end{mdframed}}
-
 \noindent Here: \docenv{size} returns the number of rows and columns of the array, corresponding to the number of latitude, and longitude bands, respectively. Your code (which should be placed in an \texttt{m-file}) will the start to look like:
 \begin{docspec}
 topo = load('model\_grid.txt','-ascii');
@@ -6941,20 +6964,6 @@ topo = load('model\_grid.txt','-ascii');
 \\end
 \end{docspec}
 but with ... suitable comments added of course ... By all means add some suitable debug lines and test it (the loop behaviour).  
-
-\marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
-\docenvdef{zeros}
-\\\texttt{zeros} creates an array of dimension 2 or higher, consisting entirely of zeros! Actually, this is not as useless as it sounds, and represents a simple way to create a large array of a particular shape that can have then have (non zero) values set subsequently.
-To generate an \(n\times m\) matrix of zeros, you use:
-\begin{docspecmargin}
-A = zeros(n,m);
-\end{docspecmargin}
-There is a short-cut if the 2 dimensions are the same (i.e. \(n=m\)), and you can simply write:
-\begin{docspecmargin}
-A = zeros(n);
-\end{docspecmargin}
-Simply list additional comma-separated integers (or variables containing values), to extend to 3 (or more) dimensions.
-\end{mdframed}}
 
 You are going to need an array, the same size as the topography dataset, to store the number assigned to each land mass, i.e. each grid cell needs to be labelled with a land mass number, and something distinct from this if it is not land at all (i.e. ocean). You can create an array of zeros easily with the \textbf{MATLAB} \docenv{zeros} function (see Box). Then as you raster through the grid (via the nested loop), you can assign land points a value corresponding to the land mass number, and leave the ocean points as zeros.
 
