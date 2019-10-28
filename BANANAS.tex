@@ -5986,8 +5986,8 @@ Lets further assume that you can place some initial limits on \(x: x_{min}\leq x
 
 \section{Nested loops}
 
-A helpful device, particularly when dealing with arrays of data in \textbf{MATLAB}, is to \textit{nest} loops -- i.e place one loop inside another one. (So far, you have seen single loops, and single loops with conditions inside, but not nested loops.) A generic code for a nested loop might look like:
-\begin{docspec}
+A helpful device, particularly when dealing with arrays of data in \textbf{MATLAB}, is to \textit{nest} loops -- i.e placing one loop inside another one. (So far, you have seen single loops, and single loops with \textit{conditionals} inside, but not nested loops.) A generic code for a nested loop might look like:
+\begin{docspecbold}
 \textcolor[rgb]{0,0.501961,0}{\% loop 1 start\\}
 \textcolor{blue}{for} n=1:10\\
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% loop 2 start\\}
@@ -5995,27 +5995,29 @@ A helpful device, particularly when dealing with arrays of data in \textbf{MATLA
 \ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% CODE\\}
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
-\end{docspec}
+\end{docspecbold}
 Here, the value of \texttt{n} cycles (loops) from \(1\) to \(10\) (i.e. the loop goes around 10 times). Then ... for each value of \texttt{n}, the value of \texttt{m} also cycles from \(1\) to \(10\). The code in the middle of the innermost loop is then executed a total of \(10\times 10=100\) times.
 
-Why would you do this? An Example.
+Try this (in a new script file) and confirm that the outer loop cycles around 10 times, and the inner loop ten times for each cycle of the outer loop. (e.g. you might add a \texttt{disp} line both within the inner loop, and outside of the inner loop but within the outer loop.)
 
-Image you are programming a game of Tic-tac-toe (in fact we will, in a later chapter!). The drawn grid might look like Figure \ref{fig:ch6-grid1}.\sidenote[][-2.5in]{In this case, player \textsf{x} has obviously already won. What was \textsf{naughts} thinking???}
+Why would you do this (what use could it be)?
 
-\begin{marginfigure}[-2.0in]
+Image you are programming a game of Tic-tac-toe (in fact we will, in a later chapter!). The drawn grid might look like Figure \ref{fig:ch6-grid1}.\sidenote[][-3.5in]{In this case, player \textsf{x} has obviously already won. What was \textsf{naughts} thinking???}
+
+\begin{marginfigure}[-3.0in]
 \includegraphics[width=\linewidth]{ch6-grid1.eps}
 \caption{Tic-tac-toe game grid.}
 \label{fig:ch6-grid1}
 \end{marginfigure}
 
 In terms of \textbf{MATLAB} and computer programming, we might create a representation of the grid, and assign \texttt{0} to unpicked squares, a \texttt{1} for where a cross is, and a \texttt{2} for where a naught is, as per Figure \ref{fig:ch6-grid2} (because we cannot numerically represent an actual cross or circle shape). 
-\begin{marginfigure}[0.0in]
+\begin{marginfigure}[-0.50in]
 \includegraphics[width=\linewidth]{ch6-grid2.eps}
 \caption{Tic-tac-toe game grid with numerical codes overlain.}
 \label{fig:ch6-grid2}
 \end{marginfigure}
 
-To store this information, we could create an array in which each location would have a value of \texttt{0}, \texttt{1}, or \texttt{2}, e.g.
+To store this information, we could create an \textit{array} in which each location would have a value of \texttt{0}, \texttt{1}, or \texttt{2}, e.g.
 
 \vspace{2mm}
 \(\begin{pmatrix}1 & 2 & 0 \\
@@ -6032,14 +6034,14 @@ To store this information, we could create an array in which each location would
 \label{fig:ch6-grid3}
 \end{marginfigure}
 
-OK -- ignore the existence of the \textbf{MATLAB} \textit{function} find, and lets say that you want find the locations of the crosses -- '\texttt{1}'s in the array code notation. You need to test each an every location in the array (lets call it \texttt{tokens}) in turn for whether its contents is a '\texttt{1}' or not. We could do this long-hand ...
+OK -- ignore the existence of the \textbf{MATLAB} \textit{function} \texttt{find}, and lets say that you want find the locations of the crosses -- '\texttt{1}'s in the array code notation. You need to test each an every location in the array (lets call it \texttt{tokens}) in turn for whether its contents is a '\texttt{1}' or not. We could do this long-hand ...
 \begin{docspec}
 \textcolor{blue}{if} ( (tokens(1,1) == 1) || (tokens(2,1) == 1) ||\\
 \ \ \ (tokens(3,1) == 1) || (tokens(1,2) == 1) || ...
 \end{docspec}
-... and would get desperately tedious pretty quickly. And what if the grid (array) was \(100\times 100\)? You could have to have \(10,000\) tests of an equality in the \texttt{\textcolor{blue}{if}} ...
+... but would get desperately tedious pretty quickly.\footnote{Note what is being done here -- we are using a series of ORs (\texttt{||}) to determine whether any of the array locations (squares0 contain a value equal to \texttt{1}.} And what if the grid (array) was \(100\times 100\)? You could have to have \(10,000\) tests of an equality in the \texttt{\textcolor{blue}{if}} ...
 
-The idea then is to loop through all the locations in the array. And we do this by: For each row (in a loop), loop through all the columns. Our code fragment would then loop like:
+The idea then is to \textit{loop} through all the locations in the array in turn. And we do this by: For each row (which we search through in a loop), we loop through all the columns. Our code fragment would then loop like:
 \begin{docspec}
 \textcolor[rgb]{0,0.501961,0}{\% loop 1 start\\}
 \textcolor{blue}{for} row=1:3\\
@@ -6050,7 +6052,7 @@ The idea then is to loop through all the locations in the array. And we do this 
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
 \end{docspec}
-and hence you thereby visit each and every array location in turn -- working across every column, for each and every row, as per Figure \ref{fig:ch6-grid4}.
+This nested loop ensures that you  visit each and every array location in turn -- working across every column, for each and every row, as per Figure \ref{fig:ch6-grid4} and test for the occurrence of a value of \texttt{1}.
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch6-grid4.eps}
@@ -6058,7 +6060,7 @@ and hence you thereby visit each and every array location in turn -- working acr
 \label{fig:ch6-grid4}
 \end{marginfigure}
 
-We could also carry out the search in the opposite order:
+We could also carry out the search of (\textit{rows, columns}) in the opposite order:
 \begin{docspec}
 \textcolor[rgb]{0,0.501961,0}{\% loop 1 start\\}
 \textcolor{blue}{for} column=1:3\\
@@ -6069,7 +6071,7 @@ We could also carry out the search in the opposite order:
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
 \end{docspec}
-(Figure \ref{fig:ch6-grid5}) Then result would be exactly the same. TO some extend, which axis direction you choose as the outer loop, is a matter of personal preference\sidenote{When arrays are small, the the overall computational expense small.}.
+and now loop through each row (inner loop) for each column (outer loop) as illustrated in Figure \ref{fig:ch6-grid5}. The result is exactly the same. To some extent, which axis direction you choose as the outer loop is a matter of personal preference\sidenote{When arrays are small, the the overall computational expense small.}.
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch6-grid5.eps}
@@ -6077,7 +6079,7 @@ We could also carry out the search in the opposite order:
 \label{fig:ch6-grid5}
 \end{marginfigure}
 
-You can also search in the opposite directions, e.g.
+You can also search in the opposite direction (sign), e.g.
 \begin{docspec}
 \textcolor[rgb]{0,0.501961,0}{\% loop 1 start\\}
 \textcolor{blue}{for} column=1:3\\
@@ -6092,15 +6094,15 @@ searches across columns, form left-to-right, but rows in the order bottom-to-top
 
 The concept is the same even for very large grids (where you cannot easily draw a graphical representation to help you).
 
-Nor, do the number of rows and columns have to be the same. For example you might want to access information stored in an array that has a cell location for every day of the year. In this case, you might have 12 columns for the 12 months, and 31 rows so that you can accommodate the number of days in the longest month.\sidenote{MATLAB does not allow the number of rows to differ, from column to column -- a matrix must have a strictly rectangular shape. \textbf{MATLAB} and other programming languages allow the creation of \textit{objects}, that are more flexible.} In fact, in this example, the inner loop -- days -- might have a different loop maximum, depending on which month, e.g.
-\begin{docspec}
+Nor, do the number of rows and columns have to be the same. For example you might want to access information stored in an array that has a cell location for every day of the year. In this case, you might have 12 columns for the 12 months, and 31 rows so that you can accommodate the number of days in the longest month.\sidenote{\textbf{MATLAB} does not allow the number of rows to differ, from column to column -- a matrix must have a strictly rectangular shape. \textbf{MATLAB} and other programming languages allow the creation of \textit{objects}, that are more flexible.} In fact, in this example, the inner loop -- days -- might have a different loop maximum, depending on which month, e.g.
+\begin{docspecbold}
 \textcolor[rgb]{0,0.501961,0}{\% month loop start\\}
 \textcolor{blue}{for} month=1:12\\
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% determine length of month\\}
 \ \ \ \textcolor{blue}{switch} month\\
-\ \ \ \ \ \     \textcolor{blue}{case} {1, 3, 5, 7, 8, 10, 12}\\
+\ \ \ \ \ \     \textcolor{blue}{case} {\textbraceleft1, 3, 5, 7, 8, 10, 12\textbraceright}\\
 \ \ \ \ \ \ \ \ \         day\_max = 31;\\
-\ \ \ \ \ \     \textcolor{blue}{case} {4, 6, 9, 11}\\
+\ \ \ \ \ \     \textcolor{blue}{case} {\textbraceleft4, 6, 9, 11\textbraceright}\\
 \ \ \ \ \ \ \ \ \         day\_max = 30;\\
 \ \ \ \ \ \     \textcolor{blue}{case} {2}\\
 \ \ \ \ \ \ \ \ \         day\_max = 29;\\
@@ -6110,11 +6112,24 @@ Nor, do the number of rows and columns have to be the same. For example you migh
 \ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% CODE\\}
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
+\end{docspecbold}
+Here, the \texttt{switch ... case} structure is used to test for which month (number) it is, and set the day-of-the-month loop limit accordingly.
+
+Try this code (in a new \textit{script} file). Add a \texttt{disp} line within the day loop to confirm that the correct number of days is being counted up to each month.
+
+Also -- try (in the same \textit{script} file, or create a new one) replacing the \texttt{switch ... case} structure, with \texttt{if ... elseif}. You will need to use OR (\texttt{||}), e.g. 
+\begin{docspec}
+if (month==1 || month==3 || month==5 ...)
 \end{docspec}
+(and then either 2 \texttt{elseif} bits, or 1 \texttt{elseif} and one \texttt{else} in the \texttt{if ...} structure).
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
+
+\vspace{30mm}
+
+\pagebreak
 
 \newthought{To test your understanding ...} for the matrix:
 
@@ -6132,38 +6147,73 @@ Nor, do the number of rows and columns have to be the same. For example you migh
 \sidenote{Hint: Before the next loop starts, you'll need to define a parameter to keep count of the number of values you find that meet the criteria, and set it to zero. Then in the (nested) loop, increment the counter variable by \texttt{1} each time you find a value matching the criteria.}
 \sidenote{Also hint: At the start of the script (after your initial descriptive comments!), define \texttt{A}.}:
 
+\vspace{-2mm}
 \begin{enumerate}[noitemsep]
 \item greater than \texttt{9}
 \item greater than \texttt{9} but less than \texttt{20}
 \end{enumerate}
-
-Make this a new \textit{script} \textbf{m-file} program. Display (\texttt{disp}) the result at the end (after the (nested) loop has ended).
-
-\vspace{1mm}
-\noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
+
+Make  a new \textit{script} \textbf{m-file} for this. You'll need to create a nested loop to test each and every location in the \textit{array} in turn. Display (\texttt{disp}) the result at the end (after the (nested) loop has ended). You an either set fixed loop limits, e.g. 
+\vspace{-1mm}
+\begin{docspec}
+\textcolor[rgb]{0,0.501961,0}{\% row loop start\\}
+\textcolor{blue}{for} row=1:6\\
+\ \ \ \textcolor[rgb]{0,0.501961,0}{\% column loop start\\}
+\ \ \ \textcolor{blue}{for} column=1:6\\
+\ \ \ \ \ \ \ \ \ ...\\
+\ \ \ \textcolor{blue}{end}\\
+\textcolor{blue}{end}
+\end{docspec}
+\vspace{-1mm}
+or you can be more clever/flexible and use the \texttt{size} function to determine the number of rows and column, e.g.
+\vspace{-1mm}
+\begin{docspec}
+[nrows,ncolumns] = size(A);\\
+\textcolor[rgb]{0,0.501961,0}{\% row loop start\\}
+\textcolor{blue}{for} row=1:nrows\\
+\ \ \ \textcolor[rgb]{0,0.501961,0}{\% column loop start\\}
+\ \ \ \textcolor{blue}{for} column=1:ncolumns\\
+\ \ \ \ \ \ \ \ \ ...\\
+\ \ \ \textcolor{blue}{end}\\
+\textcolor{blue}{end}
+\end{docspec}
+\vspace{-1mm}
+which now becomes generic for any sized array \texttt{A}.
+
+For e.g. the number of occurrences of values great than 9, you will need a counter, which you initially set as zero, \uline{before} the first loop starts ... and then you increment ... i.e. add 1 to its value and re-assign the new total back to itself ... when the condition (value > 9) is met:
+\begin{docspec}
+\textcolor{blue}{if} A(row,column) > 9\\
+\ \ \ count = count + 1;\\
+\textcolor{blue}{end}
+\end{docspec}
+(This conditional test of whether the value of the current array element is greater than 9 or not, will go \uline{within} the innermost loop.)
+\noindent\rule{4cm}{0.5pt}
+
+%\vspace{1mm}
+%\noindent\rule{4cm}{0.5pt}
+%\vspace{-2mm}
 
 \newthought{Next}: for the simple tic-tac-toe (\(3\times3\)) grid, at each (\textit{column,row}) location, you are going to draw a colored square.
 
 Firstly, at the start of a new \textit{script} \textbf{m-file}, add:
 
-\begin{docspec}
+\begin{docspecbold}
 \textcolor[rgb]{0,0.501961,0}{\% **************************\\
 \% YOUR COMMENTS ON WHAT THE PROGRAM DOES\\
 \% **************************\\}
-\ \\
+
 \textcolor[rgb]{0,0.501961,0}{\% create a new figure window\\}
 figure;\\
 \textcolor[rgb]{0,0.501961,0}{\% create a set of invisible axes that will the window\\}
 fh = axes(\textcolor[rgb]{1,0,1}{'Position'},[0 0 1 1],\textcolor[rgb]{1,0,1}{'Visible'},\textcolor[rgb]{1,0,1}{'off'});\\
-\textcolor[rgb]{0,0.501961,0}{\% scale the axes\\}
+\textcolor[rgb]{0,0.501961,0}{\% scale the axes (to go from zero to 3)\\}
 axis([0 3 0 3]);\\
 \textcolor[rgb]{0,0.501961,0}{\% hold on!\\}
 hold \textcolor[rgb]{1,0,1}{on};
-\end{docspec}
+\end{docspecbold}
 
 \noindent Here:
-
 \begin{itemize}[noitemsep]
 \item The line starting \texttt{fh = ...} creates a plotting area with no axes visible, and filling the Figure window area (\texttt{[0 0 1 1]} in normalized units). The handle to this is returned (variable \texttt{fh}), just in case we ever need it later.
 \item Then, the axes are scaled for convenience -- there are 3 rows and 3 columns in the grid we want to create, so a 'reasonable' choice is to set \texttt{axis([0 3 0 3])}, although we need not have.
@@ -6171,8 +6221,7 @@ hold \textcolor[rgb]{1,0,1}{on};
 \end{itemize}
 
 You can then add (after) the nested loop code framework:
-
-\begin{docspec}
+\begin{docspecbold}
 \textcolor[rgb]{0,0.501961,0}{\% loop 1 start\\}
 \textcolor{blue}{for} column=1:3\\
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% loop 2 start\\}
@@ -6180,100 +6229,118 @@ You can then add (after) the nested loop code framework:
 \ \ \ \ \ \ \ \ \ ...\\
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
-\end{docspec}
+\end{docspecbold}
 
-To draw a square, the easiest function to use is \texttt{patch} (see earlier). For the coordinate parameters to be passed to \texttt{patch}, if your current location in the loop is \texttt{column=1}, \texttt{row=1} -- now taking for convenience, a notation and orientation where we start counting from the \uline{bottom left-hand corner} (unlike in the previous notation and orientation) --  the coordinates for the square are:
+Note that for convenience and to relate things to a more familiar (\textit{x,y}) coordinate system, we are now going to assume that \texttt{column=1} corresponds to \textit{x=1} in the plot, and \texttt{row=1} corresponds to \textit{y=1} in the plot. i.e. we are working from the bottom left hand corner, first across the columns, and then up the rows. (It does not matter what array location in terms of (\textit{rows,columns}) you assume any (\textit{x,y}) location corresponds to, as long as you remember what correspondence you are assuming.)
+
+To draw a square, the easiest function to use is \texttt{patch} (see earlier). For the coordinate parameters to be passed to \texttt{patch}, if your current location in the loop is \texttt{column=1}, \texttt{row=1} -- now taking the notation and orientation where we start counting from the \uline{bottom left-hand corner} --  the coordinates for the square are:
 \vspace{1mm}
 \\\((0,0), (1,0), (1,1), (0,1)\)
 \vspace{1mm}
-\\\noindent and for which \texttt{patch} will take input:
+\\\noindent and for which \texttt{patch} will then take input:
 
 \begin{docspec}
 patch([0 1 1 0], [0 0 1 1],'black');
 \end{docspec}
 
-\noindent (remembering that patch takes a vector of all the \textit{x}-coordinates as a 1st parameter, and then a vector of all the \textit{y}-coordinates as the second parameter)
+\noindent (remembering that patch takes a vector of all the \textit{x}-coordinates as a 1st parameter, and then a vector of all the \textit{y}-coordinates as the second parameter).
 
-If you do not more than this, you end up looping through the (\(3\times3\)) grid, but only even (re-)plotting the same square in the bottom left-hand corner ...
+If you do no more than this (and use the \texttt{patch} line exactly as written above in your code), you end up looping through the (\(3\times3\)) grid, but only even (re-)plotting the same square in the bottom left-hand corner ...
 
-The mental leap is to \uline{generalize} the problem and  to notice that if your column (\textit{x}) and row (\textit{y}) values are held in variables \texttt{column} and \texttt{row}, respectively, you could write:
+The mental leap is to \uline{generalize} the problem and  to notice that if your column (\textit{x}) and row (\textit{y}) values correspond to the loop variables \texttt{column} and \texttt{row}, respectively, you could write:
 
-\begin{docspec}
+\begin{docspecbold}
 patch([column-1 column column column-1], ...\\
 \ \ \ [row-1 row-1 row row],'black');
-\end{docspec}
+\end{docspecbold}
 
-Complete the code and try this. You should end up with 9 black squares in a (\(3\times3\)) grid ... which will simply look like a huge black square filling the figure window, as per Figure \ref{fig:ch4-grid1} ... :o)
+Try this (adding this \texttt{patch} command to your code). You should end up with 9 black squares in a (\(3\times3\)) grid ... which will simply look like a huge black square filling the figure window, as per Figure \ref{fig:ch4-grid1} ... :o)
 
-\begin{marginfigure}[0.0in]
+\begin{marginfigure}[-4.0in]
 \includegraphics[width=\linewidth]{ch4-grid1.eps}
 \caption{3x3 grid of black squares ...}
 \label{fig:ch4-grid1}
 \end{marginfigure}
 
-You could make it a little more interesting by creating a color value derived from the values of the \texttt{column} and \texttt{row} counters. e.g. if you write:
-
-\begin{docspec}
+You could make it a little more interesting by creating a color value derived from the values of the \texttt{column} and \texttt{row} counters, e.g.
+\begin{docspecbold}
+color = (column + row);
+\end{docspecbold}
+and then modify the patch command:
+\begin{docspecbold}
 patch([column-1 column column column-1], ...\\
 \ \ \ [row-1 row-1 row row],color);
-\end{docspec}
-
-\noindent (substituting a specification of \texttt{'black'} for whatever color corresponds to the value contained in variable \texttt{color}), and immediately before this (still in the loop) write:
-
-\begin{docspec}
-color = (column + row);
-\end{docspec}
+\end{docspecbold}
 
 Re-running the script, you now get Figure \ref{fig:ch4-grid2}.
 
-\begin{marginfigure}[0.0in]
+\begin{marginfigure}[-3.5in]
 \includegraphics[width=\linewidth]{ch4-grid2.eps}
 \caption{3x3 grid of colored squares.}
 \label{fig:ch4-grid2}
 \end{marginfigure}
 
 You might notice that the colors are the same along diagonals, because you get the same value of \texttt{color} whether you are at location \((1,2)\) or \((2,1)\). We could make the location colors more distinct by modifying how we derive a value for \texttt{color}, e.g.
-
 \begin{docspec}
 color = (column\(^{\wedge}\)2 + row);
 \end{docspec}
 
 \noindent (Figure \ref{fig:ch4-grid3})
 
-\begin{marginfigure}[0.0in]
+\begin{marginfigure}[-2.5in]
 \includegraphics[width=\linewidth]{ch4-grid3.eps}
 \caption{(yawn)}
 \label{fig:ch4-grid3}
 \end{marginfigure}
 
-Maybe play about a little creating different patterns of colors by means of different equations combining the values of \texttt{column} and \texttt{row}.
+You could also create distinct colors by using the \texttt{rand} function. e.g.
+\begin{docspec}
+color=[rand rand rand];
+\end{docspec} 
+where we are now specifying random values (in the range 0-1) for each of the three red, green, blue
+color intensity components (see earlier).
+
+Maybe play about a little creating different patterns of colors.
+
+\marginnote[-1.5in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\docenvdef{rand}
+\\\texttt{rand} (with no passed parameters), returns a quasi random real number, in the range \(0.0-1.0\).
+\\This can be scaled, so e.g. \texttt{10.0*rand} returns a number in the range \(0.0-10.0\).
+\\\texttt{1.0+9.0*rand} returns a real number in the range \(1.0-10.0\).
+\\\texttt{round(0.5+9.999999*rand)} returns an integer in the range \(1-10\).
+\\(Remember, that having obtained a random integer starting from 1, you can use this to index an array and hence ultimately, access different images at random.) 
+\end{mdframed}}
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\newthought{As a final example, consider teh chess board.} A chess board consists of squares in a \(8\times8\) grid. The squares alternate black and white. To define 8 squares (points) along the \textit{x}-axis on the bottom row, you'd write something of the form:
+\pagebreak
+
+\newthought{As a final example, consider the chess board.} A chess board consists of squares in a \(8\times8\) grid. The squares alternate black and white. To define 8 squares (points) along the \textit{x}-axis on the bottom row, you'd write something of the form:
 \begin{docspec}
 \textcolor{blue}{for} m=1:8
 \\ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% SOME CODE GOES HERE}
 \\\textcolor{blue}{end}
 \end{docspec}
-Now, if you wanted to define 8 squares along each column (the \textit{y}-axis), at each and every \textit{x}-axis value, you'd need to loop through all the rows, So you need a loop in e.g. \texttt{n}, inside the loop for \texttt{m}:
-\begin{docspec}
+(taking \texttt{m} as the counter along the \textit{x-axis}).
+
+Now, if you wanted to define 8 squares up each column (the \textit{y}-axis), at each and every \textit{x}-axis value, you'd need to loop through all the rows. So you need a loop in e.g. \texttt{n}, inside the loop for \texttt{m}:
+\begin{docspecbold}
 \textcolor{blue}{for} m=1:8
 \\ \ \ \ \textcolor{blue}{for} n=1:8
 \\ \ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% SOME CODE GOES HERE}
 \\ \ \ \ \textcolor{blue}{end}
 \\\textcolor{blue}{end}
-\end{docspec}
-Follow this through to satisfy yourself that for each and every value of \texttt{m} from \texttt{1} to \texttt{8}, \texttt{n} loops from \texttt{1} to \texttt{8}, and hence visits every point in turn of a  \(8\times8\) (\texttt{n,m}) grid.
+\end{docspecbold}
+Follow this through to satisfy yourself that for each and every value of \texttt{m} from \texttt{1} to \texttt{8}, \texttt{n} loops from \texttt{1} to \texttt{8}, and hence visits every point in turn of a  \(8\times8\) (\texttt{n,m}) grid. Create a new \textit{script} \textbf{m-file} and add this code to it.
 
 Actually, now we have got this far, it is good practice to consider how we'd define the black and white squares. We'll assume that black is represented by '\texttt{1}' (\textit{true}) and white by \texttt{'0'} (\textit{false}) and create a board (array) of all white squares to start with, i.e.
 \begin{docspec}
 board = zeros(8);
 \end{docspec}
 \noindent(Refer to \textbf{help} or earlier for the syntax for help on the function \texttt{zeros}.\sidenote[][-1.5in]{You could alternatively write this:
-\begin{docspecmargin}board = zeros(8,8);\end{docspecmargin}})
+\begin{docspecmargin}board = zeros(8,8);\end{docspecmargin}}) This array will be defined at the start of your program -- after any comment lines and before the first loop starts.
 
 \marginnote[-1.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{mod}
@@ -6291,21 +6358,59 @@ b = mod(a,2)
 When the returned value \texttt{b} is \texttt{0}, \texttt{a} is \textit{even}, and when \texttt{b} is \texttt{1}, \texttt{a} is \textit{odd}.
 \end{mdframed}}
 
-If we start with a black square ('\texttt{1}') at the bottom left, we could define an \textit{algorithm} for creating the grid as: odd column number squares are black, as long as the row number is odd, otherwise they are white.\sidenote{Look up a picture of a chess board to convince yourself that this works.} So to implement this in code -- as we loop through both column (\texttt{m}) and row (\texttt{n}) on the board, we test for  the column number being odd and row number odd, OR, the column number being even and row number being even. If \textit{true}, the square is defined as black. The only tricky bit is to determine whether the row or column number is even or odd. We do this by testing whether there is any remainder after dividing by 2, using the function \docenv{mod}.
+If we start with a black square ('\texttt{1}') at the bottom left, we could define an \textit{algorithm} for creating the grid as: odd column number squares are black, as long as the row number is odd, otherwise they are white.\sidenote{Look up a picture of a chess board to convince yourself that this works.}
+
+To implement this in code -- as we loop through both column (\texttt{m}) and row (\texttt{n}) on the board, we will test for  the column number being odd and row number odd, OR, the column number being even and row number being even. If \textit{true}, the square is defined as black. The only tricky bit is to determine whether the row or column number is even or odd. We do this by testing whether there is any remainder after dividing by 2, using the function \docenv{mod}. i.e. if the number is divisible by 2 with no remainder, the number is even; if the remainder is 1, the number is odd.
+
+\vspace{4mm}
+\pagebreak
 
 The complete code looks like:
-\begin{docspecmargin}
+\begin{docspecbold}
 board = zeros(8);
 \\\textcolor{blue}{for} m=1:8
 \\ \ \ \ \ \textcolor{blue}{for} n=1:8
-\\ \ \ \ \ \ \ \ \ \textcolor{blue}{if} ((mod(m,2)>0 \&\& mod(n,2)>0) || (mod(m,2)==0 \&\& mod(n,2)==0))
+\\ \ \ \ \ \ \ \ \ \textcolor{blue}{if} ((mod(m,2)>0 \&\& mod(n,2)>0) || ...\\ 
+\ \ \ \ \ \ \ \ (mod(m,2)==0 \&\& mod(n,2)==0))
 \\ \ \ \ \ \ \ \ \ \ \ \ \ board(n,m) = 1;
 \\ \ \ \ \ \ \ \ \ \textcolor{blue}{end}
 \\ \ \ \ \ \textcolor{blue}{end}
 \\\textcolor{blue}{end}
-\end{docspecmargin}
-Spend a little time decoding the \texttt{if} statement for practice ...
-If you want to see that it works -- code it in a new \textbf{m-file}, run it, and then plot up \texttt{board} by e.g. using \texttt{imagesc} (cf. Figure \ref{fig:ch8-chess}). Beautiful.
+\end{docspecbold}
+
+Given that the mod 2 of an integer can only be \texttt{0} or \texttt{1}, we could also write this:
+\begin{docspec}
+board = zeros(8);
+\\\textcolor{blue}{for} m=1:8
+\\ \ \ \ \ \textcolor{blue}{for} n=1:8
+\\ \ \ \ \ \ \ \ \ \textcolor{blue}{if} ((mod(m,2)==1 \&\& mod(n,2)==1) || ...\\ 
+\ \ \ \ \ \ \ \ (mod(m,2)==0 \&\& mod(n,2)==0))
+\\ \ \ \ \ \ \ \ \ \ \ \ \ board(n,m) = 1;
+\\ \ \ \ \ \ \ \ \ \textcolor{blue}{end}
+\\ \ \ \ \ \textcolor{blue}{end}
+\\\textcolor{blue}{end}
+\end{docspec}
+
+Spend a little time working through how this all works.
+
+If it is easier to see, you could also expand the \texttt{if ...} into its individual parts, e.g.
+\begin{docspec}
+board = zeros(8);
+\\\textcolor{blue}{for} m=1:8
+\\ \ \ \ \ \textcolor{blue}{for} n=1:8
+\\ \ \ \ \ \ \ \ \ \textcolor{blue}{if} ((mod(m,2)==1 \&\& mod(n,2)==1))
+\\ \ \ \ \ \ \ \ \ \ \ \ \ board(n,m) = 1;
+\\ \ \ \ \ \ \ \ \ \textcolor{blue}{elseif} (mod(m,2)==0 \&\& mod(n,2)==0))
+\\ \ \ \ \ \ \ \ \ \ \ \ \ board(n,m) = 1;
+\\ \ \ \ \ \ \ \ \ \textcolor{blue}{else}
+\\ \ \ \ \ \ \ \ \ \ \ \ \ board(n,m) = 0;
+\\ \ \ \ \ \ \ \ \ \textcolor{blue}{end}
+\\ \ \ \ \ \textcolor{blue}{end}
+\\\textcolor{blue}{end}
+\end{docspec}
+Here, the final \texttt{else} bit is not strictly necessary as the \texttt{board} array has been initialized as being all zeros. (But it does not hurt to reassign a zero value if it helps you better read and understand the code.)
+
+To visualize the result (array contents), after the nested loop has ended, you could using the e.g. \texttt{imagesc} function (cf. Figure \ref{fig:ch8-chess}). Beautiful.
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch8-chess.png}
@@ -6322,36 +6427,35 @@ If you want to see that it works -- code it in a new \textbf{m-file}, run it, an
 
 \section{Algorithms and problem-solving}
 
-This (algorithms  and problem-solving) is not something that can really be 'taught' \textit{per se}, but rather practised and aided by a logical state of mind. We'll go through a series of step-by-step examples. Hopefully this will also illustrate some general coding approaches.
+This (algorithms\footnote{\textit{algorithm} -- "a process or set of rules to be followed in calculations or other problem-solving operations"}  and problem-solving) is not something that can really be 'taught' \textit{per se}, but rather practised and aided by a logical state of mind. We'll go through a series of step-by-step examples. Hopefully this will also illustrate some general coding approaches.
 
 %------------------------------------------------
 
 \subsection{Example \#1: max(!)}
 
-So yes, this is a built-in \textit{function} \texttt{max} in \textbf{MATLAB}, but suspend disbelief for a moment ... and pretend that there is not one. What if we wanted to create one, i.e. \textit{function} that is passed a vector of numbers, and returns the maximum value?
+So yes, this is a built-in \textit{function} \texttt{max} in \textbf{MATLAB}, but suspend disbelief for a moment ... and pretend that there is not one. What if we wanted to create one, i.e. a \textit{function} that is passed a vector of numbers, and returns the maximum value on that vector?
 
-So already, from the definition of the problem, you know to create a new \textbf{m-file} a define a \textit{function}, that takes as input a variable (a vector), and returns the largest value in that vector.\sidenote{Note that you do not need to specify that the input variable is a vector, just that there is a variable input.}\sidenote{Here, my personal naming convention has:\\
+So already, from the definition of the problem, you know how to create a new \textbf{m-file} a define a \textit{function} -- one that takes as input a variable (a vector), and returns the largest value in that vector.\sidenote{Note that you do not need to specify that the input variable is a vector, just that there is a variable input.}\sidenote{Here, my personal naming convention has:\\
 \texttt{s\_out} -- the output variable, and \texttt{s} for scalar\\
 \texttt{v\_in} -- an input variable, with \texttt{v} designating vector ...\\(This is perhaps, overkill, but leads little room for any confusion later.)}
-
-\begin{docspec}
+\begin{docspecbold}
 \textcolor{blue}{function} [s\_out] = maxxx(v\_in)\\
 \textcolor[rgb]{0,0.501961,0}{\% maxxx\\
 \%\\
 \% Takes a (single) vector as input, returns the maximum value.}\\
-\ \\
+\textcolor[rgb]{0,0.501961,0}{\%\%\% CODE} \\
 \textcolor{blue}{end}
-\end{docspec}
+\end{docspecbold}
 
-You have hence created a (empty) shell for the program. You could try calling it/running it at the command line ... to check there is no problem so far, although it is clearly not going to do anything. You could extend your basic testing by returning just the first element of the input vector, i.e., before \texttt{end}, add:
+You have hence created a (empty) shell for the program (\textit{function}). You could try calling it/running it at the command line ... to check there is no problem so far, although it is clearly not going to do anything. You could extend your basic testing by returning just the first element of the input vector, i.e., before \texttt{end}, add:
 
 \begin{docspec}
 s\_out = v\_in(1);
 \end{docspec}
 
-You are still not solving the problem, but in this step, you have now demonstrated that your function can take in a (vector) input, do something with it, and set the output variable (/return a scalar output)\marginnote{Which in this example just happens to be the first element of the vector}.
+You are still not solving the problem yet, but in this step, you have now demonstrated that your \textit{function} can take in a (\textit{vector}) input, do something with it, and now set the output variable (and return a scalar)\marginnote{Which in this example just happens to be the first element of the vector}.
 
-OK, so ... we need to devise an algorithm to find the largest value in the vector \texttt{v\_in}. The first piece of potentially useful information you can find, is the number of elements in the vector. You can obtain this via the function \docenv{length}\sidenote{It turns out that \texttt{length} does not care about the orientation of a vector, and:
+OK, so ... we need to devise an \uline{algorithm} to find the largest value in the vector \texttt{v\_in}. The first piece of potentially useful information you can find, is the number of elements in the vector. You can obtain this via the function \docenv{length}\sidenote{It turns out that \texttt{length} does not care about the orientation of a vector, and:
 \begin{docspecmargin}
 A=[1:10];\\
 length(A)
@@ -6362,33 +6466,31 @@ A=[1:10]';\\
 length(A)
 \end{docspecmargin}}.
 
-So at the top of the function (below the comment lines), you could create a variable, set equal to the number of elements in the vector that you are going to have to process:
-
-\begin{docspec}
+So at the top of the \textit{function} (but below the comment lines), you could create a \textit{variable}, set equal to the number of elements in the \textit{vector} that you are going to have to process:
+\begin{docspecbold}
 nmax = length(v\_in);
-\end{docspec}
+\end{docspecbold}
 
-What about the next part or structure in the program? You are going to need to look through all the elements of the vector if you are going to find the maximum value, so presumably a loop is required -- one that goes from the first to last element of the vector:
-
-\begin{docspec}
+What about the next part or structure in the program? You are going to need to search through all the elements of the vector if you are going to find the maximum value, so presumably a \textit{loop} is required -- one that loops through from the first to last element of the vector:
+\begin{docspecbold}
 \textcolor{blue}{for} n = 1:nmax,\\
 \ \\
 \textcolor{blue}{end}
-\end{docspec}
+\end{docspecbold}
+(and which goes after the value of \texttt{nmax} has been defined).
 
-The crux of the problem is recognising that you need to keep a running maximum, or a local or temporary maximum value, that is your maximum value so far, as you progress through repeated iterations of the loop. With this value, you are going to test whether each element of the array is larger than it -- if true (the element in the vector being tested is larger than the current or largest-to-date maximum estimate) -- you are going to replace the current maximum estimate, with the vector element (that you have just found is larger than your largest so far). We could call this variable, e.g. \texttt{temp\_max} to indicate that is it temporary and not necessarily the largest value of the vector as a whole.
+The crux of the problem is recognising that you need to keep tabs on the running maximum value, or a local or temporary maximum value, that is your maximum value so far, as you progress through repeated iterations of the \textit{loop}. With this value, you are going to test whether each element of the array is larger than it -- if true (the element in the vector being tested is larger than the current or largest-to-date maximum estimate) -- you are going to replace the current maximum estimate with the vector element that you have just found is larger than your largest so far. We could call this \textit{variable}, e.g. \texttt{temp\_max} to indicate that is it temporary and not necessarily the largest value of the vector as a whole.
 
 \uline{Within the loop}, the test we make is therefore:
-
-\begin{docspec}
+\begin{docspecbold}
 \ \ \ \textcolor{blue}{if} (v\_in(n) > temp\_max),\\
 \ \ \ \ \ \ temp\_max = v\_in(n);\\
 \ \ \ \textcolor{blue}{end}
-\end{docspec}
+\end{docspecbold}
 
-Almost there. Run the program/function and see what happens.
+Almost there. Run the program/\textit{function} and see what happens.
 
-\textbf{MATLAB} is unhappy about the line where the value of \texttt{temp\_max} is being tested against v\_in(n). It may be obvious to you when (in terms of loop iterations) this is occurring. If not, why not, just after:
+\textbf{MATLAB} is unhappy about the line where the value of \texttt{temp\_max} is being tested against \texttt{v\_in(n)}. It may be obvious to you when (in terms of loop iterations) this is occurring. If not, why not, just after:
 
 \begin{docspec}
 \textcolor{blue}{for} n = 1:nmax,
@@ -6396,7 +6498,7 @@ Almost there. Run the program/function and see what happens.
 
 \noindent \texttt{disp}(lay) the value of \texttt{n}. OR, add a breakpoint on the problem line, so that \textbf{MATLAB} will pause just before the line that gave the error, is executed.
 
-Either way, you should have found that the value of \texttt{n} is \texttt{1}, i.e. the error is occurring on the very first iteration of the loop. Why? As per the error -- \textbf{MATLAB} does not know what \texttt{temp\_max} is, and this occurs, if you have not yet assigned it a value.
+Either way, you should have found that the value of \texttt{n} is \texttt{1}, i.e. the error is occurring on the very first iteration of the loop. Why? As per the error -- \textbf{MATLAB} does not know what \texttt{temp\_max} is. This occurs because you have not yet assigned it a value when the \textit{loop} starts.
 
 So our problem is one of initialization -- we need to give \texttt{temp\_max} an initial value, so that when the first iteration of the loop occurs, and the first element in the vector is accessed, there is something to compare it with.
 
@@ -6404,13 +6506,18 @@ There are 2 (probably 99999999) ways to go about this:
  
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
-\item Seed the value of \texttt{temp\_max} with a value so improbably small, that you are betting that any conceivable array of numbers with have a number greater than this.\sidenote{There are obvious dangers here, should a vector of all insanely low values be given as an input. You could for instance determine whether any of the values were higher than the seed value, and if not, report or return an error message. So in this case, even if the function did not work, you would be told why. A bit like \textbf{MATLAB} functions in general, no?} For example, \uline{before} the loop starts, you might write:
-\begin{docspec}
+\vspace{1mm}
+\item Seed the value of \texttt{temp\_max} with a value so improbably small, that you are betting that any conceivable array of numbers with have a number greater than this.\sidenote[][-0.5in]{There are obvious dangers here, should a vector of all insanely low values be given as an input. You could for instance determine whether any of the values were higher than the seed value, and if not, report or return an error message. So in this case, even if the function did not work, you would be told why. A bit like \textbf{MATLAB} functions in general, no?} For example, \uline{before} the loop starts, you might write:
+\begin{docspecbold}
 \texttt{temp\_max} = -999999999;
-\end{docspec} And then go through testing all \texttt{nmax} elements in the vector.
-\item Better, would be to initialize your temporary maximum variable with the fist element in the vector. But then, you need to recognise that you need not test this against the first element, and the loop can start at 2:
+\end{docspecbold} And then go through testing all \texttt{nmax} elements in the vector.
+\vspace{1mm}
+\item Better, would be to initialize your temporary maximum variable with the fist element in the vector, i.e..
+\begin{docspecbold}
+\texttt{nmax} = v\_in(1);
+\end{docspecbold}
+You might also recognise that you need not test this against the first element, and the loop could now start at 2:
 \begin{docspec}
-\texttt{nmax} = v\_in(1);\\
 \textcolor{blue}{for} n = 2:nmax,
 \end{docspec} 
 \end{enumerate}
@@ -6424,7 +6531,6 @@ The following is the complete working code of the problem\sidenote{Note the libe
 \textcolor[rgb]{0,0.501961,0}{\% maxxx\\
 \%\\
 \% Takes a (single) vector as input, returns the maximum value.}\\
-\ \\
 
 \textcolor[rgb]{0,0.501961,0}{\% Determine number of elements in vector}\\
 nmax = length(v\_in);
@@ -6445,27 +6551,29 @@ There are 2 further testing or debugging (if you have issues) steps:
 
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
+\vspace{1mm}
 \item Firstly, simply go through in your mind, what you think happens on each iteration. Writing down how the values, e.g. of the temporary variable change on each iteration, is a good idea. Obviously you can do this prior to writing the code, to give you an idea of how it will work (or not).
+\vspace{1mm}
 \item Create a series of test arrays, or varying length, ordered, or random numbers, integers and/or reals, plug them in, and see if your function works each and every time.
 \end{enumerate}
 
-\vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
 \vspace{-2mm}
 
-\newthought{If you are passably happy with that --} write a (new) function that finds the \textit{minimum} element in a vector array.\sidenote[][-1.0in]{This is in fact employed a little later, where it is referred to as \texttt{minxx}.}
+\newthought{If you are passably happy with that --} write a (new) \textit{function} that finds the \textit{minimum} element in a vector input.\sidenote[][-0.0in]{This is in fact employed a little later, where it is referred to as \texttt{minxx}.}
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
-\vspace{-2mm}
 
-\newthought{Then ... as a 3rd function --} return a second variable from the function -- equal to the number of elements that are equal maximum.\sidenote[][-1.0in]{If we were cheating, and we \uline{are not} ... then one could use the built-in \textbf{MATLAB} functions as so:
+\pagebreak 
+
+\newthought{Then ... as a 3rd function --} return a second variable from the function -- equal to the number of elements that are equal to the maximum.\sidenote[][-0.0in]{If we were cheating, and we \uline{are not} ... then one could use the built-in \textbf{MATLAB} functions as so:
 \begin{docspecmargin}length(find(A==max(A)));
 \end{docspecmargin}
 Which says ... find the elements in A, equal to \texttt{max(A)} and determine the \texttt{length} (number of elements) of this resulting vector (\texttt{find(A==max(A))}) ...} (i.e. if the maximum value appears 5 times in the input vector ... you additionally return the number '\texttt{5}'.)
 
-The structure of the \textit{function} will now look like:
-\begin{docspec}
+The structure of  the (your new) \textit{function} will now look like:
+\begin{docspecbold}
 \textcolor{blue}{function} [s\_out1 s\_out2] = maxxxes(v\_in)\\
 \textcolor[rgb]{0,0.501961,0}{\% maxxxes\\
 \%\\
@@ -6473,10 +6581,33 @@ The structure of the \textit{function} will now look like:
 \\ and the number of elements equal to that value.}\\
 \ \\
 \textcolor{blue}{end}
-\end{docspec}
-which passes back two variables.
+\end{docspecbold}
+which passes back two variables (rather than the single one you had before).
 
-The first variable (\texttt{s\_out1}) -- the maximum value of the elements in the input vector, is as before. You need to work out the code to determine the value of \texttt{s\_out2}. The key to this, is recognising that previously, when the value of \texttt{temp\_max} was equal to \texttt{v\_in(n)}, you did nothing, as you were only interested in \texttt{v\_in(n) > temp\_max} and hence updating (replacing) the current value of \texttt{temp\_max}. What you need is an \texttt{elseif} statement, and test whether you have found a second value in the vector equal to \texttt{temp\_max}. If so, you need to somehow record this occurrence.
+You might try exploring what youn are doing to 'do' with 2 outputs ... e.g.. if you (temporarily) added the following lines to your \textit{function}:
+\begin{docspec}
+s\_out1=1.1;\\
+s\_out2=2.2;
+\end{docspec}
+then at the command line, you could test the function:
+\begin{docspecbold}
+>> maxxxes([])
+\end{docspecbold}
+here passing in an empty vector (as we are not yet doing anything with the input), and you should see:
+\begin{docspec}
+ans =\\
+\ \\
+\ \ \ \ 1
+\end{docspec}
+which ... is only 1 of the outputs!!! So you need to explicitly assign the result of your function to 2 variables, e.g.
+\begin{docspecbold}
+>> [a b] = maxxxes([]);
+\end{docspecbold}
+Now you get the results you were expecting (\(1.1\) and \(2.2\)) returned and assigned to the variables \texttt{a} and \texttt{b}, respectively. Note that as you are assigning the result of your function to variables, you can add the \texttt{;} to the end of the line to suppress unnecessary output at the command line.
+
+Back to the construction of the algorithm and its coding ...
+
+The code to generate the first variable (\texttt{s\_out1}) -- the maximum value of the elements in the input vector -- is as before. You only them need to work out the code to determine the value of \texttt{s\_out2}. The key to this is recognising that previously, when the value of \texttt{temp\_max} was equal to \texttt{v\_in(n)}, you did nothing, as you were only interested in \texttt{v\_in(n) > temp\_max} and hence updating (replacing) the current value of \texttt{temp\_max}. What you need is an \texttt{elseif} statement, and test whether you have found a second value in the vector equal to \texttt{temp\_max}. If so, you need to somehow record this occurrence.
 
 A partial solution might look like:
 \begin{docspec}
@@ -11352,15 +11483,6 @@ Various refinements that come to mind and that you might try and implement:
 \\(e.g. simply saving and loading an integer from a \textsf{.mat} file.
 \\Harder, is to add the ability to enter (and remember) the initials of the person with the high score ...
 \end{itemize}
-
-\marginnote[-2.0in]{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
-\docenvdef{rand}
-\\\texttt{rand} (with no passed parameters), returns a quasi random real number, in the range \(0.0-1.0\).
-\\This can be scaled, so e.g. \texttt{10.0*rand} returns a number in the range \(0.0-10.0\).
-\\\texttt{1.0+9.0*rand} returns a real number in the range \(1.0-10.0\).
-\\\texttt{round(0.5+9.999999*rand)} returns an integer in the range \(1-10\).
-\\(Remember, that having obtained a random integer starting from 1, you can use this to index an array and hence ultimately, access different images at random.) 
-\end{mdframed}}
 
 %------------------------------------------------
 %
