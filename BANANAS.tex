@@ -7878,7 +7878,7 @@ to start, left mouse-button click to zoom to that point, and right-button mouse 
 \section{Tic-tac-toe}
 
 \vspace{-4mm}
-\newthought{Tic-tac-toe}\sidenote{Also called 'Noughts and crosses'.} -- Figure \ref{fig:ch6-tictactoe} -- '\textit{is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game.}' It is as common a muck and inevitably everypony knows how to play it, so we don't need to spend time defining the rules.
+\newthought{Tic-tac-toe}\sidenote{Also called 'Noughts and crosses'.} -- Figure \ref{fig:ch6-tictactoe} -- '\textit{is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a \(3\times3\) grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game.}' It is as common a muck and inevitably, everypony knows how to play it, so we don't need to spend time defining the rules.
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch6-tictactoe.png}
@@ -7887,9 +7887,9 @@ w/index.php?curid=2064271.}
 \label{fig:ch6-tictactoe}
 \end{marginfigure}
 
-Here we'll devise a basic version requiring 2 (mostly) human players, but note the possibility of developing an AI computer player. We'll also initially not make use of the MATLAB GUI, so keep the code as simple as possible, but note that as a further possibility for development.
+Here we'll devise a basic version requiring 2 (mostly) human players, but note the possibility of developing an AI computer player. We'll also initially not make use of the \textbf{MATLAB} GUI, so keep the code as simple as possible, but note that as a further possibility for development.
 
-\uline{IMPORTANT}: In the sections that follow -- a number of code fragments are given to you. In fact, basically the complete code (including the final algorithm for determining winning patterns, that you would not be expected to have been able to come up with alone). The idea \uline{is not} simply to copy-paste the code fragments and go home. The key is getting the structure of the program (and how the various sperate functions are created and utilized) right. If you find yourself having no idea 'where' to put a particular code fragment ... you have probably not understood how the program is constructed and are simply going through copy-paste motions. note that you can always simply write your own code from scratch -- there are many (infinite?) different ways of creating the program and writing the code to solve the different steps. You might even find that easier as it should be more obvious to you 'where' to put different lines.
+\uline{IMPORTANT}: In the sections that follow -- a number of code fragments are given to you. In fact, basically the complete code (including the final algorithm for determining winning patterns, that you would not be expected to have been able to come up with alone). The idea \uline{is not} simply to copy-paste the code fragments and go home. The key is getting the structure of the program (and how the various sperate functions are created and utilized) right. If you find yourself having no idea 'where' to put a particular code fragment ... you have probably not understood how the program is constructed and are simply going through copy-paste motions. Note that you can always simply write your own code from scratch -- there are many (infinite?) different ways of creating the program and writing the code to solve the different steps. You might even find that easier as it should be more obvious to you 'where' to put different lines.
 
 A schematic of the complete (final) code structure is shown in Figure \ref{fig:ch6-gamex} as a guide.
 
@@ -7900,7 +7900,7 @@ The following is a brain-dump on what we need to go about designing and writing 
 \item The game is almost wholly visual and so we need to think about the graphics at the outset. For instance:
 \begin{itemize}[noitemsep]
 \setlength{\itemindent}{.2in}
-\item We need a \textsf{Figure window}!No axes showing would be nice.
+\item We need a \textsf{Figure window} (no really)! No axes/axes labels showing would be nice.
 \item We need to draw the grid of two pairs of lines, at 90 degrees to each other.
 \item We then need to add a cross or a zero to the graphic.
 \item If there is a winner, we need to draw a line through the winning diagonal or row/column.
@@ -7918,7 +7918,6 @@ The following is a brain-dump on what we need to go about designing and writing 
 \end{marginfigure}
 
 Some of these things you have seen and you will know (hopefully) how to go about it, such as drawing the grid, printing messages at the command line. Others are not so obvious and may prove tricky, so we'll tackle those first -- to my mind, these are:
-
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item Choosing the box.
@@ -7926,9 +7925,8 @@ Some of these things you have seen and you will know (hopefully) how to go about
 \item Filtering the chosen position to identify a specific box, and hence position the cross/zero neatly.
 \end{enumerate}
 
-Before we go through these and progressively build up a working game, lets write a shell program script that we can test ideas and code in. A possible way to start off follows:
-
-\begin{docspec}
+Before we go through these and progressively build up a working game, lets write a shell program \textit{script} \textbf{m-file} that we can test ideas and code in. A possible way to start off follows:
+\begin{docspecbold}
 \textcolor[rgb]{0,0.501961,0}{\% **************************\\
 \% *** Tic-Tac-Toe game! ***\\
 \% **************************\\}
@@ -7946,7 +7944,7 @@ fh = axes(\textcolor[rgb]{1,0,1}{'Position'},[0 0 1 1],\textcolor[rgb]{1,0,1}{'V
 axis([0 3 0 3]);\\
 \textcolor[rgb]{0,0.501961,0}{\% hold on!\\}
 hold \textcolor[rgb]{1,0,1}{on};
-\end{docspec}
+\end{docspecbold}
 
 This should mostly be self-evident. You need  not have \texttt{close \textcolor[rgb]{1,0,1}{all}} ... but you may not wish to accumulate \textsf{Figure windows} for ever. Beasue this is a \textit{script} \textsf{m-file}, not a \textit{function}, the variables and their values remain in the \textbf{MATLAB} workspace even after the program is terminated or finishes. \texttt{clear all} simply ensure that someone a value from a previous run of the program, doesn't somehow interferer with the next run.\sidenote{It shouldn't do, and there should be no variables used anywhere, that are not initialized to a specific value first.}\sidenote{If you prefer to frame the program as a \textit{function} ... with no inputs or outputs, then that is fine, but remember that you'll need to add \textit{breakpoints} to interrogate any of the \textit{variable} values as they all become \textit{private}.}
 
@@ -7954,11 +7952,14 @@ The line starting \texttt{fh = ...} creates a plotting area with no axes visible
 
 In scaling the axes -- as there are 3 rows and 3 columns in the game area, it seemed 'reasonable' to set \texttt{axis([0 3 0 3]) }, although we need not have.
 
-Maybe before getting into any of the listed complexities, we could draw the game grid to give us some visual perspective on things. We could do this perfectly correctly, by adding the code to the main \textsf{m-file}/program file, but it is much neater to put sections of code that do specific things, and particularly if you might want to run these sections of code again, in a \textit{subprogram}, which could be a \textit{script} or a \textit{function}. Here, even though there will be no inputs or outputs, we'll use a function (to be consistent with additional \textit{functions} that we will be creating).
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
 
-This is my function for drawing the grid:
+\noindent Maybe before getting into any of the listed complexities, we could draw the game grid to give us some visual perspective on things. We could do this perfectly correctly, by adding the code to the main \textsf{m-file}/program file, but it is much neater to put sections of code that do specific things, and particularly if you might want to run these sections of code again, in a \textit{subprogram}, which could be a \textit{script} or a \textit{function}. Here, even though there will be no inputs or outputs, we'll create a new \textbf{m-file }\textit{function} (to be consistent with additional \textit{functions} that we will be creating) just for the grid drawing -- \texttt{draw\textbackslash\_grid.m}.
 
-\begin{docspec}
+This is my \textit{function} for drawing the grid (which will be called from the main program \textit{script} file):
+\begin{docspecbold}
 \textcolor{blue}{function} [] = draw\_grid()\\
 \textcolor[rgb]{0,0.501961,0}{\%draw the game grid\\}
 grid\_th = 2.0;\\
@@ -7968,16 +7969,16 @@ line([2.0 2.0],[0.0 3.0],\textcolor[rgb]{1,0,1}{'LineWidth'},grid\_th,\textcolor
 line([0.0 3.0],[1.0 1.0],\textcolor[rgb]{1,0,1}{'LineWidth'},grid\_th,\textcolor[rgb]{1,0,1}{'Color'},grid\_col);\\
 line([0.0 3.0],[2.0 2.0],\textcolor[rgb]{1,0,1}{'LineWidth'},grid\_th,\textcolor[rgb]{1,0,1}{'Color'},grid\_col);
 \textcolor{blue}{end}
-\end{docspec}
-
-You should comment your version better!
+\end{docspecbold}
+(You should comment your version better!)
 
 The 4 main lines, simply draw the 4 grid lines -- 2 horizontal and 2 vertical. Because the line width and color appear 4 times -- one in each \texttt{line} command line, I have set the value of a paid of parameters at the start -- if I ever want to change line thickness and/or color, I need only make an edit in a single place (where the parameters are defined) rather than in each and ever \texttt{line} command line.
 
-Somewhere after \texttt{hold on}, in your main program (script \textsf{m-file}), add the line\sidenote{Remember you are not passing any parameters to this function, nor is it returning anything back to you}:
+Somewhere after \texttt{hold on} (refer to Figure \ref{fig:ch6-gamex}), in your main program (script \textsf{m-file}), add the line\sidenote{Remember you are not passing any parameters to this function, nor is it returning anything back to you}:
 \begin{docspec}
 draw\_grid();
 \end{docspec}
+which then calls the \textit{function} to draw the grid.
 
 Run it so far. It should look like Figure \ref{fig:ch6-game1}, depending on the line width and colors you choose.
 
@@ -7993,13 +7994,19 @@ Run it so far. It should look like Figure \ref{fig:ch6-game1}, depending on the 
 
 OK -- so a key part of the game is being able to select a particular grid square (cell), in order to place your (cross or circle) marker. One could do this e.g. at the command line by specifying a coordinate location, e.g. (1,1) for the bottom (or top) left cell, but this would be pretty tedious and would mean flipping back-and-forth between \textsf{Command Window} and \textsf{Figure Window}.
 
-The \textbf{MATLAB} function \docenvdef{ginput} is provided to return the coordinate of the mouse pointer when one of the buttons is clicked. The coordinate returned is in the same units as your axes. Nothing is returned if you click outside the \textsf{Figure Window}.\sidenote{Because we defined the game area as the entire area of the \textsf{Figure Window}, it should not be possible to click in the \textsf{Figure Window} but outside of the game area, so we do not have to deal with that possibility occurring.} \docenv{ginput} also returns which of the 2 (or 3) of the buttons was clicked. The \docenv{ginput} function also needs t be told how many mouse clicks to return -- we need only one (per turn in the game).
+The \textbf{MATLAB} function \docenv{ginput} is provided to return the coordinate of the mouse pointer when one of the buttons is clicked. The coordinate returned is in the same units as your axes. Nothing is returned if you click outside the \textsf{Figure Window}.\sidenote{Because we defined the game area as the entire area of the \textsf{Figure Window}, it should not be possible to click in the \textsf{Figure Window} but outside of the game area, so we do not have to deal with that possibility occurring.} \docenv{ginput} also returns which of the 2 (or 3) of the buttons was clicked. The \docenv{ginput} \textit{function} also needs t be told how many mouse clicks to return -- we need only one (per turn in the game).
 
-So to the code, you could add:
-\begin{docspec}
+\marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\docenvdef{ginput}
+"\textit{\texttt{ginput} raises crosshairs in the current axes to for you to identify points in the figure, positioning the cursor with the mouse ... \texttt{[x,y,button] = ginput(...)} returns the x-coordinates, the y-coordinates, and the \texttt{button}. \texttt{button} is a vector of integers indicating which mouse buttons you pressed (1 for left, 2 for middle, 3 for right).}"
+\\So ... basically -- you move the mouse and press a button, and \textbf{MATLAB} kindly tells you which button you pressed and where (within the axes) you pressed it,
+\end{mdframed}}
+
+To try this out -- to the code in \texttt{game.m} (and somewhere after  \texttt{hold on}), you could add:
+\begin{docspecbold}
 [x,y,button] = ginput(1);
-\end{docspec}
-which sets the \textit{variables} \texttt{x} and \texttt{y} equal to the (x,y) location of the mouse button click, and the \textit{variable} \texttt{button} to the ID of which mouse button it was.
+\end{docspecbold}
+which when you click a mouse button, sets the \textit{variables} \texttt{x} and \texttt{y} equal to the (x,y) location of the mouse button click, and the \textit{variable} \texttt{button} to the ID corresponding to which mouse button it was.
 
 If for now, you take the '\texttt{;}' off of the end of the line, and run your program -- try clicking the mouse in the game area, and note that hopefully, an (x,y) location within the 0-3 axes area is reported, plus the ID of which mouse button you used.
 
@@ -8011,20 +8018,31 @@ So far, so good.
 
 One strategy in programming, is to get *something* happening and working first, and worry about the details and quite what you really wanted, later. So lets draw *something* in response to the mouse click, and not yet worry what exactly we draw.
 
-Again -- creating subprograms and functions are a great way of reducing clutter in the main program, helpful in debugging, and all but essential if you need to apply the same (or almost the same) code more than once. The need to draw a number of crosses, and also a number of circles, fits the bill. So lets create a pair of functions for drawing first a cross, and then a circle.
+Again -- creating subprograms and functions are a great way of reducing clutter in the main program, helpful in debugging, and all but essential if you need to apply the same (or almost the same) code more than once. The need to draw a number of crosses, and also a number of circles, fits the bill. So lets create a pair of functions for drawing first a cross, and then a circle. (See Figure \ref{fig:ch6-gamex}.)
 
 To begin with, the 2 functions will look almost identical, and differ only in name:
-\begin{docspec}
+\begin{docspecbold}
 \textcolor{blue}{function} [] = draw\_cross(x,y)\\
 \textcolor[rgb]{0,0.501961,0}{\%draw cross\\}
 \ \\
 \textcolor{blue}{end}
-\end{docspec}
-for the cross, and identical (except for name for the circle).
+\end{docspecbold}
+for the cross (saved as \texttt{draw\_cross.m}), with the other one:
+
+\vspace{4mm}
+\pagebreak 
+
+\vspace{-2mm}\begin{docspecbold}
+\textcolor{blue}{function} [] = draw\_circle(x,y)\\
+\textcolor[rgb]{0,0.501961,0}{\%draw circle\\}
+\ \\
+\textcolor{blue}{end}
+\end{docspecbold}\vspace{-2mm}
+(saved as \texttt{draw\_circle.m}).
 
 Both function take a pair of parameters, \texttt{x} and \texttt{y} as inputs, which will be the \((x,y)\) locations to draw the objects.
 
-We should draw *something* (in the function). I choose:
+We should draw *something* (in the \texttt{draw\_cross}  \textit{function}) to get things going. For now, try adding (in \texttt{draw\_cross.m}):
 \begin{docspec}
 dz = 0.25;\\
 patch([x-dz x-dz x+dz x+dz],[y-dz y+dz y+dz y-dz],'b');
@@ -8033,38 +8051,56 @@ which is not a cross (nor a circle). You should recognise this as a blue square(
 
 Assuming the \((x,y)\) location passed into the function is the \uline{centre} of the object, \texttt{x-dz} and \texttt{x+dz} create \textit{x}-coordinate vertices symmetrically either side (of \texttt{x}), and likewise for the \textit{y}-coordinates.
 
-Create a similar shape for \texttt{draw\_circle} ... maybe picking a different color, or a different shape.
-
-We should be in good shape at this point -- you have a main program that draws the game grid, and finds the \((x,y)\) coordinates of a mouse button click. And you have a pair of functions to draw a shape centered on \((x,y)\).
-
-You could test the code further by allowing multiple mouse-clicks and shape drawing -- in the main program, after you have drawn the game grid -- create a while loop that initially, is endless.
-
+You could test this simply at the command line ...
+\begin{docspecbold}
+>> figure;\\
+>> axis([0 3 0 3]);
+\end{docspecbold}
+and then call the function, passing whatever pairs of coordinates in the range \(0-3\) that you like, e.g.
 \begin{docspec}
+>> draw\_cross(0.5,2)\\
+>> draw\_cross(1.5,1)\\
+>> draw\_cross(2.333,1.333)
+\end{docspec}
+
+Create a similar shape for \texttt{draw\_circle} ... maybe picking a different color, or a different shape. And then test this \textit{function} (at the command line) also.
+
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
+
+\noindent We should be in good shape at this point -- you have a main program that draws the game grid, and finds the \((x,y)\) coordinates of a mouse button click. And you have a pair of functions to draw a shape centered on \((x,y)\), although so far you have not joined this up and have only tried passing whatever value you fancy into the square/circle plotting \textit{functions}.
+
+You could test the code further by allowing multiple mouse-clicks and shape drawing -- in the main program, after you have drawn the game grid (and after the \texttt{hold on}) and replacing the temporary line of code you added earlier, i.e.
+\begin{docspec}
+[x,y,button] = ginput(1);
+\end{docspec}
+create a \textit{while} loop that initially, is endless, and contains the \texttt{ginput} function line:
+\begin{docspecbold}
 game\_on = true;\\
 \textcolor{blue}{while} game\_on\\
 \ \ \    [x,y,button] = ginput(1);\\
 \ \ \    draw\_cross(x,y);\\    
 \textcolor{blue}{end}
-\end{docspec}
-(but with comments, of course).
+\end{docspecbold}
+(but with your own illuminating  comments, of course!).
 
 You'll have to \textsf{CTRL-C} to get out of this (or close the window), but if you click a number of times first, you start to get something that looks like if your luck was otherwise, this could be a 10 million dollar modern art piece (Figure \ref{fig:ch6-game2}).
 
-\begin{marginfigure}[-3.0in]
+\begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch6-game2.eps}
 \caption{Tic-tac-toe game -- object drawing test.}
 \label{fig:ch6-game2}
 \end{marginfigure}
 
 Now ... as an experiment and test of your coding\sidenote[][-0.0in]{If you need a hint -- \texttt{\textcolor{blue}{if} ...}.}, try making the other shape appear if the other button is clicked -- \texttt{ginput} returns a value of \texttt{1} to the variable \texttt{button} if it is the left mouse button, and \texttt{3} if it is the right. (See Figure \ref{fig:ch6-game3}.)
-
+i.e. in the code fragment above, rather than always calling \texttt{draw\_cross} each and every time a mouse button is clicked -- test for which mouse button it is and either draw a cross or a circle (or whatever shape is currently representing 'circle') depending on which it is.
+ 
 \begin{marginfigure}[-0in]
 \includegraphics[width=\linewidth]{ch6-game3.eps}
 \caption{Tic-tac-toe game -- object drawing + mouse button test.}
 \label{fig:ch6-game3}
 \end{marginfigure}
-
-(Once you are done with it -- delete (or comment out) this alternative mouse button click code.)
 
 %------------------------------------------------
 
@@ -8081,8 +8117,7 @@ xi = round(x+0.5);
 where the \texttt{+0.5} bit ensures values in the range \(0.0-1.0\) returns \texttt{1} (and \(1.0-2.0\), \texttt{2}).
 }
 
-Lets imagine that the grid is counter from the bottom left hand corner, from 1 to 3 in both \textit{x} and \textit{y}  directions. For \texttt{x} we could write something like:
-
+Lets imagine that the grid is counted from the bottom left hand corner, from 0 to 3 in both \textit{x} and \textit{y}  directions, so that the first row or column is in the range \(0-1\), the second \(1-2\), and the third \(2-3\). For \texttt{x} we could write something like:
 \begin{docspec}
 \ \ \    \textcolor{blue}{if} (x < 1)\\
 \ \ \ \ \ \             xi = 1;\\
@@ -8092,14 +8127,12 @@ Lets imagine that the grid is counter from the bottom left hand corner, from 1 t
 \ \ \ \ \ \             xi = 3;\\
 \ \ \        \textcolor{blue}{end}
 \end{docspec}
-where \texttt{xi} stands for a variable containing the \textit{x}-direction index (or 'integer'). You could write something similar for the \textit{y}-direction.
+where \texttt{xi} stands for a variable containing the index (or 'integer') \textit{x}-direction, i.e. which one of the 1st, 2nd, or 3rd, column it is. You could write something similar for the \textit{y}-direction.
 
-Now, when we call \texttt{draw\_cross} (or \texttt{draw\_circle}) we pass the value of \texttt{xi} (and \texttt{yi}), minus 0.5 -- to create a value representing the mid-point of the cell. i.e. 
-
+Now, when we call \texttt{draw\_cross} (or \texttt{draw\_circle}), obtain the (\textit{x,y}) coordinates of the mouse click, convert to integer values representing the row or column number (index) as per the \texttt{\textcolor{blue}{if}} statement above ...  if we pass the value of \texttt{xi} (and \texttt{yi}), minus 0.5 -- representing the mid-point value of the cell in which the mouse was clicked. i.e. 
 \begin{docspec}
 \ \ \     draw\_cross(xi-0.5,yi-0.5); 
 \end{docspec}
-
 Now ... suddenly ... the game seems to be coming together in terms of the graphics (Figure \ref{fig:ch6-game4}). (Obviously we are still missing a lot, including correct shapes.)
 
 \begin{marginfigure}[0.0in]
@@ -8108,18 +8141,59 @@ Now ... suddenly ... the game seems to be coming together in terms of the graphi
 \label{fig:ch6-game4}
 \end{marginfigure}
 
+To test this, and/or what you code should look like so far -- after the \texttt{hold on} statement in the initial code framework (the very first pie of code given to start building the \texttt{game.m} program) is:
+\begin{docspecbold}
+game\_on = true;\\
+\textcolor{blue}{while} game\_on\\
+\ \ \    [x,y,button] = ginput(1);\\
+\ \ \  ...
+\end{docspecbold}
+then one set of code to identify the (integer) column (\texttt{xi}) number:
+\begin{docspec}
+\ \ \    \textcolor{blue}{if} (x < 1)\\
+\ \ \ \ \ \             xi = 1;\\
+\ \ \        \textcolor{blue}{elseif} (x < 2)\\
+\ \ \ \ \ \             xi = 2;\\       
+\ \ \        \textcolor{blue}{else}\\
+\ \ \ \ \ \             xi = 3;\\
+\ \ \        \textcolor{blue}{end}
+\end{docspec}
+... and then one near identical set of lines of code to identify the (integer) column  (\texttt{yi}) number following this:
+\begin{docspec}
+\ \ \    \textcolor{blue}{if} (y < 1)\\
+\ \ \ \ \ \  ...\\
+\ \ \        \textcolor{blue}{end}
+\end{docspec}
+... and then a further \texttt{\textcolor{blue}{if}} structure to determine which mouse button was clicked and draw a 'cross' or a 'circle' depending on which one it was:
+\begin{docspec}
+\ \ \    \textcolor{blue}{if} (button == 1)\\
+\ \ \ \ \ \  ...\\
+\ \ \        \textcolor{blue}{end}
+\end{docspec}
+\noindent Only then does the \texttt{\textcolor{blue}{end}} of the \texttt{while} \textit{loop} occur in your code.
+\begin{docspecbold}
+\ \ \  ...\\
+\textcolor{blue}{end}
+\end{docspecbold}
+
+You should be testing this code, which comprises the main (\textit{script}) program \texttt{game.m}, plus 3 \textit{function} \textbf{m-files}. It should urn for ever, placing a 'cross' in a square if you click with the left mouse button, and a 'circle' when clicking with the right. Note that currently, you can add multiple squares or circles in a row and there is nothing forcing you to alternative 'turns'. You can also over-write a previously written symbol (in the same square), which is obviously also cheating and we'll have to fix.
+
+\vspace{6mm}
+\pagebreak
+
 %------------------------------------------------
 
 \subsection{Remembering turns (and arrays!)}
 
-A key to the game is that one a nought/cross has been placed, you cannot place anything more there. So we need to keep track of which cells have already been chosen. In fact, we need to keep track of what is in each cell (and we may as well create a single array for this, rather than 2 (or 3)).
+A key to the game is that when a nought/cross has been placed somewhere, you cannot place anything more there. So we need to keep track of which cells have already been chosen. In fact, we need to keep track of what is in each cell.
 
 We will create a \(3\times3\) array to store the information in, with each \textit{(row,column)} pair of the \textbf{MATLAB} array, corresponding to an \textit{(xi,yi)} pair (cell location in the game grid).
 
-You have already seen how to create an \(n\times m\) array of e.g. zeros. In your program -- somewhere near the start, and certainly before the \texttt{while} loop, you can add\sidenote{Or call the array variable something better ... there is no completely obvious and helpful variable name for what it will end up holding.}:
-\begin{docspec}
+You have already seen how to create an \(n\times m\) array of e.g. zeros. In your program -- somewhere near the start, and certainly before the \texttt{while} \textit{loop}, you can add\sidenote{Or call the array variable something better ... there is no completely obvious and helpful variable name for what it will end up holding.}:
+\begin{docspecbold}
 tokens = zeros(3);
-\end{docspec}
+\end{docspecbold}
+(but adding a suitable comment line ...)
 
 Another important thing you'll come across in programming is devising notations for representing states in a model or game or whatever. Pause and think about the possible states that each cell in the game grid can have.
 \begin{enumerate}[noitemsep]
@@ -8133,7 +8207,7 @@ We could hence decide to assign values in the \texttt{tokens} array:
 \item[] \texttt{1} == Assigned to a Cross.
 \item[] \texttt{2} == Assigned to a Naught.
 \end{itemize}
-(so the elements of the array can take a value of 0, 1, or 2, as illustrated in Figure \ref{fig:ch6-grid2}). The array has been initialized to all zeros, and at this point the game as not yet started and the game grid is empty, so this works so far.
+(so the elements of the array can take a value of 0, 1, or 2, as illustrated in Figure \ref{fig:ch6-grid2}). The array has been initialized to all zeros, and at this point the game crosses has already won.
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch6-grid2.eps}
@@ -8141,16 +8215,28 @@ We could hence decide to assign values in the \texttt{tokens} array:
 \label{fig:ch6-grid2}
 \end{marginfigure}
 
-Now ... in the loop, as the \textit{xi} and \textit{yi} indices are derived -- use them to assign a value to the array.\sidenote[][0.5in]{It is a personal preference whether to simply remember that MATLAB indexes arrays differently to reading a normal \textit{(x,y)} location, or try and make the contents of the array, as viewed, look like the game grid.} You can then test for the value of the location that has just been chosen, to decide whether the move is legal or not:
+Now ... in the loop, as the \textit{xi} and \textit{yi} indices are derived -- use them to assign a value to the \texttt{tokens} array.\sidenote[][0.5in]{It is a personal preference whether to simply remember that \textbf{MATLAB} indexes arrays differently to reading a normal \textit{(x,y)} location, or try and make the contents of the array, as viewed, look like the game grid.} You can then test  the value of the location that has just been chosen and from this decide whether the move is legal or not, e.g.:
 \begin{docspec}
-\ \ \     \textcolor{blue}{if} (tokens(xi,yi) == 0),\\
+\ \ \ \textcolor[rgb]{0,0.501961,0}{\% test for square is empty (a zero value)}\\
+\ \ \     \textcolor{blue}{if} (tokens(xi,yi) == 0)\\
+\ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% if empty ... draw cross ...}\\
 \ \ \ \ \ \         draw\_cross(xi-0.5,yi-0.5);\\
+\ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% and then update array that is now has a cross}\\
 \ \ \ \ \ \        tokens(xi,yi) = 1;\\
 \ \ \     \textcolor{blue}{else}\\
+\ \ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% alert if square already taken}\\
 \ \ \ \ \ \         disp(\textcolor[rgb]{1,0,1}{'Illegal move! Choose again.'});\\
 \ \ \     \textcolor{blue}{end}
 \end{docspec}
 (here setting the value of \texttt{tokens} at that location to \(1\), because we are assuming still the 'cross' player in the variable and function naming notation).
+
+If you wanted to try out this code fragment, it would go in the
+\begin{docspec}
+\ \ \    \textcolor{blue}{if} (button == 1)\\
+\ \ \ \ \ \  ...\\
+\ \ \        \textcolor{blue}{end}
+\end{docspec}
+code bit under if \texttt{button == 1} is \texttt{true} (a cross)\footnote{and in place of the single line \texttt{draw\_cross(xi-0.5,yi-0.5);}}.
 
 %------------------------------------------------
 
@@ -8175,10 +8261,10 @@ To-do:
 \item Draw 'correct' symbols(!)
 \end{itemize}
 
-In terms of player turn -- this is a simple binary state -- either it is the turn of player \#1, or it isn't (and hence the turn of player \#2). So we could create a (logical) variable \texttt{player1}, to keep track of whose turn it is.\sidenote{Equally, we could have defined a variable player, that took a value of \texttt{1} (for player 1's turn) or \texttt{2} (player 2). We would then need to change its value after a player had taken a turn, from 1 to 2, or 2 to 1. This turns out to be more awkward to implement than simply taking the \textit{NOT} of a variable state.} If we start with player \#1 starting, near the top of the main program (and before the while loop), we could set:
-\begin{docspec}
+In terms of player turn -- this is a simple binary state -- either it is the turn of player \#1, or it isn't (and hence the turn of player \#2). So we could create a (logical) variable \texttt{player1}, to keep track of whose turn it is.\sidenote{Equally, we could have defined a variable player, that took a value of \texttt{1} (for player 1's turn) or \texttt{2} (player 2). We would then need to change its value after a player had taken a turn, from 1 to 2, or 2 to 1. This turns out to be more awkward to implement than simply taking the \textit{NOT} of a variable state.} If we start with player \#1 starting, near the top of the main program (and before the \texttt{while} \textit{loop}), we could set:
+\begin{docspecbold}
 player1 = 1;
-\end{docspec}
+\end{docspecbold}
 
 Now it is simple to alternate between the player turns, and after the current player has taken their turn, we can simply write:
 \begin{docspec}
@@ -8207,7 +8293,12 @@ At this point, we are still not differentiating between the different players --
 \ \ \ \ \ \         \textcolor{blue}{end}\\
 \ \ \ \ \ \         player1 = \(\sim\)player1;
 \end{docspec}
-(All this goes still within the \texttt{\textcolor{blue}{if}} test of whether the move is legal or not.) If you have not written your own code without referring to this first, make sure that you \uline{understand} how and why it is how it is. \uline{Do not} just type it in blindly ...
+All this goes still within the \texttt{\textcolor{blue}{if}} test of whether the move is legal or not, i.e.:
+\begin{docspec}
+\ \ \     \textcolor{blue}{if} (tokens(xi,yi) == 0),\\
+\ \ \ \ \ \         ...\\
+\ \ \     \textcolor{blue}{end}
+\end{docspec}
 
 The output of the forced turn alternation starts to look like Figure \ref{fig:ch6-game5}.
 
@@ -8217,19 +8308,24 @@ The output of the forced turn alternation starts to look like Figure \ref{fig:ch
 \label{fig:ch6-game5}
 \end{marginfigure}
 
-Now we need to think about the end-game of the end of the game. One way in which the game ends, is if there are no free cells left. We could:
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
+
+\noindent Finally,  we need to think about the end-game. One way in which the game ends, is if there are no free cells left. We could:
 
 \begin{enumerate}[noitemsep]
 \item Search through the \(3\times 3\) grid, testing each cell in turn as to whether it has a value of zero or not.
 \item \texttt{find} ... find the vector of indices of locations in which a value of zero occurs, and test whether this vector is empty\sidenote{See Box. Note that if \texttt{find} finds nothing, it returns the empty vector \texttt{[]}.}:
-\begin{docspec}
+\begin{docspecbold}
 remaining = find(tokens == 0);\\
 if isempty(remaining),\\
 \ \ \         break;\\
 end
-\end{docspec}
-\end{enumerate}
+\end{docspecbold}
 You could also add a message before \texttt{break}-ing out of the \texttt{while} loop.\sidenote[][-0.5in]{An alternative to the use of \texttt{break}, would be to set the value of \texttt{game\_on} to false.}
+\\This code would go just before the end of the \texttt{while} \textit{loop}.
+\end{enumerate}
 
 \marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{isempty}
@@ -8237,7 +8333,7 @@ You could also add a message before \texttt{break}-ing out of the \texttt{while}
 \\\texttt{TF = isempty(A)} returns logical \texttt{1} (true) if \texttt{A} is an empty array and logical \texttt{0} (false) otherwise.
 \end{mdframed}}
 
-Almost there ... and perhaps the single most hard part -- detecting for a 'win'. Probably, the easiest way, which would not be true for many other games, is to pre-define the various winning patterns, and look to see if they occur. For instance, one winning pattern is shown in Figure \ref{fig:ch6-game5} and would be represented matrix form by:
+Almost almost there ... and perhaps the single most hard part -- detecting for a 'win'. Probably, the easiest way, which would not be true for many other games, is to pre-define the various winning patterns, and look to see if they occur. For instance, one winning pattern is shown in Figure \ref{fig:ch6-game5} and would be represented matrix form by:
 
 \vspace{2mm}
 \(\begin{pmatrix}1 & 0 & 0 \\
@@ -8248,7 +8344,7 @@ Almost there ... and perhaps the single most hard part -- detecting for a 'win'.
 
 We could define a series of \(3\times 3\) arrays to represent these, but we'd end up with 8 different arrays and array names. Better, to create a 3D array, with the 3rd dimension having length 8.\sidenote{If you like -- make an analogy with the month temperature data, where you had 12 slices (the 3rd dimension) of a 2D \textit{(lon,lat)} array of points.} If you did this (create a \(3\times 3\times 8\) array ... we'll call it array variable \texttt{winning}), we could simply loop from 1 to 8, to access each possible solution in turn. How to employ it? Well, it is not obvious.
 
-A slightly different alternative is to use \texttt{find}, and for each played, obtain the list of linear indices of the grid cells containing their symbol. You can text the figure example (and matrix above) by creating the corresponding matrix in \textbf{MATLAB}:
+A slightly different alternative is to use \texttt{find}, and for each played, obtain the list of linear indices of the grid cells containing their symbol. You can test the figure example (and matrix above) by creating the corresponding matrix in \textbf{MATLAB}:
 \begin{docspec}
 A = [1 0 0; 1 0 0; 1 0 0];
 \end{docspec}
@@ -8274,15 +8370,15 @@ If we define a winning pattern as its \(3\) linear indices:
 \begin{docspec}
 winning = [1 2 3];
 \end{docspec}
-(for the first pattern),  we can  determine whether the elements of winning appear in  the linear indices of all of the players squares (extracted from the array by \texttt{find(A==1)}) by using the \textbf{MATLAB} function \docenvdef{ismember}:
+(for the first pattern),  we can  determine whether the elements of winning appear in  the linear indices of all of the players squares (extracted from the array by \texttt{find(A==1)}) by using the \textbf{MATLAB} function \docenv{ismember}:
 \begin{docspec}
 >> ismember(winning,find(A==1))\\
 ans =\\
 \ \ \      1     1     1
 \end{docspec}
-where the three \texttt{1}s indicate that each of the elements of \texttt{winning}, appear in the result of \texttt{find(A==1)\sidenote{The '\texttt{1}' because this is the notation for player 1.}}. Only if three \textit{trues} (\texttt{1}s) are returned, does the pattern completely match. So we can calculate  the sum of the result of \docenv{ismember} and whether this is  equal to \(3\), to indicate to us that the winning pattern exists.
+where the three \texttt{1}s indicate that each of the elements of \texttt{winning}, appear in the result of \texttt{find(A==1)\sidenote[][-0.0in]{The '\texttt{1}' because this is the notation for player 1.}}. Only if three \textit{trues} (\texttt{1}s) are returned, does the pattern completely match. So we can calculate  the sum of the result of \docenv{ismember} and whether this is  equal to \(3\), to indicate to us that the winning pattern exists.
 
-Your job -- define the \(8\times 3\) array \texttt{winning}, containing the 8 different winning patterns (rows), in terms of a linear index (i.e. what \texttt{find} returns).\sidenote{The way t go about it is to create a single winning pattern, and text the code and that it works, then define the remaining 7.}\sidenote{Also -- write down on paper, the linear indices of the \(3\times 3\) array -- that will help, e.g.:
+Your job -- define the \(8\times 3\) array \texttt{winning}, containing the 8 different winning patterns (rows), in terms of a linear index (i.e. what \texttt{find} returns).\sidenote[][-0.0in]{The way to go about it is to create a single winning pattern, and text the code and that it works, then define the remaining 7.}\sidenote[][-0.0in]{Also -- write down on paper, the linear indices of the \(3\times 3\) array -- that will help, e.g.:
 \vspace{1mm}
 \\\(\begin{pmatrix}1 & 4 & 7 \\
 2 & 5 & 8 \\
@@ -8308,7 +8404,11 @@ I'll give you the code for the rest, e.g. for player 1, which comes in the code 
 \end{docspec}
 (and similar code is needed for player \#2).
 
-Lastly, it is also left up to you, to improve the shapes/symbols used to mark the squares of each player. The cross is relatively easy. The circle is harder.\sidenote{A polygon with a very large number of sides would do.}
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
+
+\noindent It is also left up to you, to improve the shapes/symbols used to mark the squares of each player. The cross is relatively easy. The circle is harder.\sidenote{A polygon with a very large number of sides would do.}
 
 %----------------------------------------------------------------------------------------
 % CHAPTER 6
@@ -8325,7 +8425,7 @@ Lastly, it is also left up to you, to improve the shapes/symbols used to mark th
 
 \section{Zero-D Energy-balance model of the climate system}
 
-In this Section, you are going to create, and then use in a series of applications, a zero-D equilibrium global 'climate model' --  the  simplest representation of the energy-balance   of the Earth's climate that it is possible to make. The model assumes that the climate system is in balance, with no net gain or loss of energy, and hence that the energy absorbed from incoming (short-wave) solar radiation equals the (long-wave) radiative loss from the Earth's surface (or top-of-the-atmosphere) (Figure \ref{fig:ch8-blackbody}). The equations are outlined in the Box and you'll need to rearrange them in terms of \(T\) (mean global surface temperature).
+In this Section, you are going to create, and then use in a series of applications, a zero-D equilibrium global 'climate model' --  the  simplest representation of the energy-balance   of the Earth's climate that it is possible to make. The model assumes that the climate system is in balance, with no net gain or loss of energy, and hence that the energy absorbed from incoming (short-wave) solar radiation equals the (long-wave) radiative loss from the Earth's surface (or top-of-the-atmosphere) (Figure \ref{fig:ch8-blackbody}). The equations are outlined in the Box in the margin, and you'll need to rearrange them in terms of \(T\) (mean global surface temperature).
 
 \marginnote[-2.5in]{\begin{mdframed}[backgroundcolor=light-blue,roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=gray!10]
 \textbf{Energy balance modelling (1)}
@@ -8349,11 +8449,9 @@ where \(\epsilon\) is the emissivity, \(\sigma\) is the Stefan-Boltzmann constan
 See Figure \ref{fig:ch8-blackbody}.
 \end{mdframed}}
 
-The exercises that follow are structured and you need to \uline{pay attention} to which \textsf{m-files} you are creating from scratch, which ones, having been created and coded up, you  do not then further edit, and which are \textit{functions} and which are \textit{script} files ... 
+The exercises that follow are structured and you need to \uline{pay attention} to which \textbf{m-files} you are creating from scratch, which ones, having been created and coded up, you  do not then further edit, and which are \textit{functions} and which are \textit{script} files ... 
 
 The sequence of work is as follows:
-
-
 
 \begin{description}[align=right]
 
@@ -8373,7 +8471,7 @@ The sequence of work is as follows:
 
 And then ...
 
-\item [6.1.4] ... finally (Subsection '\textit{Evolution of Earth's surface temperature}'), you'll create one last script (\texttt{scr\_4}), with a loop in time in it, and from within this loop, you'll call first the solar constant function (\texttt{fun\_2}), taking time as an input and returning the value of \(S_{(t)}\), which you will then pass into the EBM (\# \texttt{fun\_1}), returning the surface temperature at time t --  \(T_{(t)}\).
+\item [6.1.4] ... finally (Subsection '\textit{Evolution of Earth's surface temperature}'), you'll create one last script (\texttt{scr\_4}), with a \textit{loop} in time in it, and from within this \textit{loop}, you'll call first the solar constant \textit{function} (\texttt{fun\_2}), taking time as an input and returning the value of \(S_{(t)}\), which you will then pass into the EBM (\# \texttt{fun\_1}), returning the surface temperature at time t --  \(T_{(t)}\).
 
 \noindent (See Figure \ref{fig:ch8-schematic-scr4fun1fun2}.)
 
@@ -8416,7 +8514,48 @@ Note that the code is relatively simple and does not involve (yet) loops or cond
 \\\textcolor[rgb]{0,0.501961,0.25098}{\% solve for T}
 \\\(T = \ldots\)
 \end{docspecmargin}
-} The equations for in-coming and out-going radiation (energy) were given previously. You simply need to re-arrange these in terms of \(T\) (i.e. \(T=...\)) and write them as code. This will form the basis of subsequent, more complex (and later, time-stepping) models. You will need to find (from the Internet?) the value of the constant you need ... and will need to be careful with units of this. 
+} The equations for in-coming and out-going radiation (energy) were given previously. You simply need to re-arrange these in terms of \(T\) (i.e. \(T=...\)) and write them as code. This will form the basis of subsequent, more complex (and later, time-stepping) models. In detail:
+
+You are given:
+\begin{docspecnormal}
+\(F_{in} = \frac{(1-\alpha) \cdot S}{4}\)
+\end{docspecnormal}
+and
+\begin{docspecnormal}
+\(F_{out} = \epsilon \cdot \sigma \cdot T^{4}\)
+\end{docspecnormal}
+and are told at at equilibrium:
+\begin{docspecnormal}
+\(F_{in} = F_{out}\)
+\end{docspecnormal}
+You can then  write:
+\begin{docspecnormal}
+\(\frac{(1-\alpha) \cdot S}{4} = \epsilon \cdot \sigma \cdot T^{4}\)
+\end{docspecnormal}
+
+This equation now needs to be re-arranged in terms of \(T\).
+
+How to write the math down as \textbf{MATLAB} code? For the first part, we could e.g. write:
+\begin{docspec}
+Fin = ((1-alpha)*solar\_constant)/4;
+\end{docspec}
+and pretty well much as you would write as math. Here, \texttt{alpha} and \texttt{solar\_constant} are variables holding the values of planetary albedo and solar constant, and the result of the calculation is assigned to a variable \texttt{Fin}. For completeness, you would define these values, e.g.
+\begin{docspec}
+alpha = 0.3;\\
+solar\_constant\ = 1368.0;\\
+Fin = ((1-alpha)*S)/4;
+\end{docspec}
+
+For writing out the \(F_{out}\) part of the equation in code, you will need to find (from the Internet?) the value of the (Stefan-Boltzmann) constant. When you have found this, assign this value\footnote{Obviously, in this example, this is NOT the actual value ...} to a variable, e.g.
+\begin{docspec}
+sb\_constant = 9.9999E19;
+\end{docspec}
+
+\noindent ... and you will need to be careful with units of this. Use a 'dimension' check to see if you have the units correct. In the equation:
+\begin{docspecnormal}
+\(F_{out} = \epsilon \cdot \sigma \cdot T^{4}\)
+\end{docspecnormal}
+-- on the left hand side we have units of \(W m^{-2}\), and on the right hand side \(\epsilon\), the emissivity, is dimensionless, and \(T^{4}\) has units of ... \(K^{4}\). The Stefan-Boltzmann constant must be in units that balance this, i.e. \(W m^{-2} K^{-4}\).
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{ch8-schematic-scr1.eps}
@@ -8424,29 +8563,28 @@ Note that the code is relatively simple and does not involve (yet) loops or cond
 \label{fig:ch8-schematic-scr1}
 \end{marginfigure}
 
-For now -- prescribe the value of \(S\) -- for which the modern value is 1368 Wm\(^{-2}\) (\(S_{0}\)) as well as the value of surface albedo (\(\alpha=0.3\)  by default) -- somewhere near the start of the program. Then run it.
+For now -- prescribe the value of \(S\) -- for which the modern value is 1368 Wm\(^{-2}\) (\(S_{0}\)) as well as the value of surface albedo (\(\alpha=0.3\)  by default) -- somewhere near the start of the program (see Figure \ref{fig:ch8-schematic-scr1}). Then run it.
 
-If you found a reasonable value for the solar constant, and did not screw-up the units on the Stefan-Boltzmann constant, then you should have an equilibrium (global, annual mean) surface temperature of around 14\degree C\sidenote{Remembering to convert from Kelvin (\(K\)) to degrees Centigrade (\degree C).} ... If not -- debug. Assuming that the code ran without errors but gave a nutty answer:
+If you found a reasonable value for the solar constant, and did not screw-up the units on the Stefan-Boltzmann constant, then you should have an equilibrium (global, annual mean) surface temperature of around 14\degree C\sidenote{Remembering to convert from Kelvin (\(K\)) to degrees Centigrade (\degree C). In the equation you have re-arranged, \(T\) is in units of Kelvin (\(K\)).} ... If not -- debug. Assuming that the code ran without errors but gave a nutty answer:
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item Check that the units are correct.
 \item Check that the equation has been re-arranged correctly -- a common source of errors is incorrect placement of parentheses ... or not placing parentheses around multiple variables you are divining something all by.
 \\ If it helps you to avoid confusion and potential errors and bugs by breaking down calculations into multiple steps using temporary/intermediate variables and partial calculations ... then do it!
 \item If still 'no' -- maybe take the 2 component equations (for \(F_{in}\) and \(F_{out}\)), plug \(S\) into the equation for \(F_{in}\) and then play with different values of \(T\) to find a value for \(F_{out}\) that is approximately equal -- is the value for \(T\) sane? If not, double-check the units and values in both component equations.
-\item If still 'no' -- WHAT HAVE YOU DONE???
 \end{enumerate} 
 
 Once it is working, have a quick play about, changing the value of \(S\) and albedo (\(\alpha\)) (saving the \textbf{m-file} each time and re-running) to get a vague feel for how sensitive the surface temperature is to these two parameters.
+
+%------------------------------------------------
+
+\subsection{The EBM as a function}
 
 \begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch8-schematic-fun1.eps}
 \caption{Form of the basic EBM model as a \textit{function}.}
 \label{fig:ch8-schematic-fun1}
 \end{marginfigure}
-
-%------------------------------------------------
-
-\subsection{The EBM as a function}
 
 We'll now make your model mode flexible so that it can be applied to the subsequent Examples. So -- turn it into a \textit{function}\sidenote[][0.25in]{
 Refer to earlier in the text and also \textbf{help} on the required structure/syntax of a \textit{function}. Recall the basic structure of a function \textbf{m-file}, has as its \uline{VERY\ FIRST\ LINE}:
@@ -8460,12 +8598,19 @@ where \texttt{OUT} represents one (or more) variables that are passed out (the '
 \textcolor{blue}{function} [OUT] = ... 
 \\ \ \ \ FUNCTION\_NAME(IN\_1,IN\_2)
 \end{docspecmargin}
-} that takes in 2 parameters -- the solar constant (\(S\)) and the mean global albedo (\(\alpha\)). The function should return the global mean surface temperature, \(T\).\sidenote{Note that the parameters passed into, and returned by, the function, can be called anything you want. As long as they are useful (and clearly defined/explained in a comment somewhere).} (See Figure \ref{fig:ch8-schematic-fun1})
+} that takes in 2 parameters -- the solar constant (\(S\)) and the mean global planetary albedo (\(\alpha\)). The \textit{function} should return the global mean surface temperature, \(T\).\sidenote{Note that the parameters passed into, and returned by, the function, can be called anything you want. As long as they are useful (and clearly defined/explained in a comment somewhere).} (See Figure \ref{fig:ch8-schematic-fun1}) Remember that you can directly replace the symbols in an equation with variable names in \textbf{MATLAB}, e.g.
+\begin{itemize}[noitemsep]
+\setlength{\itemindent}{.2in}
+\item[] \(S \rightarrow\) \texttt{solar\_constant}
+\item[] \(\alpha\ \rightarrow\) \texttt{alpha}
+\item[] \(T \rightarrow\) \texttt{temp}
+\end{itemize}
+(or whatever you like, as long as the names help you in the coding and debugging).
 
-Try playing with the function in the same way as before, but now passing the different values of \(S\) and \(\alpha\) (rather than having to edit the \textsf{m-file}, save, and re-run each time). To use the function (assuming you called it e.g. \texttt{fun\_1}), and assuming the 2 passed parameters are in the order: \(S\), \(\alpha\) and are given their default values, you'd write (at the command line):
-\begin{docspec}
->> fun\_1(1368.0,0.3)
-\end{docspec}
+Try playing with the \textit{function} in the same way as before, but now passing the different values of \(S\) and \(\alpha\) (rather than having to edit the \textsf{m-file}, save, and re-run each time). To use the \textit{function} (assuming you called it e.g. \texttt{fun\_1}), and assuming the 2 passed parameters are in the order: \(S\), \(\alpha\) and are given their default values, you'd write (at the command line):
+\begin{docspecbold}
+>> temp = fun\_1(1368.0,0.3)
+\end{docspecbold}
 (and get a value close to 14\degree C returned, and if not -- debug it ...).
 
 %------------------------------------------------
@@ -8478,27 +8623,38 @@ Try playing with the function in the same way as before, but now passing the dif
 
 \subsection{Creating a function for the evolution of solar constant through geological time}
 
-In this  Sub-subsection, as a precursor to simulating how Earths surface temperature may have changed through geological time, you are going to code up a \textit{function} that calculates (and returns) the value of the solar constant as a function of time.
+In this  sub-subsection, as a precursor to simulating how Earths surface temperature may have changed through geological time, you are going to code up a new \textit{function} that calculates (and returns) the value of the solar constant as a function of time.
 
 So far you only have a function equating solar constant (\(S\)) to temperature (\(T\)). What you need is some way of equating time (\(t\)) to the value of the solar constant at that time \(S_{(t)}\) (which you can then turn into temperature). We'll remedy this toot sweet.
 
-Start by creating a new  (blank) \textbf{m-file} and define it as a \textit{function} that takes in a variable for time, \(t\) (in units of \(Ga\)) and spits out  (aka, returns) the calculated value of \(S_{(t)}\) (\(Wm^{-2}\)) (this will be '\texttt{fun\_2}' in the on-going notation).
+Start by creating a new  (blank) \textbf{m-file} and define it as a \textit{function} that takes in a variable for time, \(t\) (in units of \(Ga\)) and spits out  (aka, returns) the calculated value of \(S_{(t)}\) (\(Wm^{-2}\)) (this \textit{function} will be '\texttt{fun\_2}' in the on-going notation and obviously saved as \textsf{fun\_2.m}).
 
 The background to the equation that will go into your function is given in the Solar constant Box. In this, you'll first need to substitute the modern value of the solar constant (\(S_{(t=0)}\) or \(S_{0}\)) into the equation to leave it in terms of \(S_{(t)}\) (the solar constant value at time \(t\)).
  
-Your function, aside from the all-important 1st line (and \textcolor{blue}{\texttt{end}} at the end) and appropriate \textcolor[rgb]{0,0.501961,0.25098}{\texttt{\% comments}}, need have little more in than a definition for any constant you might want to use, such as the modern value of \(S_{(t=0)}\) and perhaps the reference time\sidenote[][2.0in]{Which is also equal to the current time (since the formation of the Sun).} (\(t_{0}\)) (4.57 Ga) ... and a single line for the equation giving the value of \(S_{(t)}\). 
+Your function, aside from the all-important 1st line (and \textcolor{blue}{\texttt{end}} at the end) and appropriate \textcolor[rgb]{0,0.501961,0.25098}{\texttt{\% comments}}, need have little more in than a definition for any constant you might want to use, such as the modern value of \(S_{(t=0)}\) and perhaps the reference time\sidenote[][0.0in]{Which is also equal to the current time (since the formation of the Sun).} (\(t_{0}\)) (4.57 Ga) ... and a single line for the equation giving the value of \(S_{(t)}\):
+\begin{docspeclarge}
+\(S_{(t)} = \frac{S_{0}}{1+\frac{2}{5}\cdot (1-\frac{t}{t_{0}})}\)
+\end{docspeclarge} 
+
+As before -- convert this into \textbf{MATLAB} code. You could either create parameters (variables) containing the values of \(S_{0}\) and \(t_{0}\), or plug them directly into the code. For the former, translating the equation into \textbf{MATLAB} might look like this:
+\begin{docspec}
+ref\_S0 = 1368.0;\\
+ref\_t = 4.57;\\
+St = ref\_S0 / ( 1 + (2/5)*(1-(t/ref\_t)) )
+\end{docspec}
+Use as many pairs of (nested) parentheses as you need to help make the equation clear. You can also use spaces to help make it clearer which end parenthesis corresponds to which opening parenthesis
 
 When you think you have done this -- check it -- plug in values of time into your function, i.e.
-\begin{docspec}
->> fun\_S(4.57)
-\end{docspec}
+\begin{docspecbold}
+>> St = fun\_S(4.57)
+\end{docspecbold}
 for passing the time now into a \textit{function} called '\texttt{fun\_2}' in the on-going notation (which in this example should return a value of \(1368\) (\(Wm^{-2}\))).
 
 As a little test -- see if you can adjust your \uline{function} so that rather than passing in time, measured since the formation of the Sun, you pass in time relative to now (i.e. \texttt{>> fun\_S(0.0)} would then give you a value of \(1368\)).
 
 (As a recap -- time here is in units of billions of years, and is counted from the formation of the Sun. Hence, today, is time 4.57 Ga.)
 
-\marginnote[-3.75in]{\begin{mdframed}[backgroundcolor=light-blue, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-5.0in]{\begin{mdframed}[backgroundcolor=light-blue, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \textbf{Solar constant}
 \\The long-term evolution of solar luminosity \(L_{t}\) as a function of time \(t\) can be approximated [\textit{Gough} [1981]; \textit{Feulner} [2012]) by:
 \begin{docspeclarge}
@@ -8522,60 +8678,62 @@ Note that in the formula, \(t\) is counted (in Gyr) relative to the formation of
 
 \subsection{Using multiple functions and calculating global surface temperature as a function of geological time}
 
-Finally ... you are going to bring it all together and calculate and then at the end (of the program), plot,  the surface temperature of the Earth, at 100 Myr intervals, and spanning approximately the age of the Earth and much of its potential long-term future.
+Finally ... you are going to bring it all together, and calculate and then at the end (of the program) plot,  the surface temperature of the Earth, at 100 Myr intervals, and spanning approximately the age of the Earth and much of its potential long-term future.
 
-Start by creating a new (yet another blank \textbf{m-file}) \textit{script} ('\texttt{scr\_4}').. You are going to need a loop in time, perhaps looping from 0.0 to 10.0 Ga (with the step size being 0.1 Ga). \uline{Within the time loop}, you will:
+Start by creating a new (yet another blank \textbf{m-file}) \textit{script} ('\texttt{scr\_4}')\footnote{The structure of the overall program is shown in  Figure \ref{fig:ch8-schematic-scr4fun1fun2}.}. You are going to need a loop in time (e.g. with the variable name \texttt{t}), perhaps looping from 0.0 (the age of formation of the Sun) to 10.0 Ga (with the step size being 0.1 Ga). \uline{Within the time loop}, you will:
+
+\vspace{8mm}
+\pagebreak 
 
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
-\item Pass to your solar constant function your time variable, and obtain the corresponding value of \(S_{(t)}\).
-\item  Call your zeroD EBM function to calculate the corresponding surface temperature, passing it the value of \(S_{(t)}\) that you have just calculated.
-\item Store in an array, or pairs of vectors, the current time in the loop alongside the corresponding value of \(T\). (For hints on the various different possibilities in doing this -- see Section 6.1.5.)
+\item Pass to your solar constant \textit{function} (\texttt{fun\_2.m}) your  variable containing the current value of time (\texttt{t}), and obtain the corresponding value of the solar constant (\(S_{(t)}\)), and assign to a variable e.g. \texttt{St}.
+\item  Call your zeroD EBM \textit{function} (\texttt{fun\_1.m}) to calculate the corresponding surface temperature, passing it the value of \(S_{(t)}\) that you have just calculated and assigning the result to a variable e.g. \texttt{temp}.
+\item Store in an array, or pairs of vectors, the current time in the loop alongside the corresponding value of \(T\). For hints on the various different possibilities in doing this see earlier in the text, but you might e.g. do something like:
+\begin{docspec}
+vt = [v t];\\
+vtemp = [vtemp temp];
+\end{docspec}
+(having first (before the loop) initialized these vectors as empty, e.g. \texttt{vt=[];} and \texttt{vtemp=[];}).
 \end{enumerate}
-
+\vspace{-1mm}
 Once the loop has completed, plot surface temperature (\textit{y}-axis) as a function of time (\textit{x}-axis).
 
-Likely bug possibilities include mistakes with nested parentheses (()). A schematic of the program structure is shown in Figure \ref{fig:ch8-schematic-scr4fun1fun2}.
+Likely bug possibilities include mistakes with nested parentheses \texttt{(())}, units (e.g. \(K\) vs. \(\degree C\)), and time, which for now should run forward from zero (the formation of the Sun). A schematic of the program structure is shown in Figure \ref{fig:ch8-schematic-scr4fun1fun2} to aid you.
 
-\begin{marginfigure}[-2.5in]
+\begin{marginfigure}[-4.5in]
 \includegraphics[width=\linewidth]{ch8-schematic-scr4fun1fun2.eps}
 \caption{Schematic of the evolution of surface temperature over geological time program, and relationship between main program script, and solar constant and EBM functions.}
 \label{fig:ch8-schematic-scr4fun1fun2}
 \end{marginfigure}
 
-Assuming that you have managed something like Figure \ref{fig:ch8-ebm-solarconst}\sidenote[][0.0in]{Note that a line has been added to highlight \(t=0\) (i.e. the present-day) -- see \docenv{line} (see earlier).} -- what strikes you, in light of (hopefully) what you know about the past history of climate and evolution of life on this planet, about your model projection (for the past)? What is 'missing'?
+Assuming that you have managed something like Figure \ref{fig:ch8-ebm-solarconst}\sidenote[][0.0in]{Note that a line has been added to highlight \(t=0\) (i.e. the present-day) -- see \docenv{line} (see earlier). This plot also has an altered time-axis and time is plotted relative to now -- see below.} -- what strikes you, in light of (hopefully) what you know about the past history of climate and evolution of life on this planet, about your model projection (for the past)? What is 'missing'?
 
-As an additional step and noting that the time-scale is not entirely helpful in terms of knowing when 'now' is, you could:
-
-\begin{enumerate}
-
-\item Draw on a vertical line (\texttt{hold on}) at 4.57 ('now', relative to the time of formation of the Sun).
-
-\item Transform the \textit{x}-axis time scale to time relative to now. 
-
-To do this -- as you loop through time relative to the formation of the Sun, when you save the current time for plotting, you could subtract 4.57 from the loop value.
-
-\item Or ... you could save the time as given in the loop, but transform the \textit{x}-axis time scale to time relative to now by subtracting a value of 4.57 when you come to plot, e.g.:
-
-\begin{docspec}
->> plot(x-4.57,y);
-\end{docspec}
-
-or more explicitly so you can see what is going on:
-
-\begin{docspec}
->> plot( (x(:)-4.57) , y(:) );
-\end{docspec}
-
-\end{enumerate}
-
-Note that you do not have to plot the entire dataset and could set the x-axis limits to e.g. \(-4 \rightarrow\ +4\) Gyr relative to present.
-
-\begin{marginfigure}[-4.0in]
+\begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch8-ebm-solarconst.eps}
 \caption{Simple EBM projection of the evolution of Earth surface temperature with time. Time at the present-day is highlighted by a vertical line (drawn using the \textbf{MATLAB} \docenv{line} function).}
 \label{fig:ch8-ebm-solarconst}
 \end{marginfigure}
+
+As an additional step and noting that the time-scale is not entirely helpful in terms of knowing when 'now' is, you could:
+
+\begin{enumerate}
+\vspace{-0mm}
+\item Draw on a vertical line (\texttt{hold on}) at 4.57 ('now', relative to the time of formation of the Sun).
+\vspace{-1mm}
+\item Transform the \textit{x}-axis time scale to time relative to now. 
+\\To do this -- as you loop through time relative to the formation of the Sun, when you save the current time for plotting, you could subtract 4.57 from the loop value before passing it to \texttt{fun\_2.m}.
+\vspace{-1mm}
+\item Or ... you could save the time as given in the loop, but transform the \textit{x}-axis time scale to time relative to now by subtracting a value of 4.57 when you come to \texttt{plot} it, e.g.:
+\vspace{-1mm}\begin{docspec}
+>> plot(x-4.57,y);
+\end{docspec}\vspace{-1mm}
+or more explicitly so you can see what is going on:
+\vspace{-1mm}\begin{docspec}
+>> plot((x(:)-4.57),y(:));
+\end{docspec}\vspace{-1mm}
+\end{enumerate}
+Note that you do not have to plot the entire dataset and could set the x-axis limits to e.g. \(-4 \rightarrow\ +4\) Gyr relative to present.
 
 %------------------------------------------------
 
@@ -8709,17 +8867,17 @@ during initialization before the loop starts, and then in the loop:
 \end{docspec}
 \end{enumerate}
 
-So pick one (i.e. a way of saving a pair of values each time around the loop) and code it up, or better, \uline{try all}!
-
-Finally, at the end of your program (after the end of the loop), you can now plot (\texttt{plot} or \texttt{scatter}) how \(T\) varies as a function of \(S_{0}\), having saved all the values of \(S\) you tested, plus the corresponding calculated temperatures, in a handy matrix (or pair of vectors). Note that regardless of whether you use \texttt{plot} or \texttt{scatter}), you need to specify to \textbf{MATLAB} that you want the values in the 2nd column of the array (\textit{y}-axis), plotted against the first column (\textit{x}-axis).\sidenote[][-2.0in]{Refer back to the earlier chapters on plotting of e.g. the CO2 or glboal temperature data you analysed, and also recall how to specify e.g. all the rows in the first column of an array.}
-
-The structure of your code should look like Figure \ref{fig:ch8-schematic-scr2fun1}. and your resulting figure (depending on the range you assume for \(S\)), something like Figure \ref{fig:ch8-sens1D}.
-
-\begin{marginfigure}[-1.0in]
+\begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch8-schematic-scr2fun1.eps}
 \caption{Schematic structure of the model configured to carry out a single parameter sensitivity study.}
 \label{fig:ch8-schematic-scr2fun1}
 \end{marginfigure}
+
+So pick one (i.e. a way of saving a pair of values each time around the loop) and code it up, or better, \uline{try all}!
+
+Finally, at the end of your program (after the end of the loop), you can now plot (\texttt{plot} or \texttt{scatter}) how \(T\) varies as a function of \(S_{0}\), having saved all the values of \(S\) you tested, plus the corresponding calculated temperatures, in a handy matrix (or pair of vectors). Note that regardless of whether you use \texttt{plot} or \texttt{scatter}), you need to specify to \textbf{MATLAB} that you want the values in the 2nd column of the array (\textit{y}-axis), plotted against the first column (\textit{x}-axis).\sidenote[][-0.0in]{Refer back to the earlier chapters on plotting of e.g. the CO2 or glboal temperature data you analysed, and also recall how to specify e.g. all the rows in the first column of an array.}
+
+The structure of your code should look like Figure \ref{fig:ch8-schematic-scr2fun1}. and your resulting figure (depending on the range you assume for \(S\)), something like Figure \ref{fig:ch8-sens1D}.
 
 \begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch8-sens1D.eps}
