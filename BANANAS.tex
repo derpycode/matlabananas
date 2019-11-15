@@ -7308,7 +7308,7 @@ Here you are using a numerical model to explore how a system behaves, and how se
 \section{Interpreting equations (2) -- Pure lovely maths}
 
 \vspace{-2mm}
-\newthought{Here}, we are going to code up a graphical representation of the Mandelbrot Set (Figure \ref{fig:ch4-brot1},  Figure \ref{fig:ch4-brot2}) (see Box). But we are going to do this nice and gently, via a simplified example first.
+\newthought{Here}, we are going to code up a graphical representation of the Mandelbrot Set -- Figure \ref{fig:ch4-brot1},  Figure \ref{fig:ch4-brot2}, and see Box. But we are going to do this nice and gently, via a simplified example.
 
 \marginnote[-0.5in]{\begin{mdframed}[backgroundcolor=light-blue, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 The \textbf{Mandelbrot Set}, is the set of complex numbers \(c\), for which:
@@ -7349,10 +7349,10 @@ A rendition of the solution is shown in Figure \ref{fig:ch4-brot1} and zoomed-in
 \subsection{Sequence convergence (in 1D)}
 
 \vspace{-2mm}
-\newthought{Consider} the sequence:
+\newthought{Consider} the mathematical sequence:
 \vspace{1mm}
 \\\(z_{(n+1)}=z^{2}_{(n)}+c\)
-\vspace{1mm}
+\vspace{2mm}
 \\\noindent Here -- each successive, (\(n+1\))-th value of \(z\), is equal to the \(n\)-th value of \(z\) squared, plus \(c\). We would write this in code:
 \begin{docspec}
 \textcolor{blue}{for} n=1:n\_max\\
@@ -7361,18 +7361,19 @@ A rendition of the solution is shown in Figure \ref{fig:ch4-brot1} and zoomed-in
 \end{docspec}
 \noindent where the new value of \texttt{\(z\)} is set equal to the previous value squared, plus the value of \texttt{\(c\)}. For the code to work -- missing so far here is the initial value of variable \texttt{z}, as well as what variable \texttt{c} is.
 
-As per the Mandelbrot Set definition, we start the value of \(z\) of zero: \begin{docspec}
+We'll start the value for \(z\) of zero, and the code\footnote[][0.25in]{Assuming just 10 iterations of the sequence.} would look like: 
+\begin{docspec}
 n\_max=10;\\
 z = 0;\\
 \textcolor{blue}{for} n=1:n\_max\\
 \ \ \ z = z\(^{\wedge}\)2 + c;\\
 \textcolor{blue}{end}
 \end{docspec}
-now also having defined the number of iterations (\texttt{n\_max}) that the loop will go through.
+Here,  defining beforehand (at the start of the code) the number of iterations (\texttt{n\_max}) that the loop will go through.
 
-We are interested in whether for a given value of \(c\), the value of \(z\) grows ever larger (without limit for ever), or whether it converges.
+We are interested in whether, for a given value of \(c\), the value of \(z\) grows ever larger and larger (without limit for ever), or whether it settles down and converges on some (finite) value.
 
-You can hopefully see by inspection of the code (and/or equation), and trying out different values of \(c\) that some values of \(c\) lead to the iteration converging, or remaining finite and small, while others lead to progressively larger values, apparently growing without limit. Some example (real number) values of \(c\) and the sequences of \(z\) they lead to, are shown in the Table \ref{tab:tab-sequence}.
+You can hopefully see by inspection of the code (and/or equation), and trying out different values of \(c\), that some values of \(c\) lead to the iteration converging, or remaining finite and small, while others lead to progressively larger values, apparently growing without limit. For some example (real number) values of \(c\) and the sequences of \(z\) they lead to, refer to Table \ref{tab:tab-sequence}.
 
 \begin{table}[h]
 \begin{center}
@@ -7396,19 +7397,22 @@ You can hopefully see by inspection of the code (and/or equation), and trying ou
 \label{tab:tab-sequence}
 \end{table}
 
-We could hence sort through a range of values of \(c\), and for each value of \(c\), apply the equation:
-\vspace{1mm}
+We could  sort through a range of values of \(c\), and for each value of \(c\), apply the equation:
+\vspace{2mm}
 \\\(z_{(n+1)}=z^{2}_{(n)}+c\)
-\vspace{1mm}
-\\\noindent iteratively, carrying out a given number of iterations (\(n\)). We could then determine for which values of \(c\) the sequence converges, and for which it does not, e.g.
-\sidenote{Instead of writing
+\vspace{2mm}
+\\\noindent iteratively, carrying out a given maximum number of iterations. We could then determine for which values of \(c\) the sequence converges, and for which it does not, e.g.
+\sidenote[][0.25in]{Instead of writing
 \begin{docspecmargin}z = z\(^{\wedge}\)2 + c;
 \end{docspecmargin}
 faster is:
 \begin{docspecmargin}z = z*z + c;
 \end{docspecmargin}}
 
-\begin{docspec}
+\vspace{4mm}
+\pagebreak
+
+\vspace{-1mm}\begin{docspecmargin}
 \textcolor[rgb]{0,0.501961,0}{\% clear workspace and close open figures\\}
 clear \textcolor[rgb]{1,0,1}{all};\\
 close \textcolor[rgb]{1,0,1}{all};\\
@@ -7428,27 +7432,27 @@ n\_v = length(v);\\
 \ \ \ \textcolor{blue}{for} n=1:n\_max\\
 \ \ \ \ \ \ z = z\(^{\wedge}\)2 + c;\\
 \ \ \ \textcolor{blue}{end}\\
-\ \ \ \textcolor[rgb]{0,0.501961,0}{\% assign value depending on whether converged or not\\}
+\ \ \ \textcolor[rgb]{0,0.501961,0}{\% assign result value depending on whether converged\\}
 \ \ \ \textcolor{blue}{if} (z > 2)\\
 \ \ \ \ \ \ v\_conv(m) = 0;\\
 \ \ \ \textcolor{blue}{else}\\
 \ \ \ \ \ \ v\_conv(m) = 1;\\
 \ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
-\end{docspec}
+\end{docspecmargin}\vspace{-1mm}
 
 Here, after \(n=10\) iterations, the code tests whether the value of \(z\) has exceeded \(2.0\)
-\sidenote{Here, we are assuming rather simplistically, that \(2.0\) is a reasonable threshold for testing for convergence.} If the value of \(z\) has surpassed this threshold by the end of the \(100\) iterations, we are assuming that the sequence for not converge for this particular value of \(c\).
+\sidenote{Here, we are assuming rather simplistically, that \(2.0\) is a reasonable threshold for testing for convergence. It is somewhat arbitrary and a different criteria could equally have been used.} If the value of \(z\) has surpassed this threshold by the end of the \(10\) iterations, we are assuming that the sequence will never converge for this particular value of \(c\).
  If not converging, the value of the vector \texttt{v\_conv} (at the same index as the value of \(c\) was extracted from), is set to \(0\), otherwise, \(1\).
  
-We could visualize the  values of \(c\) for which the iterative solution converges, by: 
-\begin{docspec}
+We could visualize the  values of \(c\) for which it converges, via: 
+\vspace{-1mm}\begin{docspecmargin}
 figure;\\
 axis([-3 3 -1 1]);\\
 scatter(v,zeros(1,n\_v),50,v\_conv,\textcolor[rgb]{1,0,1}{'filled'});\\
 xlabel(\textcolor[rgb]{1,0,1}{'Value of c'});\\
 ylabel(\textcolor[rgb]{1,0,1}{'n/a'});
-\end{docspec}
+\end{docspecmargin}\vspace{-1mm}
 where I have created a dummy \textit{y-axis}, with dummy (zero values). Each point is large and filled and colored according to the value contained in \texttt{v\_conv}, which is either \(1\) (converging) or \(0\) (not converging after \(10\) iterations). The result is shown in Figure \ref{fig:ch4-vect1}.
 
 \begin{marginfigure}[-0.0in]
@@ -7457,11 +7461,9 @@ where I have created a dummy \textit{y-axis}, with dummy (zero values). Each poi
 \label{fig:ch4-vect1}
 \end{marginfigure}
 
-\vspace{1mm}
-\noindent\rule{4cm}{0.5pt}
-\vspace{2mm}
+\pagebreak
 
-\noindent We can make the plot a little more interesting, by color-coding a measure of how quickly the sequence accelerates away to high values. For instance, we could color the points if not converging, as a function of the highest value of \(z\) reached (when \(n=10\)), e.g.
+\noindent We can make the plot a little more interesting, by color-coding a measure of how quickly the sequence accelerates away to increasingly high values. For instance, we could color the points, if not converging, as some function of the highest value of \(z\) reached (when \(n=10\)), e.g.
 \begin{docspec}
 \ \ \ \textcolor{blue}{if} (z > 2)\\
 \ \ \ \ \ \ v\_conv(n) = 1/z;\\
@@ -7482,7 +7484,7 @@ An alternative, is that for any given value of \(c\), we identify how many itera
 
 Instead, we could use \texttt{\textcolor{blue}{while}}. A basic substitution of the current inner (\texttt{\textcolor{blue}{do}}) loop would look like:
 \begin{docspec}
-\ \ \ n = 0\\
+\ \ \ n = 0;\\
 \ \ \ \textcolor{blue}{while} (n <= n\_max)\\
 \ \ \ \ \ \ z = z\(^{\wedge}\)2 + c;\\
 \ \ \ \ \ \ n = n+1;\\
@@ -7490,9 +7492,9 @@ Instead, we could use \texttt{\textcolor{blue}{while}}. A basic substitution of 
 \end{docspec}
 Try this and satisfy yourself that it does \uline{exactly} the same as before.
 
-OK -- to speed things up and not waste computations, we could also test for the threshold being surpassed at the same time:
+So now we add the additional criteria for terminating the \texttt{\textcolor{blue}{while}} \textit{loop}  also test for the threshold being surpassed:
 \begin{docspec}
-\ \ \ n = 0\\
+\ \ \ n = 0;\\
 \ \ \ \textcolor{blue}{while} ( (n <= n\_max) \&\& (z <= 2) )\\
 \ \ \ \ \ \ z = z\(^{\wedge}\)2 + c;\\
 \ \ \ \ \ \ n = n+1;\\
@@ -7500,7 +7502,7 @@ OK -- to speed things up and not waste computations, we could also test for the 
 \end{docspec}
 Now, the loop continues only if there are more allowed iterations (\texttt{n\_max} has not been reached yet), \uline{and}, the threshold has not yet been exceeded.
 
-This code is faster than before, but your problem is pretty simple and you may not notice.\sidenote[][-0in]{If you would like to explore the efficiency of your program a little further:
+This code is faster than before, but your problem is pretty simple and you may not notice.\sidenote[][-1.5in]{If you would like to explore the efficiency of your program a little further:
 \begin{enumerate}[noitemsep]
 \item At the very start of the code, add the line:
 \\\texttt{tic;}
@@ -7516,21 +7518,26 @@ n\_max=100;
 \end{enumerate}
 }
 
-The final step is to now take the value of \(n\) that is reached when the \texttt{\textcolor{blue}{while}} loop terminates, and use that to plot the color-scale.
+The final step is to  take the value of \(n\) that is reached when the \texttt{\textcolor{blue}{while}} loop terminates, and use that to plot the color-scale.
+
+\vspace{8mm}
+\pagebreak
+
 \begin{docspec}
+...\\
 \ \ \ \textcolor[rgb]{0,0.501961,0}{\% loop\\}
 \ \ \ n = 0\\
 \ \ \ \textcolor{blue}{while} ( (n <= n\_max) \&\& (z <= 2) )\\
 \ \ \ \ \ \ z = z\(^{\wedge}\)2 + c;\\
 \ \ \ \ \ \ n = n+1;\\
 \ \ \ \textcolor{blue}{end}\\
-\ \ \ \textcolor[rgb]{0,0.501961,0}{\% assign value depending on whether converged or not\\}
+\ \ \ \textcolor[rgb]{0,0.501961,0}{\% assign value depending on whether converged\\}
 \ \ \ \textcolor{blue}{if} (n == n\_max)\\
 \ \ \ \ \ \ v\_conv(n) = 0;\\
 \ \ \ \textcolor{blue}{else}\\
 \ \ \ \ \ \ v\_conv(n) = 1.0-n/n\_max;\\
 \ \ \ \textcolor{blue}{end}\\
-\textcolor{blue}{end}
+...
 \end{docspec}
 Here, the test for convergence of the sequence is out counting variable \texttt{n} having reached a value of \texttt{n\_max} (i.e. for all the maximum allowed iterations of the loop, the value of \(z\) has remained less than or equal to \(2.0\)).
 
@@ -7546,9 +7553,9 @@ Potting this now, looks like Figure \ref{fig:ch4-vect2}.
 
 \subsection{Sequence convergence (in 2D)}
 
-Now to the Mandelbrot set.
+Now to the Mandelbrot set ...
 
-The idea is basically the same as before -- we are going to generate a sequence, and find out whether it converges, or if not, how quickly it diverges and whizzes off in value. The equation is very similar to before (see Box), with the next value equal to the current value squared, plus a constant, and we are varying the value of the constant.
+The idea is basically the same as before -- we are going to generate a sequence, and find out whether it converges, or if not, how quickly it diverges and whizzes off towards infinity in value. The equation is very similar to before (see Box), with the next value equal to the current value squared, plus a constant, and we are varying the value of the constant.
 
 The big complication is that \(c\), is now not a simple \textit{real} number (and one that we could simply plot along the \textit{x-axis}), but a \textit{complex} number (see Box).
 
@@ -7580,7 +7587,10 @@ a = a + x;\\
 b = b + y;
 \end{docspec}
 
-For the equation
+\vspace{8mm}
+\pagebreak
+
+\noindent For the equation
 \vspace{1mm}
 \\\(z_{n+1} = z^{2}_{(n)}+c\)
 \vspace{1mm}
@@ -7589,7 +7599,7 @@ For the equation
 a = a\(^{\wedge}\)2 - b\(^{\wedge}\)2 + x;\\
 b = 2*a*b + y;
 \end{docspec}
-(see Box). Except ... although we have taken the value of \texttt{a}, updated it, reassigned it back to the variable \texttt{a}, when it comes to updating the value of \texttt{b}, we have already updated \texttt{a} (and we should not have). The simplest solution is to make the old and new values completely explicit:
+(see Box). Except ... although we have taken the value of \texttt{a}, updated it, reassigned it back to the variable \texttt{a} ... when it comes to updating the value of \texttt{b} ... whoops(!) -- we have already updated \texttt{a} (and we should not have as the original value is needed to calculate \texttt{b}). The simplest solution is to make the old and new values completely explicit:
 \begin{docspec}
 a\_old = a;\\
 b\_old = a;\\
@@ -7616,13 +7626,17 @@ Again, we could replace the \texttt{\textcolor{blue}{do}} with a \texttt{\textco
 \ \ \ b = 2*a\_old*b\_old + y;\\
 \textcolor{blue}{end}
 \end{docspec}
-or faster would be:
+or faster (but probably not important in this particular \textbf{MATLAB} program) would be:
 \begin{docspec}
 \textcolor{blue}{while} ( (n <= n\_max) \&\& ((a*a+b*b) <= 2*2) )
 \end{docspec}
 (because multiplication is faster for computers than raising a number to a power).
 
-Mathematically, thats it. What remains is to create a set of values of \(c\) to test for convergence on, and because \textit{complex} numbers can be represented in \textit{x-y} space, we can create a 2D grid of real and imaginary component values, just as we did early for lon-lat values in plotting maps. For example:
+Mathematically, thats it. What remains is to create a set of values of \(c\) to test for convergence on, and because \textit{complex} numbers can be represented in \textit{x-y} space, we can create a 2D grid of real and imaginary component values, just as we did early for lon-lat values in plotting maps. 
+
+\pagebreak
+
+For example:
 \begin{docspec}
 x = [-3:0.1:3.0];\\
 y = [-3:0.1:3.0];
