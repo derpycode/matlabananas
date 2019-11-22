@@ -11226,7 +11226,7 @@ If you run into unexpected and apparently nonsensical issues when you make chang
 \newthought{\textit{\textbf{Part \(0\)}}} -- A few of the graphics procedures you will need to grasp and implement.
 
 Firstly, at the command line, open a \textsf{Figure window} (\texttt{>> figure}).
-Download any (legal/moral) image you care from the internet\sidenote{With the  raster graphics format being one of: \textsf{.jpg}, \textsf{.png}, \textsf{.tif}.} You can load this image into the \textbf{MATLAB} workspace with \docenvdef{imread}, and display it in the \textsf{Figure window} with \docenvdef{imshow}. (Try it.)
+Download any (legal/moral) image you care from the internet\sidenote{With the  raster graphics format being one of: \textsf{.jpg}, \textsf{.png}, \textsf{.tif}.} You can load this image into the \textbf{MATLAB} workspace with \docenv{imread}, and display it in the \textsf{Figure window} with \docenv{imshow}. Try it. This fills up the screen, which is OK for a background image, but not for much else.  
 
 \marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{imread}
@@ -11241,44 +11241,44 @@ Download any (legal/moral) image you care from the internet\sidenote{With the  r
 \\\texttt{h = imshow(A);}
 \end{mdframed}}
 
-This fills up the screen, which is OK for a background image, but not for much else. Open up a new \textsf{Figure window}. You can define a set of axes anywhere in the window you like via the \texttt{axes} function:
+Open up a new \textsf{Figure window}. You can define a set of axes anywhere in the window you like via the \texttt{axes} function:
 \begin{docspec}
 axes('pos',[x,y,dx,dy])
 \end{docspec}
 where (\texttt{x},y) are the co-ordinates in the window, which by default are from \(0-1\) in both \textit{x} and \textit{y} directions. \texttt{dx} and \texttt{dy} are the width and height, respectively, of the axes (in the same window coordinate system).
 
-For instance, to create a set of axes starting at the origin, but only 25\% of the full width and height of the window:
-\begin{docspec}
+For instance, to create a set of axes starting at the origin, but only 25\% of the full width and height of the window, type:
+\begin{docspecbold}
 >> axes('pos',[0.0,0.0,0.25,0.25]);
 \end{docspec}
 If you now display the image:
-\begin{docspec}
+\begin{docspecbold}
 >> imshow(A);
 \end{docspec}
-\sidenote{Or whatever you called the variable with the image in.} you should see a smaller version of the image, positioned at the origin. If you remembered to assign the handle to a variable:
-\begin{docspec}
+\sidenote{Or whatever you called the variable with the image in.} you should see a smaller version of the image, positioned at the origin. If you assign the handle returned by \texttt{imshow} to a variable, by typing:
+\begin{docspecbold}
 >> h = imshow(A);
-\end{docspec}
-you can then delete the image:
-\begin{docspec}
+\end{docspecbold}
+you can now delete/remove the image again:
+\begin{docspecbold}
 >> delete(h);
-\end{docspec}
+\end{docspecbold}
 
-OK -- now dig up the \textit{script} for your ball-throwing animation -- the one where the \texttt{scatter} plotting ball location \textit{object} was deleted after a pause (giving the impression of movement/animation)\sidenote{From Part IV of Section 8.1}. Near the start of the \textit{script} (before the loop starts), load in the Pok\'eball graphic\sidenote{Under \textsf{\textbf{got data?}} on the website.}\sidenote{(or pick your own graphic)}. Then, instead of using the \texttt{scatter} function to plot a single point (circle), you are going to:
+OK -- now dig up the \textit{script} for your ball-throwing animation -- the one where the \texttt{scatter} plotting ball location symbol was deleted after a pause (giving the impression of movement/animation)\sidenote{From Part IV of Section 8.1}. Copy and rename the \textbf{m-file}. Near the start of the \textit{script} (before the loop starts), load in the Pok\'eball graphic\sidenote{Under \textsf{\textbf{got data?}} on the website.}\sidenote{(or pick your own graphic)}. Then, instead of using the \texttt{scatter} function to plot a single point (circle), you are going to:
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 
 \item Define an \texttt{axes} object, either centered (harder)  on the position of the ball that \texttt{scatter} plotted, or taking as its origin (easier), the position of the ball. The width and height of the axis ... you can play about with, but it should be a relatively small proportion of the total size of the main axes.
-\\Note ... that axes uses relative coordinates (i.e. \(0-1\) in both dimensions) and not your actual ball position (in units of \(m\)). So you'll need to determine the horizontal and vertical position of the ball, \uline{as a fraction}, of the total size of your domain.\sidenote{e.g. you might have considered a maximum horizontal distance of \(10m\) and a maximum vertical distance of \(7.5m\) and specified:
+\\Note ... that axes uses relative coordinates (i.e. \(0-1\) in both dimensions) and not your actual ball position (in units of \(m\)). So you'll need to determine the horizontal and vertical position of the ball -- \uline{as a fraction} -- of the total size of your domain.\sidenote{e.g. you might have considered a maximum horizontal distance of \(10m\) and a maximum vertical distance of \(7.5m\) and specified:
 \begin{docspecmargin}
 axis([0 10 0 7.5]);
 \end{docspecmargin}
 In which case, for the position of the ball in relative/normalized units -- divide the \textit{x} position by \(10\) and the \textit{y} position by \(7.5\).}
-\\It is important here not to be confused between the different sets of axes -- you defined the primary one, outside of the loop, and which  defines the domain in which the trajectory is simulated, perhaps something like:
+\\It is important  not to be confused between the different sets of axes here -- you defined the primary one, outside of the loop, and this  defines the domain in which the trajectory is simulated, perhaps something like:
 \begin{docspec}
 axes(\textcolor[rgb]{1,0,1}{'Position'},[0 0 1 1],\textcolor[rgb]{1,0,1}{'Visible'},\textcolor[rgb]{1,0,1}{'off'});
 \end{docspec}
-you then specified what (\textit{x,y}) limits the axes represented, e.g.:
+You then specify what (\textit{x,y}) limits the axes represented, e.g.:
 \begin{docspec}
 axis([0 x\_max 0 y\_max]);
 \end{docspec}
@@ -11311,7 +11311,7 @@ where \texttt{img}\_ball is the variable containing the ball image, as before, a
 
 When you plot the ball, now add an additional command:
 \begin{docspec}
-    h = imshow(img\_ball);
+    h = imshow(img\_ball);\\
     set(h, \texttt{'AlphaData'}, h\_alpha\_ball);
 \end{docspec}
 which sets this thing I am not telling you about.\sidenote{Wikipedia (please donate!), says: '\textit{In computer graphics, alpha compositing is the process of combining an image with a background to create the appearance of partial or full transparency.}' Without alpha channel information, everything is assumed 100\% opaque (including the background).}
