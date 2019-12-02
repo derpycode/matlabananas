@@ -363,8 +363,6 @@ In general, you should use all lower-case characters for names of \textit{variab
 
 \section{Code structure}
 
-A visual guide to the structure of your programs is given by schematic figures in the page margin\sidenote[][1.0in]{Not all code fragments and programs are given a schematic.}. For example, a generic \textit{script} (yellow box) is shown by \textbf{Figure \ref{fig:ch0-script}}, and a generic \textit{function} (green box) by \textbf{Figure \ref{fig:ch0-function}}. \sidenote[][0.0in]{Don't worry about the terms \textit{function} and \textit{script} for now ....}
-
 \begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch0-script.eps}
 \caption{Schematic for a generic \textit{script}.}
@@ -376,6 +374,8 @@ A visual guide to the structure of your programs is given by schematic figures i
 \caption{Schematic for a generic \textit{function}.}
 \label{fig:ch0-function}
 \end{marginfigure}
+
+A visual guide to the structure of your programs is given by schematic figures in the page margin\sidenote[][0.0in]{Not all code fragments and programs are given a schematic.}. For example, a generic \textit{script} (yellow box) is shown by \textbf{Figure \ref{fig:ch0-script}}, and a generic \textit{function} (green box) by \textbf{Figure \ref{fig:ch0-function}}. \sidenote[][0.0in]{Don't worry about the terms \textit{function} and \textit{script} for now ....}
 
 In these schematics, the flow (sequence) of the code is indicated by the red arrow. 
 
@@ -11236,7 +11236,7 @@ set(h\_text2,\textcolor[rgb]{1,0,1}{'Foregroundcolor'},[1 0 0]);
 
 Now we'll build on your excellent GUI skills and create a GUI interface for the ballistics (ball trajectory) model.
 
-The idea of the 'game' is that you are going to launch a ball, the behaviour of which will be calculated as per your time-stepping ballistics model. Rather than simply detect whether or not the ball falls below zero (height), there will be a graphic (Pok\'emon) displayed and a 'hit' will be recorded if the position of the ball falls within the boundary of the graphic. The key initial conditions -- initial speed and angle of the launched ball, will be set by controls in the GUI rather than set in code. Finally, there will be a series of refinements to improve the look and feel (and game-play) of the game that will introduce a few further concepts in creating good MATLAB GUIs and also new MATLAB functions. 
+The idea of the 'game' is that you are going to launch a ball, the behaviour of which will be calculated as per your time-stepping ballistics model. Rather than simply detect whether or not the ball falls below zero (height), there will be a graphic (Pok\'emon) displayed and a 'hit' will be recorded if the position of the ball falls within the boundary of the graphic. The key initial conditions -- initial speed and angle of the launched ball, will be set by controls in the GUI rather than set in code. Finally, there will be a series of refinements to improve the look and feel (and game-play) of the game that will introduce a few further concepts in creating good \textbf{MATLAB} GUIs and also new \textbf{MATLAB} functions. 
 Ultimately, the GUI (app) might look something like Figure \ref{fig:chGUI-pokemon1c}, but how the controls are positioned in the window and their relative size and shape, is pretty well much up to you. You could also control how the initial parameter values are set in a different way (e.g. using an \textbf{Edit Text} box rather than a \textbf{Slider}). Quite what buttons you want and how they are used is also a matter of personal aesthetics. 
 
 \begin{marginfigure}[-5.25in]
@@ -11267,20 +11267,16 @@ There is quite a lot of coding to be done and the risk of a huge mess ensuing. S
 
 \end{description}
 
-Because of the complexity of the project, the complete code (\textbf{m-file}) as well as associated \texttt{.fig} GUI file, are provided (on the course webpage). These are provided if needed for guidance (e.g. what code goes where?), \uline{only}. Try your best to work through the creation of the App without this.
-
-Example images are provided (download via the course webpage) and you can substitute your own if you prefer.
+Because of the complexity of the project, the complete code (\textbf{m-file}) is provided on the course webpage \uline{if} needed for guidance (e.g. what code goes where?). Example images are also provided (download via the course webpage) but you can substitute your own if you prefer.
 
 If you run into unexpected and apparently nonsensical issues when you make changes and text the App, try closing the design window and any open \textsf{Figure window}s and type \texttt{>> clear all}.
 
-\vspace{1mm}
-\noindent\rule{4cm}{0.5pt}
-\vspace{-2mm}
+\pagebreak 
 
-\newthought{\textit{\textbf{Part \(0\)}}} -- A few of the graphics procedures you will need to grasp and implement.
+\newthought{\textit{\textbf{Part \(0\)}}} -- A few of the graphics procedures you will need to grasp and implement. \footnote{\textcolor{red}{\textbf{Example codes provided}}}
 
 Firstly, at the command line, open a \textsf{Figure window} (\texttt{>> figure}).
-Download any (legal/moral) image you care from the internet\sidenote{With the  raster graphics format being one of: \textsf{.jpg}, \textsf{.png}, \textsf{.tif}.} You can load this image into the \textbf{MATLAB} workspace with \docenv{imread}, and display it in the \textsf{Figure window} with \docenv{imshow}. Try it. This fills up the screen, which is OK for a background image, but not for much else.  
+Download any (legal/moral) image you care from the internet\sidenote{With the  raster graphics format being one of: \textsf{.jpg}, \textsf{.png}, \textsf{.tif}.}. You can load this image into the \textbf{MATLAB} workspace with \docenv{imread}, and display it in the \textsf{Figure window} with \docenv{imshow}. Try it. This fills up the screen, which is OK for a background image, but not for much else.  
 
 \marginnote{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \docenvdef{imread}
@@ -11295,7 +11291,9 @@ Download any (legal/moral) image you care from the internet\sidenote{With the  r
 \\\texttt{h = imshow(A);}
 \end{mdframed}}
 
-Open up a new \textsf{Figure window}. You can define a set of axes anywhere in the window you like via the \texttt{axes} function:
+Open up a new \textsf{Figure window}.
+
+You can define a set of axes anywhere in the window you like via the \texttt{axes} function:
 \begin{docspec}
 axes('pos',[x,y,dx,dy])
 \end{docspec}
@@ -11304,11 +11302,11 @@ where (\texttt{x},y) are the co-ordinates in the window, which by default are fr
 For instance, to create a set of axes starting at the origin, but only 25\% of the full width and height of the window, type:
 \begin{docspecbold}
 >> axes('pos',[0.0,0.0,0.25,0.25]);
-\end{docspec}
+\end{docspecbold}
 If you now display the image:
 \begin{docspecbold}
 >> imshow(A);
-\end{docspec}
+\end{docspecbold}
 \sidenote{Or whatever you called the variable with the image in.} you should see a smaller version of the image, positioned at the origin. If you assign the handle returned by \texttt{imshow} to a variable, by typing:
 \begin{docspecbold}
 >> h = imshow(A);
@@ -11323,7 +11321,7 @@ OK -- now dig up the \textit{script} for your ball-throwing animation -- the one
 \setlength{\itemindent}{.2in}
 
 \item Define an \texttt{axes} object, either centered (harder)  on the position of the ball that \texttt{scatter} plotted, or taking as its origin (easier), the position of the ball. The width and height of the axis ... you can play about with, but it should be a relatively small proportion of the total size of the main axes.
-\\Note ... that axes uses relative coordinates (i.e. \(0-1\) in both dimensions) and not your actual ball position (in units of \(m\)). So you'll need to determine the horizontal and vertical position of the ball -- \uline{as a fraction} -- of the total size of your domain.\sidenote{e.g. you might have considered a maximum horizontal distance of \(10m\) and a maximum vertical distance of \(7.5m\) and specified:
+\\Note ... that \texttt{axes} uses relative coordinates (i.e. \(0-1\) in both dimensions) and not your actual ball position (in units of \(m\)). So you'll need to determine the horizontal and vertical position of the ball -- \uline{as a fraction} -- of the total size of your domain.\sidenote{e.g. you might have considered a maximum horizontal distance of \(10m\) and a maximum vertical distance of \(7.5m\) and specified:
 \begin{docspecmargin}
 axis([0 10 0 7.5]);
 \end{docspecmargin}
@@ -11332,12 +11330,12 @@ In which case, for the position of the ball in relative/normalized units -- divi
 \begin{docspec}
 axes(\textcolor[rgb]{1,0,1}{'Position'},[0 0 1 1],\textcolor[rgb]{1,0,1}{'Visible'},\textcolor[rgb]{1,0,1}{'off'});
 \end{docspec}
-You then specify what (\textit{x,y}) limits the axes represented, e.g.:
+For \texttt{scatter}-plotting, you then specified what (\textit{x,y}) limits the axes represented, e.g.:
 \begin{docspec}
 axis([0 x\_max 0 y\_max]);
 \end{docspec}
-(here, use parameters containing the maximum \textit{x} and \textit{y} limits).
-\\In contrast -- within the loop, you are defining a small axes region to contain the image. (And whose location and width/height are given in relative (\(0-1\) scale) units, rather than \(0-x_{max}\) and \(0-y_{max}\).)
+(here, using parameters containing the maximum \textit{x} and \textit{y} limits in placed of fixed / hard-coded values).
+\\Now, instead of \texttt{scatter}-plotting the position of the ball -- within the loop, you are defining a small axes region to contain the image. (And whose location and width/height are given in relative (\(0-1\) scale) units, rather than \(0-x_{max}\) and \(0-y_{max}\).)
 
 \item Plot the ball image (\texttt{imshow}). Assign the graphics \textit{handle} returned by the function to a variable.
 
@@ -11361,7 +11359,7 @@ To enact a transparent background in \textbf{MATLAB}, you first have to obtain a
 \begin{docspec}
 [img\_ball, h\_map\_ball, h\_alpha\_ball] = imread(\textcolor[rgb]{1,0,1}{'Pokeball.png'});
 \end{docspec}
-where \texttt{img}\_ball is the variable containing the ball image, as before, and \texttt{h\_alpha\_ball} is a handle to ... lets not worry about what it is to. Just that you need it.
+where \texttt{img\_ball} is the variable containing the ball image, as before, and \texttt{h\_alpha\_ball} is a handle to ... lets not worry about what it is to. Just that you need it.
 
 When you plot the ball, now add an additional command:
 \begin{docspec}
@@ -11372,7 +11370,7 @@ which sets this thing I am not telling you about.\sidenote{Wikipedia (please don
 
 For instance -- the same model as before (with the Pok\'eball replacing \texttt{scatter} but with the use of \texttt{delete}), but with only \(1s\) simulated, plus a background image displayed (before the loops starts), and ... with a transparency implemented (removing the square black background), looks like Figure \ref{fig:ch10-pokeball2}.
 
-\begin{marginfigure}[0.0in]
+\begin{marginfigure}[1.5in]
 \includegraphics[width=\linewidth]{ch10-pokeball2.png}
 \caption{Trajectory model (exactly the same trajectory as per the Figure \ref{fig:ch10-pokeball1}), frozen mid-flight at \(t=1s\) with the Pok\'eball passing over UC-Riverside.}
 \label{fig:ch10-pokeball2}
@@ -11391,7 +11389,7 @@ To achieve a GUI along the lines of Figure \ref{fig:chGUI-pokemon1c} you need to
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item Something to display all the action and graphics in. This is pretty well much like \textbf{MATLAB} creates when you use \texttt{plot}, \texttt{scatter}, or any of the graphical functions that create a \textsf{Figure Window}. This is called an \textsf{Axes} object. 
-\item A \textbf{Push Button} for telling MATLAB to start calculating (and displaying) the balls' trajectory.
+\item A \textbf{Push Button} for telling \textbf{MATLAB} to start calculating (and displaying) the balls' trajectory.
 \item A \textsf{Push Button} for resetting the game once it is finished.\sidenote{This we'll only worry about making use of this in Part IV.}
 \item A \textsf{Push Button} to finish the game and close the App.
 \item A \textsf{Slider} (bar) to set the initial speed of the ball.
@@ -11410,18 +11408,18 @@ OK -- to begin for real.
 \begin{enumerate}
 \setlength{\itemindent}{.2in}
 
-\item You have to start somewhere (i.e. you have to pick on one object as the first one to be created!), and the best place to start is arguably with the \textsf{Axes} object as it is the largest object in your window. Click on the \textsf{Axes} icon and drag out the position and size of the object you want.\sidenote{Note that you can drag the GUI editor window larger, and you can also drag larger the gridded design area, meaning that your App window will be larger that you run the program.} By default, it is assigned a name (its \textsf{Tag} property) of \textsf{axes1}. You are not going to have so desperately many objects that it is necessarily worth re-naming it, but you can if you wish (although the text will refer to \textsf{axes1} where needed). Remember that you can move and re-size it at any point after creating it. Its position as \textit{x},\textit{y} of the objects origin as well as dimensions (\textit{x}-length and \textit{y}-height) are indicated by \textsf{Position} at the bottom right of the design window. For e.g. creating an approximately square \textsf{Axes} object, you can also simply count the number of grid lines in each dimension.
+\item You have to start somewhere (i.e. you have to pick on one object as the first one to be created!), and the best place to start is arguably with the \textsf{Axes} object as it is the largest object in your window. Click on the \textsf{Axes} icon and drag out the position and size of the object you want.\sidenote{Note that you can drag the GUI editor window larger, and you can also drag larger the gridded design area, meaning that your App window will be larger that you run the program.} By default, it is assigned a name (its \textsf{Tag} property) of \textsf{axes1}. You are not going to have so desperately many \texttt{axes} objects that it is necessarily worth re-naming it, but you can if you wish. Remember that you can move and re-size it at any point after creating it. Its position as \textit{x},\textit{y} of the objects origin as well as dimensions (\textit{x}-length and \textit{y}-height) are indicated by \textsf{Position} at the bottom right of the design window. For e.g. creating an approximately square \textsf{Axes} object, you can also simply count the number of grid lines in each dimension.
 
 Save the \textsf{.fig} file and run it\sidenote{Note that there are two things that potentially might both need being saved -- the \textbf{m-file} and the \textbf{.fig} file. If you make code changes, save the \textbf{m-file}, and if you make design change sin the GUI editor, save the \textbf{.fig} file.}. You do indeed have a graph-like object with labelled axes. This is not actually that convenient (to have the axes labels when you don't need any in this particular example). In the design window -- double
 click on the \textsf{Axes} object to bring up its list of properties. Find and edit \textsf{XTick} -- delete all the tick mark numbers. Do the same for the y-axis. Close the GUI window from the previous version if it is still open, then save and re-run. Now you should see a large white square(ish) with two thin black lines delineating the axes\sidenote{We could remove these black lines, but they'll get covered up later.}, and nothing else.
 
-\item Next \textit{Push Button} \#1. Create (position and size, where- and how-ever you think best). Simplest is to leave the default name ('\textsf{pushbutton}1'). Change the text associated with the \textit{Push Button} (property '\textsf{String}'). Label as 'Throw', 'Go', or whatever seems appropriate. Remember that you can change the default font size, family, color ... (and e.g. make bold etc.) as well as the color of the button itself (plus a host of other property options).
+\item Next: \textit{Push Button} \#1. Create (position and size, where- and how-ever you think best). Simplest is to leave the default name ('\textsf{pushbutton}1'). Change the text associated with the \textit{Push Button} (property '\textsf{String}'). Label as 'Throw', 'Go', or whatever seems appropriate. Remember that you can change the default font size, family, color ... (and e.g. make bold etc.) as well as the color of the button itself (plus a host of other property options).
 
-\item Create a 2nd \textit{Push Button} ('\textsf{pushbutton}2') as per before. Label consistent with the GUI\ aim (and e.g. Figure \ref{fig:chGUI-pokemon1c} ).
+\item Create a 2nd \textit{Push Button} ('\textsf{pushbutton}2') as per before. This will be 'New game' (or equivalent).
 
 \item Similarly, create 3rd \textit{Push Button} ('\textsf{pushbutton}3').
-
-\item Now we need a \textsf{Slider}\sidenote{Not anything to do with baseball.} bar. These are bar with a slider ('knob') that can be slide up and down via the mouse, or moved by clicking in the bar above or below the position of the slider. By doing so (changing the position of the slider along the slider bar), you change the numerical value of the slider. We are going to use one in order to set the initial speed of the ball. So go create one (leaving the default name of '\textsf{slider1}').
+This will be the end/close game (and window) button.
+\item Now we need a \textsf{Slider}\sidenote{Not anything to do with baseball.} bar. These are bars with a slider ('knob') that can be slide up and down via the mouse, or moved by clicking in the bar above or below the position of the slider. By doing so (changing the position of the slider along the slider bar), you change the numerical value of the slider. We are going to use one in order to set the initial speed of the ball. So go create one (leaving the default name of '\textsf{slider1}').
 
 Because we need to link the \textsf{Slider} to our model (in terms of parameter value), we need to specify a minimum and maximum value that the \textsf{Slider} can take, as well as an initial value. These properties can be set at in the code, but we'll start off by specifying them using the design GUI tool. If you double click on the \textsf{Slider} you'll get its property list opened up. The minimum and maximum property value name are \textsf{Min} and \textsf{Max} -- edit these to span a plausible initial speed range\sidenote{I used \(0\) to \(20 ms^{-1}\).}. Also set a default initial value (parameter name '\textsf{Value}')\sidenote{I assumed \(0 ms^{-1}\).}.
 
@@ -11513,26 +11511,26 @@ Save the \textsf{m-file} and re-run the App by typing its name (e.g. \texttt{>> 
 \\\% uiwait(handles.figure1);}
 \end{docspec}
 
-First, we'll read in a background image ('background.jpg' -- available for download from the  website, or pick your own) and then display it. We'll use the commands \texttt{imread} for reading in the graphics format (and converting it into something \textbf{MATLAB} prefers) and then \texttt{imshow} to display it. The first part is easy enough:
-\begin{docspec}
+First, we'll read in a background image (e.g. \textsf{background.jpg} -- available for download from the  course webpage, or pick your own) and then display it. We'll use the commands \texttt{imread} for reading in the graphics format (and converting it into something \textbf{MATLAB} prefers) and then \texttt{imshow} to display it. The first part is easy enough:
+\begin{docspecbold}
 img\_background = imread(\textcolor[rgb]{0.501961,0,1}{'background.jpg'});
-\end{docspec}
+\end{docspecbold}
 The question then becomes 'where' to display it. You might not think there is even a question in this -- in the window! Except ... where in the window?
 
 We actually want the background image in the (currently) blank \textsf{Axes} area, not just anywhere in the \textsf{Figure window} (which also have various button etc. objects positioned in it). We need to find the ID of the \textsf{Axes} object and tell \textbf{MATLAB} that is 'where' to display it.\sidenote{Actually, it may work without worrying about this, but we'll need to be able to specify where to position other images later anyway.} We can get the \textit{handle} (ID) of the \textsf{Axes} object via:
-\begin{docspec}
+\begin{docspecbold}
 h\_axes = findobj(\textcolor[rgb]{0.501961,0,1}{'Tag'},\textcolor[rgb]{0.501961,0,1}{'axes1'});
-\end{docspec}
+\end{docspecbold}
 and then tell \textbf{MATLAB} that this is currently the object to put things in by:
-\begin{docspec}
+\begin{docspecbold}
 axes(h\_axes);
-\end{docspec}
+\end{docspecbold}
 (which sets the current/active axes object to the one with the handle \texttt{h\_axes})).
 We then use this handle in the call to \texttt{imread}:
-\begin{docspec}
+\begin{docspecbold}
 h\_background = imshow(img\_background,\textcolor[rgb]{0.501961,0,1}{'Parent'},h\_axes);
-\end{docspec}
-Try it (run the App). (The only problem with this is that \textbf{MATLAB} may completely fail to scale the image to fit the \textsf{Axes}. We'll fix this shortly.)
+\end{docspecbold}
+Add this code and try it (i.e. run your App). (The only problem with this is that \textbf{MATLAB} may completely fail to scale the image to fit the \textsf{Axes}. We'll fix this shortly.)
 
 While we're at it (editing \texttt{\textcolor{blue}{function} Pokemon\_OpeningFcn}), we can specify the axis range for plotting the position of the ball in the Axes object, and add a \texttt{hold on} for completeness. We may as well then also define the axis ranges (in \(m\)) as parameters (that we can use elsewhere).
 
@@ -11542,10 +11540,14 @@ The complete code (so far), at the end of the automatically generated code in \t
 \\x\_max = 10.0;
 \\y\_max = 10.0;
 \\\textcolor[rgb]{0,0.501961,0}{\% read in background image}
-\\img\_background = imread(\textcolor[rgb]{0.501961,0,1}{'background.jpg'});
-\\\textcolor[rgb]{0,0.501961,0}{\% set axes suitable for game}
+\\img\_background = imread(\textcolor[rgb]{0.501961,0,1}{'background.jpg'});\\
+\textcolor[rgb]{0,0.501961,0}{\% find handle of axes object}\\
+h\_axes = findobj('Tag','axes1');
+\\\textcolor[rgb]{0,0.501961,0}{\% make axes object the current axes}
 \\axes(h\_axes);
-\\axis([0 x\_max 0 y\_max]);
+\\\textcolor[rgb]{0,0.501961,0}{\% set axis size to scale image to}\\
+axis([0 x\_max 0 y\_max]);
+\\\textcolor[rgb]{0,0.501961,0}{\% get ready to draw ...}
 \\hold \textcolor[rgb]{0.501961,0,1}{on};
 \\\textcolor[rgb]{0,0.501961,0}{\% draw background}
 \\h\_background = imshow(img\_background,\textcolor[rgb]{0.501961,0,1}{'Parent'},h\_axes, ...
@@ -11561,11 +11563,15 @@ When you run all this, you should get Figure \ref{fig:chGUI-pokemon2}.
 \label{fig:chGUI-pokemon2}
 \end{marginfigure}
 
-Next, we want a Pok\'emon to throw the ball at! The load-in code (which can go \uline{after} the code fragment above) for the image is identical to before:
+\vspace{1mm}
+\noindent\rule{4cm}{0.5pt}
+\vspace{2mm}
+
+\noindent Next, we want a Pok\'emon to throw the ball at! The load-in code for the image is identical to before:
 \begin{docspec}
 img\_eevee = imread(\textcolor[rgb]{0.501961,0,1}{'Eevee.png'});
 \end{docspec}
-(The image itself ('\textsf{Eevee.png}') can be downloaded from the website ... or download your own ...) There are two complications in using \texttt{imread}, however. To see what these complications are, after the \texttt{img\_eevee = } line, add the following:
+and the code goes immediately after you have drawn the background image. (The image itself ('\textsf{Eevee.png}') can be downloaded from the course webpage ... or download your own ...) There are two complications in using \texttt{imread}, however. To see what these complications are, after the \texttt{img\_eevee = } line, add the following:
 \begin{docspec}
 h\_eevee = imshow(img\_eevee,\textcolor[rgb]{0.501961,0,1}{'Parent'},h\_axes);
 \end{docspec}
@@ -11607,7 +11613,7 @@ Now giving you a small Pok\'emon -- in fact, 20\% of the \textsf{Axes} size as s
 \label{fig:chGUI-Pokemon4}
 \end{marginfigure}
 
-One final thing now is the background to the Pok\'emon image. The original format (png) is actually defined with a transparent background. \textbf{MATLAB} can make use of this with a small tweak to the code -- replacing the \texttt{img\_eevee = } line with:
+One final thing now is the background to the Pok\'emon image. The original format (\textsf{png}) is  defined with a transparent background. \textbf{MATLAB} can make use of this with a small tweak to the code -- replacing the \texttt{img\_eevee = } line with:
 \begin{docspec}
 [img\_eevee, h\_map\_eevee, h\_alpha\_eevee] = imread('Eevee.png');
 \end{docspec}
@@ -11615,7 +11621,7 @@ which grabs additional graphics information and specifically about the transpare
 \begin{docspec}
 set(h\_eevee, 'AlphaData', h\_alpha\_eevee);
 \end{docspec}
-which implements the transparent background and hopefully gives you Figure \ref{fig:chGUI-Pokemon5}.
+which implements the transparent background -- Figure \ref{fig:chGUI-Pokemon5}.
 
 \begin{marginfigure}[0.0in]
 \includegraphics[width=\linewidth]{chGUI-Pokemon5.png}
@@ -11629,12 +11635,11 @@ which implements the transparent background and hopefully gives you Figure \ref{
 
 \newthought{\textit{\textbf{Part III}}} -- incorporating the ballistics model.
 
-Here -- almost all the code in this section will go into \texttt{\textcolor{blue}{function} \\\noindent pushbutton1\_Callback} -- the function that is executed when the first \textsf{Push Button} is clicked. But before any coding -- ensure that the text label associated with the first \texttt{Push Button} is appropriate for launching the ball ('Throw', 'Go!', whatever).\sidenote{Remember -- double-click on the \textsf{pushbutton1} object in the design editor and then find and edit the value of the \textbf{String} property.}
+Here -- almost all the code for the animated  ballistics model will go into \texttt{\textcolor{blue}{function} pushbutton1\_Callback} -- the function that is executed when the first \textsf{Push Button} is clicked. But before any coding -- ensure that the text label associated with the first \texttt{Push Button} is appropriate for launching the ball ('Throw', 'Go!', whatever).\sidenote{Remember -- double-click on the \textsf{pushbutton1} object in the design editor and then find and edit the value of the \textbf{String} property.}
 
-Below is a simple rendition of the ballistics model. All that has been modified from a stand-alone \textsf{m-file} that would plot the trajectory of a ball, is that the creation of a figure (and associated \texttt{hold on}) is not necessary (because this has already bene done within the initialization function). either copy-paste your own version (and comment out the figure creation line), or add the below version.
-
-\begin{docspecmargin}
-\% model constants
+Below is a simple rendition of the ballistics model. All that has been modified from a stand-alone \textbf{m-file} that would plot the trajectory of a ball, is that the creation of a figure (and associated \texttt{hold on}) is not necessary because this has already been done within the initialization function. 
+\begin{docspecbold}
+\textcolor[rgb]{0,0.501961,0}{\% model constants}
 \\g = 9.81;
 \\\textcolor[rgb]{0,0.501961,0}{\% model parameters}
 \\theta0 = 80.0;
@@ -11649,9 +11654,6 @@ Below is a simple rendition of the ballistics model. All that has been modified 
 \\\textcolor[rgb]{0,0.501961,0}{\% set initial position of ball}
 \\x = 0.0;
 \\y = h0;
-\textcolor[rgb]{0,0.501961,0}{\\\% create Figure window and hold on
-\\\%Figure;
-\\\%hold on;}
 \\\textcolor[rgb]{0,0.501961,0}{\% run model}
 \\\textcolor{blue}{for} t=dt:dt:t\_max,
 \\ \ \ \ \    \textcolor[rgb]{0,0.501961,0}{\% update horizontal and vertical positions}
@@ -11664,66 +11666,67 @@ Below is a simple rendition of the ballistics model. All that has been modified 
 \\ \ \ \ \    \textcolor{blue}{if} (y < 0.0)
 \\ \ \ \ \ \ \ \ \        \textcolor{blue}{break};
 \\ \ \ \ \    \textcolor{blue}{end}
-\\ \ \ \ \    \textcolor[rgb]{0,0.501961,0}{\% update vertical velocity (horizontal velocity unchanged)}
+\\ \ \ \ \    \textcolor[rgb]{0,0.501961,0}{\% update vertical velocity}
 \\ \ \ \ \   dv = -dt*g;
 \\ \ \ \ \   v = v + dv;
 \\\textcolor{blue}{end}
-\end{docspecmargin}
+\end{docspecbold}
+Either copy-paste this or add your own version (and comment out the figure creation line. Note that this is a simplified code using \texttt{scatter} rather than plotting a sprint -- to keep things simple  and to aid in debugging.
 
-When you rn the complete App, and press the first \textsf{Push Button}, you should see the balls' trajectory plotted. Upside-down! WTF!?
+When you run the complete App, and press the first \textsf{Push Button}, you should see the balls' trajectory plotted. Upside-down! WTF!?
 
 Well, this does seem to be the coordinate system in this \textsf{Axes} object. We can fix this by subtracting the model calculated height (\texttt{y}) from the maximum y-axis value (\texttt{y\_max}) and adjust the \texttt{scatter} code line to:
 \begin{docspec}
 \ \ \ \    scatter(x,y\_max-y);
 \end{docspec}
 Except ... we defined \texttt{y\_max} in the initialization function, and its value is not available in this function, unless we define it as \texttt{global} in both, so lets do that -- add the following lines:
-\begin{docspec}
+\begin{docspecbold}
 global x\_max;
 \\global y\_max;
-\end{docspec}
-to both the following functions
+\end{docspecbold}
+to the start of both the following functions:
 \begin{itemize}[noitemsep]
 \setlength{\itemindent}{.2in}
 \item \texttt{\textcolor{blue}{function} Pokemon\_OpeningFcn}
 \item \texttt{\textcolor{blue}{function} pushbutton1\_Callback }
 \end{itemize}
-(before any of your other code in these files, but below anything that \textbf{MATLAB} generated automatically in the first place).
+(before any of your other code in these files, but below anything that \textbf{MATLAB} generated automatically in the first place such as comment lines).
 
-It works, and in the right direction (for 'up'), but it is hardly \textbf{iTunes} grade App material. What we can do, is to replace the point plotted by \texttt{scatter}, with an image.
+It works(!), and in the right direction (for 'up'), but it is hardly \textbf{iTunes} grade App material. What we can do, is to replace the point plotted by \texttt{scatter}, with an image as per Section \(0\) of this chapter.
 
 At the top of \texttt{\textcolor{blue}{function} pushbutton1\_Callback} (after the \texttt{global} declarations) load in a ball image:
-\begin{docspec}
+\begin{docspecbold}
 [img\_ball, h\_map\_ball, h\_alpha\_ball] = imread('Pokeball.png');
-\end{docspec}
+\end{docspecbold}
 (using the full format of returned parameters because we'll make use of its transparency). We'll then define the size of the ball:
-\begin{docspec}
+\begin{docspecbold}
 dx\_ball = 0.05*x\_max;
 \\dy\_ball = 0.05*y\_max;
-\end{docspec}
+\end{docspecbold}
 and finally, in place of \texttt{scatter ...}, write:
-\begin{docspec}
+\begin{docspecbold}
 \ \ \ \ h\_ball = imshow(img\_ball,'Parent',h\_axes,'Xdata',\ldots
 \\ \ \ \ \ [x x+dx\_ball],'Ydata',[y\_max-y y\_max-y+dy\_ball]);
 \\ \ \ \ \ set(h\_ball, 'AlphaData', h\_alpha\_ball);
-\end{docspec}
+\end{docspecbold}
 
 The first of these final two lines, displays the image given by the parameter (ID) \texttt{img\_ball}. It ensures it is displayed in the axes area pointed to by \texttt{h\_axes} (and because of this, you also have to define \texttt{x\_axes} as global\sidenote{Directly underneath the other two \texttt{global} definition lines AND in a similar position in the initialization function: \texttt{\textcolor{blue}{function} pushbutton1\_Callback }.}, i.e. \texttt{global h\_axes;}). Its size is \texttt{dx\_ball} by \texttt{dy\_ball}. Its \textit{x}-coordinate is simply \texttt{x} (hence the image goes from \texttt{x} to \texttt{x+dx\_ball}) and its \textit{y}-axis coordinate ... well, don' worry about it, after much trial-and-error, it works.
 Now you should have something like Figure \ref{fig:chGUI-Pokemon6} when you run it.
 
-\begin{marginfigure}[0.0in]
+\begin{marginfigure}[1.0in]
 \includegraphics[width=\linewidth]{chGUI-Pokemon6.png}
 \caption{App with ball trajectory trail.}
 \label{fig:chGUI-Pokemon6}
 \end{marginfigure}
 
-To finish this section off, we'll improve how the trajectory f the ball is displayed. Firstly, we could add a delay between each addition of the ball image, rather than them all sort of appear at once. After the \texttt{set ...} line, add:
-\begin{docspec}
+To finish this section off, we'll improve how the trajectory of the ball is displayed. Firstly, we could add a delay between each addition of the ball image, rather than them all sort of appear at once. After the \texttt{set ...} line, add:
+\begin{docspecbold}
 \ \ \ \ pause(0.005);
-\end{docspec}
+\end{docspecbold}
 This is some improvement visually. We could also remove the previous ball image, so that only one ball image is displayed on the screen at any one time, hopefully giving the impression of movement. Since we were good and obtained the handle (\texttt{h\_ball}) of the ball image when we displayed it, this gives us a means to tell \textbf{MATLAB} to get rid of it again. Now, after the \texttt{pause} line, add:
-\begin{docspec}
+\begin{docspecbold}
 \ \ \ \    delete(h\_ball);
-\end{docspec}
+\end{docspecbold}
 which simply deletes the last ball image object that was plotted.
 
 Now when you run it you should see a single ball image that follows the  trajectory that you calculated with your time-stepping ballistics model.
@@ -11739,27 +11742,27 @@ So far it is not much of a game -- the values of the parameters determining the 
 The \textsf{Sliders} are there to allow you to adjust the two key parameter values and the 'Throw' (/'Go') button can be re-clicked on to then re-run the game. The \textsf{Sliders} are set up such that when you move the slider, its value changes. In designing the GUI and creating the objects you have already set the min and max values of the \textsf{Sliders} to something reasonable. What remains is to obtain the value of each \textsf{Slider} and pass that to your ballistics model.
 
 The first step is to read the new \textsf{Slider} value when the slider is moved. Taking the example of the first \textsf{Slider} ('\textsf{slider1}') which controls the initial speed of the ball -- we first need to request the handle (ID) of this \textsf{Slider}. As before, we use the \texttt{findobj} function:
-\begin{docspec}
+\begin{docspecbold}
 h = findobj(\textcolor[rgb]{0.501961,0,1}{'Tag'},\textcolor[rgb]{0.501961,0,1}{'slider1'});
-\end{docspec}
+\end{docspecbold}
 which simply asks for the handle (passed to variable \texttt{h}) of the object whose '\textsf{Tag}' is '\textsf{slider1}'. You then\sidenote{On the next line.} use the \texttt{get} function to get the '\textsf{value}' (one of the properties of the object):
-\begin{docspec}
+\begin{docspecbold}
 s0 = get(h,\textcolor[rgb]{0.501961,0,1}{'Value'});
-\end{docspec}
+\end{docspecbold}
 where here the value is assigned to the variable \texttt{s0} (initial speed). These two lines of code go in \texttt{\textcolor{blue}{function} slider1\_Callback} just after the comment lines (there is actually no other code (automatically generated) in this function as it currently stands). 
 
 While we're here editing this function, what else might be helpful to happen when the slider is moved and its value changes? Although from creating the \textsf{Slider} object you know (unless you have forgotten) what the min and max \textsf{Slider} values are, you would still be somewhat guessing what its exact (or even rough) value was. During the GUI design phase, you created a pair of \textsf{Static text} boxes for each \textsf{Slider}. One of each pair was intended to display the \textsf{Slider} value. So lets do this now. The \textsf{Static text} box for the value display was called (its \textsf{Tag}) \textsf{text1}\sidenote{At least, it was in my GUI design -- check the name of yours.}.
 
 Once again, before we can change any of the properties, we need to determine the handle of the object. For \textsf{Static text} box \textsf{text1}, the code would be:
-\begin{docspec}
+\begin{docspecbold}
 h = findobj(\textcolor[rgb]{0.501961,0,1}{'Tag'},\textcolor[rgb]{0.501961,0,1}{'text1'});
-\end{docspec}
+\end{docspecbold}
 (this should be starting to become familiar to you by now ...).
 
 To set its value, which in this case is a text string, we write:
-\begin{docspec}
+\begin{docspecbold}
 set(h,\textcolor[rgb]{0.501961,0,1}{'String'},num2str(s0));
-\end{docspec}
+\end{docspecbold}
 where \texttt{num2str(s0)} converts a numeric value into a string (as you have seen before). These two lines of code will go after the first two in the same function (as you need to have obtained the value of s0 before you can use it to change then text box display).
 
 At this point you may as well save and re-run. Now, when you drag and release the slider for initial speed, its new value is displayed above it in the text box. At least, this should be what happens ...
@@ -11771,11 +11774,11 @@ Again -- save and test what you have so far. This should now be two \textsf{Slid
 There is one final step to take. If you change either or both \textsf{Slider} values and click on 'Throw' /'Go', the trajectory of the ball is the same as before -- you are not actually changing the parameter values used to initialize the ballistics model yet. Recall that variables within \textit{functions} are \textit{private} -- they cannot be 'seen' outside of the function their value is set in. Unless you declare them as \texttt{global} variables.
 
 So, in each \textsf{Slider} function, you need to declare the respective parameter (\texttt{s0} or \texttt{theta0}) as \texttt{global}. This will need to be the first line of the code (after the comment lines and before the four lines of code you inserted). You will also need to add the global declarations at the start of the \textsf{pushbutton1} code where your model lives (\texttt{\textcolor{blue}{function} pushbutton1\_Callback(hObject, eventdata, handles)}):
-\begin{docspec}
+\begin{docspecbold}
 \textcolor{blue}{global} s0;
 \\\textcolor{blue}{global} theta0;
-\end{docspec}
-You then need to comment out the lines that set your initial model parameter values:
+\end{docspecbold}
+You then need to comment out the lines that set your initial model parameter values, e.g.:
 \begin{docspec}
 \textcolor[rgb]{0,0.501961,0}{\%theta0 = 80.0;
 \\\%s0 = 5.0;}
@@ -11786,7 +11789,7 @@ You can test it now, and if you do, you might find that nothing appears to happe
 What to do? Well, recall there is the function that is called when the App first starts up and in which we loaded up various images etc. In this function, we could also check the value of each \textsf{Slider} (even though the slider could not have been moved yet), set the parameter values, and display the \textsf{Slider} values in the \textsf{Static text} boxes.
 
 At the end of the code in \texttt{\textcolor{blue}{function} Pokemon\_OpeningFcn}, add:
-\begin{docspec}
+\begin{docspecbold}
 \textcolor[rgb]{0,0.501961,0}{\% read in default model parameters and set labels}
 \\h = findobj(\textcolor[rgb]{0.501961,0,1}{'Tag'},\textcolor[rgb]{0.501961,0,1}{'slider1'});
 \\s0 = get(h,\textcolor[rgb]{0.501961,0,1}{'Value'});
@@ -11796,8 +11799,8 @@ At the end of the code in \texttt{\textcolor{blue}{function} Pokemon\_OpeningFcn
 \\theta0 = get(h,\textcolor[rgb]{0.501961,0,1}{'Value'});
 \\h = findobj(\textcolor[rgb]{0.501961,0,1}{'Tag'},\textcolor[rgb]{0.501961,0,1}{'text2'});
 \\set(h,\textcolor[rgb]{0.501961,0,1}{'String'},[num2str(theta0)]);
-\end{docspec}
-which is pretty well much just an amalgamation of the code you have added to the two \textsf{Slider} callback function. The last final piece is to remember that the initial Slider values you read and set \texttt{s0} and \texttt{theta0} on the basis of, cannot be seen outside of this function. So at the top, along with the other \texttt{global} statements, make \texttt{s0} and \texttt{theta0} global to.
+\end{docspecbold}
+which is pretty well much just an amalgamation of the code you have added to the two \textsf{Slider} callback function. The last final piece is to remember that the initial Slider values you read and set \texttt{s0} and \texttt{theta0} on the basis of, cannot be seen outside of this function. So at the top, along with the other \texttt{global} statements, add the appropriate lines to make \texttt{s0} and \texttt{theta0} global too.
 
 Note that if you do not like the new defaults for  \texttt{s0} and \texttt{theta0}, you can always edit the properties of the \textsf{Sliders} in the GUI design editor window thing.\sidenote{Equally, you could have coded in defaults and then set the \textbf{Slider} values to be these defaults when the App starts up. The process is basically exactly the same as for setting the \textbf{Static text} box string values.}
 
@@ -11807,7 +11810,7 @@ Note that if you do not like the new defaults for  \texttt{s0} and \texttt{theta
 
 \newthought{\textit{\textbf{Part V}}} -- pok\'eball/Pok\'emon collision detection.
 
-How are you going to tell if the throw is successful or not? Remember earlier -- you detected if the height of the ball fell below ground level and used this to exits the loop (because no more calculations were necessary):
+How are you going to tell if the throw is successful or not? Remember earlier -- you detected if the height of the ball fell below ground level and used this to exit the loop (because no more calculations were necessary), as so:
 \begin{docspec}
 \ \ \ \    \textcolor{blue}{if} (y < 0.0)\\
 \ \ \ \ \ \ \ \        \textcolor{blue}{break};\\
@@ -11816,18 +11819,20 @@ How are you going to tell if the throw is successful or not? Remember earlier --
 You are going to do something similar, but:
 \begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
-\item Firstly, test both \textit{x} and \textit{y} positions of the ball (rather than just \textit{y}).
-\item Finish the game upon a successful hit.
+\item Firstly, test \uline{both} \textit{x} and \textit{y} positions of the ball (rather than just the value of \textit{y}).
+\item Finish the game upon a successful 'hit' (collision detection).
 \end{enumerate}
 
 For the first part -- you need to determine whether the ball is within the limits of the Pok\'emon (which would be a reasonable criteria for a 'hit'). There are four parts to the criteria, which all need to be \textit{true}:
-\begin{enumerate}[noitemsep]
+\vspace{-2mm}\begin{enumerate}[noitemsep]
 \setlength{\itemindent}{.2in}
-\item The ball is to the right of the left edge of the Pok\'emon.
-\item The ball is to the left of the right edge of the Pok\'emon.
-\item The ball is above the bottom edge of the Pok\'emon.
-\item The ball is below the top edge of the Pok\'emon.
-\end{enumerate}
+\item The ball center is to the right of the left edge of the Pok\'emon.
+\item The ball center is to the left of the right edge of the Pok\'emon.
+\item The ball center is above the bottom edge of the Pok\'emon.
+\item The ball center is below the top edge of the Pok\'emon.
+\end{enumerate}\vspace{-2mm}
+(We could make it more complicated and more realistic if we also considered the size of the ball, in which case (1) for instance, would become: 'The right edge of the ball  is to the right of the left edge of the Pok\'emon'.)
+
 In code, if the edges of the Pok\'emon are:
 \begin{docspec}
 xmin, xmax, ymin, ymax
@@ -11846,6 +11851,8 @@ If this condition is met, the game is over. You might then:
 \item Remove the Pok\'emon image and replace with a message.
 \item Grey out and disable the 'Throw' button.
 \end{itemize}
+
+See if you work out these 2 pieces of code.
 
 \vspace{1mm}
 \noindent\rule{4cm}{0.5pt}
@@ -12023,7 +12030,63 @@ s\_out = temp\_max;\\
 \textcolor{blue}{end}
 \end{docspec}
 
+%------------------------------------------------
+%
+\newpage
 
+%------------------------------------------------
+
+\section{Chapter 10 codes}
+
+%------------------------------------------------
+
+\subsection*{\textbf{Section 10.0}}
+
+\subsection*{Code for the sprite (image) trajectory animation}
+
+\begin{docspec}
+\textcolor[rgb]{0,0.501961,0}{\% load images}\\
+img\_background=imread(\textcolor[rgb]{1,0,1}{'DSC01182.JPG'});\\
+\([\)img\_ball, h\_map\_ball, h\_alpha\_ball\(]\) = imread(\textcolor[rgb]{1,0,1}{'Pokeball.png')};\\
+\textcolor[rgb]{0,0.501961,0}{\% set parameter values controlling trajectory}\\
+g = 9.81;\\
+theta = 60.0;\\
+s0 = 10.0;\\
+h0 = 1.0;\\
+\textcolor[rgb]{0,0.501961,0}{\% set parameter values controlling time-stepping}\\
+dt = 0.02;\\
+t\_max = 2.0;\\
+\textcolor[rgb]{0,0.501961,0}{\% derive initial velocity components}\\
+u = s0*cos(pi*theta/180.0);\\
+v = s0*sin(pi*theta/180.0);\\
+\textcolor[rgb]{0,0.501961,0}{\% set initial position}\\
+p(1) = 0.0;\\
+p(2) = h0;\\
+\textcolor[rgb]{0,0.501961,0}{\% create window and scale axes}\\
+figure;\\
+x\_max = 10;\\
+y\_max = 7.5;\\
+axes(\textcolor[rgb]{1,0,1}{'Position'},[0 0 1 1],\textcolor[rgb]{1,0,1}{'Visible'},\textcolor[rgb]{1,0,1}{'off'});\\
+h = imshow(img\_background);\\
+hold \textcolor[rgb]{1,0,1}{on};\\
+\textcolor[rgb]{0,0.501961,0}{\% time-stepping update of position and graphics}\\
+\textcolor{blue}{for} t=dt:dt:t\_max\\
+\ \ dp = dt*u;\\
+\ \ p(1) = p(1) + dp;\\
+\ \ dp = dt*v;\\
+\ \ p(2) = p(2) + dp;\\
+\ \ axes(\textcolor[rgb]{1,0,1}{'pos'},[p(1)/x\_max,p(2)/y\_max,0.1,0.1])\\
+\ \ h = imshow(img\_ball);\\
+\ \ set(h, \textcolor[rgb]{1,0,1}{'AlphaData'}, h\_alpha\_ball);\\
+\ \ pause(0.001);\\
+\ \ delete(h);\\
+\ \ \textcolor{blue}{if} (p(2) < 0.0)\\
+\ \ \ \ \textcolor{blue}{break}\\
+\ \ \textcolor{blue}{end}\\
+\ \ dv = -dt*g;\\
+\ \ v = v + dv;\\
+\textcolor{blue}{end}
+\end{docspec}
 
 %----------------------------------------------------------------------------------------
 
