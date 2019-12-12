@@ -8825,15 +8825,14 @@ Note that you do not have to plot the entire dataset and could set the x-axis li
 
 \subsection{Parameter sensitivity experiments using the EBM -- \#1}
 
-[Note that in this section, variables names are shortened and simplified as compared to before, with \texttt{S} replacing\texttt{ solar\_constant}, and \texttt{T} replacing \texttt{temp} (and then \texttt{a} replacing \texttt{albedo}). Feel free to retain the previous (or whatever you like) naming convention.]
 \vspace{2mm}
 
 \noindent Common in numerical modelling is quantifying how sensitive a system is to the choice of parameter values -- called a \textit{sensitivity experiment}. You may already have gotten a feel for roughly how sensitive \(T\) was to changing \(S\) on its own, or changing \(\alpha\) on its own, but what about when both parameters vary together? In this exercise you are going to utilize your energy-balance model \textit{function} ('\texttt{fun\_1}' in the summary notation) to explore this.
 
 Create a new blank script ('\texttt{scr\_2}') and define 2 parameters near the start of the \textbf{m-file} -- one for the value of \(S\) and one for the albedo, \(\alpha\), then further down the code, call your function (\texttt{fun\_1}), passing it these 2 parameters \uline{but remembering} that you need to assign the result of your function (\texttt{fun\_1}) to some \textit{variable}\sidenote{i.e.
 \begin{docspecmargin}
-T = fun\_1(S,a);
-\end{docspecmargin}assigns the result of your temperature calculation to the variable \texttt{T}.}. So far so boring, as this is in effect what you had been doing previously in 'playing' with the energy balance function. 
+temp = fun\_1(S,albedo);
+\end{docspecmargin}assigns the result of your temperature calculation to the variable \texttt{temp}.}. So far so boring, as this is in effect what you had been doing previously in 'playing' with the energy balance function. 
 
 
 Starting with a simple 1-D case and considering just a progressive change in the value of \(S\), to automatically generate a progression of different values of \(S\) and call the \textit{function}, you are going to need to create a loop\sidenote{You are going to put the loop in the script (\# \texttt{scr\_2}), NOT the function (\# \texttt{fun\_1}).
@@ -8855,7 +8854,7 @@ in which case, \(S\) will go from 1000 to 1500 (\(Wm^{-2}\)) in steps of 100 (\(
 
 You could have addressed this by constructing a slightly less convenient form of the loop, e.g.:
 \begin{docspec}
-\textcolor{blue}{for} S0 = 1068:100:1568
+\textcolor{blue}{for} S = 1068:100:1568
 \\ \ \ \ \ \textcolor[rgb]{0,0.501961,0}{\% CODE GOES HERE}
 \\\textcolor{blue}{end}
 \end{docspec}
@@ -8913,12 +8912,12 @@ which would create a (single) column vector with 11 rows. You'd also need an equ
 \\Then, within the loop (and after the calculation of \(T\)), you'd assign your values of \(S\) and \(T\) by using whichever index you created\sidenote{i.e. which of the loop OPTIONS you chose earlier.}:
 \begin{docspec}
 \ \ \ data\_S(m) = S;
-\\ \ \ \ data\_T(m) = T;
+\\ \ \ \ data\_T(m) = temp;
 \end{docspec}
 or:
 \begin{docspec}
 \ \ \ data\_S(count) = S;
-\\ \ \ \ data\_T(count) = T;
+\\ \ \ \ data\_T(count) = temp;
 \end{docspec}
 where \texttt{m} and \texttt{count} are integers, starting at a value of one, and incrementing by a value of one on each successive execution of the loop. \texttt{m} (or \texttt{count}) represents an index that allows you to store the result of each successive calculation  (as well as the corresponding input value) in a vector.
 
@@ -8930,7 +8929,7 @@ which creates a matrix of zeros of 11 rows by 2 columns.
 \\\noindent Within the loop, data is now assigned:
 \begin{docspec}
 \ \ \ data(m,1)\ = S;
-\\ \ \ \ data(m,2) = T;
+\\ \ \ \ data(m,2) = temp;
 \end{docspec}
 (where the first column is used to store the solar constant value, and the second the corresponding temperature value).
 
@@ -8951,7 +8950,7 @@ data\_T = [];
 and then within the loop:
 \begin{docspec}
 \ \ \ data\_S = [data\_S; S];
-\\ \ \ \ data\_T = [data\_T; T];
+\\ \ \ \ data\_T = [data\_T; temp];
 \end{docspec}
 Note that you cannot grow a matrix by adding data for a single cell, as a matrix always has to have a complete number of rows and columns. Instead, you'd have to write: 
 \begin{docspec}
@@ -8959,9 +8958,9 @@ data = [];\\
 \end{docspec}
 during initialization before the loop starts, and then with the loop:
 \begin{docspec}
-\ \ \ data = [data; S T];
+\ \ \ data = [data; S temp];
 \end{docspec}
-i.e. concatenating a vector \texttt{[S T]}  (and hence a complete row) to the end of the matrix \textbf{data}.
+i.e. concatenating a vector \texttt{[S temp]}  (and hence a complete row) to the end of the matrix \textbf{data}.
 \end{enumerate}
 
 \begin{marginfigure}[-0.0in]
@@ -9023,7 +9022,7 @@ data\_output = zeros(10,20);
 
 Within an (e.g. \texttt{n,m} loop if you did it that way), you then assign your calculated value of \(T\) to the appropriate location in the array:
 \begin{docspec}
-\ \ \ \ \ \ data\_output(n,m) = T;
+\ \ \ \ \ \ data\_output(n,m) = temp;
 \end{docspec}
 Don't forget that you'll also need to know the values of \(S\) and \(\alpha\) that correspond to the column and row numbers. Perhaps save these as 2 individual vector (as per before), or create 2D arrays for them with each element corresponding to an element in the \texttt{data\_output} array, or simply just ignore them for now.
 
@@ -9076,22 +9075,23 @@ When you *think* you have this working and have generated a matrix of \(T\) valu
 
 There is an absolutely classic paper from the early 1980s -- \textit{Watson et al.} [1983] -- that illustrates how simple (biological) feedback on the climate system can lead to a close regulation of global climate over an appreciable span of the Earths past (and future). The premise for this model is a planet covered in bare soil (essentially, as per in the earlier EBM), but on which 2 different species of daisies (could be any pair of plants with contrasting properties) can grow -- one white (high albedo) and one black (low albedo) as per Figure \ref{fig:ch8-daisyworld}\sidenote{As pointed out in \textit{Watson and Lovelock} [1983], the actual 'colors' are immaterial -- just that their albedos differ.}. Because the two species modify their local (temperature) environment and their net growth depends on how close the local temperature is to their optimum growth temperature, a powerful climate feedback operates and as the solar constant increases, the abundance of daisies switches from black to white -- driving an increasing cooling tendency of the planet surface in the face of increasing solar-driven warming. This regulation emerges as a property of the dynamics of the population ecology and interaction with climate and does not require an explicit regulation of climate to be specified. Just dumb daisies doing their day-to-day stuff.
 
-We'll code up this model ... but as before, in discrete stages (aka, the following Subsections).\sidenote{Note that what immediately follows is just a summary list ... not the instructions themselves ...}
+We'll code up this model ... but as before, in discrete stages (aka, the following Subsections).\sidenote{Note that what immediately follows is just a summary list ... not the instructions themselves ...} Note that the \textit{script} and \textit{function} naming convention continues on from the previous section and the zero-D energy balance model. (You will, of course, have had to have completed up to an including Section 6.1.4.)
+
 \begin{description}[align=right]
 
 \setlength{\itemindent}{-0.2in}
 
-\item [8.2.1] This will be the simplest addition to your previous model\sidenote[][-0.0in]{i.e. the one comprising a loop through time, and within this loop, calls to your function to convert time to solar constant, and take the solar constant (and albedo0 and solve for mean global surface temperature. This was '\# \texttt{scr\_4}' in the previous Section notation.}. You'll create a new 'fixed daisy' function (here called \texttt{fun\_3}) which will take no(!) inputs, and return a value for mean global albedo. You'll also copy-rename yourself a new script ('\texttt{scr\_5}' -- based on your previous \textsf{m-file} \texttt{scr\_4}) and in it, take the albedo value generated by the call to the daisy function, and pass it into your EBM function (\textsf{m-file} \texttt{fun\_1}).
+\item [6.2.1] This will be the simplest addition to your previous model\sidenote[][-0.0in]{i.e. the one comprising a loop through time, and within this loop, calls to your function to convert time to solar constant, and take the solar constant (and albedo0 and solve for mean global surface temperature. This was '\# \texttt{scr\_4}' in the previous Section notation.}. You'll create a new 'fixed daisy' function (here called \texttt{fun\_3}) which will take no(!) inputs, and return a value for mean global albedo. You'll also copy-rename yourself a new script ('\texttt{scr\_5}' -- based on your previous \textsf{m-file} \texttt{scr\_4}) and in it, take the albedo value generated by the call to the daisy function, and pass it into your EBM function (\textsf{m-file} \texttt{fun\_1}).
 
 \noindent (See Figure \ref{fig:ch8-schematic-scr5fun1fun2fun3}.)
 
-\item [8.2.2] Now, in the next stage it gets a little more complicated, because in a further new function ('\texttt{fun\_4}' -- copy-renamed-and-edited from \texttt{fun\_3}), you'll modify the equations such that the relative abundance of each daisy type is now responsive to the value of global temperature and incorporates some population dynamics of the daisies.\\ In the main (time since the Sun formed) loop (in \texttt{scr\_5}), the situation thus becomes -- the relative fractions of dark and light colored daisies is now a function of global surface temperature, yet ... global surface temperature, through the mean (fractional area weighted) albedo of the daisies, is a function of the relatively fractions of dark and light colored daisies -- a circularity (feedback loop). We'll resolve this circularity (i.e. come to a steady state solution) by creating an inner loop in \texttt{scr\_5} that comprises only the daisy (abledo) function (\texttt{fun\_4}) and the EBM function and keeps looping until ... well, we'll start by simply prescribing a fixed number of iterations of the loop.
+\item [6.2.2] Now, in the next stage it gets a little more complicated, because in a further new function ('\texttt{fun\_4}' -- copy-renamed-and-edited from \texttt{fun\_3}), you'll modify the equations such that the relative abundance of each daisy type is now responsive to the value of global temperature and incorporates some population dynamics of the daisies.\\ In the main (time since the Sun formed) loop (in \texttt{scr\_5}), the situation thus becomes -- the relative fractions of dark and light colored daisies is now a function of global surface temperature, yet ... global surface temperature, through the mean (fractional area weighted) albedo of the daisies, is a function of the relatively fractions of dark and light colored daisies -- a circularity (feedback loop). We'll resolve this circularity (i.e. come to a steady state solution) by creating an inner loop in \texttt{scr\_5} that comprises only the daisy (abledo) function (\texttt{fun\_4}) and the EBM function and keeps looping until ... well, we'll start by simply prescribing a fixed number of iterations of the loop.
 
 \noindent (See Figure \ref{fig:ch8-schematic-scr6fun1fun2fun4} for a schematic of the code setup.)
 
-\item [8.2.3] Finally (almost) -- we'll allow the daisies affect their *local * (temperature) environment. Now it gets more interesting (honest!). Although the code structure is exactly the same as in the last step\sidenote{A loop through geological time, as per in the previous Section. Within this main loop, you'll have a sub-loop with just the daisy function followed by the EBM function.}, you will require a further copy-rename-and-edit of the previous daisy function ('\texttt{fun\_4}' \(\rightarrow\) '\texttt{fun\_5}') and one further copy-rename-and-edit of the previous script ('\texttt{scr\_6}' \(\rightarrow\) '\texttt{scr\_7}') that calls the daisy function.
+\item [6.2.3] Finally (almost) -- we'll allow the daisies affect their *local * (temperature) environment. Now it gets more interesting (honest!). Although the code structure is exactly the same as in the last step\sidenote{A loop through geological time, as per in the previous Section. Within this main loop, you'll have a sub-loop with just the daisy function followed by the EBM function.}, you will require a further copy-rename-and-edit of the previous daisy function ('\texttt{fun\_4}' \(\rightarrow\) '\texttt{fun\_5}') and one further copy-rename-and-edit of the previous script ('\texttt{scr\_6}' \(\rightarrow\) '\texttt{scr\_7}') that calls the daisy function.
 
-\item [8.2.4] In a minor extension to the previous work, we can modify the loop involving  the daisy function and EBM function such that it will proceed until an adequately accurate solution (f0r global temperature) has been converged upon (rather than looping a fixed number of times).  
+\item [6.2.4] In a minor extension to the previous work, we can modify the loop involving  the daisy function and EBM function such that it will proceed until an adequately accurate solution (f0r global temperature) has been converged upon (rather than looping a fixed number of times).  
 
 \end{description}
 
@@ -9103,7 +9103,7 @@ OK then -- here goes ...
 
 To start: read \textit{Watson and Lovelock} [1983]. You should be able to take away from this some of the essential information that you need to specify and keep track of. For now, we'll just concern ourselves with defining the albedo of bare ground (soil) and the albedo of each daisy together with how much area is covered by each species of daisy.
 
-As summarized above -- create a new function (\texttt{fun\_3}) and configure it so that it returns a single parameter -- albedo. For now it has no inputs.\sidenote[][-2.5in]{A funny sort of function, although pretty well much like \texttt{pi}.} How it relates to your previous program and code for how the Earth's surface temperature evolves over geological time, is illustrated in Figure \ref{fig:ch8-schematic-scr5fun1fun2fun3}.
+As summarized above -- create a new function (\texttt{fun\_3}) and configure it so that it returns a single parameter -- albedo. For now, it has no inputs.\sidenote[][-2.5in]{A funny sort of function, although pretty well much like \texttt{pi}.} How it relates to your previous program and code for how the Earth's surface temperature evolves over geological time, is illustrated in Figure \ref{fig:ch8-schematic-scr5fun1fun2fun3}.
 
 \begin{marginfigure}[-2.in]
 \includegraphics[width=\linewidth]{ch8-schematic-scr5fun1fun2fun3.eps}
@@ -9112,15 +9112,15 @@ As summarized above -- create a new function (\texttt{fun\_3}) and configure it 
 \end{marginfigure}
 
 In the daisy/albedo function (\texttt{fun\_3})  near the top, define yourself some parameters for the daisy model:
-\begin{docspec}
+\begin{docspecbold}
 \% define model parameters -- daisy albedo
 \\par\_a\_s = 0.3; \% albedo -- bare soil
 \\par\_a\_b = 0.1; \% albedo -- black daisies
 \\par\_a\_w = 0.5; \% albedo -- white daisies
 \\\% define model parameters -- daisy land fraction
-\\fb = 0.01; \% (land) fraction -- black daisies
-\\fw = 0.01; \% (land) fraction -- white daisies
-\end{docspec}
+\\Fb = 0.01; \% (land) fraction -- black daisies
+\\Fw = 0.01; \% (land) fraction -- white daisies
+\end{docspecbold}
 (or using whatever parameter names you prefer). Here, the albedo values associated with each daisy type are fixed and will be used regardless of what the model does. The values have been chosen, assuming equal proportions of black and white daisies, to given an average of 0.3 -- the albedo of bare soil and also the assumed value in the previous EBM. You'll modify and play with this value all too soon enough. The surface area fraction values are just initial values to start the model off with.\sidenote[][-0.0in]{As you'll come to see subsequently, these cannot be zero. Or rather, a daisy species can start with a fractional area of zero, but you'll never ever get any of that species growing, regardless of the environmental conditions (because there are none to start with!).}
 
 These parameters relate to the symbols in the equations that follow, as follows:
@@ -9130,12 +9130,12 @@ These parameters relate to the symbols in the equations that follow, as follows:
 \item[\(\alpha_{s}\)] -- \texttt{par\_a\_s} (albedo -- bare soil)
 \item[\(\alpha_{b}\)] -- \texttt{par\_a\_b} (albedo -- black daisies)
 \item[\(\alpha_{w}\)] -- \texttt{par\_a\_w} (albedo -- white daisies)
-\item[\(F_{b}\)] -- \texttt{fb} (land) fraction -- black daisies
-\item[\(F_{w}\)] -- \texttt{fw} (land) fraction -- white daisies
+\item[\(F_{b}\)] -- \texttt{Fb} (land) fraction -- black daisies
+\item[\(F_{w}\)] -- \texttt{Fw} (land) fraction -- white daisies
 \end{itemize}
 \vspace{0mm}
 
-Next, and actually the only line of any note in the function -- you need to calculate the average albedo\sidenote[][-0.5in]{Note that it is very easy to accidently prescribe a total area covered by daisies of >100\%. You should ideally put a check (\texttt{if ... end}) in the code before it tries to calculate anything for whether the total area initially covered by daisies exceeds what is possible. If this is the case, your code might spit out a warning message (a simple \texttt{disp} command would do). You might also terminate your program (see \docenv{exit}).} -- calculated based on the area weighted average of: bare soil, white daisies, black daisies. The calculation is simple and you already have the areas of the two species of daisy as fractions. You weight the contribution to global albedo by the albedo of each daisy by its fractional area. You then just need to calculate the fraction of the Earths surface that is bare soil -- the area fraction not covered by daisies. In maths-speak, the mean albedo is given by:
+Next, and actually the only line of any note in the \textit{function} -- you need to calculate the average albedo\sidenote[][-0.5in]{Note that it is very easy to accidently prescribe a total area covered by daisies of >100\%. You should ideally put a check (\texttt{if ... end}) in the code before it tries to calculate anything for whether the total area initially covered by daisies exceeds what is possible. If this is the case, your code might spit out a warning message (a simple \texttt{disp} command would do). You might also terminate your program (see \docenv{exit}).} -- calculated based on the area weighted average of: bare soil, white daisies, black daisies. The calculation is simple and you already have the areas of the two species of daisy as fractions. You weight the contribution to global albedo by the albedo of each daisy by its fractional area. You then just need to calculate the fraction of the Earths surface that is bare soil -- the area fraction not covered by daisies. In maths-speak, the mean albedo is given by:
 \begin{docspeclarge}
 \(\alpha = F_{w}\cdot\alpha_{w} + F_{b}\cdot\alpha_{b} + (1.0-F_{w}-F_{b})\cdot\alpha_{s}\)
 \end{docspeclarge}
@@ -9147,22 +9147,22 @@ You simply need to translate all this into \textbf{MATLAB} code using the parame
 albedo = Fw*par\_a\_w + Fb*par\_a\_b + (1.0 - Fw - Fb)*par\_a\_s;
 \end{docspec}
 To be neater, we could also pre-calculate the fraction of bare ground, \(F_{g}\), and make ourselves a slightly shorter (and easier-to-debug) mean albedo calculation, e.g.
-\begin{docspec}
-\textcolor[rgb]{0,0.501961,0}{\% calculate fractional area of bar ground\\}
+\begin{docspecbold}
+\textcolor[rgb]{0,0.501961,0}{\% calculate fractional area of bare ground\\}
 Fg = (1.0 - Fw - Fb);\\
 \textcolor[rgb]{0,0.501961,0}{\% calculate mean albedo\\}
 albedo = Fw*par\_a\_w + Fb*par\_a\_b + Fg*par\_a\_s;
-\end{docspec}
+\end{docspecbold}
 
-Add these lines of code, which will be the one and only calculation that this particular \textbf{MATLAB} \textit{function} ((\textsf{fun\_3}), Figure \ref{fig:ch8-schematic-scr5fun1fun2fun3}) carries out, just before the \texttt{\textcolor{blue}{end}} of the function.
+Add these lines of code (immediately after the 5 lines of parameter definitions), which will be the one and only calculation that this particular \textbf{MATLAB} \textit{function} ((\textsf{fun\_3}), Figure \ref{fig:ch8-schematic-scr5fun1fun2fun3}) carries out, just before the \texttt{\textcolor{blue}{end}} of the function.
 
-\begin{marginfigure}[-2.0in]
+\begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch8-daisy1.eps}
 \caption{Evolution of global surface temperature and the two populations of daisies with time ... but with no change allowed in the daisy populations (d'uh!). The fractional coverage of white daisies is shown by large empty circles, and for black, by small filled black circles. Data points for mean surface temperature are color-coded by temperature (color scale not shown).}
 \label{fig:ch8-daisy1}
 \end{marginfigure}
 
-That is actually it. All the variable/parameter values are specified and fixed in the daisy function (see above), so nothing particularly exciting is going to happen ... Regardless -- run the the complete model with the value of albedo now depending on the fraction of white and black daisies  -- it should look identical to before in terms of the evolution of surface temperature with time (it must, because the default parameters above ensure that the mean albedo is always 0.3 and the daisies don't even know anything about growing (or dying) yet). Model (surface temperature) output, including how the populations of the 2 species of daisy also vary with time, is shown in Figure \ref{fig:ch8-daisy1}).
+That is actually it. All the variable/parameter values are specified and fixed in the daisy function (see above), so nothing particularly exciting is going to happen ... Regardless -- run the  complete model (i.e. \texttt{\textbf{\textgreater\textgreater\ scr\_5}}) which now has the value of albedo now depending on the fraction of white and black daisies  -- it should look identical to before in terms of the evolution of surface temperature with time (it must, because the default parameters above ensure that the mean albedo is always 0.3 and the daisies don't even know anything about growing (or dying) yet). Model (surface temperature) output, including how the populations of the 2 species of daisy also vary with time, is shown in Figure \ref{fig:ch8-daisy1}).  
 
 You might play briefly with the prescribed daisy area fractions (\texttt{Fb} and \texttt{Fw}) and albedo values (\texttt{par\_a\_b} and \texttt{par\_a\_w}) and e.g. check that when you specify a configuration with 100\% of land area covered by black daisies, the climate is much warmer throughout the simulation, and when white daisies are assigned an initial value of 1.0, the climate is always much cooler compared to in the default simulation.
 
@@ -9201,9 +9201,9 @@ How then to implement changing areas and growth of daisies in code? (We'll come 
 
 Figure \ref{fig:ch8-schematic-scr6fun1fun2fun4} gives a schematic of the overall code structure for this model. The new difficulty here is that the relative fractions of dark and light colored daisies is a function of global surface temperature, yet ... global surface temperature, through the mean (fractional area weighted) albedo of the daisies, is a function of the relatively fractions of dark and light colored daisies -- a circularity (feedback loop). We resolve this circularity (i.e. come to a steady state solution) by creating an inner (nested) loop that comprises only the daisy function and EBM function.
 
-\textbf{\textcolor{red}{DON'T PANIC.}} There are actually only 2 (or 3-ish), relatively incremental changes, compared to previously. Start off by noting what is the same -- both the function for calculating the solar constant as a function of time (\texttt{fun\_2}) and the EBM model (\texttt{fun\_1}) (temperature as a function of solar constant and albedo) are exactly the same as before. The loop in (geologic time) and hence some of the script (\texttt{scr\_6}) is also the same. What is different and yet to-do?
+\textbf{\textcolor{red}{DON'T PANIC.}} There are actually only 2 (or 3-ish), relatively incremental changes, compared to previously. Start off by noting what is the same -- both the function for calculating the solar constant as a function of time (\texttt{fun\_2}) and the EBM model (\texttt{fun\_1}) (temperature as a function of solar constant and albedo) are exactly the same as before. The loop in (geologic time) and hence some of the script (\texttt{scr\_6}) is also the same (as \texttt{scr\_5}). What is different and yet to-do?
 
-\marginnote[-4.0in]{
+\marginnote[-5.0in]{
 Programming strategy:
 \begin{itemize}[noitemsep]
 \setlength{\itemindent}{.2in}
@@ -9231,8 +9231,13 @@ and the outputs are:
 \begin{docspec}
 \(\alpha, F_{w}, F_{b}\)
 \end{docspec}
-(see help of various sorts on \textit{functions}, but it not at all a fundamental change as to compared to before). Of course, you need to substitute the maths symbols for the actual variable and parameter names you choose to use.
-\\Then, the only other development in the function, is to implement the equations for daisy growth/death (see Box) and update the values of \(F_{w}, F_{b}\).
+(see help of various sorts on \textit{functions}, but it not at all a fundamental change as to compared to before). Of course, you need to substitute the maths symbols for the actual variable and parameter names you choose to use. So ... e.g.
+\begin{docspec}
+function [albedo, Fw, Fb] = fun\_4(temp, fw, fb)
+\end{docspec}
+which defines a \textit{function} with 3 inputs, and 3 outputs.
+
+Then, the only other development in the function, is to implement the equations for daisy growth/death (see Box) and update the values of \(F_{w}, F_{b}\).
 
 \begin{marginfigure}[-0.0in]
 \includegraphics[width=\linewidth]{ch8-schematic-scr6fun1fun2fun4.eps}
@@ -9255,31 +9260,36 @@ or rearranging:
 \begin{docspec}
 \(F_{(n+1)}=(1.0 + x-0.3)\cdot F_{(n)}\)
 \end{docspec}
-which says quite simply that the next fractional area estimate, is equal to the current one, multiplied by \((1.0 + x-0.3)\). This should look pretty familiar to you now and you should know how to code this up, e.g.
+which says quite simply that the next fractional area estimate, is equal to the current one, multiplied by \((1.0 + x-0.3)\). In code, this looks like:
 \begin{docspec}
 \textcolor{blue}{for} n=1:100\\
 \ \ \ F = (1.0 + x - 0.3)*F;\\
 \textcolor{blue}{end}
 \end{docspec}
-taking \(100\) loop iterations as an example. But ... we are not writing the population  and albedo update code directly in the loop, but rather, it is going into \textsf{fun\_4} and the function is called from within the \texttt{\textcolor{blue}{for} n=1:100 ...} loop (Figure \ref{fig:ch8-schematic-scr6fun1fun2fun4}).
- So rather (schematically):
+taking \(100\) loop iterations as an example. But ... we are not writing the population  and albedo update code directly in the loop, but rather, it is going into \textsf{fun\_4}, with that function called from within the \texttt{\textcolor{blue}{for} n=1:100 ...} loop (Figure \ref{fig:ch8-schematic-scr6fun1fun2fun4}).
+
+In \texttt{scr\_6}, schematically, we have:
 \begin{docspec}
-\textcolor{blue}{for} n=1:100\\
-\ \ \ fun\_2()\\
-\ \ \ fun\_4()\\
-\ \ \ fun\_1()\\
+\textcolor{blue}{for} t= ...\\
+\ \ \ St = fun\_2(t)\\
+\ \ \ \textcolor{blue}{for} n=1:100\\
+\ \ \ \ \ \ [albedo,Fw,Fb] = fun\_4(temp,Fw,Fb)\\
+\ \ \ \ \ \ temp = fun\_1(St,albedo)\\
+\ \ \ \textcolor{blue}{end}\\
 \textcolor{blue}{end}
 \end{docspec}
-and within the function:
+which says that for every value of time (the \texttt{t} loop), you calculate the solar constant (\texttt{St}) using your solar constant function. Then you are going to iterate (100 times here), updating the albedo with the initial temperature value, then recalculating the temperature using the new albedo value, then recalculating the albedo, then recalculating the temperature, etc etc ...
+
+Within the function \texttt{fun\_4} you should have:
 \begin{docspec}
-F = (1.0 + x - 0.3)*F;
+F = (1.0 + Fg - 0.3)*F;
 \end{docspec}
- 
-The value of \(x\) in the equation is simply the fraction of the planet not covered in daisies. And if we also bring both daisies and their respective fractional areas back into the picture:
+here substituting \texttt{x} for our previous variable name for the fraction of bare ground (the fraction of the planet not covered in daisies), \texttt{Fg}.
+  And if we also bring both daisies and their respective fractional areas back into the picture:
 \begin{docspec}
-x = 1.0 - Fb - Fw;\\
-Fb = (1.0 + x - 0.3)*Fb;\\
-Fw = (1.0 + x - 0.3)*Fw;\\
+Fb = 1.0 - Fb - Fw;\\
+Fb = (1.0 + Fg - 0.3)*Fb;\\
+Fw = (1.0 + Fg - 0.3)*Fw;\\
 \end{docspec}
 
 \item Now you are in a position to worry about the temperature dependent functions for growth, which were:
@@ -9290,31 +9300,31 @@ Fw = (1.0 + x - 0.3)*Fw;\\
 
 These are actually pretty simple -- you take temperature, subtract it from a value of \(22.5\) and square it, multiply it by \(0.003265\) and subtract from \(1.0\) ...
 \begin{docspec}
-bb = 1.0 - 0.003265*(22.5-T)\(^{\wedge}\)2\\
-bw = 1.0 - 0.003265*(22.5-T)\(^{\wedge}\)2
+bb = 1.0 - 0.003265*(22.5-temp)\(^{\wedge}\)2\\
+bw = 1.0 - 0.003265*(22.5-temp)\(^{\wedge}\)2
 \end{docspec}
 Really -- just as it looks written down mathematically. So now the content of \textsf{fun\_4} will contain:
-\begin{docspec}
-x = 1.0 - Fb - Fw;\\
-bb = 1.0 - 0.003265*(22.5-T)\(^{\wedge}\)2\\
-bw = 1.0 - 0.003265*(22.5-T)\(^{\wedge}\)2\\
-Fb = (1.0 + x*bb - 0.3)*Fb;\\
-Fw = (1.0 + x*bw - 0.3)*Fw;
-\end{docspec}
+\begin{docspecbold}
+Fg = 1.0 - Fb - Fw;\\
+bb = 1.0 - 0.003265*(22.5-temp)\(^{\wedge}\)2\\
+bw = 1.0 - 0.003265*(22.5-temp)\(^{\wedge}\)2\\
+Fb = (1.0 + Fg*bb - 0.3)*Fb;\\
+Fw = (1.0 + Fg*bw - 0.3)*Fw;
+\end{docspecbold}
 
 \item So far, in \textsf{fun\_4} you have updated the  area fraction remaining (bare ground), updated the growth factors for the two species of daisy, and then updated the fractional areas of both species of daisy. Remaining, in this function, is to take the new fractional areas, and update the mean albedo (which is then returned from the function as an output):
-\begin{docspec}
+\begin{docspecbold}
 \textcolor[rgb]{0,0.501961,0}{\% update mean albedo\\}
-albedo = x*par\_a\_s + Fw*par\_a\_w + Fw*par\_a\_b;
-\end{docspec}
+albedo = Fg*par\_a\_s + Fw*par\_a\_w + Fw*par\_a\_b;
+\end{docspecbold}
 
 After this function returns the new updated values of mean albedo (and the two fractional daisy areas in case we want them for plotting later), the EBM function (\textsf{fun\_1}) is called (in the inner loop) (Figure \ref{fig:ch8-schematic-scr6fun1fun2fun4}).
 
-\item Lastly, the initialization of the main program (\texttt{scr\_6}) will be a little different from before. Because the daisy function now takes as input, \(F_{w}\) and \(F_{b}\) -- you'll need to give these variables each an initial value (near the start of the program) so that first time the function is called, there is a value for the equations to work with. Similarly, temperature \(T\) now also becomes an input to the daisy function (and it is not set anywhere else beforehand in the very first iteration of the loops), so it also needs an initial value to be assigned.\sidenote[][-2.5in]{For completeness, you could also initialize \(S_{0}\) and \(\alpha\), but it is not strictly needed, as they are calculated and defined before they are first used.}
+\item Lastly, the initialization of the main program (\texttt{scr\_6}) will be a little different from before. Because the daisy function now takes as input, \(F_{w}\) and \(F_{b}\) -- you'll need to give these variables each an initial value (near the start of the program) so that first time the function is called, there is a value for the equations to work with. Similarly, temperature \(T\) now also becomes an input to the daisy function (and it is not set anywhere else beforehand in the very first iteration of the loops), so it also needs an initial value to be assigned.\sidenote[][-1.5in]{For completeness, you could also initialize \(S_{0}\) and \(\alpha\), but it is not strictly needed, as they are calculated and defined before they are first used.}
 
 \end{enumerate}
 
-\begin{marginfigure}[-1.5in]
+\begin{marginfigure}[-0.5in]
 \includegraphics[width=\linewidth]{ch4-daisy-model2.eps}
 \caption{Evolution of global surface temperature and the two populations of daisies with time ... but now assuming that the growth of each depends on the global mean surface temperature.}
 \label{fig:ch4-daisy-model2}
@@ -9330,7 +9340,7 @@ OK, so actually, this is not different in terms of the global mean temperature r
 
 The last step is to give each species of daisy a different environmental preference for growth (why? because that is how the World works -- different plants and ecosystems tend to inhabit different environmental regimes as a result of being (evolutionary) adapted to different environmental parameters). \textit{Watson and Lovelock} [1983] assume that both species of daisy have the same temperature preference but modify their local environment differently -- white daisies inducing a local cooling relative to the global mean temperature, and the presence of black daisies driving a local heating (see Box). The result is Figure \ref{fig:ch4-daisy-model3}.
 
-\marginnote[-2.0in]{\begin{mdframed}[backgroundcolor=light-blue, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-3.0in]{\begin{mdframed}[backgroundcolor=light-blue, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \textbf{Daisy population dynamics (2)}
 \\To make the different species of daisies interact differently with the environment, the temperature-dependent modifiers of growth are made functions of the local (to the daisy population or individual), rather than global, temperature:
 \begin{docspecmargin}
@@ -9366,13 +9376,13 @@ You could code this modification in -- adjusting the (local) value of \(T\) that
 
 \subsection{Efficient and 'clever daisy' daisy-world}
 
-The purpose of the inner loop is to calculate the equilibrium planetary temperature for each value of \(S_{0}\). It may be that an equilibrium is reached much sooner than the \(100\) loop iterations that are allowed. So rather than running the inner loop for the fixed number of iterations each time, you could make the overall calculation more efficient by testing whether the change in global temperature between one iteration and the next, is lower than some small threshold value -- indicating that the iterative calculation has converged.\sidenote[][-1.0in]{Remember, the command \texttt{break} will exit the current loop you are in.}
+The purpose of the inner loop is to calculate the equilibrium planetary temperature for each value of \(S_{0}\). It may be that an equilibrium is reached much sooner than the \(100\) loop iterations that are allowed. So rather than running the inner loop for the fixed number of iterations each time, you could make the overall calculation more efficient by testing whether the change in global temperature between one iteration and the next, is lower than some small threshold value -- indicating that the iterative calculation has converged.\sidenote[][-0.5in]{Remember, the command \texttt{break} will exit the current loop you are in.}
 
 \noindent\rule[0.0ex]{0.5\linewidth}{0.5pt}
 
 \newthought{Note} that while the Daisy World equations can be written in terms of the population (or area fraction) at the \(n\)th generation, strictly, they are formulated in terms of the population (area fraction) at time \(t\).
 
-\marginnote[-1.5in]{\begin{mdframed}[backgroundcolor=light-blue, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
+\marginnote[-1.0in]{\begin{mdframed}[backgroundcolor=light-blue, roundcorner=10pt,leftmargin=1, rightmargin=1, innerleftmargin=5, innerrightmargin=5, innertopmargin=5,innerbottommargin=5, outerlinewidth=1, linecolor=light-gray]
 \textbf{Daisy population dynamics}
 \\In the published Daisy World paper, the population dynamics are written in terms of time:
 \begin{docspec}
